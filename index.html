@@ -29,15 +29,16 @@ button:focus-visible{outline:2px solid var(--rosso);outline-offset:2px}
 
 /* stage: tablecloth */
 .stage{position:relative;overflow:hidden;border-right:1px solid var(--line);background-color:#fffdf7;
-  background-image:linear-gradient(90deg,rgba(201,37,43,.55) 50%,transparent 50%),linear-gradient(rgba(201,37,43,.55) 50%,transparent 50%);background-size:64px 64px}
+  background-image:linear-gradient(90deg,rgba(201,37,43,.55) 50%,transparent 50%),linear-gradient(rgba(201,37,43,.55) 50%,transparent 50%);background-size:64px 64px;display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 16px 16px;box-sizing:border-box}
 .stage::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 58%,transparent 30%,rgba(60,10,10,.45) 100%);pointer-events:none}
 #fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
-.count{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:4;pointer-events:none;text-align:center;
-  background:var(--verde-d);color:var(--crema);padding:12px 26px 12px;border-radius:14px;box-shadow:0 0 0 3px var(--crema),0 0 0 5px var(--verde-d),0 12px 30px rgba(0,0,0,.35);min-width:210px;max-width:calc(100% - 32px);box-sizing:border-box}
+.count{position:relative;flex:none;z-index:5;pointer-events:none;text-align:center;
+  background:var(--verde-d);color:var(--crema);padding:12px 26px 12px;border-radius:14px;box-shadow:0 0 0 3px var(--crema),0 0 0 5px var(--verde-d),0 12px 30px rgba(0,0,0,.35);min-width:210px;max-width:100%;box-sizing:border-box}
 .count .n{font-family:var(--fd);font-size:clamp(28px,4vw,46px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .count .l{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#ffd27a;margin-top:6px;font-weight:700}
 .count .ps{font-family:var(--fm);font-size:12px;color:#cfe3d4;margin-top:4px}
-.facewrap{position:absolute;left:50%;top:57%;width:min(54%,300px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:3}
+.facearea{position:relative;flex:1;min-height:0;width:100%;display:grid;place-items:center;container-type:size}
+.facewrap{position:relative;width:min(64cqw,64cqh,300px);aspect-ratio:1;z-index:3}
 .plate{position:absolute;inset:-17%;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#fff 0 58%,#f1e9da 59% 63%,#fff 64% 100%);
   box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 6px var(--oro),inset 0 -10px 24px rgba(120,90,40,.18),0 18px 40px rgba(50,10,10,.45)}
@@ -45,13 +46,13 @@ button:focus-visible{outline:2px solid var(--rosso);outline-offset:2px}
   box-shadow:0 0 0 4px #fff,0 0 0 7px var(--verde),0 10px 24px rgba(0,0,0,.35);background:var(--paper2) center/cover no-repeat}
 .face:hover{transform:scale(1.03)}
 .face.hit{transform:scale(.94)}
-.goal{position:absolute;left:50%;transform:translateX(-50%);bottom:54px;width:min(80%,340px);z-index:4;pointer-events:none;background:var(--crema);border:2px solid var(--verde-d);border-radius:12px;padding:7px 12px 9px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.goal{position:relative;flex:none;width:min(100%,340px);box-sizing:border-box;z-index:5;pointer-events:none;background:var(--crema);border:2px solid var(--verde-d);border-radius:12px;padding:7px 12px 9px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .goal .gt{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:700}
 .goal .gt span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .goal .gt span:last-child{font-family:var(--fm);color:var(--verde);font-weight:500;white-space:nowrap}
 .goal .gb{height:7px;border-radius:9px;background:var(--paper2);margin-top:6px;overflow:hidden}
 .goal .gb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--verde),#3fae72);border-radius:9px;transition:width .15s linear}
-.buffs{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;z-index:4;padding:0 16px;pointer-events:none}
+.buffs{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;z-index:5;pointer-events:none}
 .buff{font-family:var(--fm);font-size:12px;padding:6px 10px;border-radius:8px;background:var(--rosso);color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.3)}
 .pop{position:absolute;z-index:5;pointer-events:none;font-family:var(--fd);font-size:22px;color:#fff;text-shadow:0 2px 0 var(--rosso-d),0 0 10px rgba(0,0,0,.5);animation:pop 1s ease-out forwards;white-space:nowrap}
 @keyframes pop{0%{transform:translate(-50%,-50%) scale(.7);opacity:1}100%{transform:translate(-50%,-160%) scale(1.1);opacity:0}}
@@ -137,17 +138,15 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 
 @media (max-width:900px){
   .app{grid-template-columns:1fr;grid-template-rows:auto 46% minmax(0,1fr)}
-  .stage{border-right:0;border-bottom:1px solid var(--line)}
+  .stage{border-right:0;border-bottom:1px solid var(--line);padding:12px 16px 10px;gap:8px}
   .mid{border-right:0}
   .m-only{display:inline-block}
   .app>.store{display:none}
   .ticker{display:none}
   .top{justify-content:space-between}
-  .facewrap{width:min(34%,170px);top:55%}
-  .count{top:14px;padding:8px 18px}
+  .count{padding:8px 18px}
   .count .n{font-size:26px}
-  .goal{bottom:10px;padding:5px 10px 7px}
-  .buffs{bottom:auto;top:96px}
+  .goal{padding:5px 10px 7px}
   .store{background:transparent}
   .shead{padding:0 0 10px}.slist{padding:8px 0 0;overflow:visible}
 }
@@ -163,9 +162,8 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
   <section class="stage" id="stage">
     <canvas id="fx"></canvas>
     <div class="count"><div class="n" id="cnt">0</div><div class="l">Duecks</div><div class="ps" id="cps">0 per second</div></div>
-    <div class="facewrap"><div class="plate"></div><div class="face" id="face" role="button" aria-label="Click the face"></div></div>
+    <div class="facearea"><div class="facewrap"><div class="plate"></div><div class="face" id="face" role="button" aria-label="Click the face"></div></div><div class="buffs" id="buffs"></div></div>
     <div class="goal"><div class="gt"><span id="goalN"></span><span id="goalP">0%</span></div><div class="gb"><i id="goalB"></i></div></div>
-    <div class="buffs" id="buffs"></div>
   </section>
   <section class="mid">
     <nav class="tabs" id="tabs">
