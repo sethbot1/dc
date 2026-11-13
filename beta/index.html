@@ -686,7 +686,7 @@ function hh(a,b,c){let h=Math.imul(a^MX[0],0x85ebca6b)^Math.imul(b^MX[1],0xc2b2a
   h^=h>>>16;h=Math.imul(h,0x7feb352d);h^=h>>>15;h=Math.imul(h^MX[3],0x846ca68b);h^=h>>>16;return(h>>>0)/4294967296}
 const sg=(a,b,c)=>hh(a,b,c)*2-1;
 function vn(a,o,x){const i=Math.floor(x),f=x-i,s=f*f*(3-2*f);return sg(a,o,i)*(1-s)+sg(a,o,i+1)*s}
-const OCT=[[37,.0035],[173,.008],[911,.017],[3607,.03],[14411,.05],[86413,.08],[604801,.13],[2629801,.2]];
+const OCT=[[37,.0022],[173,.006],[911,.017],[3607,.033],[14411,.05],[86413,.08],[604801,.13],[2629801,.2]];
 const TICK=2,EVW=3600;
 const STK=[
  ["DUEK","Dueck Industries","Dueck Industrie",120,1],
@@ -707,8 +707,8 @@ function evAt(st,w){if(hh(st.id,900,w)>.16)return null;const te=w*EVW+hh(st.id,9
   const mag=(up?1:-1)*(.025+.06*hh(st.id,903,w))*Math.min(1.6,st.vol);return{te,mag,up,w,h:Math.floor(hh(st.id,904,w)*5)}}
 function lpx(st,t,res=0){let v=Math.log(st.base);
   for(let o=0;o<OCT.length;o++){const[p,a]=OCT[o];if(p<res*3)continue;v+=st.vol*a*vn(st.id,o,t/p)+.45*a*vn(3,o,t/p)}
-  if(res<20)v+=st.vol*.0012*sg(st.id,77,Math.floor(t/TICK));
-  const w0=Math.floor(t/EVW);for(let w=w0;w>w0-7;w--){const e=evAt(st,w);if(e&&t>=e.te){const dt=t-e.te;v+=e.mag*Math.exp(-dt/7000)*Math.min(1,dt/120)}}
+  if(res<20)v+=st.vol*.0007*sg(st.id,77,Math.floor(t/TICK));
+  const w0=Math.floor(t/EVW);for(let w=w0;w>w0-7;w--){const e=evAt(st,w);if(e&&t>=e.te){const dt=t-e.te;v+=e.mag*Math.exp(-dt/7000)*Math.min(1,dt/300)}}
   return v}
 const pxAt=(st,t,res)=>Math.exp(lpx(st,Math.floor(t/TICK)*TICK,res));
 const nowS=()=>Date.now()/1000;
