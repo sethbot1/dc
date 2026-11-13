@@ -178,6 +178,33 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .perf .golden{box-shadow:0 0 0 4px #ffcd4a}
 @media (max-width:560px){.top{gap:6px}.brand{font-size:18px}.top .mute{font-size:11px;padding:4px 7px}}
 .mute.on{background:#ffcf1f;color:#1b1b1b;border-color:#ffcf1f}
+/* market window: takes over the screen */
+.mwin{position:fixed;inset:6px;z-index:75;display:flex}
+.mwin .mkt{flex:1;min-height:0;display:flex;flex-direction:column;padding:0;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.mbar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--ln);font-size:11px;color:var(--mt);letter-spacing:.12em;text-transform:uppercase;flex-wrap:wrap}
+.mlogo{font:400 22px var(--fd);letter-spacing:0;text-transform:none;color:var(--tx);margin-right:4px}.mlogo i{font-style:normal;color:var(--up)}
+.mbar .clock{margin-left:auto}
+.mcash{display:flex;flex-direction:column;align-items:flex-end;gap:2px}.mcash small{font-size:9px}.mcash b{font-size:16px;color:var(--tx);letter-spacing:0;font-weight:500}
+.mclose{font:500 12px var(--fm);letter-spacing:.06em;color:var(--tx);border:1px solid var(--ln)!important;background:var(--pn);padding:9px 12px;border-radius:9px;text-transform:uppercase}
+.mclose:hover{background:#1f2e33}
+.mwin .tape{margin:0;padding:7px 0;border-top:0}
+.mgrid{flex:1;min-height:0;display:grid;grid-template-columns:270px minmax(0,1fr) 300px;gap:12px;padding:12px}
+.mcol{min-height:0;overflow:auto}
+.mlist h4{margin:2px 4px 8px;font-size:11px;color:var(--mt);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.mlist .slst{margin:0}
+.mlist .srow{grid-template-columns:52px minmax(0,1fr) auto;row-gap:2px}
+.mlist .srow canvas{grid-column:1/-1;width:100%;height:26px;order:5}
+.mmain{display:flex;flex-direction:column}
+.mmain .sel{flex:1;display:flex;flex-direction:column;margin:0;min-height:0}
+.cwrap{position:relative;flex:1;min-height:240px}
+.cwrap #chart{position:absolute;inset:0;width:100%;height:100%}
+.mside{display:flex;flex-direction:column;gap:12px}.mside .pf,.mside .nws{margin:0}
+.mhint{font-family:var(--fb);font-size:12px;line-height:1.5;color:var(--mt);margin:0 4px}.mhint b{color:var(--tx)}
+.sel .sy{font-size:15px;font-weight:500}
+.toasts{z-index:78}.golden,.mini{z-index:77}
+@media (max-width:1200px){.mgrid{grid-template-columns:230px minmax(0,1fr);overflow:auto}.mside{grid-column:2;flex-direction:row;flex-wrap:wrap}.mside>*{flex:1 1 260px}.mcol{overflow:visible;min-height:auto}.mmain .sel{flex:none}.cwrap{flex:none;height:300px}}
+@media (max-width:760px){.mwin{inset:0}.mwin .mkt{border-radius:0}.mgrid{grid-template-columns:minmax(0,1fr)}.mside{grid-column:auto}.mmain{order:-1}.mbar{gap:8px 12px;padding:26px 12px 10px}.mlogo{font-size:19px}.mclose{padding:7px 10px;font-size:11px}.mbar .clock,.msess{display:none}.mcash{margin-left:auto}.cwrap{height:240px}
+  .mlist .srow{grid-template-columns:56px minmax(0,1fr) auto}.mlist .srow canvas{display:none}}
 /* market terminal */
 .mkt{--bg:#0d1417;--pn:#141e22;--ln:#24343a;--tx:#e4efe9;--mt:#7f958d;--up:#2fd27f;--dn:#ff5a5f;
   background:var(--bg);color:var(--tx);border-radius:14px;padding:12px;font-family:var(--fm);user-select:none;overflow:hidden;min-width:0}
@@ -288,27 +315,6 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <h3 style="margin-top:24px" data-i="saveH">Save</h3>
         <div class="betanote" data-i="noSave">This is the <b>beta</b>. It never saves, and it never reads or touches your real Dueck Clicker save. Refreshing or closing the page starts it over.</div>
       </div>
-      <div class="pane" id="p-mkt" hidden>
-        <h3 data-i="tMkt">Market</h3>
-        <p class="hint" data-i="mktHint">The Dueck Exchange. Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Each trade costs a <b>0.25% fee</b>.</p>
-        <div class="mkt">
-          <div class="mh"><span class="live">Live</span><span id="mktSess"></span><span class="clock" id="mktClock"></span></div>
-          <div class="tape"><span id="tape"></span></div>
-          <div class="slst" id="slst"></div>
-          <div class="sel">
-            <div class="top2"><span class="sy" id="selSym" style="font-size:15px;font-weight:500"></span><span class="big" id="selPx"></span><span id="selCh"></span><span class="nm3" id="selNm"></span></div>
-            <div class="tfs" id="tfs"><button data-tf="60">1M</button><button data-tf="600" class="on">10M</button><button data-tf="3600">1H</button><button data-tf="86400">1D</button><button data-tf="604800">1W</button></div>
-            <canvas id="chart"></canvas>
-            <div class="trade">
-              <div class="col"><span class="lbl" data-i="buyL">Buy with your Duecks</span><div class="bts" id="buyBts"><button class="bbuy" data-b=".1">10%</button><button class="bbuy" data-b=".25">25%</button><button class="bbuy" data-b=".5">50%</button><button class="bbuy" data-b="1">MAX</button></div></div>
-              <div class="col"><span class="lbl" data-i="sellL">Sell your shares</span><div class="bts" id="sellBts"><button class="bsell" data-s=".25">25%</button><button class="bsell" data-s=".5">50%</button><button class="bsell" data-s="1">ALL</button></div></div>
-            </div>
-            <dl class="pos" id="pos"></dl>
-          </div>
-          <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div></div>
-          <div class="nws"><h4 data-i="nwsH">Market news</h4><ul id="nws"></ul></div>
-        </div>
-      </div>
       <div class="pane" id="p-dev" hidden>
         <h3 data-i="tDev">Beta Tools</h3>
         <div class="betanote" data-i="devNote">Cheats for testing. Go wild, none of this saves and none of it reaches the real game.</div>
@@ -327,6 +333,37 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
     <div class="slist" id="slist"></div>
   </section>
 </div>
+<div class="mwin" id="mwin" hidden role="dialog" aria-modal="true" aria-label="Dueck Exchange">
+  <div class="mkt">
+    <header class="mbar">
+      <b class="mlogo">Dueck <i>Exchange</i></b><span class="live">Live</span><span class="msess" id="mktSess"></span>
+      <span class="clock" id="mktClock"></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="mCash">0</b></span>
+      <button class="mclose" id="mClose" aria-label="Close the market"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tape"><span id="tape"></span></div>
+    <div class="mgrid">
+      <aside class="mcol mlist"><h4 data-i="stkH">Stocks</h4><div class="slst" id="slst"></div></aside>
+      <main class="mcol mmain">
+        <div class="sel">
+          <div class="top2"><span class="sy" id="selSym"></span><span class="big" id="selPx"></span><span id="selCh"></span><span class="nm3" id="selNm"></span></div>
+          <div class="tfs" id="tfs"><button data-tf="60">1M</button><button data-tf="600" class="on">10M</button><button data-tf="3600">1H</button><button data-tf="86400">1D</button><button data-tf="604800">1W</button></div>
+          <div class="cwrap"><canvas id="chart"></canvas></div>
+          <div class="trade">
+            <div class="col"><span class="lbl" data-i="buyL">Buy with your Duecks</span><div class="bts" id="buyBts"><button class="bbuy" data-b=".1">10%</button><button class="bbuy" data-b=".25">25%</button><button class="bbuy" data-b=".5">50%</button><button class="bbuy" data-b="1">MAX</button></div></div>
+            <div class="col"><span class="lbl" data-i="sellL">Sell your shares</span><div class="bts" id="sellBts"><button class="bsell" data-s=".25">25%</button><button class="bsell" data-s=".5">50%</button><button class="bsell" data-s="1">ALL</button></div></div>
+          </div>
+          <dl class="pos" id="pos"></dl>
+        </div>
+      </main>
+      <aside class="mcol mside">
+        <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div></div>
+        <div class="nws"><h4 data-i="nwsH">Market news</h4><ul id="nws"></ul></div>
+        <p class="mhint" data-i="mktHint">Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Each trade costs a <b>0.25% fee</b>.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div id="tip" hidden></div>
 <div class="toasts" id="toasts"></div>
 
@@ -344,8 +381,8 @@ const IT={tStore:"Bottega",tUpg:"Ingredienti",tAch:"Trofei",tAsc:"Rinascita",tSt
  ascHint:"Rinuncia ai tuoi Dueck, ai negozi e agli ingredienti e ricevi Allori in base a tutto ciò che hai prodotto. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto.",
  hOwn:"Allori posseduti",hFree:"Da spendere",hNext:"Allori alla rinascita",hAt:"Prossimo Alloro a",bless:"Benedizioni",saveH:"Salvataggio",saveNow:"Salva ora",exp:"Esporta",imp:"Importa",
  tMkt:"Borsa",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
- mktHint:"La Borsa del Dueck. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
- buyL:"Compra con i tuoi Dueck",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
+ mktHint:"I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
+ buyL:"Compra con i tuoi Dueck",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
  ascHint:"Rinuncia ai tuoi Dueck, negozi, ingredienti e azioni e ricevi Allori in base a tutto ciò che hai prodotto. Puoi rinascere da <b>10 B</b> e gli Allori crescono con la <b>radice quadrata</b> dei Dueck totali: 1 T ne dà 10, 100 T ne dà 100, 1 Qi ne dà 10.000. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto."};
 if(LANG==="it")document.querySelectorAll("[data-i]").forEach(el=>{if(IT[el.dataset.i])el.innerHTML=IT[el.dataset.i]});
 $("langBtn").textContent=L("Italiano","English");
@@ -656,8 +693,8 @@ function mBuy(f){const st=STK[sel],p=pxAt(st,nowS()),cash=S.d*f;const sh=cash/(p
 function mSell(f){const st=STK[sel],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,nowS()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
   h.sh-=sh;h.cost-=basis;if(f>=1){h.sh=0;h.cost=0}S.d+=got;const pl=got-basis;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl}S.trades++;
   blip(pl>=0?780:260,.08,"square",.05);toast(pl>=0?L("Sold for a profit","Venduto in guadagno"):L("Sold at a loss","Venduto in perdita"),`${st.sy}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,2200)}
-$("buyBts").onclick=e=>{const b=e.target.closest("button");if(b)mBuy(+b.dataset.b)};
-$("sellBts").onclick=e=>{const b=e.target.closest("button");if(b)mSell(+b.dataset.s)};
+$("buyBts").onclick=e=>{const b=e.target.closest("button");if(b){mBuy(+b.dataset.b);renderMkt(true)}};
+$("sellBts").onclick=e=>{const b=e.target.closest("button");if(b){mSell(+b.dataset.s);renderMkt(true)}};
 $("tfs").onclick=e=>{const b=e.target.closest("button");if(!b)return;tf=+b.dataset.tf;[...$("tfs").children].forEach(x=>x.classList.toggle("on",x===b));chartCache=null;renderMkt(true)};
 function pfmt(p){return p>=1000?fmt(p):p.toFixed(p<10?3:2)}
 function pct(a,b){const c=(a/b-1)*100;return`<span class="${c>=0?"up":"dn"}">${c>=0?"▲":"▼"} ${Math.abs(c).toFixed(2)}%</span>`}
@@ -668,7 +705,7 @@ function spark(cv,st,t){const c=cv.getContext("2d"),w=cv.width,h=cv.height,n=40,
   const mn=Math.min(...pts),mx=Math.max(...pts);c.clearRect(0,0,w,h);c.strokeStyle=pts[n]>=pts[0]?"#2fd27f":"#ff5a5f";c.lineWidth=2;c.beginPath();
   pts.forEach((p,i)=>{const x=i/n*w,y=h-3-(p-mn)/(mx-mn||1)*(h-6);i?c.lineTo(x,y):c.moveTo(x,y)});c.stroke()}
 function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.width)return;const dpr=Math.min(2,devicePixelRatio||1);
-  if(cv.width!==Math.round(r.width*dpr)){cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr)}
+  if(cv.width!==Math.round(r.width*dpr)||cv.height!==Math.round(r.height*dpr)){cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr)}
   const c=cv.getContext("2d"),W2=r.width,H2=r.height;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W2,H2);
   const st=STK[sel],N=Math.min(PERF?120:300,tf/TICK),step=tf/N,pts=[];for(let i=0;i<N;i++)pts.push(pxAt(st,t-tf+i*step,step));pts.push(pxAt(st,t));
   const mn=Math.min(...pts),mx=Math.max(...pts),pad=(mx-mn)*.12||mx*.01,lo=mn-pad,hi=mx+pad,R=52;
@@ -676,7 +713,7 @@ function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.wid
   c.font="10px DM Mono, monospace";c.fillStyle="#7f958d";c.strokeStyle="#1d2b30";c.lineWidth=1;
   for(let g=0;g<=4;g++){const p=lo+(hi-lo)*g/4,y=Y(p);c.beginPath();c.moveTo(0,y);c.lineTo(W2-R,y);c.stroke();c.fillText(pfmt(p),W2-R+6,y+3)}
   const lab=s=>{const d=new Date(s*1000);return tf>=86400*2?d.toLocaleDateString([], {month:"short",day:"numeric"}):d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",second:tf<=600?"2-digit":undefined})};
-  for(let g=0;g<=3;g++){const i=Math.round(N*g/3),x=X(i);c.fillText(lab(t-tf+i*step),Math.min(W2-R-50,Math.max(0,x-20)),H2-3)}
+  const NL=W2<480?2:3;for(let g=0;g<=NL;g++){const i=Math.round(N*g/NL),x=X(i);c.fillText(lab(t-tf+i*step),Math.min(W2-R-50,Math.max(0,x-20)),H2-3)}
   const gr=c.createLinearGradient(0,0,0,H2);gr.addColorStop(0,upc?"rgba(47,210,127,.28)":"rgba(255,90,95,.28)");gr.addColorStop(1,"rgba(0,0,0,0)");
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.lineTo(X(N),H2-18);c.lineTo(0,H2-18);c.closePath();c.fillStyle=gr;c.fill();
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.strokeStyle=col;c.lineWidth=1.8;c.stroke();
@@ -689,7 +726,7 @@ $("chart").addEventListener("pointermove",e=>{const r=$("chart").getBoundingClie
 $("chart").addEventListener("pointerleave",()=>{mkHover=null;drawChart(nowS())});
 let mkLast=0,lastSpark=0;
 function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;mkLast=t;
-  const d=new Date();$("mktClock").textContent=d.toLocaleTimeString();
+  const d=new Date();$("mktClock").textContent=d.toLocaleTimeString();$("mCash").textContent=fmt(S.d);
   const hr=d.getHours();$("mktSess").textContent=hr<9?L("Pre-market","Pre-apertura"):hr<17?L("Session open","Seduta aperta"):L("After hours","Dopo chiusura");
   const sp=force||t-lastSpark>(PERF?60:20);if(sp)lastSpark=t;
   STK.forEach((st,k)=>{const el=srows[k],p=pxAt(st,t),p0=pxAt(st,t-86400);el.classList.toggle("on",k===sel);
@@ -705,7 +742,12 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
     evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} ${e.up?"▲":"▼"}${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
     {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-3600);return`<b>${s2.sy}</b>${pfmt(a)} ${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
-setInterval(()=>{if(tab==="mkt")renderMkt()},250);
+let mOpen=false;
+function openMkt(){mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
+function closeMkt(){mOpen=false;$("mwin").hidden=true;mkHover=null}
+$("mClose").onclick=closeMkt;
+addEventListener("keydown",e=>{if(e.key==="Escape"&&mOpen)closeMkt()});
+setInterval(()=>{if(mOpen)renderMkt()},250);
 
 // ---------- beta tools ----------
 function devAmt(){const v=Number($("devAmt").value.trim().replace(/,/g,""));if(!isFinite(v)||v<0){toast("Beta",L("Type a number like 1e15 or 5000000.","Scrivi un numero come 1e15 o 5000000."));return null}return v}
@@ -728,9 +770,9 @@ function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt
 
 // ---------- tabs / layout ----------
 let tab="upg";
-$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;tab=b.dataset.t;[...$("tabs").children].forEach(x=>x.classList.toggle("on",x===b));
-  ["store","upg","ach","mkt","asc","stat","dev"].forEach(t=>$("p-"+t).hidden=t!==tab);hideTip();
-  if(tab==="mkt"){chartCache=null;renderMkt(true)}if(tab==="ach")renderAch();if(tab==="asc")renderAsc();if(tab==="stat")renderStats()};
+$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;if(b.dataset.t==="mkt"){openMkt();return}tab=b.dataset.t;[...$("tabs").children].forEach(x=>x.classList.toggle("on",x===b));
+  ["store","upg","ach","asc","stat","dev"].forEach(t=>$("p-"+t).hidden=t!==tab);hideTip();
+  if(tab==="ach")renderAch();if(tab==="asc")renderAsc();if(tab==="stat")renderStats()};
 const mq=matchMedia("(max-width:900px)");
 function place(){if(mq.matches){$("p-store").appendChild($("store"));$("store").style.display="flex"}else{$("app").appendChild($("store"));$("store").style.display="";if(tab==="store")document.querySelector('.tab[data-t="upg"]').click()}setTimeout(resize,0)}
 mq.addEventListener("change",place);
@@ -756,7 +798,7 @@ function news(first){const s=$("news");s.textContent=NEWS[first?0:Math.floor(Mat
 setInterval(news,18000);
 
 // ---------- smooth mode ----------
-function setPerf(on){PERF=on;document.body.classList.toggle("perf",on);$("perfBtn").classList.toggle("on",on);$("perfBtn").textContent=on?L("Smooth: on","Fluida: sì"):L("Smooth mode","Modalità fluida");chartCache=null;if(tab==="mkt")renderMkt(true)}
+function setPerf(on){PERF=on;document.body.classList.toggle("perf",on);$("perfBtn").classList.toggle("on",on);$("perfBtn").textContent=on?L("Smooth: on","Fluida: sì"):L("Smooth mode","Modalità fluida");chartCache=null;if(mOpen)renderMkt(true)}
 $("perfBtn").onclick=()=>{fpsDone=true;setPerf(!PERF);toast(PERF?L("Smooth mode on","Modalità fluida attiva"):L("Smooth mode off","Modalità fluida spenta"),PERF?L("Heavy effects are off for a lag-free game.","Effetti pesanti spenti per un gioco senza scatti."):L("All effects are back.","Tutti gli effetti sono tornati."),2500)};
 
 // ---------- misc ----------
