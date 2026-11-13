@@ -234,7 +234,11 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .tape span{display:inline-block;animation:tape 45s linear infinite}
 @keyframes tape{to{transform:translateX(-50%)}}
 .tape b{font-weight:500;margin:0 6px 0 22px}
-.tape i{font-style:normal;margin-right:8px}
+.tape i{font-style:normal}
+.chg2{display:inline-flex!important;align-items:center;white-space:nowrap;margin-left:10px}
+.srow .pr .chg2,#selCh .chg2{margin-left:0}
+.ar{display:inline-block;flex:none;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;margin-right:5px}
+.up .ar{border-bottom:8px solid currentColor}.dn .ar{border-top:8px solid currentColor}
 .tape .up,.tape .dn,.srow .pr .up,.srow .pr .dn,#selCh .up,#selCh .dn{display:inline-block;white-space:nowrap}
 .up{color:var(--up)}.dn{color:var(--dn)}
 .slst{display:grid;gap:4px;margin-bottom:12px}
@@ -742,7 +746,8 @@ $("buyBts").onclick=e=>{const b=e.target.closest("button");if(b){mBuy(+b.dataset
 $("sellBts").onclick=e=>{const b=e.target.closest("button");if(b){mSell(+b.dataset.s);renderMkt(true)}};
 $("tfs").onclick=e=>{const b=e.target.closest("button");if(!b)return;tf=+b.dataset.tf;[...$("tfs").children].forEach(x=>x.classList.toggle("on",x===b));chartCache=null;renderMkt(true)};
 function pfmt(p){return p>=1000?fmt(p):p.toFixed(p<10?3:2)}
-function pct(a,b){const c=(a/b-1)*100;return`<span class="${c>=0?"up":"dn"}">${c>=0?"▲":"▼"} ${Math.abs(c).toFixed(2)}%</span>`}
+// arrows are drawn with CSS (not ▲▼ text) so no font can make them overlap the numbers
+function pct(a,b){const c=(a/b-1)*100;return`<span class="${c>=0?"up":"dn"} chg2"><em class="ar"></em>${Math.abs(c).toFixed(2)}%</span>`}
 const srows=STK.map(st=>{const el=document.createElement("button");el.className="srow";
   el.innerHTML=`<span class="sy">${st.sy}</span><span class="nm2">${st.name}</span><canvas width="140" height="44"></canvas><span class="pr"></span>`;
   el.onclick=()=>{sel=st.k;chartCache=null;renderMkt(true)};$("slst").appendChild(el);return el});
@@ -795,7 +800,7 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
   let tv=0,tc=0;STK.forEach(s2=>{const x=S.pf[s2.k];if(x&&x.sh){tv+=x.sh*pxAt(s2,t)*(1-fee());tc+=x.cost}});const tp=tv-tc;
   $("pfsum").innerHTML=`<div><small>${L("Cash","Contanti")}</small><b>${fmt(S.d)}</b></div><div><small>${L("Invested value","Valore investito")}</small><b>${fmt(tv)}</b></div><div><small>${L("Open P/L","G/P aperto")}</small><b class="${tp>=0?"up":"dn"}">${tc?(tp>=0?"+":"-")+fmt(Math.abs(tp)):"—"}</b></div><div><small>${L("Realised","Realizzato")}</small><b class="${S.profit>=0?"up":"dn"}">${(S.profit<0?"-":"")+fmt(Math.abs(S.profit))}</b></div>`;
   if(force||sp){const evs=[];const w0=Math.floor(t/EVW);STK.forEach(s2=>{for(let w=w0;w>w0-6;w--){const e=evAt(s2,w);if(e&&e.te<=t)evs.push({...e,st:s2})}});
-    evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} ${e.up?"▲":"▼"}${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
+    evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} <em class="ar"></em>${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
     {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b><i>${pfmt(a)}</i>${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
 let mOpen=false;
