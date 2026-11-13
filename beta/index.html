@@ -233,7 +233,9 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .tape{overflow:hidden;max-width:100%;white-space:nowrap;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);padding:6px 0;font-size:12px;margin-bottom:10px}
 .tape span{display:inline-block;animation:tape 45s linear infinite}
 @keyframes tape{to{transform:translateX(-50%)}}
-.tape b{font-weight:500;margin:0 4px 0 14px}
+.tape b{font-weight:500;margin:0 6px 0 22px}
+.tape i{font-style:normal;margin-right:8px}
+.tape .up,.tape .dn,.srow .pr .up,.srow .pr .dn,#selCh .up,#selCh .dn{display:inline-block;white-space:nowrap}
 .up{color:var(--up)}.dn{color:var(--dn)}
 .slst{display:grid;gap:4px;margin-bottom:12px}
 .srow{display:grid;grid-template-columns:62px minmax(0,1fr) 70px auto;gap:10px;align-items:center;padding:7px 9px;border-radius:9px;background:var(--pn);border:1px solid transparent;text-align:left;color:var(--tx)}
@@ -794,7 +796,7 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
   $("pfsum").innerHTML=`<div><small>${L("Cash","Contanti")}</small><b>${fmt(S.d)}</b></div><div><small>${L("Invested value","Valore investito")}</small><b>${fmt(tv)}</b></div><div><small>${L("Open P/L","G/P aperto")}</small><b class="${tp>=0?"up":"dn"}">${tc?(tp>=0?"+":"-")+fmt(Math.abs(tp)):"—"}</b></div><div><small>${L("Realised","Realizzato")}</small><b class="${S.profit>=0?"up":"dn"}">${(S.profit<0?"-":"")+fmt(Math.abs(S.profit))}</b></div>`;
   if(force||sp){const evs=[];const w0=Math.floor(t/EVW);STK.forEach(s2=>{for(let w=w0;w>w0-6;w--){const e=evAt(s2,w);if(e&&e.te<=t)evs.push({...e,st:s2})}});
     evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} ${e.up?"▲":"▼"}${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
-    {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b>${pfmt(a)} ${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
+    {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b><i>${pfmt(a)}</i>${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
 let mOpen=false;
 function openMkt(){mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
