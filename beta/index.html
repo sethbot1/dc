@@ -205,6 +205,23 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 @media (max-width:1200px){.mgrid{grid-template-columns:230px minmax(0,1fr);overflow:auto}.mside{grid-column:2;flex-direction:row;flex-wrap:wrap}.mside>*{flex:1 1 260px}.mcol{overflow:visible;min-height:auto}.mmain .sel{flex:none}.cwrap{flex:none;height:300px}}
 @media (max-width:760px){.mwin{inset:0}.mwin .mkt{border-radius:0}.mgrid{grid-template-columns:minmax(0,1fr)}.mside{grid-column:auto}.mmain{order:-1}.mbar{gap:8px 12px;padding:26px 12px 10px}.mlogo{font-size:19px}.mclose{padding:7px 10px;font-size:11px}.mbar .clock,.msess{display:none}.mcash{margin-left:auto}.cwrap{height:240px}
   .mlist .srow{grid-template-columns:56px minmax(0,1fr) auto}.mlist .srow canvas{display:none}}
+.mkt button:focus-visible{outline:2px solid #55707a;outline-offset:1px}
+.mlist h4 .chg{text-transform:none;letter-spacing:.04em}.mlist h4 .chg b{color:var(--tx);font-weight:500}
+.orders{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--ln)}
+.orders.off .ocol{opacity:.45}
+.ocol{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ocol .lbl{font-size:10px;color:var(--mt);letter-spacing:.1em;text-transform:uppercase}
+.orow{display:flex;gap:4px}.orow input{flex:1;min-width:0;background:#0f181b;border:1px solid var(--ln);color:var(--tx);border-radius:8px;padding:8px 9px;font:500 12px var(--fm);user-select:text}
+.orow input:focus{outline:none;border-color:#55707a}
+.orow button{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:500}
+.opre{display:flex;gap:4px}.opre button{flex:1;font-size:11px;padding:6px 2px;border-radius:7px;background:#0f181b;border:1px solid var(--ln);color:var(--mt)}
+.opre button:hover{color:var(--tx)}
+.ochips{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}.ochips:empty{display:none}
+.chip{font-size:12px;padding:5px 6px 5px 10px;border-radius:99px;border:1px solid;display:inline-flex;align-items:center;gap:6px}
+.chip small{opacity:.75}.chip button{color:inherit;font-size:11px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.06)}
+.chip.sl{color:var(--dn);border-color:#7a2a2f}.chip.tp{color:var(--up);border-color:#1e6b45}
+.pford h4{margin:10px 0 6px}.pford ul{margin:0;padding:0}.pford li{list-style:none;padding:4px 0;border-top:1px solid var(--ln);display:flex;gap:10px}
+@media (max-width:520px){.orders{grid-template-columns:1fr}}
 /* market terminal */
 .mkt{--bg:#0d1417;--pn:#141e22;--ln:#24343a;--tx:#e4efe9;--mt:#7f958d;--up:#2fd27f;--dn:#ff5a5f;
   background:var(--bg);color:var(--tx);border-radius:14px;padding:12px;font-family:var(--fm);user-select:none;overflow:hidden;min-width:0}
@@ -343,7 +360,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
     </header>
     <div class="tape"><span id="tape"></span></div>
     <div class="mgrid">
-      <aside class="mcol mlist"><h4 data-i="stkH">Stocks</h4><div class="slst" id="slst"></div></aside>
+      <aside class="mcol mlist"><h4><span data-i="stkH">Stocks</span> <span class="chg">· <span data-i="chgW">change over</span> <b id="chgL">10M</b></span></h4><div class="slst" id="slst"></div></aside>
       <main class="mcol mmain">
         <div class="sel">
           <div class="top2"><span class="sy" id="selSym"></span><span class="big" id="selPx"></span><span id="selCh"></span><span class="nm3" id="selNm"></span></div>
@@ -353,11 +370,20 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
             <div class="col"><span class="lbl" data-i="buyL">Buy with your Duecks</span><div class="bts" id="buyBts"><button class="bbuy" data-b=".1">10%</button><button class="bbuy" data-b=".25">25%</button><button class="bbuy" data-b=".5">50%</button><button class="bbuy" data-b="1">MAX</button></div></div>
             <div class="col"><span class="lbl" data-i="sellL">Sell your shares</span><div class="bts" id="sellBts"><button class="bsell" data-s=".25">25%</button><button class="bsell" data-s=".5">50%</button><button class="bsell" data-s="1">ALL</button></div></div>
           </div>
+          <div class="orders" id="ordBox">
+            <div class="ocol" data-o="sl"><span class="lbl" data-i="slL">Stop-loss · sell all if it falls to</span>
+              <div class="orow"><input id="slIn" inputmode="decimal" placeholder="price" aria-label="Stop-loss price"><button class="bsell" data-set="sl">Set</button></div>
+              <div class="opre"><button data-p="-.02">-2%</button><button data-p="-.05">-5%</button><button data-p="-.1">-10%</button><button data-p="-.2">-20%</button></div></div>
+            <div class="ocol" data-o="tp"><span class="lbl" data-i="tpL">Take-profit · sell all if it rises to</span>
+              <div class="orow"><input id="tpIn" inputmode="decimal" placeholder="price" aria-label="Take-profit price"><button class="bbuy" data-set="tp">Set</button></div>
+              <div class="opre"><button data-p=".02">+2%</button><button data-p=".05">+5%</button><button data-p=".1">+10%</button><button data-p=".25">+25%</button></div></div>
+            <div class="ochips" id="ochips"></div>
+          </div>
           <dl class="pos" id="pos"></dl>
         </div>
       </main>
       <aside class="mcol mside">
-        <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div></div>
+        <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div><div class="pford" id="pford"></div></div>
         <div class="nws"><h4 data-i="nwsH">Market news</h4><ul id="nws"></ul></div>
         <p class="mhint" data-i="mktHint">Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Each trade costs a <b>0.25% fee</b>.</p>
       </aside>
@@ -382,7 +408,7 @@ const IT={tStore:"Bottega",tUpg:"Ingredienti",tAch:"Trofei",tAsc:"Rinascita",tSt
  hOwn:"Allori posseduti",hFree:"Da spendere",hNext:"Allori alla rinascita",hAt:"Prossimo Alloro a",bless:"Benedizioni",saveH:"Salvataggio",saveNow:"Salva ora",exp:"Esporta",imp:"Importa",
  tMkt:"Borsa",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
  mktHint:"I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
- buyL:"Compra con i tuoi Dueck",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
+ buyL:"Compra con i tuoi Dueck",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
  ascHint:"Rinuncia ai tuoi Dueck, negozi, ingredienti e azioni e ricevi Allori in base a tutto ciò che hai prodotto. Puoi rinascere da <b>10 B</b> e gli Allori crescono con la <b>radice quadrata</b> dei Dueck totali: 1 T ne dà 10, 100 T ne dà 100, 1 Qi ne dà 10.000. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto."};
 if(LANG==="it")document.querySelectorAll("[data-i]").forEach(el=>{if(IT[el.dataset.i])el.innerHTML=IT[el.dataset.i]});
 $("langBtn").textContent=L("Italiano","English");
@@ -484,7 +510,7 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},trades:0,profit:0,best:0}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},trades:0,profit:0,best:0}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -690,9 +716,26 @@ function hold(k){return S.pf[k]||(S.pf[k]={sh:0,cost:0})}
 function mBuy(f){const st=STK[sel],p=pxAt(st,nowS()),cash=S.d*f;const sh=cash/(p*(1+fee()));if(cash<=0||sh<=0)return;
   const h=hold(st.k);h.sh+=sh;h.cost+=cash;S.d-=cash;S.trades++;blip(520,.06,"square",.05);
   toast(L("Bought","Comprato"),`${fmt(sh)} ${st.sy} @ ${pfmt(p)}`,2000)}
-function mSell(f){const st=STK[sel],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,nowS()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
+function mSell(f,k=sel,why){const st=STK[k],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,nowS()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
   h.sh-=sh;h.cost-=basis;if(f>=1){h.sh=0;h.cost=0}S.d+=got;const pl=got-basis;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl}S.trades++;
-  blip(pl>=0?780:260,.08,"square",.05);toast(pl>=0?L("Sold for a profit","Venduto in guadagno"):L("Sold at a loss","Venduto in perdita"),`${st.sy}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,2200)}
+  blip(pl>=0?780:260,.08,"square",.05);if(h.sh<=0)delete S.ord[k];
+  toast(why||(pl>=0?L("Sold for a profit","Venduto in guadagno"):L("Sold at a loss","Venduto in perdita")),`${st.sy} @ ${pfmt(p)}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,why?5000:2200)}
+// stop-loss / take-profit: checked every second, even with the market window closed
+function setOrd(kind,price){const st=STK[sel],h=S.pf[st.k],p=pxAt(st,nowS());
+  if(!h||h.sh<=0){toast(L("No shares","Nessuna azione"),L(`Buy some ${st.sy} first, then set an auto-sell.`,`Compra prima qualche azione ${st.sy}.`));return}
+  if(!(price>0)){toast(L("Bad price","Prezzo non valido"),L("Type a price like 95.50.","Scrivi un prezzo come 95,50."));return}
+  if(kind==="sl"&&price>=p){toast("Stop-loss",L(`Must be below the current price (${pfmt(p)}).`,`Deve essere sotto il prezzo attuale (${pfmt(p)}).`));return}
+  if(kind==="tp"&&price<=p){toast("Take-profit",L(`Must be above the current price (${pfmt(p)}).`,`Deve essere sopra il prezzo attuale (${pfmt(p)}).`));return}
+  const o=S.ord[st.k]||(S.ord[st.k]={});o[kind]=price;$(kind+"In").value="";blip(600,.05,"sine",.06);
+  toast(kind==="sl"?"Stop-loss":"Take-profit",L(`Sell all ${st.sy} if it ${kind==="sl"?"falls":"rises"} to ${pfmt(price)}.`,`Vendi tutto ${st.sy} se ${kind==="sl"?"scende":"sale"} a ${pfmt(price)}.`),2500);renderMkt(true)}
+function checkOrders(){const t=nowS();for(const k in S.ord){const o=S.ord[k],h=S.pf[k];if(!h||h.sh<=0){delete S.ord[k];continue}
+  const p=pxAt(STK[k],t);if(o.sl&&p<=o.sl)mSell(1,+k,L("Stop-loss triggered","Stop-loss scattato"));else if(o.tp&&p>=o.tp)mSell(1,+k,L("Take-profit triggered","Take-profit scattato"))}}
+setInterval(checkOrders,1000);
+$("ordBox").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const kind=b.closest("[data-o]")?.dataset.o;
+  if(b.dataset.clr){const o=S.ord[sel];if(o){delete o[b.dataset.clr];if(!o.sl&&!o.tp)delete S.ord[sel]}renderMkt(true);return}
+  if(b.dataset.p){setOrd(kind,pxAt(STK[sel],nowS())*(1+ +b.dataset.p));return}
+  if(b.dataset.set){setOrd(b.dataset.set,Number($(b.dataset.set+"In").value.replace(",",".")))}});
+["slIn","tpIn"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")setOrd(id.slice(0,2),Number(e.target.value.replace(",",".")))}));
 $("buyBts").onclick=e=>{const b=e.target.closest("button");if(b){mBuy(+b.dataset.b);renderMkt(true)}};
 $("sellBts").onclick=e=>{const b=e.target.closest("button");if(b){mSell(+b.dataset.s);renderMkt(true)}};
 $("tfs").onclick=e=>{const b=e.target.closest("button");if(!b)return;tf=+b.dataset.tf;[...$("tfs").children].forEach(x=>x.classList.toggle("on",x===b));chartCache=null;renderMkt(true)};
@@ -701,14 +744,19 @@ function pct(a,b){const c=(a/b-1)*100;return`<span class="${c>=0?"up":"dn"}">${c
 const srows=STK.map(st=>{const el=document.createElement("button");el.className="srow";
   el.innerHTML=`<span class="sy">${st.sy}</span><span class="nm2">${st.name}</span><canvas width="140" height="44"></canvas><span class="pr"></span>`;
   el.onclick=()=>{sel=st.k;chartCache=null;renderMkt(true)};$("slst").appendChild(el);return el});
-function spark(cv,st,t){const c=cv.getContext("2d"),w=cv.width,h=cv.height,n=40,pts=[];for(let i=0;i<n;i++)pts.push(pxAt(st,t-3600+i*90,90));pts.push(pxAt(st,t));
+// price series over a span, smoothed for long spans, and eased into the exact live price at the end (no jump on the last point)
+function series(st,t,span,N){const step=span/N,pts=[];for(let i=0;i<=N;i++)pts.push(pxAt(st,t-span+i*step,step));const r=pxAt(st,t)/pts[N];
+  if(r!==1)for(let i=0;i<=N;i++)pts[i]*=Math.pow(r,Math.pow(i/N,3));return pts}
+function spark(cv,st,t){const c=cv.getContext("2d"),w=cv.width,h=cv.height,n=40,pts=series(st,t,tf,n);
   const mn=Math.min(...pts),mx=Math.max(...pts);c.clearRect(0,0,w,h);c.strokeStyle=pts[n]>=pts[0]?"#2fd27f":"#ff5a5f";c.lineWidth=2;c.beginPath();
   pts.forEach((p,i)=>{const x=i/n*w,y=h-3-(p-mn)/(mx-mn||1)*(h-6);i?c.lineTo(x,y):c.moveTo(x,y)});c.stroke()}
 function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.width)return;const dpr=Math.min(2,devicePixelRatio||1);
   if(cv.width!==Math.round(r.width*dpr)||cv.height!==Math.round(r.height*dpr)){cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr)}
   const c=cv.getContext("2d"),W2=r.width,H2=r.height;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W2,H2);
-  const st=STK[sel],N=Math.min(PERF?120:300,tf/TICK),step=tf/N,pts=[];for(let i=0;i<N;i++)pts.push(pxAt(st,t-tf+i*step,step));pts.push(pxAt(st,t));
-  const mn=Math.min(...pts),mx=Math.max(...pts),pad=(mx-mn)*.12||mx*.01,lo=mn-pad,hi=mx+pad,R=52;
+  const st=STK[sel],N=Math.min(PERF?120:300,tf/TICK),step=tf/N,pts=series(st,t,tf,N);
+  const od=S.ord[st.k]||{},pn=pts[N];let mn=Math.min(...pts),mx=Math.max(...pts);
+  if(od.sl&&od.sl>pn*.7)mn=Math.min(mn,od.sl);if(od.tp&&od.tp<pn*1.4)mx=Math.max(mx,od.tp);
+  const pad=(mx-mn)*.12||mx*.01,lo=mn-pad,hi=mx+pad,R=52;
   const X=i=>i/N*(W2-R),Y=p=>H2-18-(p-lo)/(hi-lo)*(H2-28);const upc=pts[N]>=pts[0],col=upc?"#2fd27f":"#ff5a5f";
   c.font="10px DM Mono, monospace";c.fillStyle="#7f958d";c.strokeStyle="#1d2b30";c.lineWidth=1;
   for(let g=0;g<=4;g++){const p=lo+(hi-lo)*g/4,y=Y(p);c.beginPath();c.moveTo(0,y);c.lineTo(W2-R,y);c.stroke();c.fillText(pfmt(p),W2-R+6,y+3)}
@@ -718,6 +766,7 @@ function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.wid
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.lineTo(X(N),H2-18);c.lineTo(0,H2-18);c.closePath();c.fillStyle=gr;c.fill();
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.strokeStyle=col;c.lineWidth=1.8;c.stroke();
   const h=S.pf[st.k];if(h&&h.sh>0){const avg=h.cost/h.sh;if(avg>lo&&avg<hi){c.setLineDash([4,4]);c.strokeStyle="#ffcf1f";c.beginPath();c.moveTo(0,Y(avg));c.lineTo(W2-R,Y(avg));c.stroke();c.setLineDash([]);c.fillStyle="#ffcf1f";c.fillText(L("your avg","tua media"),4,Y(avg)-4)}}
+  [["sl","#ff5a5f","stop-loss"],["tp","#2fd27f","take-profit"]].forEach(([k,cl,nm])=>{const v=od[k];if(!v||v<lo||v>hi)return;const y=Y(v);c.setLineDash([6,4]);c.strokeStyle=cl;c.beginPath();c.moveTo(0,y);c.lineTo(W2-R,y);c.stroke();c.setLineDash([]);c.fillStyle=cl;c.fillText(`${nm} ${pfmt(v)}`,4,k==="sl"?y+12:y-4)});
   const ly=Y(pts[N]);c.fillStyle=col;c.fillRect(W2-R+1,ly-8,R-1,16);c.fillStyle="#0d1417";c.fillText(pfmt(pts[N]),W2-R+5,ly+3);
   c.beginPath();c.arc(X(N),ly,3.5,0,7);c.fillStyle=col;c.fill();
   if(mkHover!=null){const i=Math.max(0,Math.min(N,Math.round(mkHover/(W2-R)*N))),x=X(i),y=Y(pts[i]);c.strokeStyle="#55707a";c.beginPath();c.moveTo(x,0);c.lineTo(x,H2-18);c.stroke();
@@ -729,18 +778,23 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
   const d=new Date();$("mktClock").textContent=d.toLocaleTimeString();$("mCash").textContent=fmt(S.d);
   const hr=d.getHours();$("mktSess").textContent=hr<9?L("Pre-market","Pre-apertura"):hr<17?L("Session open","Seduta aperta"):L("After hours","Dopo chiusura");
   const sp=force||t-lastSpark>(PERF?60:20);if(sp)lastSpark=t;
-  STK.forEach((st,k)=>{const el=srows[k],p=pxAt(st,t),p0=pxAt(st,t-86400);el.classList.toggle("on",k===sel);
+  const tfl=$("tfs").querySelector(".on").textContent;$("chgL").textContent=tfl;
+  STK.forEach((st,k)=>{const el=srows[k],p=pxAt(st,t),p0=pxAt(st,t-tf);el.classList.toggle("on",k===sel);
     el.querySelector(".pr").innerHTML=`${pfmt(p)}<br>${pct(p,p0)}`;if(sp)spark(el.querySelector("canvas"),st,t)});
   const st=STK[sel],p=pxAt(st,t);$("selSym").textContent=st.sy;$("selPx").textContent=pfmt(p);$("selCh").innerHTML=pct(p,pxAt(st,t-tf))+` <span style="color:#7f958d;font-size:11px">${$("tfs").querySelector(".on").textContent}</span>`;$("selNm").textContent=st.name;
   drawChart(t);
   const h=S.pf[st.k]||{sh:0,cost:0},val=h.sh*p*(1-fee()),pl=val-h.cost;
   $("pos").innerHTML=`<dt>${L("Shares owned","Azioni possedute")}</dt><dd>${fmt(h.sh)}</dd><dt>${L("Avg price paid","Prezzo medio")}</dt><dd>${h.sh?pfmt(h.cost/h.sh):"—"}</dd><dt>${L("Value now","Valore ora")}</dt><dd>${fmt(val)}</dd><dt>${L("Profit / loss","Guadagno / perdita")}</dt><dd class="${pl>=0?"up":"dn"}">${h.sh?(pl>=0?"+":"-")+fmt(Math.abs(pl))+` (${(pl/h.cost*100).toFixed(1)}%)`:"—"}</dd>`;
+  {const o=S.ord[st.k]||{};$("ochips").innerHTML=(o.sl?`<span class="chip sl">${L("Stop-loss","Stop-loss")} ${pfmt(o.sl)} <small>(${((o.sl/p-1)*100).toFixed(1)}%)</small><button data-clr="sl" aria-label="Cancel stop-loss">✕</button></span>`:"")+(o.tp?`<span class="chip tp">${L("Take-profit","Take-profit")} ${pfmt(o.tp)} <small>(+${((o.tp/p-1)*100).toFixed(1)}%)</small><button data-clr="tp" aria-label="Cancel take-profit">✕</button></span>`:"");
+   $("ordBox").classList.toggle("off",!h.sh)}
+  {const rows=Object.keys(S.ord).map(k=>{const o=S.ord[k];return`<li><b>${STK[k].sy}</b>${o.sl?` <span class="dn">SL ${pfmt(o.sl)}</span>`:""}${o.tp?` <span class="up">TP ${pfmt(o.tp)}</span>`:""}</li>`});
+   $("pford").innerHTML=rows.length?`<h4>${L("Auto-sell orders","Ordini automatici")}</h4><ul>${rows.join("")}</ul>`:""}
   [...$("buyBts").children].forEach(b=>b.disabled=S.d<=0);[...$("sellBts").children].forEach(b=>b.disabled=!h.sh);
   let tv=0,tc=0;STK.forEach(s2=>{const x=S.pf[s2.k];if(x&&x.sh){tv+=x.sh*pxAt(s2,t)*(1-fee());tc+=x.cost}});const tp=tv-tc;
   $("pfsum").innerHTML=`<div><small>${L("Cash","Contanti")}</small><b>${fmt(S.d)}</b></div><div><small>${L("Invested value","Valore investito")}</small><b>${fmt(tv)}</b></div><div><small>${L("Open P/L","G/P aperto")}</small><b class="${tp>=0?"up":"dn"}">${tc?(tp>=0?"+":"-")+fmt(Math.abs(tp)):"—"}</b></div><div><small>${L("Realised","Realizzato")}</small><b class="${S.profit>=0?"up":"dn"}">${(S.profit<0?"-":"")+fmt(Math.abs(S.profit))}</b></div>`;
   if(force||sp){const evs=[];const w0=Math.floor(t/EVW);STK.forEach(s2=>{for(let w=w0;w>w0-6;w--){const e=evAt(s2,w);if(e&&e.te<=t)evs.push({...e,st:s2})}});
     evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} ${e.up?"▲":"▼"}${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
-    {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-3600);return`<b>${s2.sy}</b>${pfmt(a)} ${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
+    {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b>${pfmt(a)} ${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
 let mOpen=false;
 function openMkt(){mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
