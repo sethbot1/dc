@@ -234,6 +234,34 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .hrow b{font-weight:500}.hsh{color:var(--mt)}.hv{text-align:right}.hpl{grid-column:1/-1;font-size:11px}
 .hord{grid-column:1/-1;display:flex;gap:10px;font-size:11px}
 .hnone{margin:0;color:var(--mt);font-family:var(--fb)}
+/* progression additions */
+.combo{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;background:var(--rosso);color:#fff;font:700 12px var(--fm);padding:5px 11px;border-radius:99px;box-shadow:0 4px 10px rgba(0,0,0,.3);white-space:nowrap}
+.combo b{color:#ffd27a}.combo.max{background:var(--oro);color:#2a1a12}.combo.max b{color:#2a1a12}
+.hu.crown{border-color:#d4951a55}.hu.crown.own{background:#fff4d6;border-color:var(--oro)}.hu.crown .c{color:#a8730c}
+.crownbtn{background:linear-gradient(180deg,#e2a92a,#b47a0c)!important;border-color:#8a5c05!important;box-shadow:0 3px 0 #8a5c05!important}
+.stag{display:inline-block;font:500 9px var(--fm);letter-spacing:.06em;padding:1px 5px;border-radius:4px;margin-left:4px;vertical-align:1px}
+.stag.ix{background:#1f3a52;color:#8cc8ff}.stag.pn{background:#4a2a52;color:#e3a6ff}.stag.dv{background:#1e3d2c;color:#8fe0b0}
+.mlist .srow .nm2{white-space:normal;line-height:1.35}.mlist .srow .nm2 .stag{margin:2px 4px 0 0}
+.srow.lock{opacity:.5}.srow.lock canvas{opacity:.25}.lkt{color:var(--mt);font-size:11px}
+.ownt.sht{color:#c58cff}
+.mrank{font:500 10px var(--fm);letter-spacing:.1em;text-transform:uppercase;color:#1b1b1b;background:#ffcf1f;padding:3px 7px;border-radius:5px}
+.shortbox{display:flex;flex-direction:column;gap:6px;margin-top:12px;position:relative}
+.shortbox .lbl{font-size:10px;color:var(--mt);letter-spacing:.14em;text-transform:uppercase}
+.shortbox .bts{display:flex;gap:4px}.shortbox .bts button{flex:1;font-size:12px;font-weight:500;padding:9px 4px;border-radius:8px}
+.bshort{background:#2c1b3d;color:#c58cff;border:1px solid #5b3b7a!important}.bcover{background:#1b2a3d;color:#8cc8ff;border:1px solid #2e4f72!important}
+.shortbox button:disabled{opacity:.35}
+.locked{position:relative}.locked>:not(.lbl):not(.lockt){opacity:.25;pointer-events:none}
+.lockt{font-size:11px;color:#ffcf1f}.lockt:empty{display:none}
+.chip.lb{color:#5fb7ff;border-color:#2e4f72}.chip.trl{color:#ff9f43;border-color:#7a4a1e}
+.rk .rkn{font-size:16px;font-weight:500;margin-bottom:6px}.rk .rkn small{color:var(--mt);font-size:11px;margin-left:6px}
+.lbar2{height:6px;border-radius:9px;background:#0f181b;overflow:hidden;margin-bottom:6px}.lbar2 i{display:block;height:100%;background:#ffcf1f}
+.rknx{font-family:var(--fb);color:var(--mt);line-height:1.45}.rknx b{color:var(--tx)}
+.rk details{margin-top:8px}.rk summary{cursor:pointer;color:var(--mt);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.rk ul{margin:6px 0 0;padding:0}.rk li{list-style:none;padding:5px 0;border-top:1px solid var(--ln);font-family:var(--fb);color:var(--mt);line-height:1.35}
+.rk li b{color:var(--tx);font-family:var(--fm);font-weight:500}.rk li.got b{color:#ffcf1f}
+.rkhow{margin:8px 0 0;font-family:var(--fb);color:var(--mt);font-size:11px;line-height:1.4}
+.tipsb:empty{display:none}.tipsb{border:1px solid #5b4a12;background:#1d1a0f}
+.tipsb ul{margin:0;padding:0}.tipsb li{list-style:none;padding:5px 0;border-top:1px solid #3a3215;font-family:var(--fb);line-height:1.4}.tipsb small{color:var(--mt)}
 /* market terminal */
 .mkt{--bg:#0d1417;--pn:#141e22;--ln:#24343a;--tx:#e4efe9;--mt:#7f958d;--up:#2fd27f;--dn:#ff5a5f;
   background:var(--bg);color:var(--tx);border-radius:14px;padding:12px;font-family:var(--fm);user-select:none;overflow:hidden;min-width:0}
@@ -301,7 +329,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
   <section class="stage" id="stage">
     <canvas id="fx"></canvas>
     <div class="count"><div class="n" id="cnt">0</div><div class="l">Duecks</div><div class="ps" id="cps">0 per second</div></div>
-    <div class="facearea"><div class="facewrap"><div class="plate"></div><div class="face" id="face" role="button" aria-label="Click the face"></div></div><div class="buffs" id="buffs"></div></div>
+    <div class="facearea"><div class="facewrap"><div class="plate"></div><div class="face" id="face" role="button" aria-label="Click the face"></div></div><div class="combo" id="combo" hidden></div><div class="buffs" id="buffs"></div></div>
     <div class="goal"><div class="gt"><span id="goalN"></span><span id="goalP">0%</span></div><div class="gb"><i id="goalB"></i></div></div>
   </section>
   <section class="mid">
@@ -343,6 +371,17 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <div class="btnrow"><button class="btn hot" id="ascBtn">Rebirth</button></div>
         <h3 data-i="bless">Blessings</h3>
         <div class="hlist" id="hlist"></div>
+        <h3 style="margin-top:26px" data-i="ascnH">Ascension</h3>
+        <p class="hint" data-i="ascnHint">The next level. Give up <b>everything</b>, including your Laurels, Blessings and all-time Duecks, to earn <b>Crowns</b>. Every Crown gives <b>+10% production</b> forever and can be spent on royal perks. Trophies, trader rank and Crowns are kept. Unlocks at <b>10,000 Laurels</b>.</p>
+        <dl class="stats" style="margin-bottom:14px">
+          <dt data-i="cOwn">Crowns owned</dt><dd id="crOwn">0</dd>
+          <dt data-i="hFree">Unspent</dt><dd id="crFree">0</dd>
+          <dt data-i="cNext">Crowns on ascension</dt><dd id="crNext">0</dd>
+          <dt data-i="cAt">Next Crown at</dt><dd id="crAt">0</dd>
+        </dl>
+        <div class="btnrow"><button class="btn hot crownbtn" id="ascendBtn">Ascend</button></div>
+        <h3 data-i="perkH">Royal perks</h3>
+        <div class="hlist" id="clist"></div>
       </div>
       <div class="pane" id="p-stat" hidden>
         <h3 data-i="tStat">Stats</h3>
@@ -357,6 +396,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <div class="tool"><button class="btn" data-dev="x10">Duecks ×10</button><button class="btn" data-dev="m1">+1 min of production</button><button class="btn" data-dev="h1">+1 hour</button><button class="btn" data-dev="d1">+1 day</button></div>
         <div class="tool"><button class="btn" data-dev="shops">+10 of every shop</button><button class="btn" data-dev="upg">Unlock every upgrade</button><button class="btn" data-dev="gold">Spawn Golden Dueck</button></div>
         <div class="tool"><button class="btn" data-dev="l100">+100 Laurels</button><button class="btn" data-dev="l10k">+10,000 Laurels</button><button class="btn" data-dev="bless">Unlock every Blessing</button><button class="btn" data-dev="ach">Unlock every trophy</button></div>
+        <div class="tool"><button class="btn" data-dev="l1m">+1M Laurels</button><button class="btn" data-dev="cr10">+10 Crowns</button><button class="btn" data-dev="rp">+1,000 rank points</button><button class="btn" data-dev="tip">Insider tip now</button></div>
         <div class="tool"><button class="btn danger" data-dev="reset">Restart beta</button></div>
       </div>
     </div>
@@ -371,7 +411,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 <div class="mwin" id="mwin" hidden role="dialog" aria-modal="true" aria-label="Dueck Exchange">
   <div class="mkt">
     <header class="mbar">
-      <b class="mlogo">Dueck <i>Exchange</i></b><span class="live">Live</span><span class="msess" id="mktSess"></span>
+      <b class="mlogo">Dueck <i>Exchange</i></b><span class="mrank" id="mRank"></span><span class="live">Live</span><span class="msess" id="mktSess"></span>
       <span class="clock" id="mktClock"></span>
       <span class="mcash"><small data-i="cashL">Cash</small><b id="mCash">0</b></span>
       <button class="mclose" id="mClose" aria-label="Close the market"><span data-i="backL">Back to the shop</span> ✕</button>
@@ -388,6 +428,11 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
             <div class="col"><span class="lbl" data-i="buyL">Buy with your Duecks</span><div class="bts" id="buyBts"><button class="bbuy" data-b=".1">10%</button><button class="bbuy" data-b=".25">25%</button><button class="bbuy" data-b=".5">50%</button><button class="bbuy" data-b="1">MAX</button></div></div>
             <div class="col"><span class="lbl" data-i="sellL">Sell your shares</span><div class="bts" id="sellBts"><button class="bsell" data-s=".25">25%</button><button class="bsell" data-s=".5">50%</button><button class="bsell" data-s="1">ALL</button></div></div>
           </div>
+          <div class="shortbox" id="shortBox">
+            <span class="lbl" data-i="shL">Short · bet the price falls</span>
+            <div class="bts"><button class="bshort" data-sh=".1">10%</button><button class="bshort" data-sh=".25">25%</button><button class="bshort" data-sh=".5">50%</button><button class="bcover" data-cv="1" data-i="cvL">Cover all</button></div>
+            <span class="lockt"></span>
+          </div>
           <div class="orders" id="ordBox">
             <div class="ocol" data-o="sl"><span class="lbl" data-i="slL">Stop-loss · sell all if it falls to</span>
               <div class="orow"><input id="slIn" inputmode="decimal" placeholder="price" aria-label="Stop-loss price"><button class="bsell" data-set="sl">Set</button></div>
@@ -395,15 +440,22 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
             <div class="ocol" data-o="tp"><span class="lbl" data-i="tpL">Take-profit · sell all if it rises to</span>
               <div class="orow"><input id="tpIn" inputmode="decimal" placeholder="price" aria-label="Take-profit price"><button class="bbuy" data-set="tp">Set</button></div>
               <div class="opre"><button data-p=".02">+2%</button><button data-p=".05">+5%</button><button data-p=".1">+10%</button><button data-p=".25">+25%</button></div></div>
+            <div class="ocol" data-o="tr" id="trCol"><span class="lbl" data-i="trL">Trailing stop · sell if it falls this far from its high</span>
+              <div class="opre"><button data-tr=".03">3%</button><button data-tr=".05">5%</button><button data-tr=".1">10%</button><button data-tr=".2">20%</button></div><span class="lockt"></span></div>
+            <div class="ocol" data-o="lb" id="lbCol"><span class="lbl" data-i="lbL">Limit buy · buy with 25% of cash if it drops to</span>
+              <div class="orow"><input id="lbIn" inputmode="decimal" placeholder="price" aria-label="Limit buy price"><button class="bbuy" data-lbset="1">Set</button></div>
+              <div class="opre"><button data-lbp="-.02">-2%</button><button data-lbp="-.05">-5%</button><button data-lbp="-.1">-10%</button><button data-lbp="-.2">-20%</button></div><span class="lockt"></span></div>
             <div class="ochips" id="ochips"></div>
           </div>
           <dl class="pos" id="pos"></dl>
         </div>
       </main>
       <aside class="mcol mside">
+        <div class="pf rk" id="rk"></div>
+        <div class="pf tipsb" id="tipsb"></div>
         <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div><div class="pford" id="pford"></div></div>
         <div class="nws"><h4 data-i="nwsH">Market news</h4><ul id="nws"></ul></div>
-        <p class="mhint" data-i="mktHint"><b>Hours matter</b> (Rome time): the 9:00 opening bell and 17:00 closing rush are wild, lunch and night are calm. Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Each trade costs a <b>0.25% fee</b>.</p>
+        <p class="mhint" data-i="mktHint"><b>Hours matter</b> (Rome time): the 9:00 opening bell and 17:00 closing rush are wild, lunch and night are calm. Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Your trade fee is <b id="feeL">0.25%</b> (lower at higher ranks).</p>
       </aside>
     </div>
   </div>
@@ -426,7 +478,9 @@ const IT={tStore:"Bottega",tUpg:"Ingredienti",tAch:"Trofei",tAsc:"Rinascita",tSt
  hOwn:"Allori posseduti",hFree:"Da spendere",hNext:"Allori alla rinascita",hAt:"Prossimo Alloro a",bless:"Benedizioni",saveH:"Salvataggio",saveNow:"Salva ora",exp:"Esporta",imp:"Importa",
  tMkt:"Borsa",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
  mktHint:"Gli orari contano (ora di Roma): l'apertura delle 9 e la chiusura delle 17 sono frenetiche, la pausa pranzo e la notte sono calme. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
- buyL:"Compra con i tuoi Dueck",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
+ buyL:"Compra con i tuoi Dueck",shL:"Scoperto · scommetti che il prezzo scende",cvL:"Chiudi tutto",trL:"Trailing stop · vendi se scende così tanto dal massimo",lbL:"Acquisto limite · compra col 25% dei contanti se scende a",
+ ascnH:"Ascensione",perkH:"Privilegi reali",cOwn:"Corone possedute",cNext:"Corone all'ascensione",cAt:"Prossima Corona a",
+ ascnHint:"Il livello successivo. Rinuncia a <b>tutto</b>, anche ad Allori, Benedizioni e Dueck totali, per ottenere <b>Corone</b>. Ogni Corona dà <b>+10% di produzione</b> per sempre e si spende in privilegi reali. Trofei, grado e Corone restano. Si sblocca a <b>10.000 Allori</b>.",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
  ascHint:"Rinuncia ai tuoi Dueck, negozi, ingredienti e azioni e ricevi Allori in base a tutto ciò che hai prodotto. Puoi rinascere da <b>10 B</b> e gli Allori crescono con la <b>radice quadrata</b> dei Dueck totali: 1 T ne dà 10, 100 T ne dà 100, 1 Qi ne dà 10.000. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto."};
 if(LANG==="it")document.querySelectorAll("[data-i]").forEach(el=>{if(IT[el.dataset.i])el.innerHTML=IT[el.dataset.i]});
 $("langBtn").textContent=L("Italiano","English");
@@ -457,6 +511,10 @@ const B=[
  ["Renaissance Workshop","Renaissance Workshops","Masters paint the face on every ceiling in town.","Bottega Rinascimentale","Botteghe Rinascimentali","I maestri dipingono la faccia su ogni soffitto.",26e15,2e10,210],
  ["Pantheon","Pantheons","A dome built to hold one enormous grin.","Pantheon","Pantheon","Una cupola costruita per un sorriso enorme.",31e16,14e10,250],
  ["Mount Vesuvius","Mount Vesuviuses","Erupts Duecks instead of lava. Mostly.","Vesuvio","Vesuvi","Erutta Dueck invece di lava. Quasi sempre.",37e17,1e12,340],
+ ["Moon Pizzeria","Moon Pizzerias","Low gravity, high dough.","Pizzeria Lunare","Pizzerie Lunari","Gravità bassa, impasto alto.",44e18,7.5e12,20],
+ ["Mars Trattoria","Mars Trattorias","Red planet, red sauce.","Trattoria Marziana","Trattorie Marziane","Pianeta rosso, sugo rosso.",52e19,5.2e13,0],
+ ["Galactic Empire","Galactic Empires","A galaxy far, far away, still smiling.","Impero Galattico","Imperi Galattici","Una galassia lontana lontana, che sorride ancora.",63e20,3.6e14,270],
+ ["Dueck Multiverse","Dueck Multiverses","Infinite faces in infinite worlds.","Multiverso Dueck","Multiversi Dueck","Infinite facce in infiniti mondi.",75e21,2.5e15,300],
 ].map(([en,enp,end,it,itp,itd,cost,cps,hue],i)=>({i,name:L(en,it),pl:L(enp,itp),desc:L(end,itd),cost,cps,hue}));
 
 const TIER_AT=[1,5,25,50,100,150,200,250,300,350,400];
@@ -525,10 +583,14 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 [3600,36000,180000].forEach((v,k)=>A.push({n:L(["Hooked","Dedicated","No Life"][k],["Appassionato","Dedicato","Senza Vita"][k]),d:L(`Play for ${v/3600} hour${v>3600?"s":""} total.`,`Gioca per ${v/3600} ${v>3600?"ore":"ora"} in totale.`),c:()=>S.play>=v}));
 [1,10,100,1000].forEach((v,k)=>A.push({n:L(["First Trade","Day Trader","Wolf of Via Roma","Market Maker"][k],["Prima Operazione","Trader","Lupo di Via Roma","Market Maker"][k]),d:L(`Make ${fmt(v)} market trade${v>1?"s":""}.`,`Fai ${fmt(v)} operazion${v>1?"i":"e"} in borsa.`),c:()=>S.trades>=v}));
 [1e6,1e12,1e18].forEach((v,k)=>A.push({n:L(["Buy Low","Sell High","Market Genius"][k],["Compra Basso","Vendi Alto","Genio della Borsa"][k]),d:L(`Make ${fmt(v)} profit on the market.`,`Guadagna ${fmt(v)} in borsa.`),c:()=>S.profit>=v}));
+[25,100,200].forEach((v,k)=>A.push({n:L(["Combo","Combo King","Unstoppable"][k],["Combo","Re del Combo","Inarrestabile"][k]),d:L(`Reach a ${v}-click combo.`,`Raggiungi una combo di ${v} clic.`),c:()=>S.combo>=v}));
+[2,4,6].forEach((v,k)=>A.push({n:L(["Broker","Fund Manager","Wolf of Via Roma"][k],["Broker","Gestore di Fondi","Lupo di Via Roma"][k]),d:L(`Reach trader rank ${["Broker","Fund Manager","Wolf of Via Roma"][k]}.`,`Raggiungi il grado ${["Broker","Gestore di Fondi","Lupo di Via Roma"][k]}.`),c:()=>rankOf()>=v}));
+[1e6,1e15].forEach((v,k)=>A.push({n:L(["Passive Income","Dividend King"][k],["Rendita","Re dei Dividendi"][k]),d:L(`Earn ${fmt(v)} from dividends.`,`Guadagna ${fmt(v)} dai dividendi.`),c:()=>S.divs>=v}));
+[1,10,100].forEach((v,k)=>A.push({n:L(["Ascended","Royalty","Emperor"][k],["Asceso","Reale","Imperatore"][k]),d:L(`Own ${v} Crown${v>1?"s":""}.`,`Possiedi ${v} Coron${v>1?"e":"a"}.`),c:()=>S.crown>=v}));
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},trades:0,profit:0,best:0}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -536,7 +598,7 @@ function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);
 function save(){return false}
 
 // ---------- economics ----------
-const has=id=>S.up.has(id), hv=id=>S.hv.has(id);
+const has=id=>S.up.has(id), hv=id=>S.hv.has(id), crn=id=>S.cv.has(id);
 function costOf(b,n){const base=B[b].cost*Math.pow(1.15,S.own[b]);return base*(Math.pow(1.15,n)-1)/.15}
 function maxBuy(b){const base=B[b].cost*Math.pow(1.15,S.own[b]);return Math.max(0,Math.floor(Math.log(S.d*.15/base+1)/Math.log(1.15)))}
 function buffMult(k){return S.buffs.reduce((m,x)=>m*(x[k]||1),1)}
@@ -546,6 +608,7 @@ function recalc(){
   m*=1+S.ach.size*0.01*joy;
   m*=1+S.halo*(hv("h14")?.05:hv("h7")?.03:.02);
   if(hv("h3"))m*=1.15;if(hv("h6"))m*=1.4;if(hv("h9"))m*=2;if(hv("h13"))m*=3;if(hv("h16"))m*=5;if(hv("h18"))m*=10;
+  m*=1+S.crown*.1;if(crn("c7"))m*=5;
   G.mult=m;
   const nb=S.own.reduce((a,b)=>a+b,0);G.nb=nb;const nonF=nb-S.own[0];
   let fd=0,fb=0;for(let t=0;t<TIER_AT.length;t++)if(has("b0_"+t)){if(t<3)fd++;else if(t===3)fb=.1;else fb*=[5,10,20,20,20,20,20][t-4]}
@@ -556,7 +619,7 @@ function recalc(){
   let cp=hv("h15")?.05:0;U.forEach(u=>{if(u.kind==="c"&&has(u.id))cp+=.01});
   G.click=((Math.pow(2,fd)+fb*nonF)*m+G.cps*cp)*buffMult("km");
 }
-function earn(v){S.d+=v;S.total+=v;S.all+=v}
+function earn(v){S.d+=v;S.total+=v;S.all+=v;S.ever+=v}
 function cpsBest(){if(G.cps>S.best)S.best=G.cps}
 
 // ---------- audio ----------
@@ -598,8 +661,12 @@ function popText(x,y,txt){if(PERF){const n=performance.now();if(n-lastPop<200)re
 
 // ---------- click ----------
 const face=$("face");face.style.backgroundImage=`url(${FACE})`;
+// click combo: clicks less than 0.9s apart build a streak, up to x2 (x3 with the Combo Master crown perk)
+let combo=0,lastClickT=0;const comboCap=()=>crn("c1")?200:100;
+function showCombo(cm){const el=$("combo");if(combo<5){el.hidden=true;return}el.hidden=false;el.classList.toggle("max",combo>=comboCap());el.innerHTML=`${L("Combo","Combo")} <b>×${cm.toFixed(2)}</b> · ${combo}`}
 face.addEventListener("pointerdown",e=>{
-  recalc();const v=G.click;earn(v);S.hand+=v;S.clicks++;
+  recalc();const nowC=performance.now();combo=nowC-lastClickT<900?combo+1:1;lastClickT=nowC;if(combo>S.combo)S.combo=combo;
+  const cm=1+Math.min(combo,comboCap())/100;const v=G.click*cm;earn(v);S.hand+=v;S.clicks++;showCombo(cm);
   const sr=$("stage").getBoundingClientRect();const x=e.clientX-sr.left,y=e.clientY-sr.top;
   popText(x,y,"+"+fmt(v));burst(x,y,6);face.classList.add("hit");setTimeout(()=>face.classList.remove("hit"),80);
   blip(420+Math.random()*200);
@@ -613,14 +680,15 @@ function durMult(){let d=1;if(has("l2"))d*=2;if(hv("h4"))d*=1.25;return d}
 function spawnGold(){const g=document.createElement("button");g.className="golden";g.setAttribute("aria-label",L("Golden Dueck","Dueck d'Oro"));g.style.backgroundImage=`url(${FACE})`;
   g.style.left=rnd(5,85)+"vw";g.style.top=rnd(10,80)+"vh";document.body.appendChild(g);
   const kill=setTimeout(()=>g.remove(),13000);
-  g.onclick=()=>{clearTimeout(kill);g.remove();S.gold++;goldEffect();blip(880,.12,"sine",.12);blip(1320,.15,"sine",.08)};}
+  g.onclick=()=>{clearTimeout(kill);g.remove();S.gold++;goldEffect();blip(880,.12,"sine",.12);blip(1320,.15,"sine",.08)};
+  if(crn("c2"))setTimeout(()=>{if(g.isConnected)g.onclick()},2000);}
 function addBuff(name,secs,o){secs*=durMult();S.buffs=S.buffs.filter(b=>b.name!==name);S.buffs.push({name,end:Date.now()+secs*1000,...o})}
 function goldEffect(){recalc();const r=Math.random();
   if(r<.42){const s=Math.round(77*durMult());addBuff("Mamma Mia!",77,{cm:7});toast("Mamma Mia!",L(`Production ×7 for ${s} seconds.`,`Produzione ×7 per ${s} secondi.`))}
   else if(r<.75){const v=Math.min(S.d*.15,G.base*900)+13;earn(v);toast(L("Lucky!","Fortuna!"),"+"+fmt(v)+" Dueck"+L("s.","."))}
   else if(r<.88){const s=Math.round(13*durMult());addBuff("Espresso Rush",13,{km:777});toast("Espresso Rush",L(`Clicks ×777 for ${s} seconds. Go, go, go!`,`Clic ×777 per ${s} secondi. Presto, presto!`))}
   else{grinStorm();toast(L("Dueck Storm","Pioggia di Dueck"),L("It's raining faces. Click them.","Piovono facce. Cliccale."))}
-  recalc();}
+  recalc();maybeTip();}
 function grinStorm(){for(let i=0;i<30;i++)setTimeout(()=>{const m=document.createElement("button");m.className="mini";m.setAttribute("aria-label","Dueck");m.style.backgroundImage=`url(${FACE})`;
   m.style.left=rnd(3,92)+"vw";m.style.top="-60px";m.style.animationDuration=rnd(2.5,4.5)+"s";document.body.appendChild(m);
   m.onpointerdown=()=>{const v=G.base*rnd(1,7)+1;earn(v);m.remove();blip(700);toast("+"+fmt(v),"",900)};setTimeout(()=>m.remove(),5000)},i*230)}
@@ -676,14 +744,16 @@ function renderAch(){atiles.forEach((el,i)=>el.classList.toggle("got",S.ach.has(
 
 // ---------- rebirth ----------
 // BETA: Laurels scale with the square root (was cube root of all/1T), and rebirth opens at 10 B
-const halosFor=all=>Math.floor(Math.sqrt(all/1e10));
+const lMul=()=>crn("c5")?2:1;
+const halosFor=all=>Math.floor(Math.sqrt(all/1e10)*lMul());
+const laurelAt=n=>Math.pow(n/lMul(),2)*1e10;
 const LAUR=L("Laurels","Allori");
 let ascArm=0;
 $("ascBtn").onclick=()=>{const gain=halosFor(S.all)-S.halo;if(gain<1)return;
   if(Date.now()-ascArm>3000){ascArm=Date.now();$("ascBtn").textContent=L(`Sure? Start over for +${fmt(gain)} Laurels`,`Sicuro? Ricomincia per +${fmt(gain)} Allori`);setTimeout(()=>{ascArm=0},3000);return}
   ascArm=0;const keep={all:S.all,halo:S.halo+gain,spent:S.spent,hv:S.hv,asc:S.asc+1,gold:S.gold,play:S.play,ach:S.ach,clicks:S.clicks,brand:S.brand,mute:S.mute};
-  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;
-  S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));if(hv("h2"))S.own[0]=10;if(hv("h8")){S.own[1]=5;S.own[2]=5}if(hv("h12"))for(let k=0;k<6;k++)S.own[k]=Math.max(S.own[k],25);
+  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo});
+  S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));if(hv("h2"))S.own[0]=10;if(hv("h8")){S.own[1]=5;S.own[2]=5}if(hv("h12"))for(let k=0;k<6;k++)S.own[k]=Math.max(S.own[k],25);if(crn("c0"))S.d=1e9;
   lastUKey="";recalc();save(true);const p=hv("h14")?5:hv("h7")?3:2;toast(L("Reborn!","Rinascita!"),L(`+${fmt(gain)} Laurels. Production +${p}% each.`,`+${fmt(gain)} Allori. Produzione +${p}% ciascuno.`));blip(220,.4,"sine",.15)};
 const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("button");el.className="hu";
   el.innerHTML=`<div class="t"><b>${name}</b><small>${desc}</small></div><div class="c"></div>`;
@@ -691,9 +761,34 @@ const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("butto
 function renderAsc(){const free=S.halo-S.spent,gain=Math.max(0,halosFor(S.all)-S.halo);
   $("haloOwn").textContent=fmt(S.halo);$("haloSpend").textContent=fmt(free);$("haloNext").textContent="+"+fmt(gain);
   // next Laurel = the next one you can actually gain (owned Laurels may be ahead of all-time, e.g. from Beta Tools)
-  const hn=Math.max(halosFor(S.all),S.halo),lo=hn*hn*1e10,hi=(hn+1)*(hn+1)*1e10;$("haloAt").textContent=fmt(hi)+L(" all-time"," in totale");$("haloBar").style.width=Math.max(0,Math.min(100,(S.all-lo)/(hi-lo)*100))+"%";
+  const hn=Math.max(halosFor(S.all),S.halo),lo=laurelAt(hn),hi=laurelAt(hn+1);$("haloAt").textContent=fmt(hi)+L(" all-time"," in totale");$("haloBar").style.width=Math.max(0,Math.min(100,(S.all-lo)/(hi-lo)*100))+"%";
   if(!ascArm)$("ascBtn").textContent=gain>0?L(`Rebirth for +${fmt(gain)} Laurels`,`Rinascita per +${fmt(gain)} Allori`):L(`Rebirth (need ${fmt(hi)} all-time)`,`Rinascita (serve ${fmt(hi)} in totale)`);$("ascBtn").disabled=gain<1;
-  hrows.forEach((el,k)=>{const id=H[k][0],cost=H[k][3];el.classList.toggle("own",hv(id));el.querySelector(".c").textContent=hv(id)?L("Yours","Tuo"):fmt(cost)+" "+LAUR.toLowerCase();el.disabled=!hv(id)&&free<cost;el.style.opacity=!hv(id)&&free<cost?.55:1})}
+  hrows.forEach((el,k)=>{const id=H[k][0],cost=H[k][3];el.classList.toggle("own",hv(id));el.querySelector(".c").textContent=hv(id)?L("Yours","Tuo"):fmt(cost)+" "+LAUR.toLowerCase();el.disabled=!hv(id)&&free<cost;el.style.opacity=!hv(id)&&free<cost?.55:1});
+  renderCrowns()}
+// ---------- ascension (crowns) ----------
+const crownsFor=h=>Math.floor(Math.sqrt(h/1e4));
+const CR=[["c0","Royal Treasury","Tesoro Reale","Start every run with 1 B Duecks.","Inizia ogni partita con 1 B di Dueck.",1],
+ ["c1","Combo Master","Maestro del Combo","Click combos go up to ×3 instead of ×2.","Le combo arrivano a ×3 invece di ×2.",2],
+ ["c2","Golden Touch","Tocco d'Oro","Golden Duecks click themselves after 2 seconds.","I Dueck d'Oro si cliccano da soli dopo 2 secondi.",3],
+ ["c3","Insider Network","Rete di Informatori","Every Golden Dueck gives you an insider tip.","Ogni Dueck d'Oro ti dà una soffiata.",4],
+ ["c4","Auto-Chef","Chef Automatico","Upgrades are bought automatically when you can afford them.","Gli ingredienti si comprano da soli quando puoi permetterteli.",6],
+ ["c5","Royal Laurels","Allori Reali","Earn twice as many Laurels from rebirth.","Guadagni il doppio degli Allori dalla rinascita.",8],
+ ["c6","Eternal Blessings","Benedizioni Eterne","Keep the first seven Blessings when you Ascend.","Conservi le prime sette Benedizioni quando ascendi.",12],
+ ["c7","Crown of Rome","Corona di Roma","Production ×5.","Produzione ×5.",20]].map(([id,en,it,den,dit,cost])=>[id,L(en,it),L(den,dit),cost]);
+const crows=CR.map(([id,name,desc,cost])=>{const el=document.createElement("button");el.className="hu crown";
+  el.innerHTML=`<div class="t"><b>${name}</b><small>${desc}</small></div><div class="c"></div>`;
+  el.onclick=()=>{if(crn(id)||S.crown-S.cspent<cost)return;S.cspent+=cost;S.cv.add(id);recalc();blip(990,.25,"sine",.12);toast(L("Royal perk","Privilegio reale"),name)};$("clist").appendChild(el);return el});
+let crArm=0;
+$("ascendBtn").onclick=()=>{const g=crownsFor(S.halo);if(g<1)return;
+  if(Date.now()-crArm>3000){crArm=Date.now();$("ascendBtn").textContent=L(`Sure? Lose ALL Laurels & Blessings for +${fmt(g)} Crowns`,`Sicuro? Perdi TUTTI gli Allori e le Benedizioni per +${fmt(g)} Corone`);setTimeout(()=>{crArm=0},3000);return}
+  crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo};
+  S=Object.assign(fresh(),keep);if(crn("c6"))["h0","h1","h2","h3","h4","h5","h6"].forEach(id=>S.hv.add(id));if(crn("c0"))S.d=1e9;if(hv("h2"))S.own[0]=10;
+  lastUKey="";recalc();toast(L("Ascended!","Asceso!"),L(`+${fmt(g)} Crowns. Every Crown is +10% production forever.`,`+${fmt(g)} Corone. Ogni Corona dà +10% di produzione per sempre.`),6000);blip(160,.6,"sine",.18)};
+function renderCrowns(){const free=S.crown-S.cspent,g=crownsFor(S.halo);
+  $("crOwn").textContent=fmt(S.crown);$("crFree").textContent=fmt(free);$("crNext").textContent="+"+fmt(g);$("crAt").textContent=fmt(Math.pow(g+1,2)*1e4)+" "+LAUR.toLowerCase();
+  if(!crArm)$("ascendBtn").textContent=g>0?L(`Ascend for +${fmt(g)} Crowns`,`Ascendi per +${fmt(g)} Corone`):L(`Ascend (need ${fmt(1e4)} Laurels)`,`Ascendi (servono ${fmt(1e4)} Allori)`);$("ascendBtn").disabled=g<1;
+  crows.forEach((el,k)=>{const id=CR[k][0],cost=CR[k][3];el.classList.toggle("own",crn(id));el.querySelector(".c").textContent=crn(id)?L("Yours","Tuo"):fmt(cost)+" "+L(cost>1?"crowns":"crown",cost>1?"corone":"corona");el.disabled=!crn(id)&&free<cost;el.style.opacity=!crn(id)&&free<cost?.55:1})}
+setInterval(()=>{if(crn("c4")){const av=avail();let b=false;av.forEach(u=>{if(S.d>=u.cost){S.d-=u.cost;S.up.add(u.id);b=true}});if(b){lastUKey="";recalc()}}},1000);
 
 // ---------- market (BETA) ----------
 // Every price is a pure function of the clock: same time -> same price on every device, no server.
@@ -705,17 +800,22 @@ const sg=(a,b,c)=>hh(a,b,c)*2-1;
 function vn(a,o,x){const i=Math.floor(x),f=x-i,s=f*f*(3-2*f);return sg(a,o,i)*(1-s)+sg(a,o,i+1)*s}
 const OCT=[[37,.0022],[173,.006],[911,.017],[3607,.033],[14411,.05],[86413,.08],[604801,.13],[2629801,.2]];
 const TICK=2,EVW=3600;
+// [symbol, name, Italian name, base price, volatility, trader rank needed, dividend %/hour]
 const STK=[
- ["DUEK","Dueck Industries","Dueck Industrie",120,1],
- ["NONA","Nonna Foods","Nonna Alimentari",45,.55],
- ["ESPR","Espresso Holdings","Espresso Holding",18,1.15],
- ["FORN","Forno Pizza Co.","Forno Pizza S.p.A.",72,.9],
- ["RAPD","Scooter Rapido","Scooter Rapido",9,1.8],
- ["GOND","Gondola Lines","Linee Gondola",210,.7],
- ["TRUF","Tartufo Gold","Tartufo Oro",860,1.35],
- ["VINO","Colline Wines","Vini delle Colline",33,.8],
- ["LUNA","Luna Gelato","Gelato Luna",3.5,2.6],
-].map(([sy,en,it,base,vol],k)=>({k,sy,name:L(en,it),base,vol,id:k+11}));
+ ["DUEK","Dueck Industries","Dueck Industrie",120,1,0,0],
+ ["NONA","Nonna Foods","Nonna Alimentari",45,.55,0,.5],
+ ["ESPR","Espresso Holdings","Espresso Holding",18,1.15,0,0],
+ ["FORN","Forno Pizza Co.","Forno Pizza S.p.A.",72,.9,0,.2],
+ ["RAPD","Scooter Rapido","Scooter Rapido",9,1.8,0,0],
+ ["GOND","Gondola Lines","Linee Gondola",210,.7,0,.4],
+ ["TRUF","Tartufo Gold","Tartufo Oro",860,1.35,0,0],
+ ["VINO","Colline Wines","Vini delle Colline",33,.8,0,.6],
+ ["LUNA","Luna Gelato","Gelato Luna",3.5,2.6,0,0],
+ ["DIDX","Dueck Index","Indice Dueck",1000,0,2,.3],
+ ["MOZZ","Mozzarella Moonshot","Mozzarella Lunare",.42,3.2,4,0],
+ ["CANN","Cannoli Coin","Cannoli Coin",.08,4,4,0],
+ ["TOGA","Toga Tech","Toga Tech",1.6,2.8,4,0],
+].map(([sy,en,it,base,vol,rank,div],k)=>({k,sy,name:L(en,it),base,vol,rank,div,id:k+11,idx:sy==="DIDX",penny:base<2&&vol>2.7}));
 const HEAD_UP=L(["{n} smashes earnings expectations","{n} announces record summer season","Analysts upgrade {n} to 'Bellissimo'","{n} signs huge deal with Nonna's cousin","Rumour: Dueck himself buys {n} shares"],
   ["{n} batte le stime sugli utili","{n} annuncia un'estate da record","Gli analisti promuovono {n} a 'Bellissimo'","{n} firma un grosso accordo col cugino della nonna","Voci: Dueck in persona compra azioni {n}"]);
 const HEAD_DN=L(["{n} misses earnings, CEO blames pineapple","Inspectors find cappuccino after 11 at {n}","{n} recalls a batch of sad faces","Strike at {n} over lunch break length","{n} warehouse floods in Venice"],
@@ -738,16 +838,25 @@ function lpx(st,t,res=0){let v=Math.log(st.base);const T=tau(t);
   if(res<20)v+=st.vol*.0007*Math.sqrt(act(t))*sg(st.id,77,Math.floor(t/TICK));
   const w0=Math.floor(t/EVW);for(let w=w0;w>w0-7;w--){const e=evAt(st,w);if(e&&t>=e.te){const dt=t-e.te;v+=e.mag*Math.exp(-dt/7000)*Math.min(1,dt/300)}}
   return v}
-const pxAt=(st,t,res)=>Math.exp(lpx(st,Math.floor(t/TICK)*TICK,res));
+// the Dueck Index is the average of the nine main stocks (each scaled to its own starting price), times 1000
+const pxAt=(st,t,res)=>{const q=Math.floor(t/TICK)*TICK;if(!st.idx)return Math.exp(lpx(st,q,res));let a=0;for(let i=0;i<9;i++)a+=Math.exp(lpx(STK[i],q,res))/STK[i].base;return a/9*1000};
 const nowS=()=>Date.now()/1000;
 let sel=0,tf=600,chartCache=null,mkHover=null;
-const fee=()=>hv("h10")?0:.0025;
+// ---- trader rank: points from selling at a profit (+1 per trade, +10 per 1% gained), so it's fair at any wealth ----
+const RANKS=[[0,"Intern","Stagista",.0025],[100,"Junior Trader","Trader Junior",.002],[400,"Broker","Broker",.0015],[1200,"Senior Broker","Broker Senior",.0012],[3000,"Fund Manager","Gestore di Fondi",.001],[7000,"Market Shark","Squalo della Borsa",.0005],[15000,"Wolf of Via Roma","Lupo di Via Roma",0]];
+const RUN=[L("Stop-loss and take-profit, 0.25% fee","Stop-loss e take-profit, commissione 0,25%"),L("Limit buy orders, fee 0.20%","Ordini di acquisto limite, commissione 0,20%"),L("Dueck Index and trailing stop, fee 0.15%","Indice Dueck e trailing stop, commissione 0,15%"),L("Short-selling, fee 0.12%","Vendita allo scoperto, commissione 0,12%"),L("Penny stocks, fee 0.10%","Penny stock, commissione 0,10%"),L("Double dividends, fee 0.05%","Dividendi doppi, commissione 0,05%"),L("No fees and twice the insider tips","Zero commissioni e soffiate doppie")];
+function rankOf(){let r=0;for(let i=0;i<RANKS.length;i++)if(S.rp>=RANKS[i][0])r=i;return r}
+const rkName=i=>L(RANKS[i][1],RANKS[i][2]);
+function addRP(n){const r0=rankOf();S.rp+=n;const r1=rankOf();if(r1>r0){toast(L("Promoted!","Promosso!"),`${rkName(r1)}: ${RUN[r1]}`,8000);blip(990,.3,"sine",.12);blip(1320,.3,"sine",.08)}}
+const fee=()=>hv("h10")?0:RANKS[rankOf()][3];
+const locked=st=>st.rank>rankOf();
+const DIVP=300;
 function hold(k){return S.pf[k]||(S.pf[k]={sh:0,cost:0})}
-function mBuy(f){const st=STK[sel],p=pxAt(st,nowS()),cash=S.d*f;const sh=cash/(p*(1+fee()));if(cash<=0||sh<=0)return;
+function mBuy(f){const st=STK[sel];if(locked(st))return;const p=pxAt(st,nowS()),cash=S.d*f;const sh=cash/(p*(1+fee()));if(cash<=0||sh<=0)return;
   const h=hold(st.k);h.sh+=sh;h.cost+=cash;S.d-=cash;S.trades++;blip(520,.06,"square",.05);
   toast(L("Bought","Comprato"),`${fmt(sh)} ${st.sy} @ ${pfmt(p)}`,2000)}
 function mSell(f,k=sel,why){const st=STK[k],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,nowS()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
-  h.sh-=sh;h.cost-=basis;if(f>=1){h.sh=0;h.cost=0}S.d+=got;const pl=got-basis;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl}S.trades++;
+  h.sh-=sh;h.cost-=basis;if(f>=1){h.sh=0;h.cost=0}S.d+=got;const pl=got-basis;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl;S.ever+=pl}S.trades++;addRP(1+(pl>0&&basis>0?Math.min(200,pl/basis*1000):0));
   blip(pl>=0?780:260,.08,"square",.05);if(h.sh<=0)delete S.ord[k];
   toast(why||(pl>=0?L("Sold for a profit","Venduto in guadagno"):L("Sold at a loss","Venduto in perdita")),`${st.sy} @ ${pfmt(p)}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,why?5000:2200)}
 // stop-loss / take-profit: checked every second, even with the market window closed
@@ -758,16 +867,56 @@ function setOrd(kind,price){const st=STK[sel],h=S.pf[st.k],p=pxAt(st,nowS());
   if(kind==="tp"&&price<=p){toast("Take-profit",L(`Must be above the current price (${pfmt(p)}).`,`Deve essere sopra il prezzo attuale (${pfmt(p)}).`));return}
   const o=S.ord[st.k]||(S.ord[st.k]={});o[kind]=price;$(kind+"In").value="";blip(600,.05,"sine",.06);
   toast(kind==="sl"?"Stop-loss":"Take-profit",L(`Sell all ${st.sy} if it ${kind==="sl"?"falls":"rises"} to ${pfmt(price)}.`,`Vendi tutto ${st.sy} se ${kind==="sl"?"scende":"sale"} a ${pfmt(price)}.`),2500);renderMkt(true)}
-function checkOrders(){const t=nowS();for(const k in S.ord){const o=S.ord[k],h=S.pf[k];if(!h||h.sh<=0){delete S.ord[k];continue}
-  const p=pxAt(STK[k],t);if(o.sl&&p<=o.sl)mSell(1,+k,L("Stop-loss triggered","Stop-loss scattato"));else if(o.tp&&p>=o.tp)mSell(1,+k,L("Take-profit triggered","Take-profit scattato"))}}
+function checkOrders(){const t=nowS();
+  for(const k in S.ord){const o=S.ord[k],h=S.pf[k];if(!h||h.sh<=0){delete S.ord[k];continue}
+    const p=pxAt(STK[k],t);if(o.tr)o.pk=Math.max(o.pk||p,p);
+    if(o.sl&&p<=o.sl)mSell(1,+k,L("Stop-loss triggered","Stop-loss scattato"));
+    else if(o.tp&&p>=o.tp)mSell(1,+k,L("Take-profit triggered","Take-profit scattato"));
+    else if(o.tr&&p<=o.pk*(1-o.tr))mSell(1,+k,L("Trailing stop triggered","Trailing stop scattato"))}
+  for(const k in S.lim){const l=S.lim[k],st=STK[k],p=pxAt(st,t);if(p<=l.px){const sh=l.cash/(p*(1+fee())),h=hold(+k);h.sh+=sh;h.cost+=l.cash;S.trades++;delete S.lim[k];
+    toast(L("Limit buy filled","Ordine limite eseguito"),`${fmt(sh)} ${st.sy} @ ${pfmt(p)}`,5000);blip(600,.08,"square",.05)}}
+  for(const k in S.shs){const x=S.shs[k];if(!x||x.sh<=0){delete S.shs[k];continue}if(pxAt(STK[k],t)>=x.coll/x.sh*1.9)cover(1,+k,L("Margin call! Short closed","Margin call! Scoperto chiuso"))}
+  const ep=Math.floor(t/DIVP);if(S.divEp==null)S.divEp=ep;else if(ep!==S.divEp){S.divEp=ep;payDivs(t)}
+  S.tips=S.tips.filter(x=>x.until>t)}
+// dividends: paid every 5 minutes on what you hold, at the stock's %/hour rate (doubled at Market Shark)
+function payDivs(t){let tot=0;STK.forEach(st=>{const h=S.pf[st.k];if(!st.div||!h||h.sh<=0)return;tot+=h.sh*pxAt(st,t)*st.div/100*(DIVP/3600)*(rankOf()>=5?2:1)});
+  if(tot>0){earn(tot);S.divs+=tot;toast(L("Dividends paid","Dividendi pagati"),"+"+fmt(tot)+" Dueck",3000);blip(700,.06,"sine",.06)}}
+// short-selling: you put up cash, and gain what the price loses (lose what it gains). Closed automatically if it rises 90%.
+function openShort(f){const st=STK[sel];if(rankOf()<3||locked(st))return;const coll=S.d*f;if(coll<=0)return;const p=pxAt(st,nowS()),sh=coll/(p*(1+fee()));
+  const x=S.shs[st.k]||(S.shs[st.k]={sh:0,coll:0});x.sh+=sh;x.coll+=coll;S.d-=coll;S.trades++;blip(300,.08,"square",.05);toast(L("Shorted","Allo scoperto"),L(`${st.sy}: you profit if it falls below ${pfmt(x.coll/x.sh)}.`,`${st.sy}: guadagni se scende sotto ${pfmt(x.coll/x.sh)}.`),3000)}
+function shortVal(k,p){const x=S.shs[k];return x?Math.max(0,x.sh*(2*x.coll/x.sh-p))*(1-fee()):0}
+function cover(f,k=sel,why){const st=STK[k],x=S.shs[k];if(!x||x.sh<=0)return;const p=pxAt(st,nowS()),back=shortVal(k,p)*f,coll=x.coll*f;
+  x.sh-=x.sh*f;x.coll-=coll;if(f>=1)delete S.shs[k];S.d+=back;const pl=back-coll;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl;S.ever+=pl}S.trades++;
+  addRP(1+(pl>0&&coll>0?Math.min(200,pl/coll*1000):0));blip(pl>=0?780:260,.08,"square",.05);
+  toast(why||(pl>=0?L("Short closed in profit","Scoperto chiuso in guadagno"):L("Short closed at a loss","Scoperto chiuso in perdita")),`${st.sy} @ ${pfmt(p)}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,why?6000:2500)}
+function setTrail(pc){const st=STK[sel],h=S.pf[st.k];if(rankOf()<2)return;if(!h||h.sh<=0){toast(L("No shares","Nessuna azione"),L(`Buy some ${st.sy} first.`,`Compra prima qualche azione ${st.sy}.`));return}
+  const p=pxAt(st,nowS()),o=S.ord[st.k]||(S.ord[st.k]={});o.tr=pc;o.pk=p;blip(600,.05,"sine",.06);toast("Trailing stop",L(`Sells all ${st.sy} if it falls ${pc*100}% from its highest point (now ${pfmt(p*(1-pc))}).`,`Vende tutto ${st.sy} se scende del ${pc*100}% dal massimo (ora ${pfmt(p*(1-pc))}).`),3500);renderMkt(true)}
+function setLim(price,f){const st=STK[sel];if(rankOf()<1||locked(st))return;const p=pxAt(st,nowS());
+  if(!(price>0)){toast(L("Bad price","Prezzo non valido"),L("Type a price below the current one.","Scrivi un prezzo sotto quello attuale."));return}
+  if(price>=p){toast(L("Limit buy","Acquisto limite"),L(`Must be below the current price (${pfmt(p)}).`,`Deve essere sotto il prezzo attuale (${pfmt(p)}).`));return}
+  const old=S.lim[st.k];if(old)S.d+=old.cash;const cash=S.d*f;if(cash<=0)return;S.d-=cash;S.lim[st.k]={px:price,cash};$("lbIn").value="";blip(600,.05,"sine",.06);
+  toast(L("Limit buy set","Acquisto limite impostato"),L(`Buys ${st.sy} with ${fmt(cash)} if it drops to ${pfmt(price)}.`,`Compra ${st.sy} con ${fmt(cash)} se scende a ${pfmt(price)}.`),3500);renderMkt(true)}
+// insider tips: prices are worked out ahead of time, so a tip can tell you what's really coming
+function maybeTip(force){const ch=crn("c3")?1:rankOf()>=6?.6:.3;if(!force&&Math.random()>ch)return;const t=nowS();let best=null;const ok=STK.filter(st=>!st.idx&&!locked(st));
+  ok.forEach(st=>{const w0=Math.floor(t/EVW);for(let w=w0;w<=w0+1;w++){const e=evAt(st,w);if(e&&e.te>t+45&&e.te<t+900&&(!best||Math.abs(e.mag)>Math.abs(best.mag)))best={st,up:e.up,mag:e.mag,eta:e.te,ev:1}}});
+  if(!best)ok.forEach(st=>{const c=pxAt(st,t+600)/pxAt(st,t)-1;if(Math.abs(c)>.006&&(!best||Math.abs(c)>Math.abs(best.mag)))best={st,up:c>0,mag:c,eta:t+600}});
+  if(!best){toast(L("Insider tip","Soffiata"),L("Your contact says the market looks flat for now.","Il tuo contatto dice che il mercato è piatto per ora."),6000);return}
+  const mins=Math.max(1,Math.round((best.eta-t)/60));
+  const txt=best.ev?L(`${best.st.sy} will ${best.up?"jump":"drop"} within about ${mins} min.`,`${best.st.sy} ${best.up?"salirà":"scenderà"} entro circa ${mins} min.`):L(`${best.st.sy} looks set to ${best.up?"rise":"fall"} over the next 10 min.`,`${best.st.sy} sembra destinato a ${best.up?"salire":"scendere"} nei prossimi 10 min.`);
+  S.tips.push({k:best.st.k,up:best.up,txt,until:best.eta+300});toast(L("Insider tip","Soffiata"),txt,9000);blip(1100,.1,"sine",.08)}
 setInterval(checkOrders,1000);
 // Market tab badge: how many stocks you hold, so you can see it without opening the market
-setInterval(()=>{const n=STK.filter(s2=>S.pf[s2.k]&&S.pf[s2.k].sh>0).length,b=$("mbadge");b.hidden=!n;b.textContent=n},1000);
+setInterval(()=>{const n=STK.filter(s2=>(S.pf[s2.k]&&S.pf[s2.k].sh>0)||S.shs[s2.k]).length,b=$("mbadge");b.hidden=!n;b.textContent=n},1000);
 $("pford").addEventListener("click",e=>{const b=e.target.closest(".hrow");if(b){sel=+b.dataset.k;chartCache=null;renderMkt(true)}});
-$("ordBox").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const kind=b.closest("[data-o]")?.dataset.o;
-  if(b.dataset.clr){const o=S.ord[sel];if(o){delete o[b.dataset.clr];if(!o.sl&&!o.tp)delete S.ord[sel]}renderMkt(true);return}
-  if(b.dataset.p){setOrd(kind,pxAt(STK[sel],nowS())*(1+ +b.dataset.p));return}
+$("ordBox").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const kind=b.closest("[data-o]")?.dataset.o;const p=pxAt(STK[sel],nowS());
+  if(b.dataset.clr){const c=b.dataset.clr;if(c==="lb"){const l=S.lim[sel];if(l){S.d+=l.cash;delete S.lim[sel]}}else{const o=S.ord[sel];if(o){delete o[c];if(c==="tr")delete o.pk;if(!o.sl&&!o.tp&&!o.tr)delete S.ord[sel]}}renderMkt(true);return}
+  if(b.dataset.tr){setTrail(+b.dataset.tr);return}
+  if(b.dataset.lbp){setLim(p*(1+ +b.dataset.lbp),.25);return}
+  if(b.dataset.lbset){setLim(Number($("lbIn").value.replace(",",".")),.25);return}
+  if(b.dataset.p){setOrd(kind,p*(1+ +b.dataset.p));return}
   if(b.dataset.set){setOrd(b.dataset.set,Number($(b.dataset.set+"In").value.replace(",",".")))}});
+$("lbIn").addEventListener("keydown",e=>{if(e.key==="Enter")setLim(Number(e.target.value.replace(",",".")),.25)});
+$("shortBox").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.sh)openShort(+b.dataset.sh);if(b.dataset.cv)cover(1);renderMkt(true)});
 ["slIn","tpIn"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")setOrd(id.slice(0,2),Number(e.target.value.replace(",",".")))}));
 $("buyBts").onclick=e=>{const b=e.target.closest("button");if(b){mBuy(+b.dataset.b);renderMkt(true)}};
 $("sellBts").onclick=e=>{const b=e.target.closest("button");if(b){mSell(+b.dataset.s);renderMkt(true)}};
@@ -776,8 +925,9 @@ function pfmt(p){return p>=1000?fmt(p):p.toFixed(p<10?3:2)}
 // arrows are drawn with CSS (not ▲▼ text) so no font can make them overlap the numbers
 function pct(a,b){const c=(a/b-1)*100;return`<span class="${c>=0?"up":"dn"} chg2"><em class="ar"></em>${Math.abs(c).toFixed(2)}%</span>`}
 const srows=STK.map(st=>{const el=document.createElement("button");el.className="srow";
-  el.innerHTML=`<span class="sy">${st.sy}</span><span class="nm2">${st.name}</span><canvas width="140" height="44"></canvas><span class="pr"></span><span class="own" hidden></span>`;
-  el.onclick=()=>{sel=st.k;chartCache=null;renderMkt(true)};$("slst").appendChild(el);return el});
+  const tag=st.idx?`<span class="stag ix">INDEX</span>`:st.penny?`<span class="stag pn">PENNY</span>`:"";const dv=st.div?`<span class="stag dv">DIV ${st.div}%/h</span>`:"";
+  el.innerHTML=`<span class="sy">${st.sy}</span><span class="nm2">${st.name} ${tag}${dv}</span><canvas width="140" height="44"></canvas><span class="pr"></span><span class="own" hidden></span>`;
+  el.onclick=()=>{if(locked(st)){toast(L("Locked","Bloccato"),L(`${st.sy} unlocks at trader rank ${rkName(st.rank)}.`,`${st.sy} si sblocca al grado ${rkName(st.rank)}.`));return}sel=st.k;chartCache=null;renderMkt(true)};$("slst").appendChild(el);return el});
 // price series over a span, smoothed for long spans, and eased into the exact live price at the end (no jump on the last point)
 function series(st,t,span,N){const step=span/N,pts=[];for(let i=0;i<=N;i++)pts.push(pxAt(st,t-span+i*step,step));const r=pxAt(st,t)/pts[N];
   if(r!==1)for(let i=0;i<=N;i++)pts[i]*=Math.pow(r,Math.pow(i/N,3));return pts}
@@ -789,7 +939,8 @@ function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.wid
   const c=cv.getContext("2d"),W2=r.width,H2=r.height;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W2,H2);
   const st=STK[sel],N=Math.min(PERF?120:300,tf/TICK),step=tf/N,pts=series(st,t,tf,N);
   const od=S.ord[st.k]||{},pn=pts[N];let mn=Math.min(...pts),mx=Math.max(...pts);
-  if(od.sl&&od.sl>pn*.7)mn=Math.min(mn,od.sl);if(od.tp&&od.tp<pn*1.4)mx=Math.max(mx,od.tp);
+  const lbv=S.lim[st.k]?S.lim[st.k].px:0,trv=od.tr?od.pk*(1-od.tr):0,sev=S.shs[st.k]?S.shs[st.k].coll/S.shs[st.k].sh:0;
+  [od.sl,lbv,trv].forEach(v=>{if(v&&v>pn*.7)mn=Math.min(mn,v)});[od.tp,sev].forEach(v=>{if(v&&v<pn*1.4)mx=Math.max(mx,v)});
   const pad=(mx-mn)*.12||mx*.01,lo=mn-pad,hi=mx+pad,R=52;
   const X=i=>i/N*(W2-R),Y=p=>H2-18-(p-lo)/(hi-lo)*(H2-28);const upc=pts[N]>=pts[0],col=upc?"#2fd27f":"#ff5a5f";
   c.font="10px DM Mono, monospace";c.fillStyle="#7f958d";c.strokeStyle="#1d2b30";c.lineWidth=1;
@@ -800,7 +951,7 @@ function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.wid
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.lineTo(X(N),H2-18);c.lineTo(0,H2-18);c.closePath();c.fillStyle=gr;c.fill();
   c.beginPath();pts.forEach((p,i)=>i?c.lineTo(X(i),Y(p)):c.moveTo(X(i),Y(p)));c.strokeStyle=col;c.lineWidth=1.8;c.stroke();
   const h=S.pf[st.k];if(h&&h.sh>0){const avg=h.cost/h.sh;if(avg>lo&&avg<hi){c.setLineDash([4,4]);c.strokeStyle="#ffcf1f";c.beginPath();c.moveTo(0,Y(avg));c.lineTo(W2-R,Y(avg));c.stroke();c.setLineDash([]);c.fillStyle="#ffcf1f";c.fillText(L("your avg","tua media"),4,Y(avg)-4)}}
-  [["sl","#ff5a5f","stop-loss"],["tp","#2fd27f","take-profit"]].forEach(([k,cl,nm])=>{const v=od[k];if(!v||v<lo||v>hi)return;const y=Y(v);c.setLineDash([6,4]);c.strokeStyle=cl;c.beginPath();c.moveTo(0,y);c.lineTo(W2-R,y);c.stroke();c.setLineDash([]);c.fillStyle=cl;c.fillText(`${nm} ${pfmt(v)}`,4,k==="sl"?y+12:y-4)});
+  [[od.sl,"#ff5a5f","stop-loss",1],[od.tp,"#2fd27f","take-profit",0],[trv,"#ff9f43","trailing stop",1],[lbv,"#5fb7ff","limit buy",1],[sev,"#c58cff","short entry",0]].forEach(([v,cl,nm,below])=>{if(!v||v<lo||v>hi)return;const y=Y(v),k=below?"sl":"tp";c.setLineDash([6,4]);c.strokeStyle=cl;c.beginPath();c.moveTo(0,y);c.lineTo(W2-R,y);c.stroke();c.setLineDash([]);c.fillStyle=cl;c.fillText(`${nm} ${pfmt(v)}`,4,k==="sl"?y+12:y-4)});
   const ly=Y(pts[N]);c.fillStyle=col;c.fillRect(W2-R+1,ly-8,R-1,16);c.fillStyle="#0d1417";c.fillText(pfmt(pts[N]),W2-R+5,ly+3);
   c.beginPath();c.arc(X(N),ly,3.5,0,7);c.fillStyle=col;c.fill();
   if(mkHover!=null){const i=Math.max(0,Math.min(N,Math.round(mkHover/(W2-R)*N))),x=X(i),y=Y(pts[i]);c.strokeStyle="#55707a";c.beginPath();c.moveTo(x,0);c.lineTo(x,H2-18);c.stroke();
@@ -808,7 +959,24 @@ function drawChart(t){const cv=$("chart"),r=cv.getBoundingClientRect();if(!r.wid
 $("chart").addEventListener("pointermove",e=>{const r=$("chart").getBoundingClientRect();mkHover=e.clientX-r.left;drawChart(nowS())});
 $("chart").addEventListener("pointerleave",()=>{mkHover=null;drawChart(nowS())});
 const PH={night:L("Night","Notte"),pre:L("Pre-market","Pre-apertura"),open:L("Opening bell","Apertura"),sess:L("Session open","Seduta aperta"),lunch:L("Lunch lull","Pausa pranzo"),close:L("Closing rush","Chiusura"),after:L("After hours","Dopo chiusura")};
-let mkLast=0,lastSpark=0,lastHold="";
+let mkLast=0,lastSpark=0,lastHold="",lastRk="";
+function renderMkt2(t,st,p,h){const r=rankOf(),nx=RANKS[r+1];
+  $("mRank").textContent=rkName(r);
+  const key=r+"|"+Math.floor(S.rp);if(key!==lastRk){lastRk=key;const op=$("rk").querySelector("details")?.open;
+    $("rk").innerHTML=`<h4>${L("Trader rank","Grado")}</h4><div class="rkn">${rkName(r)} <small>${fmt(Math.floor(S.rp))} ${L("pts","pt")}</small></div>`+(nx?`<div class="lbar2"><i style="width:${Math.min(100,(S.rp-RANKS[r][0])/(nx[0]-RANKS[r][0])*100)}%"></i></div><div class="rknx">${L("Next","Prossimo")}: <b>${rkName(r+1)}</b> ${L("at","a")} ${fmt(nx[0])} ${L("pts","pt")}<br>${L("Unlocks","Sblocca")}: ${RUN[r+1]}</div>`:`<div class="rknx">${L("Top rank reached!","Grado massimo raggiunto!")}</div>`)
+      +`<details${op?" open":""}><summary>${L("All ranks","Tutti i gradi")}</summary><ul>${RANKS.map((x,i)=>`<li class="${i<=r?"got":""}"><b>${i<=r?"✓ ":""}${rkName(i)}</b> <small>${fmt(x[0])} ${L("pts","pt")}</small><br>${RUN[i]}</li>`).join("")}</ul></details><p class="rkhow">${L("Earn points by selling for a profit: +1 per trade and +10 for every 1% you gain.","Guadagni punti vendendo in guadagno: +1 per operazione e +10 per ogni 1% guadagnato.")}</p>`}
+  // locks on advanced tools
+  const lockMsg=n=>r>=n?"":L(`Unlocks at ${rkName(n)}`,`Si sblocca a ${rkName(n)}`);
+  [["lbCol",1],["trCol",2],["shortBox",3]].forEach(([id,n])=>{$(id).classList.toggle("locked",r<n);$(id).querySelector(".lockt").textContent=lockMsg(n)});
+  const xs=S.shs[st.k];$("shortBox").querySelector("[data-cv]").disabled=!xs;
+  // dividends + short info under the position
+  const nd=(Math.floor(t/DIVP)+1)*DIVP-t;let extra="";
+  if(st.div)extra+=`<dt>${L("Dividend","Dividendo")}</dt><dd>${st.div*(r>=5?2:1)}%/h · ${L("next in","prossimo tra")} ${Math.floor(nd/60)}:${String(Math.floor(nd%60)).padStart(2,"0")}${h.sh?` · +${fmt(h.sh*p*st.div/100*(DIVP/3600)*(r>=5?2:1))}`:""}</dd>`;
+  if(xs){const v=shortVal(st.k,p),pl=v-xs.coll;extra+=`<dt>${L("Short entry","Ingresso scoperto")}</dt><dd>${pfmt(xs.coll/xs.sh)} · ${L("margin call at","margin call a")} ${pfmt(xs.coll/xs.sh*1.9)}</dd><dt>${L("Short P/L","G/P scoperto")}</dt><dd class="${pl>=0?"up":"dn"}">${pl>=0?"+":"-"}${fmt(Math.abs(pl))} (${(pl/xs.coll*100).toFixed(1)}%)</dd>`}
+  $("pos").insertAdjacentHTML("beforeend",extra);
+  $("feeL").textContent=(fee()*100).toFixed(2)+"%";
+  // insider tips
+  $("tipsb").innerHTML=S.tips.length?`<h4>${L("Insider tips","Soffiate")}</h4><ul>${S.tips.map(x=>`<li><span class="${x.up?"up":"dn"} chg2" style="margin:0 6px 0 0"><em class="ar"></em></span>${x.txt} <small>${L("expires in","scade tra")} ${Math.max(1,Math.round((x.until-t)/60))}m</small></li>`).join("")}</ul>`:""}
 function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;mkLast=t;
   $("mCash").textContent=fmt(S.d);
   {const[g,sec]=segAt(t),i=SEGS.indexOf(g);let j=(i+1)%SEGS.length;while(SEGS[j][3]===g[3])j=(j+1)%SEGS.length;
@@ -820,25 +988,29 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
   const sp=force||t-lastSpark>(PERF?60:20);if(sp)lastSpark=t;
   const tfl=$("tfs").querySelector(".on").textContent;$("chgL").textContent=tfl;
   STK.forEach((st,k)=>{const el=srows[k],p=pxAt(st,t),p0=pxAt(st,t-tf);el.classList.toggle("on",k===sel);
-    el.querySelector(".pr").innerHTML=`${pfmt(p)}<br>${pct(p,p0)}`;
-    {const x=S.pf[k],own=el.querySelector(".own"),has=!!(x&&x.sh>0);el.classList.toggle("has",has);own.hidden=!has;
+    const lk=locked(st);el.classList.toggle("lock",lk);el.querySelector(".pr").innerHTML=lk?`<span class="lkt">${L("Locked","Bloccato")}<br>${rkName(st.rank)}</span>`:`${pfmt(p)}<br>${pct(p,p0)}`;
+    {const x=S.pf[k],xs=S.shs[k],own=el.querySelector(".own"),has=!!(x&&x.sh>0);el.classList.toggle("has",has||!!xs);own.hidden=!has&&!xs;
+     if(!has&&xs){const v=shortVal(k,p),r=(v/xs.coll-1)*100;own.innerHTML=`<span class="ownt sht">SHORT</span> ${fmt(v)} <span class="${r>=0?"up":"dn"}">${r>=0?"+":""}${r.toFixed(1)}%</span>`}
      if(has){const v=x.sh*p*(1-fee()),r=(v/x.cost-1)*100;own.innerHTML=`<span class="ownt">${L("OWNED","IN PORTAFOGLIO")}</span> ${fmt(x.sh)} ${L("shares","azioni")} · ${fmt(v)} <span class="${r>=0?"up":"dn"}">${r>=0?"+":""}${r.toFixed(1)}%</span>${S.ord[k]?` · <span class="ownt">${L("AUTO-SELL","AUTO")}</span>`:""}`}}if(sp)spark(el.querySelector("canvas"),st,t)});
   const st=STK[sel],p=pxAt(st,t);$("selSym").textContent=st.sy;$("selPx").textContent=pfmt(p);$("selCh").innerHTML=pct(p,pxAt(st,t-tf))+` <span style="color:#7f958d;font-size:11px">${$("tfs").querySelector(".on").textContent}</span>`;$("selNm").textContent=st.name;
   drawChart(t);
   const h=S.pf[st.k]||{sh:0,cost:0},val=h.sh*p*(1-fee()),pl=val-h.cost;
   $("pos").innerHTML=`<dt>${L("Shares owned","Azioni possedute")}</dt><dd>${fmt(h.sh)}</dd><dt>${L("Avg price paid","Prezzo medio")}</dt><dd>${h.sh?pfmt(h.cost/h.sh):"—"}</dd><dt>${L("Value now","Valore ora")}</dt><dd>${fmt(val)}</dd><dt>${L("Profit / loss","Guadagno / perdita")}</dt><dd class="${pl>=0?"up":"dn"}">${h.sh?(pl>=0?"+":"-")+fmt(Math.abs(pl))+` (${(pl/h.cost*100).toFixed(1)}%)`:"—"}</dd>`;
-  {const o=S.ord[st.k]||{};$("ochips").innerHTML=(o.sl?`<span class="chip sl">${L("Stop-loss","Stop-loss")} ${pfmt(o.sl)} <small>(${((o.sl/p-1)*100).toFixed(1)}%)</small><button data-clr="sl" aria-label="Cancel stop-loss">✕</button></span>`:"")+(o.tp?`<span class="chip tp">${L("Take-profit","Take-profit")} ${pfmt(o.tp)} <small>(+${((o.tp/p-1)*100).toFixed(1)}%)</small><button data-clr="tp" aria-label="Cancel take-profit">✕</button></span>`:"");
+  {const o=S.ord[st.k]||{},lb=S.lim[st.k];$("ochips").innerHTML=(lb?`<span class="chip lb">${L("Limit buy","Acquisto limite")} ${pfmt(lb.px)} · ${fmt(lb.cash)} ${L("reserved","riservati")}<button data-clr="lb" aria-label="Cancel limit buy">✕</button></span>`:"")+(o.tr?`<span class="chip trl">Trailing ${o.tr*100}% · ${L("sells at","vende a")} ${pfmt(o.pk*(1-o.tr))}<button data-clr="tr" aria-label="Cancel trailing stop">✕</button></span>`:"")+(o.sl?`<span class="chip sl">${L("Stop-loss","Stop-loss")} ${pfmt(o.sl)} <small>(${((o.sl/p-1)*100).toFixed(1)}%)</small><button data-clr="sl" aria-label="Cancel stop-loss">✕</button></span>`:"")+(o.tp?`<span class="chip tp">${L("Take-profit","Take-profit")} ${pfmt(o.tp)} <small>(+${((o.tp/p-1)*100).toFixed(1)}%)</small><button data-clr="tp" aria-label="Cancel take-profit">✕</button></span>`:"");
    $("ordBox").classList.toggle("off",!h.sh)}
-  {const rows=STK.filter(s2=>S.pf[s2.k]&&S.pf[s2.k].sh>0).map(s2=>{const x=S.pf[s2.k],o=S.ord[s2.k]||{},v=x.sh*pxAt(s2,t)*(1-fee()),pl=v-x.cost,r=pl/x.cost*100;
+  {const shortRows=STK.filter(s2=>S.shs[s2.k]).map(s2=>{const x=S.shs[s2.k],v=shortVal(s2.k,pxAt(s2,t)),pl=v-x.coll,r=pl/x.coll*100;
+     return`<button class="hrow short${s2.k===sel?" on":""}" data-k="${s2.k}"><b>${s2.sy} <span class="ownt sht">SHORT</span></b><span class="hsh">${L("entry","ingresso")} ${pfmt(x.coll/x.sh)}</span><span class="hv">${fmt(v)}</span><span class="${pl>=0?"up":"dn"} hpl">${pl>=0?"+":"-"}${fmt(Math.abs(pl))} (${r>=0?"+":""}${r.toFixed(1)}%)</span></button>`});
+   const rows=STK.filter(s2=>S.pf[s2.k]&&S.pf[s2.k].sh>0).map(s2=>{const x=S.pf[s2.k],o=S.ord[s2.k]||{},v=x.sh*pxAt(s2,t)*(1-fee()),pl=v-x.cost,r=pl/x.cost*100;
      return`<button class="hrow${s2.k===sel?" on":""}" data-k="${s2.k}"><b>${s2.sy}</b><span class="hsh">${fmt(x.sh)} ${L("sh","az")}</span><span class="hv">${fmt(v)}</span><span class="${pl>=0?"up":"dn"} hpl">${pl>=0?"+":"-"}${fmt(Math.abs(pl))} (${r>=0?"+":""}${r.toFixed(1)}%)</span>${o.sl||o.tp?`<span class="hord">${o.sl?`<span class="dn">SL ${pfmt(o.sl)}</span>`:""}${o.tp?`<span class="up">TP ${pfmt(o.tp)}</span>`:""}</span>`:""}</button>`});
-   const hk=rows.join("");if(hk!==lastHold){lastHold=hk;$("pford").innerHTML=`<h4>${L("Your holdings","Le tue azioni")} (${rows.length})</h4>`+(rows.length?hk:`<p class="hnone">${L("You don't own any stocks yet. Pick one and press Buy.","Non possiedi ancora azioni. Scegline una e premi Compra.")}</p>`)}
+   rows.push(...shortRows);const hk=rows.join("");if(hk!==lastHold){lastHold=hk;$("pford").innerHTML=`<h4>${L("Your holdings","Le tue azioni")} (${rows.length})</h4>`+(rows.length?hk:`<p class="hnone">${L("You don't own any stocks yet. Pick one and press Buy.","Non possiedi ancora azioni. Scegline una e premi Compra.")}</p>`)}
    $("ownN").textContent=rows.length?`· ${L("you own","possiedi")} ${rows.length}`:""}
+  renderMkt2(t,st,p,h);
   [...$("buyBts").children].forEach(b=>b.disabled=S.d<=0);[...$("sellBts").children].forEach(b=>b.disabled=!h.sh);
   let tv=0,tc=0;STK.forEach(s2=>{const x=S.pf[s2.k];if(x&&x.sh){tv+=x.sh*pxAt(s2,t)*(1-fee());tc+=x.cost}});const tp=tv-tc;
   $("pfsum").innerHTML=`<div><small>${L("Cash","Contanti")}</small><b>${fmt(S.d)}</b></div><div><small>${L("Invested value","Valore investito")}</small><b>${fmt(tv)}</b></div><div><small>${L("Open P/L","G/P aperto")}</small><b class="${tp>=0?"up":"dn"}">${tc?(tp>=0?"+":"-")+fmt(Math.abs(tp)):"—"}</b></div><div><small>${L("Realised","Realizzato")}</small><b class="${S.profit>=0?"up":"dn"}">${(S.profit<0?"-":"")+fmt(Math.abs(S.profit))}</b></div>`;
-  if(force||sp){const evs=[];const w0=Math.floor(t/EVW);STK.forEach(s2=>{for(let w=w0;w>w0-6;w--){const e=evAt(s2,w);if(e&&e.te<=t)evs.push({...e,st:s2})}});
+  if(force||sp){const evs=[];const w0=Math.floor(t/EVW);STK.filter(s2=>!s2.idx&&!locked(s2)).forEach(s2=>{for(let w=w0;w>w0-6;w--){const e=evAt(s2,w);if(e&&e.te<=t)evs.push({...e,st:s2})}});
     evs.sort((a,b)=>b.te-a.te);$("nws").innerHTML=evs.slice(0,8).map(e=>`<li><time>${new Date(e.te*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</time><b class="${e.up?"up":"dn"}">${e.st.sy} <em class="ar"></em>${Math.abs(e.mag*100).toFixed(1)}%</b> ${(e.up?HEAD_UP:HEAD_DN)[e.h].replace("{n}",e.st.name)}</li>`).join("")||`<li>${L("Quiet day on the exchange.","Giornata tranquilla in borsa.")}</li>`;
-    {const tp=STK.map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b><i>${pfmt(a)}</i>${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
+    {const tp=STK.filter(s2=>!locked(s2)).map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b><i>${pfmt(a)}</i>${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
 let mOpen=false;
 function openMkt(){mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
@@ -856,14 +1028,14 @@ $("p-dev").addEventListener("click",e=>{const b=e.target.closest("[data-dev]");i
   if(k==="shops")B.forEach((_,i)=>S.own[i]+=10);
   if(k==="upg")U.forEach(u=>S.up.add(u.id));
   if(k==="gold")spawnGold();
-  if(k==="l100")S.halo+=100;if(k==="l10k")S.halo+=1e4;
+  if(k==="l100")S.halo+=100;if(k==="l10k")S.halo+=1e4;if(k==="l1m")S.halo+=1e6;if(k==="cr10")S.crown+=10;if(k==="rp")addRP(1000);if(k==="tip")maybeTip(true);
   if(k==="bless")H.forEach(h=>S.hv.add(h[0]));
   if(k==="ach")A.forEach((_,i)=>S.ach.add(i));
   if(k==="reset"){if(b.dataset.arm&&Date.now()-b.dataset.arm<3000){location.reload();return}b.dataset.arm=Date.now();b.textContent=L("Click again to restart","Clicca ancora");setTimeout(()=>{b.textContent=L("Restart beta","Ricomincia beta")},3000);return}
   lastUKey="";recalc();toast("Beta",b.textContent,1500)});
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 
 // ---------- tabs / layout ----------
@@ -912,7 +1084,8 @@ let last=performance.now(),ui=0,lastBuffs="";
 function step(){const now=performance.now();let dt=Math.min(1,(now-last)/1000);last=now;
   S.buffs=S.buffs.filter(b=>b.end>Date.now());recalc();earn(G.cps*dt);S.play+=dt;S.run+=dt;
   if(Date.now()>nextGold){spawnGold();nextGold=Date.now()+rnd(120,360)*1000/goldFreq()}
-  ui+=dt;if(ui>(PERF?.25:.1)){ui=0;
+  ui+=dt;if(combo&&performance.now()-lastClickT>900){combo=0;$("combo").hidden=true}
+  if(ui>(PERF?.25:.1)){ui=0;
     $("cnt").textContent=fmt(S.d);$("cps").textContent=fmt(G.cps)+PS;document.title=fmt(S.d)+" Duecks | Dueck Clicker BETA";
     {const bh=S.buffs.map(b=>`<div class="buff">${b.name} · ${Math.ceil((b.end-Date.now())/1000)}s</div>`).join("");if(bh!==lastBuffs){lastBuffs=bh;$("buffs").innerHTML=bh}}
     const av=avail();renderStore();renderUpg(av);renderGoal(av);checkAch();
