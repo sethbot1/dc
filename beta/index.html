@@ -690,8 +690,9 @@ const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("butto
   el.onclick=()=>{if(hv(id)||S.halo-S.spent<cost)return;S.spent+=cost;S.hv.add(id);recalc();blip(880,.2,"sine",.1)};$("hlist").appendChild(el);return el});
 function renderAsc(){const free=S.halo-S.spent,gain=Math.max(0,halosFor(S.all)-S.halo);
   $("haloOwn").textContent=fmt(S.halo);$("haloSpend").textContent=fmt(free);$("haloNext").textContent="+"+fmt(gain);
-  const hn=halosFor(S.all),lo=hn*hn*1e10,hi=(hn+1)*(hn+1)*1e10;$("haloAt").textContent=fmt(hi)+L(" all-time"," in totale");$("haloBar").style.width=Math.min(100,(S.all-lo)/(hi-lo)*100)+"%";
-  if(!ascArm)$("ascBtn").textContent=gain>0?L(`Rebirth for +${fmt(gain)} Laurels`,`Rinascita per +${fmt(gain)} Allori`):L("Rebirth (need 10 B all-time)","Rinascita (serve 10 B in totale)");$("ascBtn").disabled=gain<1;
+  // next Laurel = the next one you can actually gain (owned Laurels may be ahead of all-time, e.g. from Beta Tools)
+  const hn=Math.max(halosFor(S.all),S.halo),lo=hn*hn*1e10,hi=(hn+1)*(hn+1)*1e10;$("haloAt").textContent=fmt(hi)+L(" all-time"," in totale");$("haloBar").style.width=Math.max(0,Math.min(100,(S.all-lo)/(hi-lo)*100))+"%";
+  if(!ascArm)$("ascBtn").textContent=gain>0?L(`Rebirth for +${fmt(gain)} Laurels`,`Rinascita per +${fmt(gain)} Allori`):L(`Rebirth (need ${fmt(hi)} all-time)`,`Rinascita (serve ${fmt(hi)} in totale)`);$("ascBtn").disabled=gain<1;
   hrows.forEach((el,k)=>{const id=H[k][0],cost=H[k][3];el.classList.toggle("own",hv(id));el.querySelector(".c").textContent=hv(id)?L("Yours","Tuo"):fmt(cost)+" "+LAUR.toLowerCase();el.disabled=!hv(id)&&free<cost;el.style.opacity=!hv(id)&&free<cost?.55:1})}
 
 // ---------- market (BETA) ----------
