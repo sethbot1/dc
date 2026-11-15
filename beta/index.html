@@ -455,7 +455,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <div class="pf tipsb" id="tipsb"></div>
         <div class="pf"><h4 data-i="pfH">Your portfolio</h4><div class="pfsum" id="pfsum"></div><div class="pford" id="pford"></div></div>
         <div class="nws"><h4 data-i="nwsH">Market news</h4><ul id="nws"></ul></div>
-        <p class="mhint" data-i="mktHint"><b>Hours matter</b> (Rome time): the 9:00 opening bell and 17:00 closing rush are wild, lunch and night are calm. Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Your trade fee is <b id="feeL">0.25%</b> (lower at higher ranks).</p>
+        <p class="mhint" data-i="mktHint"><b>Hours matter</b> (US Central time): the 8:30 opening bell and 3:00 PM closing rush are wild, lunch and night are calm. Prices move in real time and are the <b>same for everyone</b> at the same moment. Buy low, sell high. Your trade fee is <b id="feeL">0.25%</b> (lower at higher ranks).</p>
       </aside>
     </div>
   </div>
@@ -477,7 +477,7 @@ const IT={tStore:"Bottega",tUpg:"Ingredienti",tAch:"Trofei",tAsc:"Rinascita",tSt
  ascHint:"Rinuncia ai tuoi Dueck, ai negozi e agli ingredienti e ricevi Allori in base a tutto ciò che hai prodotto. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto.",
  hOwn:"Allori posseduti",hFree:"Da spendere",hNext:"Allori alla rinascita",hAt:"Prossimo Alloro a",bless:"Benedizioni",saveH:"Salvataggio",saveNow:"Salva ora",exp:"Esporta",imp:"Importa",
  tMkt:"Borsa",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
- mktHint:"Gli orari contano (ora di Roma): l'apertura delle 9 e la chiusura delle 17 sono frenetiche, la pausa pranzo e la notte sono calme. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
+ mktHint:"Gli orari contano (ora centrale USA): l'apertura delle 8:30 e la chiusura delle 15 sono frenetiche, la pausa pranzo e la notte sono calme. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
  buyL:"Compra con i tuoi Dueck",shL:"Scoperto · scommetti che il prezzo scende",cvL:"Chiudi tutto",trL:"Trailing stop · vendi se scende così tanto dal massimo",lbL:"Acquisto limite · compra col 25% dei contanti se scende a",
  ascnH:"Ascensione",perkH:"Privilegi reali",cOwn:"Corone possedute",cNext:"Corone all'ascensione",cAt:"Prossima Corona a",
  ascnHint:"Il livello successivo. Rinuncia a <b>tutto</b>, anche ad Allori, Benedizioni e Dueck totali, per ottenere <b>Corone</b>. Ogni Corona dà <b>+10% di produzione</b> per sempre e si spende in privilegi reali. Trofei, grado e Corone restano. Si sblocca a <b>10.000 Allori</b>.",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",devNote:"Trucchi per i test. Sbizzarrisciti, niente viene salvato e niente arriva al gioco vero.",
@@ -744,6 +744,7 @@ function renderAch(){atiles.forEach((el,i)=>el.classList.toggle("got",S.ach.has(
 
 // ---------- rebirth ----------
 // BETA: Laurels scale with the square root (was cube root of all/1T), and rebirth opens at 10 B
+function startShops(){const g=(k,n)=>{S.own[k]=Math.max(S.own[k]||0,n)};if(hv("h2"))g(0,10);if(hv("h8")){g(1,5);g(2,5)}if(hv("h12"))for(let k=0;k<6;k++)g(k,25)}
 const lMul=()=>crn("c5")?2:1;
 const halosFor=all=>Math.floor(Math.sqrt(all/1e10)*lMul());
 const laurelAt=n=>Math.pow(n/lMul(),2)*1e10;
@@ -753,11 +754,11 @@ $("ascBtn").onclick=()=>{const gain=halosFor(S.all)-S.halo;if(gain<1)return;
   if(Date.now()-ascArm>3000){ascArm=Date.now();$("ascBtn").textContent=L(`Sure? Start over for +${fmt(gain)} Laurels`,`Sicuro? Ricomincia per +${fmt(gain)} Allori`);setTimeout(()=>{ascArm=0},3000);return}
   ascArm=0;const keep={all:S.all,halo:S.halo+gain,spent:S.spent,hv:S.hv,asc:S.asc+1,gold:S.gold,play:S.play,ach:S.ach,clicks:S.clicks,brand:S.brand,mute:S.mute};
   const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo});
-  S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));if(hv("h2"))S.own[0]=10;if(hv("h8")){S.own[1]=5;S.own[2]=5}if(hv("h12"))for(let k=0;k<6;k++)S.own[k]=Math.max(S.own[k],25);if(crn("c0"))S.d=1e9;
+  S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));startShops();if(crn("c0"))S.d=1e9;
   lastUKey="";recalc();save(true);const p=hv("h14")?5:hv("h7")?3:2;toast(L("Reborn!","Rinascita!"),L(`+${fmt(gain)} Laurels. Production +${p}% each.`,`+${fmt(gain)} Allori. Produzione +${p}% ciascuno.`));blip(220,.4,"sine",.15)};
 const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("button");el.className="hu";
   el.innerHTML=`<div class="t"><b>${name}</b><small>${desc}</small></div><div class="c"></div>`;
-  el.onclick=()=>{if(hv(id)||S.halo-S.spent<cost)return;S.spent+=cost;S.hv.add(id);recalc();blip(880,.2,"sine",.1)};$("hlist").appendChild(el);return el});
+  el.onclick=()=>{if(hv(id)||S.halo-S.spent<cost)return;S.spent+=cost;S.hv.add(id);startShops();recalc();if(typeof renderStore==="function")renderStore();blip(880,.2,"sine",.1)};$("hlist").appendChild(el);return el});
 function renderAsc(){const free=S.halo-S.spent,gain=Math.max(0,halosFor(S.all)-S.halo);
   $("haloOwn").textContent=fmt(S.halo);$("haloSpend").textContent=fmt(free);$("haloNext").textContent="+"+fmt(gain);
   // next Laurel = the next one you can actually gain (owned Laurels may be ahead of all-time, e.g. from Beta Tools)
@@ -782,7 +783,7 @@ let crArm=0;
 $("ascendBtn").onclick=()=>{const g=crownsFor(S.halo);if(g<1)return;
   if(Date.now()-crArm>3000){crArm=Date.now();$("ascendBtn").textContent=L(`Sure? Lose ALL Laurels & Blessings for +${fmt(g)} Crowns`,`Sicuro? Perdi TUTTI gli Allori e le Benedizioni per +${fmt(g)} Corone`);setTimeout(()=>{crArm=0},3000);return}
   crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo};
-  S=Object.assign(fresh(),keep);if(crn("c6"))["h0","h1","h2","h3","h4","h5","h6"].forEach(id=>S.hv.add(id));if(crn("c0"))S.d=1e9;if(hv("h2"))S.own[0]=10;
+  S=Object.assign(fresh(),keep);if(crn("c6"))["h0","h1","h2","h3","h4","h5","h6"].forEach(id=>S.hv.add(id));if(crn("c0"))S.d=1e9;startShops();
   lastUKey="";recalc();toast(L("Ascended!","Asceso!"),L(`+${fmt(g)} Crowns. Every Crown is +10% production forever.`,`+${fmt(g)} Corone. Ogni Corona dà +10% di produzione per sempre.`),6000);blip(160,.6,"sine",.18)};
 function renderCrowns(){const free=S.crown-S.cspent,g=crownsFor(S.halo);
   $("crOwn").textContent=fmt(S.crown);$("crFree").textContent=fmt(free);$("crNext").textContent="+"+fmt(g);$("crAt").textContent=fmt(Math.pow(g+1,2)*1e4)+" "+LAUR.toLowerCase();
@@ -820,13 +821,13 @@ const HEAD_UP=L(["{n} smashes earnings expectations","{n} announces record summe
   ["{n} batte le stime sugli utili","{n} annuncia un'estate da record","Gli analisti promuovono {n} a 'Bellissimo'","{n} firma un grosso accordo col cugino della nonna","Voci: Dueck in persona compra azioni {n}"]);
 const HEAD_DN=L(["{n} misses earnings, CEO blames pineapple","Inspectors find cappuccino after 11 at {n}","{n} recalls a batch of sad faces","Strike at {n} over lunch break length","{n} warehouse floods in Venice"],
   ["{n} manca le stime, il CEO incolpa l'ananas","Ispettori trovano cappuccini dopo le 11 da {n}","{n} ritira un lotto di facce tristi","Sciopero da {n} per la pausa pranzo","Allagato il magazzino di {n} a Venezia"]);
-// ---- trading day: one shared clock (Rome time, with EU summer time) so every player sees the same prices ----
+// ---- trading day: one shared clock (US Central time, with US daylight saving) so every player sees the same prices ----
 // activity = how fast prices move. Busy at the opening bell and closing rush, a lull at lunch, quiet at night.
-const SEGS=[[0,7,.3,"night"],[7,9,.55,"pre"],[9,9.5,2.4,"open"],[9.5,12.5,1.15,"sess"],[12.5,14,.85,"lunch"],[14,17,1.15,"sess"],[17,17.5,1.9,"close"],[17.5,22,.5,"after"],[22,24,.3,"night"]];
+const SEGS=[[0,3,.3,"night"],[3,8.5,.55,"pre"],[8.5,9,2.4,"open"],[9,11,1.15,"sess"],[11,12.5,.85,"lunch"],[12.5,14.5,1.15,"sess"],[14.5,15,1.9,"close"],[15,19,.5,"after"],[19,24,.3,"night"]];
 {const mean=SEGS.reduce((m,g)=>m+(g[1]-g[0])*g[2],0)/24;let D=0;SEGS.forEach(g=>{g[2]/=mean;g[4]=D;D+=(g[2]-1)*(g[1]-g[0])*3600})}
 const DST={};function romeOff(t){const y=new Date(t*1000).getUTCFullYear();
-  if(!DST[y]){const ls=m=>{const d=new Date(Date.UTC(y,m+1,0));return Date.UTC(y,m,d.getUTCDate()-d.getUTCDay(),1)/1000};DST[y]=[ls(2),ls(9)]}
-  return t>=DST[y][0]&&t<DST[y][1]?7200:3600}
+  if(!DST[y]){const sun=(m,n,hUTC)=>{const f=new Date(Date.UTC(y,m,1)).getUTCDay();return Date.UTC(y,m,1+(7-f)%7+7*(n-1),hUTC)/1000};DST[y]=[sun(2,2,8),sun(10,1,7)]}
+  return t>=DST[y][0]&&t<DST[y][1]?-18000:-21600}
 const romeSec=t=>(((t+romeOff(t))%86400)+86400)%86400;
 function segAt(t){const s=romeSec(t),h=s/3600;for(const g of SEGS)if(h<g[1])return[g,s];return[SEGS[SEGS.length-1],s]}
 const act=t=>segAt(t)[0][2];
@@ -984,7 +985,7 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
    const a=g[2],lvl=a>=2?L("very busy","frenetico"):a>=1.3?L("busy","vivace"):a>=.9?L("normal","normale"):a>=.6?L("quiet","calmo"):L("very quiet","molto calmo");
    $("mktSess").innerHTML=`${PH[g[3]]} · <span class="lvl lv${a>=2?4:a>=1.3?3:a>=.9?2:a>=.6?1:0}">${lvl}</span>`;
    const rs=romeSec(t),rh=String(Math.floor(rs/3600)).padStart(2,"0"),rm=String(Math.floor(rs%3600/60)).padStart(2,"0");
-   $("mktClock").textContent=`${L("Rome","Roma")} ${rh}:${rm} · ${PH[SEGS[j][3]]} ${L("in","tra")} ${hm(left)}`}
+   $("mktClock").textContent=`${L("Chicago","Chicago")} ${rh}:${rm} · ${PH[SEGS[j][3]]} ${L("in","tra")} ${hm(left)}`}
   const sp=force||t-lastSpark>(PERF?60:20);if(sp)lastSpark=t;
   const tfl=$("tfs").querySelector(".on").textContent;$("chgL").textContent=tfl;
   STK.forEach((st,k)=>{const el=srows[k],p=pxAt(st,t),p0=pxAt(st,t-tf);el.classList.toggle("on",k===sel);
