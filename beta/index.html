@@ -520,6 +520,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .felt{position:relative;min-height:520px;display:flex;flex-direction:column;border-radius:200px 200px 22px 22px / 120px 120px 22px 22px;padding:24px 20px 22px;
   background:radial-gradient(ellipse at 50% 30%,#1d7f4f,#13653d 50%,#0b4a2b 100%);box-shadow:inset 0 0 0 11px #4a2410,inset 0 0 0 13px var(--brass2),inset 0 0 70px rgba(0,0,0,.5),0 18px 40px rgba(0,0,0,.5);overflow:hidden}
 .arc{position:relative;margin:14px 0;text-align:center;font:600 clamp(10px,1.3vw,12px)/1.7 var(--fb);letter-spacing:.14em;color:rgba(255,236,180,.5);text-transform:uppercase;pointer-events:none}
+.felt.msg .arc{visibility:hidden}
 .arc b{display:block;font:400 clamp(20px,3vw,30px) var(--fd);letter-spacing:.03em;text-transform:none;color:rgba(255,236,180,.7);margin-bottom:2px}
 .shoe{position:absolute;right:26px;top:22px;width:64px;height:84px;border-radius:8px 8px 14px 14px;background:linear-gradient(180deg,#3a1a0a,#1a0a04);box-shadow:0 6px 12px rgba(0,0,0,.4),inset 0 0 0 2px #7a4a20;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;box-sizing:border-box}
 .shoe i{display:block;width:44px;border-radius:3px;background:repeating-linear-gradient(0deg,#b11e24 0 2px,#fff 2px 3px);box-shadow:0 0 0 1px #5a0a0e}
@@ -556,8 +557,8 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 .pc.deal{animation:deal .38s cubic-bezier(.2,.8,.3,1) both}
 @keyframes deal{from{transform:translate(var(--dx,300px),var(--dy,-260px)) rotate(-25deg);opacity:.2}to{transform:none;opacity:1}}
 .pc.rot{transform:rotate(90deg) translateX(10px);margin-left:-20px!important}
-.bjmsg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;font:400 clamp(20px,3.4vw,30px) var(--fd);color:#fff6d6;background:rgba(8,30,18,.86);padding:10px 22px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);pointer-events:none;white-space:nowrap;animation:bjm 1.8s ease-out forwards}
-@keyframes bjm{0%{opacity:0;transform:translate(-50%,-40%) scale(.8)}15%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0}}
+.bjmsg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;font:400 clamp(20px,3.4vw,30px) var(--fd);color:#fff6d6;background:rgba(8,30,18,.92);padding:10px 22px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);pointer-events:none;width:max-content;max-width:88%;text-align:center;line-height:1.15;animation:bjm 1.8s ease-out forwards}
+@keyframes bjm{0%{opacity:0;transform:translate(-50%,-30%) scale(.8)}15%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0}}
 /* actions: Hit and Stand are the big ones in the middle, the rarer moves sit underneath */
 .bjbar{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:12px;min-height:60px;justify-content:center;color:#f4e6cc}
 .bjmain,.bjmore{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -1696,7 +1697,9 @@ async function bjShuffle(){BJ.decks=BJ.nDecks;BJ.h17=BJ.nH17;const s=[];
   bjMsg(L("Shuffling…","Mescolo…"));SFX.shuffle();bjSide();await sleep(900)}
 function bjDraw(down){const c=BJ.shoe.pop();c.id=++BJ.cid;c.anim=1;c.down=!!down;if(!down)BJ.rc+=hilo(c);if(BJ.shoe.length<=BJ.cut&&!BJ.cutOut){BJ.cutOut=true;bjMsg(L("Cut card! Last hand of this shoe.","Carta di taglio! Ultima mano di questo sabot."),1)}return c}
 async function give(cards,down){cards.push(bjDraw(down));SFX.card();bjRender();await sleep(PERF?160:330)}
-function bjMsg(t,low){const m=document.createElement("div");m.className="bjmsg";m.textContent=t;if(low)m.style.top="72%";$("felt").appendChild(m);setTimeout(()=>m.remove(),1800)}
+// table messages sit in the gap between the dealer's cards and yours, over the printed rules
+function bjMsg(t){const a=$("arc"),m=document.createElement("div");m.className="bjmsg";m.textContent=t;m.style.top=(a.offsetTop+a.offsetHeight/2)+"px";
+  const f=$("felt");f.querySelectorAll(".bjmsg").forEach(x=>x.remove());f.appendChild(m);f.classList.add("msg");setTimeout(()=>{m.remove();if(!f.querySelector(".bjmsg"))f.classList.remove("msg")},1800)}
 const tenUp=()=>cval(BJ.dl[0])===10,aceUp=()=>BJ.dl[0].r==="A";
 async function bjDeal(){if(BJ.busy||(BJ.st!=="bet"&&BJ.st!=="done"))return;const bet=betOf("bj");if(!kTake(bet))return;BJ.busy=true;
   BJ.disc+=BJ.dl.length+BJ.hs.reduce((a,h)=>a+h.cards.length,0);BJ.dl=[];BJ.hs=[];bjRender();
