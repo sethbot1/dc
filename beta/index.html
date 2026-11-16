@@ -1827,10 +1827,10 @@ function hStep(h,s,x,dt,R,rng){const d=R.dist/1600;let v=16.6*h.q*R.going[1];
   if(x<.02)v*=.55+x/.02*.45;// break from the gate
   return v*dt}
 function simRace(R,rng,keep){const n=R.hs.length,st=R.hs.map(h=>({p:0,e:0,kick:gauss(rng)*.038,fin:0,pp:0})),order=[];let t=0;const frames=keep?[]:null;
-  while(order.length<n&&t<400){t+=RDT;R.hs.forEach((h,i)=>{const s=st[i];if(s.fin&&!keep)return;s.pp=s.p;const x=Math.min(1,s.p/R.dist);s.p+=s.fin?hStep(h,s,1,RDT,R,rng)*.55:hStep(h,s,x,RDT,R,rng);
+  while(order.length<n&&t<400){t+=RDT;R.hs.forEach((h,i)=>{const s=st[i];if(s.fin&&!keep)return;s.pp=s.p;const x=Math.min(1,s.p/R.dist);s.p+=s.fin?hStep(h,s,1,RDT,R,rng)*.6*Math.exp(-(t-s.fin)/2.2):hStep(h,s,x,RDT,R,rng);
     if(!s.fin&&s.p>=R.dist){s.fin=t-RDT+(R.dist-s.pp)/(s.p-s.pp)*RDT;order.push(i)}});
     if(keep)frames.push(st.map(s=>s.p))}
-  if(keep){for(let k=0;k<20;k++){t+=RDT;R.hs.forEach((h,i)=>{st[i].p+=hStep(h,st[i],1,RDT,R,rng)*.5});frames.push(st.map(s=>s.p))}}
+  if(keep){for(let k=0;k<20;k++){t+=RDT;R.hs.forEach((h,i)=>{st[i].p+=hStep(h,st[i],1,RDT,R,rng)*.6*Math.exp(-(t-st[i].fin)/2.2)});frames.push(st.map(s=>s.p))}}
   order.sort((a,b)=>st[a].fin-st[b].fin);return{order,st,frames}}
 const oddsTxt=v=>v>=10?v.toFixed(0):v.toFixed(2);
 function placeBet(i,type){if(rState!=="card")return;const amt=betOf("race");if(!kTake(amt))return;SFX.chip();
@@ -1892,9 +1892,11 @@ function drawTrack(ps){const cv=$("rcv"),r=cv.getBoundingClientRect();if(!r.widt
   const g=cv.getContext("2d"),W=r.width,H=r.height;g.setTransform(dpr,0,0,dpr,0,0);
   const n=RC.hs.length,D=RC.dist;ps=ps||RC.hs.map(()=>0);
   const R=rRace||{cam:0,ppm:0};const mx=Math.max(...ps),mn=Math.min(...ps);
-  const want=Math.min(W/22,Math.max(W/70,W*.62/Math.max(12,mx-mn+8)));R.ppm=R.ppm?R.ppm+(want-R.ppm)*.06:want;
-  const camT=Math.min(D+8,(mx*.6+mn*.4));R.cam=R.cam||camT;R.cam+=(camT-R.cam)*.12;if(!rRace)R.cam=0;
-  const ppm=R.ppm,X=m=>(m-R.cam)*ppm+W*.55;
+  // the camera keeps every horse in shot: it zooms out as the field spreads and never lets anyone run off the edge
+  const span=Math.max(12,mx-mn+10),want=Math.min(W/22,Math.max(W/260,W*.66/span));R.ppm=R.ppm?R.ppm+(want-R.ppm)*.08:want;
+  const camT=(mx*.55+mn*.45);R.cam=R.cam||camT;R.cam+=(camT-R.cam)*.14;if(!rRace)R.cam=0;
+  const lm=W*.1,rm=W*.12;if(rRace){R.ppm=Math.min(R.ppm,(W-lm-rm)/Math.max(1,mx-mn));const lo=mx-(W*.5-rm)/R.ppm,hi=mn+(W*.5-lm)/R.ppm;R.cam=Math.max(lo,Math.min(hi,R.cam))}
+  const ppm=R.ppm,X=m=>(m-R.cam)*ppm+W*.5;
   const skyH=H*.2,standH=H*.12,ty=skyH+standH,th=H-ty-H*.06,lane=th/(n+.6);
   // sky + hills
   let gr=g.createLinearGradient(0,0,0,skyH);gr.addColorStop(0,"#6fb6ff");gr.addColorStop(1,"#cfe9ff");g.fillStyle=gr;g.fillRect(0,0,W,skyH);
@@ -1908,8 +1910,8 @@ function drawTrack(ps){const cv=$("rcv"),r=cv.getBoundingClientRect();if(!r.widt
   for(let i=1;i<n;i++){g.strokeStyle="rgba(255,255,255,.07)";g.beginPath();g.moveTo(0,ty+lane*(i+.3));g.lineTo(W,ty+lane*(i+.3));g.stroke()}
   // rails + distance poles
   g.fillStyle="#fff";g.fillRect(0,ty-3,W,3);g.fillRect(0,ty+th,W,3);
-  const m0=Math.floor((R.cam-W*.6/ppm)/10)*10,m1=R.cam+W*.6/ppm;
-  for(let m=m0;m<=m1;m+=10){const x=X(m);g.fillStyle="#fff";g.fillRect(x,ty-12,2,10);g.fillRect(x,ty+th,2,8)}
+  const pst=ppm*10<16?(ppm*25<16?100:25):10,m0=Math.floor((R.cam-W*.6/ppm)/pst)*pst,m1=R.cam+W*.6/ppm;
+  for(let m=m0;m<=m1;m+=pst){const x=X(m);g.fillStyle="#fff";g.fillRect(x,ty-12,2,10);g.fillRect(x,ty+th,2,8)}
   for(let m=Math.ceil(m0/200)*200;m<=m1;m+=200){if(m<=0||m>=D)continue;const x=X(m);g.fillStyle="#c9252b";g.fillRect(x-1,ty-34,3,32);g.fillStyle="#fff";g.font="bold 11px DM Mono, monospace";g.fillText(`${D-m}`,x+5,ty-24)}
   // start gate
   {const x=X(0);if(x>-50&&x<W+50){g.fillStyle="rgba(40,40,60,.8)";g.fillRect(x-8,ty-18,10,th+18)}}
