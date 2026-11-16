@@ -22,6 +22,10 @@ button:focus-visible{outline:2px solid var(--rosso);outline-offset:2px}
 .top::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:5px;z-index:6;background:linear-gradient(90deg,var(--verde) 0 33.3%,#fff 33.3% 66.6%,var(--rosso) 66.6%)}
 .brand{font-family:var(--fd);font-size:22px;letter-spacing:.01em;white-space:nowrap;cursor:pointer}
 .brand i{color:#ffd27a;font-style:normal}
+.seal{flex:none;width:20px;height:20px;margin-right:-10px;border-radius:50%;display:grid;place-items:center;cursor:help;
+  background:radial-gradient(circle at 35% 30%,#ffe9a8,#e0a526 60%,#a8730c);box-shadow:0 0 0 2px #0f3d26,0 0 0 3px #e0a526,0 2px 6px rgba(0,0,0,.35)}
+.seal svg{width:12px;height:12px;display:block}
+@media (max-width:560px){.seal{width:16px;height:16px;margin-right:-4px}.seal svg{width:10px;height:10px}}
 .ticker{flex:1;min-width:0;overflow:hidden;white-space:nowrap;font-size:13px;color:#cfe3d4;font-style:italic}
 .ticker span{display:inline-block;animation:tick 18s linear infinite}
 @keyframes tick{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
@@ -309,6 +313,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 </style>
 <div class="app" id="app">
   <header class="top">
+    <span class="seal" id="seal" role="img" aria-label="Signore Approved"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.4 6.3 5 8.8 9.8 3.4" fill="none" stroke="#0f3d26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     <div class="brand" id="brand">Dueck <i>Clicker</i></div>
     <div class="ticker"><span id="news"></span></div>
     <button class="mute" id="langBtn" aria-label="Switch language">Italiano</button>
@@ -577,7 +582,7 @@ B.slice(14).forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,
 [1,10,100].forEach((v,k)=>A.push({n:L(["Ascended","Royalty","Emperor"][k],["Asceso","Reale","Imperatore"][k]),d:L(`Own ${v} Crown${v>1?"s":""}.`,`Possiedi ${v} Coron${v>1?"e":"a"}.`),c:()=>S.crown>=v}));
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){if(!o||typeof o!=="object"||Array.isArray(o))throw new Error("bad save");const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.cv=new Set(o.cv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);
@@ -839,6 +844,7 @@ function lpx(st,t,res=0){let v=Math.log(st.base);const T=tau(t);
 // the Dueck Index is the average of the nine main stocks (each scaled to its own starting price), times 1000
 const pxAt=(st,t,res)=>{const q=Math.floor(t/TICK)*TICK;if(!st.idx)return Math.exp(lpx(st,q,res));let a=0;for(let i=0;i<9;i++)a+=Math.exp(lpx(STK[i],q,res))/STK[i].base;return a/9*1000};
 const nowS=()=>Date.now()/1000;
+let TOV=null;const mNow=()=>TOV??nowS();
 let sel=0,tf=600,chartCache=null,mkHover=null;
 // ---- trader rank: points from selling at a profit (+1 per trade, +10 per 1% gained), so it's fair at any wealth ----
 const RANKS=[[0,"Intern","Stagista",.0025],[100,"Junior Trader","Trader Junior",.002],[400,"Broker","Broker",.0015],[1200,"Senior Broker","Broker Senior",.0012],[3000,"Fund Manager","Gestore di Fondi",.001],[7000,"Market Shark","Squalo della Borsa",.0005],[15000,"Wolf of Via Roma","Lupo di Via Roma",0]];
@@ -853,7 +859,7 @@ function hold(k){return S.pf[k]||(S.pf[k]={sh:0,cost:0})}
 function mBuy(f){const st=STK[sel];if(locked(st))return;const p=pxAt(st,nowS()),cash=S.d*f;const sh=cash/(p*(1+fee()));if(cash<=0||sh<=0)return;
   const h=hold(st.k);h.sh+=sh;h.cost+=cash;S.d-=cash;S.trades++;blip(520,.06,"square",.05);
   toast(L("Bought","Comprato"),`${fmt(sh)} ${st.sy} @ ${pfmt(p)}`,2000)}
-function mSell(f,k=sel,why){const st=STK[k],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,nowS()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
+function mSell(f,k=sel,why){const st=STK[k],h=hold(st.k);if(h.sh<=0)return;const p=pxAt(st,mNow()),sh=h.sh*f,got=sh*p*(1-fee()),basis=h.cost*f;
   h.sh-=sh;h.cost-=basis;if(f>=1){h.sh=0;h.cost=0}S.d+=got;const pl=got-basis;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl;S.ever+=pl}S.trades++;addRP(1+(pl>0&&basis>0?Math.min(200,pl/basis*1000):0));
   blip(pl>=0?780:260,.08,"square",.05);if(h.sh<=0)delete S.ord[k];
   toast(why||(pl>=0?L("Sold for a profit","Venduto in guadagno"):L("Sold at a loss","Venduto in perdita")),`${st.sy} @ ${pfmt(p)}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,why?5000:2200)}
@@ -865,7 +871,21 @@ function setOrd(kind,price){const st=STK[sel],h=S.pf[st.k],p=pxAt(st,nowS());
   if(kind==="tp"&&price<=p){toast("Take-profit",L(`Must be above the current price (${pfmt(p)}).`,`Deve essere sopra il prezzo attuale (${pfmt(p)}).`));return}
   const o=S.ord[st.k]||(S.ord[st.k]={});o[kind]=price;$(kind+"In").value="";blip(600,.05,"sine",.06);
   toast(kind==="sl"?"Stop-loss":"Take-profit",L(`Sell all ${st.sy} if it ${kind==="sl"?"falls":"rises"} to ${pfmt(price)}.`,`Vendi tutto ${st.sy} se ${kind==="sl"?"scende":"sale"} a ${pfmt(price)}.`),2500);renderMkt(true)}
-function checkOrders(){const t=nowS();
+function checkOrders(){const now=nowS();
+  if(!S.mchk)S.mchk=Math.min(now,(S.last||Date.now())/1000);
+  if(now-S.mchk>3)catchUp(S.mchk,now);S.mchk=now;ordersAt(now)}
+// replays the time you were away (up to 7 days) so stop-loss, take-profit, trailing stops, limit buys,
+// margin calls and dividends happen at the moment the price got there, then sums it up in one message
+function catchUp(from,to){from=Math.max(from,to-7*86400);const span=to-from;
+  const busy=Object.keys(S.ord).length||Object.keys(S.lim).length||Object.keys(S.shs).length||STK.some(st=>st.div&&S.pf[st.k]&&S.pf[st.k].sh>0);
+  if(!busy||span<=0)return;
+  const step=Math.min(60,Math.max(2,span/40000)),log=[],t0=toast,b0=blip,d0=S.divs;
+  toast=(a,m)=>{if(!/Dividend/.test(a))log.push(m?a+": "+m:a)};blip=()=>{};
+  try{for(let t=from+step;t<to;t+=step){TOV=t;ordersAt(t)}}finally{TOV=null;toast=t0;blip=b0}
+  const dv=S.divs-d0;if(dv>0)log.push(L("Dividends","Dividendi")+": +"+fmt(dv));
+  if(log.length){const away=L("While you were away","Mentre eri via");
+    setTimeout(()=>toast(away,log.slice(0,6).join("<br>")+(log.length>6?"<br>+"+(log.length-6)+L(" more"," altri"):""),9000),900)}}
+function ordersAt(t){
   for(const k in S.ord){const o=S.ord[k],h=S.pf[k];if(!h||h.sh<=0){delete S.ord[k];continue}
     const p=pxAt(STK[k],t);if(o.tr)o.pk=Math.max(o.pk||p,p);
     if(o.sl&&p<=o.sl)mSell(1,+k,L("Stop-loss triggered","Stop-loss scattato"));
@@ -883,7 +903,7 @@ function payDivs(t){let tot=0;STK.forEach(st=>{const h=S.pf[st.k];if(!st.div||!h
 function openShort(f){const st=STK[sel];if(rankOf()<3||locked(st))return;const coll=S.d*f;if(coll<=0)return;const p=pxAt(st,nowS()),sh=coll/(p*(1+fee()));
   const x=S.shs[st.k]||(S.shs[st.k]={sh:0,coll:0});x.sh+=sh;x.coll+=coll;S.d-=coll;S.trades++;blip(300,.08,"square",.05);toast(L("Shorted","Allo scoperto"),L(`${st.sy}: you profit if it falls below ${pfmt(x.coll/x.sh)}.`,`${st.sy}: guadagni se scende sotto ${pfmt(x.coll/x.sh)}.`),3000)}
 function shortVal(k,p){const x=S.shs[k];return x?Math.max(0,x.sh*(2*x.coll/x.sh-p))*(1-fee()):0}
-function cover(f,k=sel,why){const st=STK[k],x=S.shs[k];if(!x||x.sh<=0)return;const p=pxAt(st,nowS()),back=shortVal(k,p)*f,coll=x.coll*f;
+function cover(f,k=sel,why){const st=STK[k],x=S.shs[k];if(!x||x.sh<=0)return;const p=pxAt(st,mNow()),back=shortVal(k,p)*f,coll=x.coll*f;
   x.sh-=x.sh*f;x.coll-=coll;if(f>=1)delete S.shs[k];S.d+=back;const pl=back-coll;S.profit+=pl;if(pl>0){S.total+=pl;S.all+=pl;S.ever+=pl}S.trades++;
   addRP(1+(pl>0&&coll>0?Math.min(200,pl/coll*1000):0));blip(pl>=0?780:260,.08,"square",.05);
   toast(why||(pl>=0?L("Short closed in profit","Scoperto chiuso in guadagno"):L("Short closed at a loss","Scoperto chiuso in perdita")),`${st.sy} @ ${pfmt(p)}: ${pl>=0?"+":"-"}${fmt(Math.abs(pl))}`,why?6000:2500)}
@@ -1063,6 +1083,7 @@ $("perfBtn").onclick=()=>{fpsDone=true;setPerf(!PERF);toast(PERF?L("Smooth mode 
 
 // ---------- misc ----------
 $("brand").onclick=()=>{S.brand++};
+tipOn($("seal"),()=>"<b>Signore Approved</b>");$("seal").onclick=()=>toast("✓","Signore Approved",2000);
 const muteTxt=()=>S.mute?L("Sound off","Audio spento"):L("Sound on","Audio acceso");
 $("muteBtn").onclick=()=>{S.mute=!S.mute;$("muteBtn").textContent=muteTxt()};
 $("langBtn").onclick=()=>{S.lang=LANG=LANG==="it"?"en":"it";
