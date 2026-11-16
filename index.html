@@ -353,7 +353,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
       </div>
       <div class="pane" id="p-asc" hidden>
         <h3 data-i="tAsc">Rebirth</h3>
-        <p class="hint" data-i="ascHint">Give up your Duecks, shops, upgrades and stocks, and earn Laurels based on everything you've ever made. You can rebirth from <b>10 B</b>, and Laurels now grow with the <b>square root</b> of your all-time Duecks: 1 T gives 10, 100 T gives 100, 1 Qi gives 10,000. Each Laurel gives <b>+2% production</b> forever and can be spent below.</p>
+        <p class="hint" data-i="ascHint">Give up your Duecks, shops, upgrades and stocks, and earn Laurels based on everything you've ever made. You can rebirth from <b>1 T</b>, and Laurels are hard won: 1 T gives 1, 500 T gives 5, 1 Qi gives 36, 1 Sx gives 218, 1 Sp gives 1,318. Each Laurel gives <b>+2% production</b> forever and can be spent below.</p>
         <dl class="stats" style="margin-bottom:14px">
           <dt data-i="hOwn">Laurels owned</dt><dd id="haloOwn">0</dd>
           <dt data-i="hFree">Unspent</dt><dd id="haloSpend">0</dd>
@@ -365,7 +365,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <h3 data-i="bless">Blessings</h3>
         <div class="hlist" id="hlist"></div>
         <h3 style="margin-top:26px" data-i="ascnH">Ascension</h3>
-        <p class="hint" data-i="ascnHint">The next level. Give up <b>everything</b>, including your Laurels, Blessings and all-time Duecks, to earn <b>Crowns</b>. Every Crown gives <b>+10% production</b> forever and can be spent on royal perks. Trophies, trader rank and Crowns are kept. Unlocks at <b>10,000 Laurels</b>.</p>
+        <p class="hint" data-i="ascnHint">The next level. Give up <b>everything</b>, including your Laurels, Blessings and all-time Duecks, to earn <b>Crowns</b>. Every Crown gives <b>+10% production</b> forever and can be spent on royal perks. Trophies, trader rank and Crowns are kept. Unlocks at <b>25,000 Laurels</b>.</p>
         <dl class="stats" style="margin-bottom:14px">
           <dt data-i="cOwn">Crowns owned</dt><dd id="crOwn">0</dd>
           <dt data-i="hFree">Unspent</dt><dd id="crFree">0</dd>
@@ -469,8 +469,8 @@ const IT={tStore:"Bottega",tUpg:"Ingredienti",tAch:"Trofei",tAsc:"Rinascita",tSt
  mktHint:"Gli orari contano (ora centrale USA): l'apertura delle 8:30 e la chiusura delle 15 sono frenetiche, la pausa pranzo e la notte sono calme. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
  buyL:"Compra con i tuoi Dueck",shL:"Scoperto · scommetti che il prezzo scende",cvL:"Chiudi tutto",trL:"Trailing stop · vendi se scende così tanto dal massimo",lbL:"Acquisto limite · compra col 25% dei contanti se scende a",
  ascnH:"Ascensione",perkH:"Privilegi reali",cOwn:"Corone possedute",cNext:"Corone all'ascensione",cAt:"Prossima Corona a",
- ascnHint:"Il livello successivo. Rinuncia a <b>tutto</b>, anche ad Allori, Benedizioni e Dueck totali, per ottenere <b>Corone</b>. Ogni Corona dà <b>+10% di produzione</b> per sempre e si spende in privilegi reali. Trofei, grado e Corone restano. Si sblocca a <b>10.000 Allori</b>.",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",
- ascHint:"Rinuncia ai tuoi Dueck, negozi, ingredienti e azioni e ricevi Allori in base a tutto ciò che hai prodotto. Puoi rinascere da <b>10 B</b> e gli Allori crescono con la <b>radice quadrata</b> dei Dueck totali: 1 T ne dà 10, 100 T ne dà 100, 1 Qi ne dà 10.000. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto."};
+ ascnHint:"Il livello successivo. Rinuncia a <b>tutto</b>, anche ad Allori, Benedizioni e Dueck totali, per ottenere <b>Corone</b>. Ogni Corona dà <b>+10% di produzione</b> per sempre e si spende in privilegi reali. Trofei, grado e Corone restano. Si sblocca a <b>25.000 Allori</b>.",slL:"Stop-loss · vendi tutto se scende a",tpL:"Take-profit · vendi tutto se sale a",chgW:"variazione su",cashL:"Contanti",backL:"Torna alla bottega",stkH:"Titoli",sellL:"Vendi le tue azioni",pfH:"Il tuo portafoglio",nwsH:"Notizie di borsa",
+ ascHint:"Rinuncia ai tuoi Dueck, negozi, ingredienti e azioni e ricevi Allori in base a tutto ciò che hai prodotto. Puoi rinascere da <b>1 T</b> e gli Allori vanno sudati: 1 T ne dà 1, 500 T ne dà 5, 1 Qi ne dà 36, 1 Sx ne dà 218, 1 Sp ne dà 1.318. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto."};
 if(LANG==="it")document.querySelectorAll("[data-i]").forEach(el=>{if(IT[el.dataset.i])el.innerHTML=IT[el.dataset.i]});
 $("saveTxt").placeholder=L("Export shows your save here. Paste a save here and press Import.","Esporta mostra qui il salvataggio. Incolla un salvataggio e premi Importa.");
 $("langBtn").textContent=L("Italiano","English");
@@ -539,24 +539,24 @@ const UM=Object.fromEntries(U.map(u=>[u.id,u]));
 
 const H=[
  ["h0","Siesta","Pennichella","Offline production rises from 10% to 30%.","La produzione offline sale dal 10% al 30%.",1],
- ["h1","Good Fortune","Fortuna","Golden Duecks appear 25% more often.","I Dueck d'Oro appaiono il 25% più spesso.",3],
- ["h2","Family Recipe","Ricetta di Famiglia","Start every run with 10 Pinched Fingers.","Inizia ogni partita con 10 Mani a Pigna.",8],
- ["h3","Blessing I","Benedizione I","Production +15%.","Produzione +15%.",20],
- ["h4","Long Pour","Lungo","Golden Dueck effects last 25% longer.","Gli effetti dei Dueck d'Oro durano il 25% in più.",50],
- ["h5","Summer Holiday","Ferragosto","Offline production rises to 75%.","La produzione offline sale al 75%.",120],
- ["h6","Blessing II","Benedizione II","Production +40%.","Produzione +40%.",300],
- ["h7","Laurel Crown","Corona d'Alloro","Each Laurel gives 3% instead of 2%.","Ogni Alloro dà il 3% invece del 2%.",800],
- ["h8","Family Business","Affare di Famiglia","Start every run with 5 Nonnas and 5 Espresso Bars.","Inizia ogni partita con 5 Nonne e 5 Bar.",2000],
- ["h9","Blessing III","Benedizione III","Production doubled.","Produzione raddoppiata.",6000],
- ["h10","Insider Friend","Amico Fidato","Market trades cost no fee.","Le operazioni in borsa non costano commissioni.",15000],
- ["h11","Golden Hour","Ora d'Oro","Golden Duecks appear twice as often.","I Dueck d'Oro appaiono due volte più spesso.",40000],
- ["h12","Head Start","Partenza Lanciata","Start every run with 25 of each of the first six shops.","Inizia ogni partita con 25 di ognuno dei primi sei negozi.",100000],
- ["h13","Blessing IV","Benedizione IV","Production tripled.","Produzione triplicata.",250000],
- ["h14","Golden Crown","Corona d'Oro","Each Laurel gives 5% instead of 3%.","Ogni Alloro dà il 5% invece del 3%.",700000],
- ["h15","Sweet Idleness","Dolce Far Niente","Each click also earns 5% of your per-second.","Ogni clic guadagna anche il 5% del tuo al secondo.",2e6],
- ["h16","Blessing V","Benedizione V","Production ×5.","Produzione ×5.",6e6],
- ["h17","Eternal Pantry","Dispensa Eterna","Keep your tier I and II upgrades through rebirth.","Conservi gli ingredienti di livello I e II dopo la rinascita.",2e7],
- ["h18","Blessing VI","Benedizione VI","Production ×10.","Produzione ×10.",1e8],
+ ["h1","Good Fortune","Fortuna","Golden Duecks appear 25% more often.","I Dueck d'Oro appaiono il 25% più spesso.",2],
+ ["h2","Family Recipe","Ricetta di Famiglia","Start every run with 10 Pinched Fingers.","Inizia ogni partita con 10 Mani a Pigna.",3],
+ ["h3","Blessing I","Benedizione I","Production +15%.","Produzione +15%.",5],
+ ["h4","Long Pour","Lungo","Golden Dueck effects last 25% longer.","Gli effetti dei Dueck d'Oro durano il 25% in più.",10],
+ ["h5","Summer Holiday","Ferragosto","Offline production rises to 75%.","La produzione offline sale al 75%.",20],
+ ["h6","Blessing II","Benedizione II","Production +40%.","Produzione +40%.",40],
+ ["h7","Laurel Crown","Corona d'Alloro","Each Laurel gives 3% instead of 2%.","Ogni Alloro dà il 3% invece del 2%.",80],
+ ["h8","Family Business","Affare di Famiglia","Start every run with 5 Nonnas and 5 Espresso Bars.","Inizia ogni partita con 5 Nonne e 5 Bar.",150],
+ ["h9","Blessing III","Benedizione III","Production doubled.","Produzione raddoppiata.",300],
+ ["h10","Insider Friend","Amico Fidato","Market trades cost no fee.","Le operazioni in borsa non costano commissioni.",600],
+ ["h11","Golden Hour","Ora d'Oro","Golden Duecks appear twice as often.","I Dueck d'Oro appaiono due volte più spesso.",1200],
+ ["h12","Head Start","Partenza Lanciata","Start every run with 25 of each of the first six shops.","Inizia ogni partita con 25 di ognuno dei primi sei negozi.",2500],
+ ["h13","Blessing IV","Benedizione IV","Production tripled.","Produzione triplicata.",5000],
+ ["h14","Golden Crown","Corona d'Oro","Each Laurel gives 5% instead of 3%.","Ogni Alloro dà il 5% invece del 3%.",10000],
+ ["h15","Sweet Idleness","Dolce Far Niente","Each click also earns 5% of your per-second.","Ogni clic guadagna anche il 5% del tuo al secondo.",25000],
+ ["h16","Blessing V","Benedizione V","Production ×5.","Produzione ×5.",60000],
+ ["h17","Eternal Pantry","Dispensa Eterna","Keep your tier I and II upgrades through rebirth.","Conservi gli ingredienti di livello I e II dopo la rinascita.",150000],
+ ["h18","Blessing VI","Benedizione VI","Production ×10.","Produzione ×10.",400000],
 ].map(([id,en,it,den,dit,cost])=>[id,L(en,it),L(den,dit),cost]);
 
 // achievements (order is save-stable)
@@ -745,11 +745,12 @@ function renderAch(){atiles.forEach((el,i)=>el.classList.toggle("got",S.ach.has(
   $("achInfo").innerHTML=L(`<b>${S.ach.size}</b> of ${A.length} trophies. Each one adds +1% production, more with Love upgrades.`,`<b>${S.ach.size}</b> di ${A.length} trofei. Ognuno aggiunge +1% di produzione, di più con gli ingredienti Amore.`)}
 
 // ---------- rebirth ----------
-// Laurels scale with the square root (was cube root of all/1T), and rebirth opens at 10 B
+// Laurels grow slowly: (all-time / 1 T) ^ 0.26. 1 T gives 1, 500 T gives 5. Rebirth opens at 1 T.
 function startShops(){const g=(k,n)=>{S.own[k]=Math.max(S.own[k]||0,n)};if(hv("h2"))g(0,10);if(hv("h8")){g(1,5);g(2,5)}if(hv("h12"))for(let k=0;k<6;k++)g(k,25)}
 const lMul=()=>crn("c5")?2:1;
-const halosFor=all=>Math.floor(Math.sqrt(all/1e10)*lMul());
-const laurelAt=n=>Math.pow(n/lMul(),2)*1e10;
+const LEXP=.26;
+const halosFor=all=>all<1e12?0:Math.floor(Math.pow(all/1e12,LEXP)*lMul()+1e-9);
+const laurelAt=n=>Math.pow(n/lMul(),1/LEXP)*1e12;
 const LAUR=L("Laurels","Allori");
 let ascArm=0;
 $("ascBtn").onclick=()=>{const gain=halosFor(S.all)-S.halo;if(gain<1)return;
@@ -769,7 +770,7 @@ function renderAsc(){const free=S.halo-S.spent,gain=Math.max(0,halosFor(S.all)-S
   hrows.forEach((el,k)=>{const id=H[k][0],cost=H[k][3];el.classList.toggle("own",hv(id));el.querySelector(".c").textContent=hv(id)?L("Yours","Tuo"):fmt(cost)+" "+LAUR.toLowerCase();el.disabled=!hv(id)&&free<cost;el.style.opacity=!hv(id)&&free<cost?.55:1});
   renderCrowns()}
 // ---------- ascension (crowns) ----------
-const crownsFor=h=>Math.floor(Math.sqrt(h/1e4));
+const CROWN1=25000;const crownsFor=h=>Math.floor(Math.sqrt(h/CROWN1));
 const CR=[["c0","Royal Treasury","Tesoro Reale","Start every run with 1 B Duecks.","Inizia ogni partita con 1 B di Dueck.",1],
  ["c1","Combo Master","Maestro del Combo","Click combos go up to ×3 instead of ×2.","Le combo arrivano a ×3 invece di ×2.",2],
  ["c2","Golden Touch","Tocco d'Oro","Golden Duecks click themselves after 2 seconds.","I Dueck d'Oro si cliccano da soli dopo 2 secondi.",3],
@@ -789,7 +790,7 @@ $("ascendBtn").onclick=()=>{const g=crownsFor(S.halo);if(g<1)return;
   lastUKey="";recalc();toast(L("Ascended!","Asceso!"),L(`+${fmt(g)} Crowns. Every Crown is +10% production forever.`,`+${fmt(g)} Corone. Ogni Corona dà +10% di produzione per sempre.`),6000);blip(160,.6,"sine",.18)};
 function renderCrowns(){const free=S.crown-S.cspent,g=crownsFor(S.halo);
   $("crOwn").textContent=fmt(S.crown);$("crFree").textContent=fmt(free);$("crNext").textContent="+"+fmt(g);$("crAt").textContent=fmt(Math.pow(g+1,2)*1e4)+" "+LAUR.toLowerCase();
-  if(!crArm)$("ascendBtn").textContent=g>0?L(`Ascend for +${fmt(g)} Crowns`,`Ascendi per +${fmt(g)} Corone`):L(`Ascend (need ${fmt(1e4)} Laurels)`,`Ascendi (servono ${fmt(1e4)} Allori)`);$("ascendBtn").disabled=g<1;
+  if(!crArm)$("ascendBtn").textContent=g>0?L(`Ascend for +${fmt(g)} Crowns`,`Ascendi per +${fmt(g)} Corone`):L(`Ascend (need ${fmt(CROWN1)} Laurels)`,`Ascendi (servono ${fmt(CROWN1)} Allori)`);$("ascendBtn").disabled=g<1;
   crows.forEach((el,k)=>{const id=CR[k][0],cost=CR[k][3];el.classList.toggle("own",crn(id));el.querySelector(".c").textContent=crn(id)?L("Yours","Tuo"):fmt(cost)+" "+L(cost>1?"crowns":"crown",cost>1?"corone":"corona");el.disabled=!crn(id)&&free<cost;el.style.opacity=!crn(id)&&free<cost?.55:1})}
 setInterval(()=>{if(crn("c4")){const av=avail();let b=false;av.forEach(u=>{if(S.d>=u.cost){S.d-=u.cost;S.up.add(u.id);b=true}});if(b){lastUKey="";recalc()}}},1000);
 
