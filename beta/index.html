@@ -1064,7 +1064,7 @@ const $=id=>document.getElementById(id);
 let LANG=new URLSearchParams(location.search).get("lang")==="it"?"it":"en";
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1190,7 +1190,7 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0}}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]}}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -2318,7 +2318,7 @@ const LV=[{dm:1,rg:0,rt:1},{dm:1.6,rg:.3,rt:1.12},{dm:2.5,rg:.55,rt:1.25},{dm:4,
 const MODES=[["first",L("First","Primo")],["last",L("Last","Ultimo")],["strong",L("Strong","Forte")],["close",L("Close","Vicino")]];
 const N=a=>L(a[0],a[1]);
 let st=null,open=false,raf=0,lastF=0,acc=0,speed=1,cfg={m:0,d:1},place=null,hover=null,sel=null,bg=null,lay={ts:30,ox:0,oy:0,w:0,h:0},msgT=0,uiT=0,selKey="";
-const best=[0,0,0];let totEarned=0;
+const tdS=()=>{if(!S.td||typeof S.td!=="object")S.td={waves:0,earned:0,wins:0};if(!Array.isArray(S.td.best))S.td.best=[0,0,0];return S.td};let totEarned=0;
 const cv=$("tdcv");
 // ---------- paths ----------
 function mkPath(pts){pts=pts.map(([c,r])=>[c+.5,r+.5]);const segs=[];let len=0;for(let i=1;i<pts.length;i++){const[x0,y0]=pts[i-1],[x1,y1]=pts[i],l=Math.hypot(x1-x0,y1-y0);segs.push({x0,y0,x1,y1,l,s:len});len+=l}return{pts,segs,len}}
@@ -2394,9 +2394,9 @@ function step(dt){st.t+=dt;if(st.shake>0)st.shake-=dt;
   if(!st.q.length&&!st.en.length&&st.cleared<st.wave){for(let w=st.cleared+1;w<=st.wave;w++)waveDone(w);st.cleared=st.wave;
     if(st.wave>=ROUNDS&&!st.won){win();return}if(st.auto&&!st.over)setTimeout(()=>{if(st&&st.auto&&!st.q.length&&!st.en.length&&!st.over&&!(st.won&&!st.endless))callWave()},1200)}}
 function waveDone(w){let g=25+w*5;for(const t of st.towers)if(t.T.inc)g+=t.T.inc[t.lv];st.gold+=g;const dk=duecksFor(w);earn(dk);st.earned+=dk;totEarned+=dk;
-  best[st.mi]=Math.max(best[st.mi],w);S.td=S.td||{waves:0,earned:0,wins:0};S.td.waves++;S.td.earned+=dk;
+  tdS().best[st.mi]=Math.max(tdS().best[st.mi],w);tdS();S.td.waves++;S.td.earned+=dk;
   msg(L(`Wave ${w} cleared · +${g} gold · +${fmt(dk)} Duecks`,`Ondata ${w} superata · +${g} oro · +${fmt(dk)} Dueck`),3);SFX.coin()}
-function win(){st.won=true;const dk=Math.max(5000,Math.max(G.cps||0,1)*1800)*st.D.r*(st.M.hp||1);earn(dk);st.earned+=dk;totEarned+=dk;S.td=S.td||{waves:0,earned:0,wins:0};S.td.wins++;
+function win(){st.won=true;const dk=Math.max(5000,Math.max(G.cps||0,1)*1800)*st.D.r*(st.M.hp||1);earn(dk);st.earned+=dk;totEarned+=dk;tdS();S.td.wins++;
   SFX.big();coinRain(50);showEnd(true,dk)}
 function gameOver(){st.over=true;SFX.lose();showEnd(false)}
 // ---------- effects ----------
@@ -2482,7 +2482,7 @@ function ui(){$("tdCash").textContent=fmt(S.d);if(!st){$("tdLives").textContent=
     $("tdNext").innerHTML=Object.entries(cnt).map(([t,n])=>`<span class="${EN[t].fly?"air":""}${EN[t].boss?" bs":""}" title="${N(EN[t].n)}">${EN[t].boss?"👑":""}${EN[t].e} ${n}</span>`).join("");
     const sp=Object.keys(cnt).filter(t=>EN[t].fly||EN[t].ar||EN[t].heal||EN[t].split||EN[t].boss).map(t=>N(EN[t].n));$("tdNextF").textContent=sp.length?L("Watch for: ","Attenzione: ")+sp.join(", "):L("Plain pests.","Parassiti normali.")}
   const go=$("tdGo");go.disabled=done;go.textContent=done?L("Game over","Partita finita"):busy?L(`Send wave ${nw} early (+${8+nw*2} gold)`,`Manda l'ondata ${nw} prima (+${8+nw*2} oro)`):L(`Start wave ${nw}`,`Avvia l'ondata ${nw}`);
-  $("tdRw").innerHTML=`<dt>${L("This game","Questa partita")}</dt><dd>${fmt(st.earned)}</dd><dt>${L("Next wave pays","La prossima paga")}</dt><dd>${fmt(duecksFor(nw))}</dd><dt>${L("Kills","Uccisioni")}</dt><dd>${fmt(st.kills)}</dd><dt>${L("Best wave here","Miglior ondata qui")}</dt><dd>${best[st.mi]}</dd>`}
+  $("tdRw").innerHTML=`<dt>${L("This game","Questa partita")}</dt><dd>${fmt(st.earned)}</dd><dt>${L("Next wave pays","La prossima paga")}</dt><dd>${fmt(duecksFor(nw))}</dd><dt>${L("Kills","Uccisioni")}</dt><dd>${fmt(st.kills)}</dd><dt>${L("Best wave here","Miglior ondata qui")}</dt><dd>${tdS().best[st.mi]}</dd>`}
 function renderSel(){const el=$("tdSel");if(!sel){el.innerHTML=`<h4>${L("Your towers","Le tue torri")}<small>${st&&st.towers.length?st.towers.length:""}</small></h4><p class="tdnf" style="margin:0">${L("Click a tower on the piazza to upgrade it, sell it or change what it aims at.","Clicca una torre sulla piazza per migliorarla, venderla o cambiare il bersaglio.")}</p>`;return}
   const t=sel,T=t.T,s=stat(t),nx=t.lv<3?stat({...t,lv:t.lv+1}):null,c=upCost(t);
   const row=(a,v,n)=>`<dt>${a}</dt><dd>${v}${n!=null&&n!==v?` <span class="nx">→ ${n}</span>`:""}</dd>`;const f1=v=>(Math.round(v*10)/10).toString();
@@ -2515,7 +2515,7 @@ cv.addEventListener("contextmenu",e=>e.preventDefault());
 // ---------- start and end screens ----------
 function miniMap(c,i){const g=c.getContext("2d"),ts=c.width/COLS;drawBoard(g,MAPS[i],ts,blockedOf(MAPS[i]),true)}
 function showStart(){const ov=$("tdOv");ov.innerHTML=`<div class="tdcard"><h2>Difesa <i>Dueck</i></h2><p>${L("Mice, rats, pigeons, food critics and the tax man are marching on the trattoria. Build towers along the road and keep them out of the kitchen. Survive <b>30 waves</b> to win; every wave you clear pays real Duecks.","Topi, ratti, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri lungo la strada e tienili fuori dalla cucina. Resisti a <b>30 ondate</b> per vincere; ogni ondata superata paga Dueck veri.")}</p>
-    <h5>${L("Map","Mappa")}</h5><div class="tdmaps">${MAPS.map((m,i)=>`<button class="tdmap${cfg.m===i?" on":""}" data-m="${i}"><canvas width="200" height="120"></canvas><div><b>${N(m.n)}</b><small>${N(m.d)}</small>${best[i]?`<small class="rec">${L("Best: wave ","Record: ondata ")}${best[i]}</small>`:""}</div></button>`).join("")}</div>
+    <h5>${L("Map","Mappa")}</h5><div class="tdmaps">${MAPS.map((m,i)=>`<button class="tdmap${cfg.m===i?" on":""}" data-m="${i}"><canvas width="200" height="120"></canvas><div><b>${N(m.n)}</b><small>${N(m.d)}</small>${tdS().best[i]?`<small class="rec">${L("Best: wave ","Record: ondata ")}${tdS().best[i]}</small>`:""}</div></button>`).join("")}</div>
     <h5>${L("Difficulty","Difficoltà")}</h5><div class="tdseg" id="tdDiff">${DIFF.map((d,i)=>`<button data-d="${i}" class="${cfg.d===i?"on":""}">${N(d.n)}<small>${N(d.s)} · ${d.lv} ❤️ · ×${d.r} ${L("Duecks","Dueck")}</small></button>`).join("")}</div>
     <button class="tdbig" id="tdStart">${L("Open the trattoria","Apri la trattoria")}</button>${st&&!st.over&&!st.won?`<button class="tdbig alt" id="tdBack">${L("Back to my game","Torna alla partita")}</button>`:""}</div>`;
   ov.querySelectorAll(".tdmap canvas").forEach((c,i)=>miniMap(c,i));
