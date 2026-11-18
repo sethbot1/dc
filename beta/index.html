@@ -750,6 +750,56 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 @media (max-width:900px){.tdgrid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;overflow:auto}.tdfield{aspect-ratio:20/12;min-height:0}.tdside{overflow:visible;border-left:0}.tdmaps{grid-template-columns:minmax(0,1fr)}.tdmap{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center}.tdmap canvas{margin:0}}
 @media (max-width:760px){.tdw{inset:0}.td{border-radius:0}.tdbar{gap:6px 14px;padding:26px 12px 12px}.tdlogo{font-size:21px}.tdst{gap:12px;font-size:13px}.tdst b{font-size:15px}}
 @media (max-width:560px){.tdcard{padding:16px}.tdcard h2{font-size:26px}.tdfield{aspect-ratio:auto;height:calc((100vw)*12/20)}.tdov{position:fixed;z-index:3}}
+
+/* market switch: stocks and crypto share one tab */
+.xsw{display:inline-flex;border-radius:99px;box-shadow:inset 0 0 0 1px var(--ln);overflow:hidden;letter-spacing:0;text-transform:none;flex:none}
+.xsw button{font:600 12px var(--fb);padding:6px 13px;color:var(--mt);letter-spacing:0;text-transform:none}
+.xsw button:hover{color:var(--tx)}
+.xsw button.on{background:var(--tx);color:var(--bg)}
+/* games room */
+.gmw{position:fixed;inset:6px;z-index:75;display:flex}
+.gm{--bg:#16382a;--bg2:#0d2619;--tx:#f6efdc;--mt:#b8cfbd;flex:1;min-height:0;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.gmbar{position:relative;display:flex;align-items:center;gap:18px;padding:0 18px;min-height:58px;background:var(--bg2);flex-wrap:wrap}
+.gmbar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--verde) 0 33.3%,#fff 33.3% 66.6%,var(--rosso) 66.6%)}
+.gmlogo{font:400 25px var(--fd);white-space:nowrap}.gmlogo i{font-style:normal;color:#ffd27a}
+.gmsub{font-size:13px;color:var(--mt)}
+.gm .mclose{margin-left:auto;color:var(--tx);border:1px solid #3d6b52!important;background:transparent;font-size:12px;padding:6px 12px;border-radius:99px}
+.gmbody{flex:1;min-height:0;overflow:auto;padding:26px}
+.gmgrid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.gmcard{display:flex;flex-direction:column;text-align:left;background:var(--paper);color:var(--ink);border-radius:8px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .15s}
+button.gmcard:hover{transform:translateY(-3px)}
+.gmcard canvas{display:block;width:100%;aspect-ratio:20/12}
+.gmc{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.gmc b{font:400 24px/1.1 var(--fd)}
+.gmtag{align-self:flex-start;font:600 11px var(--fb);letter-spacing:.06em;text-transform:uppercase;color:var(--verde);background:#e3efe2;border-radius:99px;padding:3px 9px}
+.gmc p{margin:2px 0 0;font-size:14px;line-height:1.5;color:var(--mute)}
+.gmst{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:4px}.gmst b{font:500 14px var(--fm);color:var(--ink)}
+.gmplay{margin-top:auto;align-self:stretch;text-align:center;font:600 15px var(--fb);color:#fff;background:var(--verde);border-radius:7px;padding:11px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+button.gmcard:hover .gmplay{background:#238a56}
+.gmcard.soon{background:transparent;color:var(--tx);box-shadow:inset 0 0 0 2px rgba(246,239,220,.25);border:0}
+.gmq{aspect-ratio:20/12;display:grid;place-items:center;font:400 64px var(--fd);color:rgba(246,239,220,.3)}
+.gmcard.soon p{color:var(--mt)}
+@media (max-width:760px){.gmw{inset:0}.gm{border-radius:0}.gmbar{gap:6px 14px;padding:26px 12px 12px}.gmbody{padding:16px}}
+/* save slots */
+.tdslots{display:flex;flex-direction:column;gap:6px}
+.tdslot{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:6px;box-shadow:inset 0 0 0 1.5px var(--line);background:#fffaf0;cursor:pointer;font-size:13px}
+.tdslot.on{box-shadow:inset 0 0 0 3px var(--verde);background:#f2f7ee}
+.tdslot>b{font:400 16px var(--fd);white-space:nowrap}
+.tdslot>span{flex:1;min-width:0;color:var(--ink);line-height:1.35}
+.tdslot>span i{color:var(--dim)}.tdslot>span small{display:block;color:var(--imt);font-size:11.5px}
+.tdslot .tdbtn{padding:7px 10px;font-size:12px;flex:none}
+/* The Phoenix: a newspaper that blows across the table now and then */
+.paper{position:fixed;left:0;top:0;z-index:77;width:84px;height:56px;padding:0;border:0;background:none;cursor:pointer;will-change:transform}
+.paper .pp{display:block;width:100%;height:100%;background:#f7f1e3;border:1px solid #bfb196;border-radius:2px;padding:4px 5px;text-align:center;color:#1d1410;
+  box-shadow:0 8px 16px rgba(0,0,0,.3),inset 0 0 0 3px #f7f1e3,inset 0 0 0 4px #d8cdb4;animation:pflap .8s ease-in-out infinite alternate;transform-origin:50% 0;transition:transform .15s}
+.paper .mh{display:block;font:400 11px/1 var(--fd);border-bottom:1.5px solid #1d1410;padding-bottom:3px;white-space:nowrap}
+.paper .hl{display:block;font:800 9px/1.05 var(--fb);margin-top:4px;color:#c9252b;letter-spacing:.03em;white-space:nowrap}
+.paper .sb{display:block;font:800 7.5px/1.1 var(--fb);margin-top:2px;color:#1d1410;letter-spacing:.02em;white-space:nowrap}
+.paper:hover .pp,.paper:focus-visible .pp{animation:none;transform:scale(1.15) rotate(-3deg)}
+.paper::after{content:"";position:absolute;left:8px;right:8px;bottom:-9px;height:6px;border-radius:50%;background:rgba(0,0,0,.18);filter:blur(2px)}
+@keyframes pflap{from{transform:rotate(-7deg) skewX(5deg)}to{transform:rotate(6deg) skewX(-5deg)}}
+.perf .paper .pp{animation:none}
+.toast a{color:#ffd27a;font-weight:600}
 </style>
 <div class="betaframe" aria-hidden="true"></div><div class="betatag">BETA · NOTHING SAVES</div>
 <div class="app" id="app">
@@ -772,10 +822,9 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
       <button class="tab m-only" data-t="store"><span data-i="tStore">Store</span></button>
       <button class="tab on" data-t="upg"><span data-i="tUpg">Upgrades</span><span class="dot" id="udot" hidden></span></button>
       <button class="tab" data-t="ach"><span data-i="tAch">Trophies</span></button>
-      <button class="tab" data-t="mkt"><span data-i="tMkt">Market</span><span class="mbadge" id="mbadge" hidden></span></button>
-      <button class="tab" data-t="cx"><span data-i="tCx">Crypto</span><span class="mbadge" id="cxbadge" hidden></span></button>
+      <button class="tab" data-t="mkt"><span data-i="tMkt">Markets</span><span class="mbadge" id="mbadge" hidden></span></button>
       <button class="tab" data-t="kas"><span data-i="tKas">Casino</span></button>
-      <button class="tab" data-t="td"><span data-i="tTd">Defense</span></button>
+      <button class="tab" data-t="games"><span data-i="tGames">Games</span></button>
       <button class="tab" data-t="asc"><span data-i="tAsc">Rebirth</span></button>
       <button class="tab" data-t="stat"><span data-i="tStat">Stats</span></button>
       <button class="tab" data-t="dev"><span data-i="tDev">Beta Tools</span></button>
@@ -825,14 +874,14 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <h3 data-i="tStat">Stats</h3>
         <dl class="stats" id="stats"></dl>
         <h3 style="margin-top:24px" data-i="saveH">Save</h3>
-        <div class="betanote" data-i="noSave">This is the <b>beta</b>. It never saves, and it never reads or touches your real Dueck Clicker save. Refreshing or closing the page starts it over.</div>
+        <div class="betanote" data-i="noSave">This is the <b>beta</b>. It never saves your game, and it never reads or touches your real Dueck Clicker save. Refreshing or closing the page starts it over. The only thing kept is <b>Difesa Dueck</b> save slots, stored on their own, apart from your real save.</div>
       </div>
       <div class="pane" id="p-dev" hidden>
         <h3 data-i="tDev">Beta Tools</h3>
         <div class="betanote" data-i="devNote">Cheats for testing. Go wild, none of this saves and none of it reaches the real game.</div>
         <div class="tool"><input id="devAmt" inputmode="decimal" placeholder="e.g. 1e15" aria-label="Amount of Duecks"><button class="btn hot" id="devSet">Set Duecks</button><button class="btn" id="devAdd">Add Duecks</button></div>
         <div class="tool"><button class="btn" data-dev="x10">Duecks ×10</button><button class="btn" data-dev="m1">+1 min of production</button><button class="btn" data-dev="h1">+1 hour</button><button class="btn" data-dev="d1">+1 day</button></div>
-        <div class="tool"><button class="btn" data-dev="shops">+10 of every shop</button><button class="btn" data-dev="upg">Unlock every upgrade</button><button class="btn" data-dev="gold">Spawn Golden Dueck</button></div>
+        <div class="tool"><button class="btn" data-dev="shops">+10 of every shop</button><button class="btn" data-dev="upg">Unlock every upgrade</button><button class="btn" data-dev="gold">Spawn Golden Dueck</button><button class="btn" data-dev="paper">Spawn Phoenix paper</button></div>
         <div class="tool"><button class="btn" data-dev="l100">+100 Laurels</button><button class="btn" data-dev="l10k">+10,000 Laurels</button><button class="btn" data-dev="bless">Unlock every Blessing</button><button class="btn" data-dev="ach">Unlock every trophy</button></div>
         <div class="tool"><button class="btn" data-dev="l1m">+1M Laurels</button><button class="btn" data-dev="cr10">+10 Crowns</button><button class="btn" data-dev="rp">+1,000 rank points</button><button class="btn" data-dev="tip">Insider tip now</button></div>
         <div class="tool"><button class="btn danger" data-dev="reset">Restart beta</button></div>
@@ -849,7 +898,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 <div class="mwin" id="mwin" hidden role="dialog" aria-modal="true" aria-label="Dueck Exchange">
   <div class="mkt">
     <header class="mbar">
-      <b class="mlogo">Dueck <i>Exchange</i></b><span class="mrank" id="mRank"></span><span class="live">Live</span><span class="msess" id="mktSess"></span>
+      <b class="mlogo">Dueck <i>Exchange</i></b><span class="xsw"><button data-x="mkt" class="on" data-i="xStk">Stocks</button><button data-x="cx" data-i="xCx">Crypto</button></span><span class="mrank" id="mRank"></span><span class="live">Live</span><span class="msess" id="mktSess"></span>
       <span class="clock" id="mktClock"></span>
       <span class="mcash"><small data-i="cashL">Cash</small><b id="mCash">0</b></span>
       <button class="mclose" id="mClose" aria-label="Close the market"><span data-i="backL">Back to the shop</span> ✕</button>
@@ -901,7 +950,7 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
 <div class="cxw" id="cxw" hidden role="dialog" aria-modal="true" aria-label="Puff Exchange">
   <div class="cx">
     <header class="cxbar">
-      <b class="cxlogo"><span class="pfc" aria-hidden="true"></span>Puff Exchange</b><span class="cx247" data-i="cx247">Open 24/7</span>
+      <b class="cxlogo"><span class="pfc" aria-hidden="true"></span>Puff Exchange</b><span class="xsw"><button data-x="mkt" data-i="xStk">Stocks</button><button data-x="cx" class="on" data-i="xCx">Crypto</button></span><span class="cx247" data-i="cx247">Open 24/7</span>
       <span class="fg" title="Fear and Greed: how the whole crypto market feels right now"><span data-i="fgL">Fear &amp; Greed</span><span class="gbar"><i id="fgI"></i></span><b id="fgT"></b></span>
       <span class="mcash"><small data-i="cashL">Cash</small><b id="cxCash">0</b></span>
       <button class="mclose" id="cxClose" aria-label="Close the crypto exchange"><span data-i="backL">Back to the shop</span> ✕</button>
@@ -1029,6 +1078,13 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
     </div>
   </div>
 </div>
+<div class="gmw" id="gmw" hidden role="dialog" aria-modal="true" aria-label="Games">
+  <div class="gm">
+    <header class="gmbar"><b class="gmlogo">Sala <i>Giochi</i></b><span class="gmsub" data-i="gmSub">Pick a game to play</span>
+      <button class="mclose" id="gmClose" aria-label="Close the games room"><span data-i="backL">Back to the shop</span> ✕</button></header>
+    <div class="gmbody"><div class="gmgrid" id="gmGrid"></div></div>
+  </div>
+</div>
 <div class="tdw" id="tdw" hidden role="dialog" aria-modal="true" aria-label="Dueck Defense">
   <div class="td">
     <header class="tdbar">
@@ -1046,8 +1102,8 @@ textarea{width:100%;min-height:90px;background:var(--card);color:var(--ink);bord
         <div class="tdp"><h4 id="tdNextH"></h4><div class="tdnext" id="tdNext"></div><p class="tdnf" id="tdNextF"></p>
           <button class="tdbtn go" id="tdGo"></button>
           <label class="tdtog"><input type="checkbox" id="tdAuto"> <span data-i="tdAutoL">Start the next wave by itself</span></label></div>
-        <div class="tdp"><h4 data-i="tdRwH">Rewards</h4><dl class="tdrw" id="tdRw"></dl><div class="tdacts"><button class="tdbtn alt" id="tdNew" data-i="tdNewL">New game</button><button class="tdbtn alt" id="tdRestart" data-i="tdRestartL">Restart map</button></div></div>
-        <p class="tdhelp" data-i="tdHelp">Stop the pests before they reach the trattoria door. Every kill pays <b>gold</b> for towers; every wave you clear pays real <b>Duecks</b> into your till. Keys: <b>1–7</b> pick a tower, <b>Space</b> starts a wave, <b>U</b> upgrades, <b>S</b> sells, <b>Esc</b> cancels.</p>
+        <div class="tdp"><h4 data-i="tdRwH">Rewards</h4><dl class="tdrw" id="tdRw"></dl><p class="tdnf" id="tdSlotL" style="margin:10px 0 0"></p><button class="tdbtn alt" id="tdSave" style="width:100%;margin-top:8px" data-i="tdSaveL">Save now</button><div class="tdacts"><button class="tdbtn alt" id="tdNew" data-i="tdNewL">New game</button><button class="tdbtn alt" id="tdRestart" data-i="tdRestartL">Restart map</button></div></div>
+        <p class="tdhelp" data-i="tdHelp">Stop the pests before they reach the trattoria door. Every kill pays <b>gold</b> for towers; every wave you clear pays real <b>Duecks</b> into your till. Your game saves itself after every wave (3 save slots). Keys: <b>1–7</b> pick a tower, <b>Space</b> starts a wave, <b>U</b> upgrades, <b>S</b> sells, <b>Esc</b> cancels.</p>
       </aside>
     </div>
   </div>
@@ -1064,7 +1120,7 @@ const $=id=>document.getElementById(id);
 let LANG=new URLSearchParams(location.search).get("lang")==="it"?"it":"en";
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1076,7 +1132,7 @@ const IT={tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un pu
  unone:"Ancora niente sullo scaffale. Compra qualche negozio e continua a cliccare.",pantry:"In dispensa",
  ascHint:"Rinuncia ai tuoi Dueck, ai negozi e agli ingredienti e ricevi Allori in base a tutto ciò che hai prodotto. Ogni Alloro dà <b>+2% di produzione</b> per sempre e si può spendere qui sotto.",
  hOwn:"Allori posseduti",hFree:"Da spendere",hNext:"Allori alla rinascita",hAt:"Prossimo Alloro a",bless:"Benedizioni",saveH:"Salvataggio",saveNow:"Salva ora",exp:"Esporta",imp:"Importa",
- tMkt:"Borsa",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
+ tMkt:"Mercati",tDev:"Strumenti Beta",noSave:"Questa è la <b>beta</b>. Non salva mai e non legge né tocca il tuo vero salvataggio. Ricaricando la pagina si ricomincia.",
  mktHint:"Gli orari contano (ora centrale USA): l'apertura delle 8:30 e la chiusura delle 15 sono frenetiche, la pausa pranzo e la notte sono calme. I prezzi si muovono in tempo reale e sono <b>uguali per tutti</b> nello stesso momento. Compra basso, vendi alto. Ogni operazione costa una <b>commissione dello 0,25%</b>.",
  buyL:"Compra con i tuoi Dueck",shL:"Scoperto · scommetti che il prezzo scende",cvL:"Chiudi tutto",trL:"Trailing stop · vendi se scende così tanto dal massimo",lbL:"Acquisto limite · compra col 25% dei contanti se scende a",
  ascnH:"Ascensione",perkH:"Privilegi reali",cOwn:"Corone possedute",cNext:"Corone all'ascensione",cAt:"Prossima Corona a",
@@ -1523,7 +1579,7 @@ function maybeTip(force){const ch=crn("c3")?1:rankOf()>=6?.6:.3;if(!force&&Math.
   S.tips.push({k:best.st.k,up:best.up,txt,until:best.eta+300});toast(L("Insider tip","Soffiata"),txt,9000);blip(1100,.1,"sine",.08)}
 setInterval(checkOrders,1000);
 // Market tab badge: how many stocks you hold, so you can see it without opening the market
-setInterval(()=>{const n=STK.filter(s2=>(S.pf[s2.k]&&S.pf[s2.k].sh>0)||S.shs[s2.k]).length,b=$("mbadge");b.hidden=!n;b.textContent=n},1000);
+
 $("pford").addEventListener("click",e=>{const b=e.target.closest(".hrow");if(b){sel=+b.dataset.k;chartCache=null;renderMkt(true)}});
 $("ordBox").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const kind=b.closest("[data-o]")?.dataset.o;const p=pxAt(STK[sel],nowS());
   if(b.dataset.clr){const c=b.dataset.clr;if(c==="lb"){const l=S.lim[sel];if(l){S.d+=l.cash;delete S.lim[sel]}}else{const o=S.ord[sel];if(o){delete o[c];if(c==="tr")delete o.pk;if(!o.sl&&!o.tp&&!o.tr)delete S.ord[sel]}}renderMkt(true);return}
@@ -1630,7 +1686,7 @@ function renderMkt(force){const t=nowS();if(!force&&t-mkLast<(PERF?2:1))return;m
     {const tp=STK.filter(s2=>!locked(s2)).map(s2=>{const a=pxAt(s2,t),b=pxAt(s2,t-tf);return`<b>${s2.sy}</b><i>${pfmt(a)}</i>${pct(a,b)}`}).join("");$("tape").innerHTML=tp+tp}}
 }
 let mOpen=false;
-function openMkt(){closeAllWins();mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
+function openMkt(){lastX="mkt";closeAllWins();mOpen=true;$("mwin").hidden=false;hideTip();chartCache=null;renderMkt(true)}
 function closeMkt(){mOpen=false;$("mwin").hidden=true;mkHover=null}
 $("mClose").onclick=closeMkt;
 addEventListener("keydown",e=>{if(e.key==="Escape"&&mOpen)closeMkt()});
@@ -1731,7 +1787,7 @@ function renderCx(force){const t=nowS();if(!force&&t-cLast<(PERF?2:1))return;cLa
     return`<button class="cxh" data-k="${c2.k}"><b>${c2.sy}</b><span class="q">${fmt(x.q)}</span><span class="v">${fmt(v)}</span><span class="pl ${pl2>=0?"up":"dn"}">${pl2>=0?"+":"-"}${fmt(Math.abs(pl2))} (${(pl2/x.cost*100).toFixed(1)}%)</span></button>`});
   const hk=rows.join("");if(hk!==lastCxHold){lastCxHold=hk;$("cxHold").innerHTML=rows.length?hk:`<p class="cxhint" style="margin:0">${L("Your wallet is empty. Pick a coin and press Buy.","Il wallet è vuoto. Scegli una moneta e premi Compra.")}</p>`}
   const op=tv-tc;$("cxSum").innerHTML=`<div><small>${L("Cash","Contanti")}</small><b>${fmt(S.d)}</b></div><div><small>${L("In coins","In monete")}</small><b>${fmt(tv)}</b></div><div><small>${L("Open P/L","G/P aperto")}</small><b class="${op>=0?"up":"dn"}">${tc?(op>=0?"+":"-")+fmt(Math.abs(op)):"—"}</b></div><div><small>${L("Realised","Realizzato")}</small><b class="${S.cprof>=0?"up":"dn"}">${(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))}</b></div>`}
-function openCx(){closeAllWins();cOpen=true;$("cxw").hidden=false;hideTip();renderCx(true)}
+function openCx(){lastX="cx";closeAllWins();cOpen=true;$("cxw").hidden=false;hideTip();renderCx(true)}
 function closeCx(){cOpen=false;$("cxw").hidden=true;cHover=null}
 $("cxClose").onclick=closeCx;
 setInterval(()=>{if(cOpen)renderCx()},250);
@@ -2266,11 +2322,14 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close()}
-addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx()});
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
-setInterval(()=>{const n=CX.filter(c=>S.cx[c.sy]&&S.cx[c.sy].q>0).length,b=$("cxbadge");b.hidden=!n;b.textContent=n},1000);
+// markets tab badge: stocks you hold or short, plus coins you hold
+setInterval(()=>{const n=STK.filter(s2=>(S.pf[s2.k]&&S.pf[s2.k].sh>0)||S.shs[s2.k]).length+CX.filter(c=>S.cx[c.sy]&&S.cx[c.sy].q>0).length,b=$("mbadge");b.hidden=!n;b.textContent=n},1000);
+let lastX="mkt";
+document.querySelectorAll(".xsw").forEach(el=>el.onclick=e=>{const b=e.target.closest("button");if(!b||b.classList.contains("on"))return;if(b.dataset.x==="cx")openCx();else openMkt()});
 
 // ===== Difesa Dueck: a tower defense game =====
 // Pests march across the piazza to the trattoria door. Towers cost gold (earned by kills, separate from Duecks);
@@ -2340,11 +2399,26 @@ function waveDef(w){const n=Math.round(6+w*1.35),g=[];
 const hpMul=w=>Math.pow(1.095,w-1)*(w>30?Math.pow(1.05,w-30):1)*st.D.hp*(st.M.hp||1);
 const goldOf=(T,w)=>Math.round(T.g*1.6*(1+.025*(w-1)));
 function duecksFor(w){const cps=Math.max(G.cps||0,(G.click||1)*3,1);return Math.max(30*w,cps*(8+w*1.5))*st.D.r}
+// ---------- save slots: 3 games, saved between waves (beta: in their own storage spot, never the real save) ----------
+const SLK="dueckClickerBeta.tdSlots";let slot=0,slotPick=0,delArm=-1;
+function slotsGet(){let a=null;try{a=JSON.parse(localStorage.getItem(SLK))}catch(e){}if(!Array.isArray(a))a=[];return[0,1,2].map(i=>a[i]&&typeof a[i]==="object"&&Array.isArray(a[i].towers)?a[i]:null)}
+function slotsPut(a){try{localStorage.setItem(SLK,JSON.stringify(a));return true}catch(e){return false}}
+const canSave=()=>!!st&&!st.over&&!st.q.length&&!st.en.length;
+function snap(){return{v:1,m:st.mi,d:st.di,gold:st.gold,lives:st.lives,wave:st.wave,cleared:st.cleared,kills:st.kills,leaks:st.leaks,earned:st.earned,won:st.won,endless:st.endless,
+  towers:st.towers.map(t=>({k:t.k,c:t.c,r:t.r,lv:t.lv,mode:t.mode,kills:t.kills,dmgDone:Math.round(t.dmgDone),paid:t.paid})),at:Date.now()}}
+function autosave(){if(!canSave())return false;const a=slotsGet();a[slot]=snap();if(!slotsPut(a))return false;st.savedW=st.cleared;st.savedAt=Date.now();return true}
+function loadSlot(i){const s=slotsGet()[i];if(!s)return;slot=i;cfg.m=Math.min(MAPS.length-1,Math.max(0,s.m|0));cfg.d=Math.min(2,Math.max(0,s.d|0));newGame(true);
+  Object.assign(st,{gold:Math.max(0,+s.gold||0),lives:Math.max(1,s.lives|0),wave:s.wave|0,cleared:s.wave|0,kills:s.kills|0,leaks:s.leaks|0,earned:+s.earned||0,won:!!s.won,endless:!!s.won||!!s.endless,savedW:s.wave|0,savedAt:s.at||Date.now()});
+  for(const o of s.towers){if(!o||!TW[o.k]||!canPlace(o.c,o.r))continue;st.towers.push({k:o.k,T:TW[o.k],c:o.c,r:o.r,x:o.c+.5,y:o.r+.5,lv:Math.min(3,Math.max(0,o.lv|0)),cd:0,ang:-Math.PI/2,
+    mode:MODES.some(m=>m[0]===o.mode)?o.mode:"first",kills:o.kills|0,dmgDone:+o.dmgDone||0,paid:+o.paid||TW[o.k].cost,shots:0,fire:0,id:++st.eid})}
+  rebuff();msg(L(`Welcome back. Wave ${st.wave+1} is next.`,`Bentornato. Prossima: ondata ${st.wave+1}.`),3)}
+function clearSlot(i){const a=slotsGet();a[i]=null;slotsPut(a)}
+function ago(t){const m=Math.round((Date.now()-t)/60000);return m<1?L("just now","adesso"):m<60?L(`${m} min ago`,`${m} min fa`):m<1440?L(`${Math.round(m/60)} h ago`,`${Math.round(m/60)} h fa`):L(`${Math.round(m/1440)} days ago`,`${Math.round(m/1440)} giorni fa`)}
 // ---------- game ----------
-function newGame(){const M=MAPS[cfg.m],D=DIFF[cfg.d];const paths=M.p.map(mkPath);const a=paths[0].pts[0],b=paths[0].pts[paths[0].pts.length-1];
-  st={M,D,mi:cfg.m,paths,fp:mkPath([[a[0]-.5,a[1]-.5],[b[0]-.5,b[1]-.5]]),blocked:blockedOf(M),towers:[],en:[],pr:[],fx:[],q:[],gold:D.g,lives:D.lv,wave:0,cleared:0,t:0,
+function newGame(loading){const M=MAPS[cfg.m],D=DIFF[cfg.d];const paths=M.p.map(mkPath);const a=paths[0].pts[0],b=paths[0].pts[paths[0].pts.length-1];
+  st={M,D,mi:cfg.m,di:cfg.d,savedW:0,savedAt:0,paths,fp:mkPath([[a[0]-.5,a[1]-.5],[b[0]-.5,b[1]-.5]]),blocked:blockedOf(M),towers:[],en:[],pr:[],fx:[],q:[],gold:D.g,lives:D.lv,wave:0,cleared:0,t:0,
     eid:0,kills:0,leaks:0,earned:0,won:false,over:false,endless:false,auto:$("tdAuto").checked,spent:0,shake:0};
-  place=null;sel=null;selKey="";bg=null;$("tdOv").innerHTML="";speed=1;syncSpd();layout();msg(L("Build some towers, then start the first wave.","Costruisci qualche torre, poi avvia la prima ondata."),4)}
+  place=null;sel=null;selKey="";bg=null;$("tdOv").innerHTML="";speed=1;syncSpd();layout();if(!loading)msg(L("Build some towers, then start the first wave.","Costruisci qualche torre, poi avvia la prima ondata."),4)}
 function callWave(){if(!st||st.over||(st.won&&!st.endless))return;const early=st.en.length||st.q.length;st.wave++;const w=st.wave;
   if(early&&w>1){const b=8+w*2;st.gold+=b;msg(L(`Wave ${w} sent early: +${b} gold`,`Ondata ${w} in anticipo: +${b} oro`),2)}else msg(L(`Wave ${w}`,`Ondata ${w}`)+(w%10===0?" · "+N(EN.boss.n)+"!":""),2);
   let off=st.t+.6;waveDef(w).forEach((g,gi)=>{for(let i=0;i<g.n;i++)st.q.push({t:off+gi*1.4+i*g.gap,type:g.t,pi:(i+gi)%st.paths.length,w})});st.q.sort((a,b)=>a.t-b.t);
@@ -2359,10 +2433,10 @@ function kill(e,src){e.dead=1;const g=goldOf(e.T,e.w);st.gold+=g;st.kills++;if(s
 function towerAt(c,r){return st.towers.find(t=>t.c===c&&t.r===r)}
 function canPlace(c,r){return c>=0&&r>=0&&c<COLS&&r<ROWS&&!st.blocked.has(c+","+r)&&!towerAt(c,r)}
 function build(k,c,r){const T=TW[k];if(!canPlace(c,r))return false;if(st.gold<T.cost){msg(L("Not enough gold","Oro insufficiente"),1.5);SFX.lose(1);return false}
-  st.gold-=T.cost;const t={k,T,c,r,x:c+.5,y:r+.5,lv:0,cd:0,ang:-Math.PI/2,mode:"first",kills:0,dmgDone:0,paid:T.cost,shots:0,fire:0,id:++st.eid};st.towers.push(t);rebuff();SFX.chip();fxBoom(t.x,t.y,.6,"#fff6d6");return t}
+  st.gold-=T.cost;const t={k,T,c,r,x:c+.5,y:r+.5,lv:0,cd:0,ang:-Math.PI/2,mode:"first",kills:0,dmgDone:0,paid:T.cost,shots:0,fire:0,id:++st.eid};st.towers.push(t);rebuff();SFX.chip();fxBoom(t.x,t.y,.6,"#fff6d6");autosave();return t}
 function upCost(t){return t.lv>=3?0:Math.round(t.T.cost*UPC[t.lv])}
-function upgrade(t){if(!t||t.lv>=3)return;const c=upCost(t);if(st.gold<c){msg(L("Not enough gold","Oro insufficiente"),1.5);return}st.gold-=c;t.paid+=c;t.lv++;rebuff();SFX.win(1);fxBoom(t.x,t.y,.8,"#ffd27a");selKey=""}
-function sell(t){if(!t)return;const v=Math.round(t.paid*.7);st.gold+=v;st.towers=st.towers.filter(x=>x!==t);if(sel===t)sel=null;rebuff();SFX.coin();fxText(t.x,t.y,"+"+v,"#ffd27a");selKey=""}
+function upgrade(t){if(!t||t.lv>=3)return;const c=upCost(t);if(st.gold<c){msg(L("Not enough gold","Oro insufficiente"),1.5);return}st.gold-=c;t.paid+=c;t.lv++;rebuff();SFX.win(1);fxBoom(t.x,t.y,.8,"#ffd27a");selKey="";autosave()}
+function sell(t){if(!t)return;const v=Math.round(t.paid*.7);st.gold+=v;st.towers=st.towers.filter(x=>x!==t);if(sel===t)sel=null;rebuff();SFX.coin();fxText(t.x,t.y,"+"+v,"#ffd27a");selKey="";autosave()}
 function rebuff(){for(const t of st.towers){t.buff=0;for(const v of st.towers)if(v.T.buff&&v!==t&&!t.T.buff&&!t.T.inc&&Math.hypot(v.x-t.x,v.y-t.y)<=v.T.rng+LV[v.lv].rg*.5+.01)t.buff=Math.max(t.buff,v.T.buff[v.lv])}}
 function stat(t){const T=t.T,l=LV[t.lv],b=t.buff||0;return{dmg:(T.dmg||0)*l.dm*(1+b),rng:(T.rng||0)+l.rg+(b?.3:0),rate:(T.rate||0)*l.rt,spl:T.spl?(t.lv>=3?1.7:T.spl+t.lv*.1):0,slow:T.slow?(t.lv>=3?.6:T.slow+t.lv*.06):0}}
 function pick(t,rng,air,not){let best=null,bv=-Infinity;for(const e of st.en){if(e.dead||e===not||(e.T.fly&&!air))continue;const dd=Math.hypot(e.x-t.x,e.y-t.y);if(dd>rng)continue;
@@ -2392,13 +2466,13 @@ function step(dt){st.t+=dt;if(st.shake>0)st.shake-=dt;
   st.pr=st.pr.filter(p=>!p.done);st.en=st.en.filter(e=>!e.dead);
   for(const f of st.fx)f.t-=dt;st.fx=st.fx.filter(f=>f.t>0);
   if(!st.q.length&&!st.en.length&&st.cleared<st.wave){for(let w=st.cleared+1;w<=st.wave;w++)waveDone(w);st.cleared=st.wave;
-    if(st.wave>=ROUNDS&&!st.won){win();return}if(st.auto&&!st.over)setTimeout(()=>{if(st&&st.auto&&!st.q.length&&!st.en.length&&!st.over&&!(st.won&&!st.endless))callWave()},1200)}}
+    if(st.wave>=ROUNDS&&!st.won){win();autosave();return}autosave();if(st.auto&&!st.over)setTimeout(()=>{if(st&&st.auto&&!st.q.length&&!st.en.length&&!st.over&&!(st.won&&!st.endless))callWave()},1200)}}
 function waveDone(w){let g=25+w*5;for(const t of st.towers)if(t.T.inc)g+=t.T.inc[t.lv];st.gold+=g;const dk=duecksFor(w);earn(dk);st.earned+=dk;totEarned+=dk;
   tdS().best[st.mi]=Math.max(tdS().best[st.mi],w);tdS();S.td.waves++;S.td.earned+=dk;
   msg(L(`Wave ${w} cleared · +${g} gold · +${fmt(dk)} Duecks`,`Ondata ${w} superata · +${g} oro · +${fmt(dk)} Dueck`),3);SFX.coin()}
 function win(){st.won=true;const dk=Math.max(5000,Math.max(G.cps||0,1)*1800)*st.D.r*(st.M.hp||1);earn(dk);st.earned+=dk;totEarned+=dk;tdS();S.td.wins++;
   SFX.big();coinRain(50);showEnd(true,dk)}
-function gameOver(){st.over=true;SFX.lose();showEnd(false)}
+function gameOver(){st.over=true;clearSlot(slot);SFX.lose();showEnd(false)}
 // ---------- effects ----------
 function fxText(x,y,s,c){if(PERF&&st.fx.length>40)return;st.fx.push({k:"txt",x,y,s,c,t:.9,m:.9})}
 function fxBoom(x,y,r,c){st.fx.push({k:"boom",x,y,r,c,t:.35,m:.35})}
@@ -2432,7 +2506,7 @@ function render(){const g=cv.getContext("2d"),{ts,ox,oy,dpr}=lay;g.setTransform(
   if(place&&hover){const ok=canPlace(hover.c,hover.r)&&st.gold>=TW[place].cost,T=TW[place];g.fillStyle=ok?"rgba(40,160,90,.28)":"rgba(200,40,40,.3)";g.fillRect(X(hover.c),X(hover.r),ts,ts);
     const rg=T.buff?T.rng:T.rng||0;if(rg){g.strokeStyle=ok?"rgba(255,255,255,.7)":"rgba(255,120,120,.7)";g.fillStyle="rgba(255,255,255,.08)";g.lineWidth=1.5;g.beginPath();g.arc(X(hover.c+.5),X(hover.r+.5),X(rg),0,7);g.fill();g.stroke()}
     g.globalAlpha=.6;drawTower(g,{T,x:hover.c+.5,y:hover.r+.5,lv:0,ang:-Math.PI/2,fire:0,k:place},ts);g.globalAlpha=1}
-  if(sel){const s=stat(sel),rg=sel.T.buff?sel.T.rng+LV[sel.lv].rg*.5:s.rng;if(rg){g.strokeStyle="rgba(255,255,255,.85)";g.fillStyle="rgba(255,255,255,.1)";g.lineWidth=1.5;g.beginPath();g.arc(X(sel.x),X(sel.y),X(rg),0,7);g.fill();g.stroke()}}
+  if(sel&&st.towers.includes(sel)){const s=stat(sel),rg=sel.T.buff?sel.T.rng+LV[sel.lv].rg*.5:s.rng;if(rg){g.strokeStyle="rgba(255,255,255,.85)";g.fillStyle="rgba(255,255,255,.1)";g.lineWidth=1.5;g.beginPath();g.arc(X(sel.x),X(sel.y),X(rg),0,7);g.fill();g.stroke()}}
   for(const t of st.towers)drawTower(g,t,ts);
   // pests: ground first, flyers on top
   for(const pass of[0,1])for(const e of st.en){if(!!e.T.fly!==!!pass)continue;const s=e.T.sz*ts,x=X(e.x),y=X(e.y)+(e.T.fly?-ts*.25:0),bob=PERF?0:Math.sin(st.t*12+e.id)*ts*.03;
@@ -2470,7 +2544,7 @@ function frame(now){raf=0;if(!open)return;let dt=Math.min(.1,(now-(lastF||now))/
   render();uiT-=dt;if(uiT<=0){uiT=.12;ui()}raf=requestAnimationFrame(frame)}
 // ---------- side panel ----------
 function buildBtns(){$("tdBuild").innerHTML=TK.map((k,i)=>{const T=TW[k];return`<button class="tdb" data-k="${k}" style="--c:${T.c}" title="${N(T.d)}"><kbd>${i+1}</kbd><span class="ic">${T.e}</span><b>${N(T.n)}</b><small>🪙${T.cost}</small></button>`}).join("")}
-function ui(){$("tdCash").textContent=fmt(S.d);if(!st){$("tdLives").textContent="–";$("tdGold").textContent="–";$("tdWave").textContent="–";return}
+function ui(){$("tdCash").textContent=fmt(S.d);if(!st){$("tdLives").textContent="–";$("tdGold").textContent="–";$("tdWave").textContent="–";if(selKey!=="pre"){selKey="pre";$("tdSel").innerHTML=`<h4>${L("Your towers","Le tue torri")}</h4><p class="tdnf" style="margin:0">${L("Continue a saved game or start a new one.","Continua una partita salvata o iniziane una nuova.")}</p>`;$("tdNextH").textContent=L("Next wave","Prossima ondata");$("tdGo").disabled=true;$("tdGo").textContent=L("Start a game first","Inizia prima una partita");$("tdSave").disabled=true;$("tdSlotL").textContent=L("3 save slots. Games save after every wave.","3 slot. Le partite si salvano dopo ogni ondata.")}return}
   $("tdLives").textContent=st.lives;$("tdGold").textContent=Math.floor(st.gold);$("tdWave").textContent=st.wave+(st.endless?"":" / "+ROUNDS);
   document.querySelectorAll("#tdBuild .tdb").forEach(b=>{b.classList.toggle("poor",st.gold<TW[b.dataset.k].cost);b.classList.toggle("on",place===b.dataset.k)});
   // selected tower: the structure only changes when the selection, level or mode does; numbers update in place
@@ -2482,6 +2556,7 @@ function ui(){$("tdCash").textContent=fmt(S.d);if(!st){$("tdLives").textContent=
     $("tdNext").innerHTML=Object.entries(cnt).map(([t,n])=>`<span class="${EN[t].fly?"air":""}${EN[t].boss?" bs":""}" title="${N(EN[t].n)}">${EN[t].boss?"👑":""}${EN[t].e} ${n}</span>`).join("");
     const sp=Object.keys(cnt).filter(t=>EN[t].fly||EN[t].ar||EN[t].heal||EN[t].split||EN[t].boss).map(t=>N(EN[t].n));$("tdNextF").textContent=sp.length?L("Watch for: ","Attenzione: ")+sp.join(", "):L("Plain pests.","Parassiti normali.")}
   const go=$("tdGo");go.disabled=done;go.textContent=done?L("Game over","Partita finita"):busy?L(`Send wave ${nw} early (+${8+nw*2} gold)`,`Manda l'ondata ${nw} prima (+${8+nw*2} oro)`):L(`Start wave ${nw}`,`Avvia l'ondata ${nw}`);
+  $("tdSlotL").textContent=L(`Slot ${slot+1} · `,`Slot ${slot+1} · `)+(st.savedAt?L(`saved after wave ${st.savedW}`,`salvato dopo l'ondata ${st.savedW}`):L("not saved yet","non ancora salvato"))+(canSave()?"":L(" · saves when the wave ends"," · salva a fine ondata"));$("tdSave").disabled=!canSave();
   $("tdRw").innerHTML=`<dt>${L("This game","Questa partita")}</dt><dd>${fmt(st.earned)}</dd><dt>${L("Next wave pays","La prossima paga")}</dt><dd>${fmt(duecksFor(nw))}</dd><dt>${L("Kills","Uccisioni")}</dt><dd>${fmt(st.kills)}</dd><dt>${L("Best wave here","Miglior ondata qui")}</dt><dd>${tdS().best[st.mi]}</dd>`}
 function renderSel(){const el=$("tdSel");if(!sel){el.innerHTML=`<h4>${L("Your towers","Le tue torri")}<small>${st&&st.towers.length?st.towers.length:""}</small></h4><p class="tdnf" style="margin:0">${L("Click a tower on the piazza to upgrade it, sell it or change what it aims at.","Clicca una torre sulla piazza per migliorarla, venderla o cambiare il bersaglio.")}</p>`;return}
   const t=sel,T=t.T,s=stat(t),nx=t.lv<3?stat({...t,lv:t.lv+1}):null,c=upCost(t);
@@ -2504,7 +2579,7 @@ $("tdGo").onclick=()=>{callWave();ui()};
 $("tdAuto").onchange=()=>{if(st)st.auto=$("tdAuto").checked};
 $("tdSpd").onclick=e=>{const b=e.target.closest("button");if(!b)return;speed=+b.dataset.s;syncSpd()};
 function syncSpd(){[...$("tdSpd").children].forEach(b=>b.classList.toggle("on",+b.dataset.s===speed))}
-$("tdNew").onclick=()=>showStart();$("tdRestart").onclick=()=>{if(st){cfg.m=st.mi;newGame()}};
+$("tdNew").onclick=()=>showStart();$("tdSave").onclick=()=>{if(autosave()){SFX.coin();msg(L(`Saved to slot ${slot+1}`,`Salvato nello slot ${slot+1}`),2)}ui()};$("tdRestart").onclick=()=>{if(st){cfg.m=st.mi;cfg.d=st.di;newGame();autosave()}};
 // ---------- the piazza: placing and picking towers ----------
 function tileAt(ev){const r=cv.getBoundingClientRect(),x=ev.clientX-r.left-lay.ox,y=ev.clientY-r.top-lay.oy;const c=Math.floor(x/lay.ts),rr=Math.floor(y/lay.ts);return c>=0&&rr>=0&&c<COLS&&rr<ROWS?{c,r:rr}:null}
 cv.addEventListener("pointermove",ev=>{hover=tileAt(ev)});cv.addEventListener("pointerleave",()=>{if(!place)hover=null});
@@ -2514,25 +2589,31 @@ cv.addEventListener("pointerdown",ev=>{if(!st||st.over)return;const h=tileAt(ev)
 cv.addEventListener("contextmenu",e=>e.preventDefault());
 // ---------- start and end screens ----------
 function miniMap(c,i){const g=c.getContext("2d"),ts=c.width/COLS;drawBoard(g,MAPS[i],ts,blockedOf(MAPS[i]),true)}
-function showStart(){const ov=$("tdOv");ov.innerHTML=`<div class="tdcard"><h2>Difesa <i>Dueck</i></h2><p>${L("Mice, rats, pigeons, food critics and the tax man are marching on the trattoria. Build towers along the road and keep them out of the kitchen. Survive <b>30 waves</b> to win; every wave you clear pays real Duecks.","Topi, ratti, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri lungo la strada e tienili fuori dalla cucina. Resisti a <b>30 ondate</b> per vincere; ogni ondata superata paga Dueck veri.")}</p>
-    <h5>${L("Map","Mappa")}</h5><div class="tdmaps">${MAPS.map((m,i)=>`<button class="tdmap${cfg.m===i?" on":""}" data-m="${i}"><canvas width="200" height="120"></canvas><div><b>${N(m.n)}</b><small>${N(m.d)}</small>${tdS().best[i]?`<small class="rec">${L("Best: wave ","Record: ondata ")}${tdS().best[i]}</small>`:""}</div></button>`).join("")}</div>
+function slotsHTML(){const a=slotsGet();return a.map((s,i)=>`<div class="tdslot${slotPick===i?" on":""}" data-s="${i}"><b>${i+1}</b><span>${s?`${N(MAPS[s.m]?MAPS[s.m].n:MAPS[0].n)} · ${N(DIFF[s.d]?DIFF[s.d].n:DIFF[1].n)} · ${L("wave","ondata")} ${s.wave}${s.won?" 🏆":""} · ❤️ ${s.lives}<small>${L("Saved","Salvato")} ${ago(s.at)}</small>`:`<i>${L("Empty slot","Slot vuoto")}</i>`}</span>${s?`<button class="tdbtn" data-load="1">${L("Continue","Continua")}</button><button class="tdbtn sell" data-del="1">${L("Delete","Elimina")}</button>`:""}</div>`).join("")}
+function showStart(){const ov=$("tdOv");if(st&&!st.over)autosave();const fe=slotsGet().findIndex(x=>!x);slotPick=st&&!st.over?slot:fe>=0?fe:0;ov.innerHTML=`<div class="tdcard"><h2>Difesa <i>Dueck</i></h2><p>${L("Mice, rats, pigeons, food critics and the tax man are marching on the trattoria. Build towers along the road and keep them out of the kitchen. Survive <b>30 waves</b> to win; every wave you clear pays real Duecks.","Topi, ratti, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri lungo la strada e tienili fuori dalla cucina. Resisti a <b>30 ondate</b> per vincere; ogni ondata superata paga Dueck veri.")}</p>
+    <h5>${L("Saved games","Partite salvate")}</h5><div class="tdslots" id="tdSlots">${slotsHTML()}</div><h5>${L("New game","Nuova partita")} · ${L("Map","Mappa")}</h5><div class="tdmaps">${MAPS.map((m,i)=>`<button class="tdmap${cfg.m===i?" on":""}" data-m="${i}"><canvas width="200" height="120"></canvas><div><b>${N(m.n)}</b><small>${N(m.d)}</small>${tdS().best[i]?`<small class="rec">${L("Best: wave ","Record: ondata ")}${tdS().best[i]}</small>`:""}</div></button>`).join("")}</div>
     <h5>${L("Difficulty","Difficoltà")}</h5><div class="tdseg" id="tdDiff">${DIFF.map((d,i)=>`<button data-d="${i}" class="${cfg.d===i?"on":""}">${N(d.n)}<small>${N(d.s)} · ${d.lv} ❤️ · ×${d.r} ${L("Duecks","Dueck")}</small></button>`).join("")}</div>
-    <button class="tdbig" id="tdStart">${L("Open the trattoria","Apri la trattoria")}</button>${st&&!st.over&&!st.won?`<button class="tdbig alt" id="tdBack">${L("Back to my game","Torna alla partita")}</button>`:""}</div>`;
+    <button class="tdbig" id="tdStart"></button>${st&&!st.over&&!st.won?`<button class="tdbig alt" id="tdBack">${L("Back to my game","Torna alla partita")}</button>`:""}</div>`;
   ov.querySelectorAll(".tdmap canvas").forEach((c,i)=>miniMap(c,i));
   ov.querySelectorAll(".tdmap").forEach(b=>b.onclick=()=>{cfg.m=+b.dataset.m;ov.querySelectorAll(".tdmap").forEach(x=>x.classList.toggle("on",x===b));SFX.chip()});
   ov.querySelector("#tdDiff").onclick=e=>{const b=e.target.closest("button");if(!b)return;cfg.d=+b.dataset.d;[...b.parentNode.children].forEach(x=>x.classList.toggle("on",x===b));SFX.chip()};
-  $("tdStart").onclick=()=>{SFX.chip();newGame()};const bk=$("tdBack");if(bk)bk.onclick=()=>{ov.innerHTML=""}}
+  const syncStart=()=>{const full=slotsGet()[slotPick];$("tdStart").textContent=L(`Open the trattoria · slot ${slotPick+1}`,`Apri la trattoria · slot ${slotPick+1}`)+(full?L(" (replaces it)"," (lo sostituisce)"):"")};syncStart();
+  ov.querySelector("#tdSlots").onclick=e=>{const b=e.target.closest("button"),row=e.target.closest(".tdslot");if(!row)return;const i=+row.dataset.s;
+    if(b&&b.dataset.load!=null){SFX.chip();loadSlot(i);return}
+    if(b&&b.dataset.del!=null){if(delArm!==i){delArm=i;b.textContent=L("Sure?","Sicuro?");setTimeout(()=>{if(delArm===i){delArm=-1;b.textContent=L("Delete","Elimina")}},2500);return}delArm=-1;clearSlot(i);SFX.lose(1);ov.querySelector("#tdSlots").innerHTML=slotsHTML();syncStart();return}
+    slotPick=i;ov.querySelectorAll(".tdslot").forEach(r=>r.classList.toggle("on",+r.dataset.s===i));SFX.chip();syncStart()};
+  $("tdStart").onclick=()=>{SFX.chip();slot=slotPick;newGame();autosave()};const bk=$("tdBack");if(bk)bk.onclick=()=>{ov.innerHTML=""}}
 function showEnd(won,bonus){const ov=$("tdOv");
   ov.innerHTML=`<div class="tdcard"><h2>${won?L("Vittoria! <i>The trattoria is safe</i>","Vittoria! <i>La trattoria è salva</i>"):L("The pests <i>got in</i>","I parassiti <i>sono entrati</i>")}</h2>
     <p>${won?L(`You held ${N(st.M.n)} for all ${ROUNDS} waves on ${N(st.D.n)}.`,`Hai difeso ${N(st.M.n)} per tutte le ${ROUNDS} ondate a ${N(st.D.n)}.`):L(`They overran ${N(st.M.n)} on wave ${st.wave}.`,`Hanno invaso ${N(st.M.n)} all'ondata ${st.wave}.`)}</p>
     <dl class="tdres"><dt>${L("Waves cleared","Ondate superate")}</dt><dd>${st.cleared}</dd><dt>${L("Pests stopped","Parassiti fermati")}</dt><dd>${fmt(st.kills)}</dd><dt>${L("Towers built","Torri costruite")}</dt><dd>${st.towers.length}</dd>
     ${won?`<dt>${L("Victory bonus","Premio vittoria")}</dt><dd>+${fmt(bonus)}</dd>`:""}<dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>+${fmt(st.earned)}</dd></dl>
     ${won?`<button class="tdbig" id="tdEndless">${L("Keep going (endless waves)","Continua (ondate infinite)")}</button>`:`<button class="tdbig" id="tdRetry">${L("Try this map again","Riprova questa mappa")}</button>`}<button class="tdbig alt" id="tdMenu">${L("Choose another map","Scegli un'altra mappa")}</button></div>`;
-  const en=$("tdEndless");if(en)en.onclick=()=>{st.endless=true;ov.innerHTML="";msg(L("Endless mode. How long can you last?","Modalità infinita. Quanto resisti?"),3)};
-  const rt=$("tdRetry");if(rt)rt.onclick=()=>{cfg.m=st.mi;newGame()};$("tdMenu").onclick=showStart}
+  const en=$("tdEndless");if(en)en.onclick=()=>{st.endless=true;autosave();ov.innerHTML="";msg(L("Endless mode. How long can you last?","Modalità infinita. Quanto resisti?"),3)};
+  const rt=$("tdRetry");if(rt)rt.onclick=()=>{cfg.m=st.mi;cfg.d=st.di;newGame();autosave()};$("tdMenu").onclick=showStart}
 // ---------- window ----------
 function openTD(){closeAllWins();open=true;$("tdw").hidden=false;hideTip();requestAnimationFrame(()=>{layout();if(!st&&!$("tdOv").innerHTML)showStart();lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui()}
-function closeTD(){open=false;$("tdw").hidden=true;place=null}
+function closeTD(){if(st)autosave();open=false;$("tdw").hidden=true;place=null}
 function key(e){if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return false;if(e.key==="Escape"){if(place||sel){place=null;sel=null;ui()}else closeTD();return true}
   if(!st||$("tdOv").innerHTML)return false;const i="1234567".indexOf(e.key);if(i>=0){place=place===TK[i]?null:TK[i];sel=null;ui();return true}
   if(e.key===" "){e.preventDefault();callWave();ui();return true}if((e.key==="u"||e.key==="U")&&sel){upgrade(sel);ui();return true}if((e.key==="s"||e.key==="S")&&sel){sell(sel);ui();return true}
@@ -2540,8 +2621,42 @@ function key(e){if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return false;i
 addEventListener("keydown",e=>{if(open&&key(e))e.stopPropagation()});
 addEventListener("resize",()=>{if(open)layout()});
 $("tdClose").onclick=closeTD;buildBtns();
-return{open:openTD,close:closeTD,get isOpen(){return open},_dbg:()=>({st,cfg,build,callWave,step,newGame,set speed(v){speed=v}})}})();
+return{open:openTD,close:closeTD,get isOpen(){return open},slots:slotsGet,mini:miniMap,_dbg:()=>({st,cfg,build,callWave,step,newGame,set speed(v){speed=v}})}})();
 
+
+
+// ---------- games room: pick a game (just Difesa Dueck for now) ----------
+const GM={open:false};
+function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
+function closeGames(){GM.open=false;$("gmw").hidden=true}
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{};
+  $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
+    <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
+    <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
+    <span class="gmplay">${sl.length?L("Play · continue or start new","Gioca · continua o nuova"):L("Play","Gioca")}</span></div></button>
+    <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
+  TD.mini($("gmGrid").querySelector("canvas"),0)}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(c&&c.dataset.game==="td"){SFX.chip();TD.open()}};
+$("gmClose").onclick=closeGames;
+
+// ---------- The Phoenix: a newspaper blows across the table now and then ----------
+// Catch it for double production, and The Phoenix (the Holy Family student paper) opens in a new tab.
+const PHX="https://hfphoenix.com/";let nextPaper=Date.now()+rnd(150,300)*1000;
+function spawnPaper(){if(document.querySelector(".paper"))return;const p=document.createElement("button");p.className="paper";
+  p.title=L("Catch it: ×2 production for 60s, and read The Phoenix","Prendilo: produzione ×2 per 60s, e leggi The Phoenix");
+  p.setAttribute("aria-label",L("The Phoenix newspaper. Catch it for double production. Opens hfphoenix.com in a new tab.","Il giornale The Phoenix. Prendilo per produzione doppia. Apre hfphoenix.com in una nuova scheda."));
+  p.innerHTML=`<span class="pp"><span class="mh">The Phoenix</span><span class="hl">EXTRA! EXTRA!</span><span class="sb">${L("MORE PRODUCTION","PIÙ PRODUZIONE")}</span></span>`;
+  document.body.appendChild(p);
+  const ltr=Math.random()<.5,W=innerWidth,H=innerHeight,y0=H*(.18+Math.random()*.5),dur=(PERF?11:15)*1000,amp=24+Math.random()*26,ph=Math.random()*6;
+  let t0=performance.now(),slow=0,el=0,last=t0;p.onmouseenter=()=>slow=1;p.onmouseleave=()=>slow=0;
+  (function fly(now){if(!p.isConnected)return;const dt=now-last;last=now;el+=slow?dt*.15:dt;const k=el/dur;if(k>=1){p.remove();return}
+    const x=ltr?-100+(W+200)*k:W+100-(W+200)*k,y=y0+Math.sin(k*9+ph)*amp+Math.sin(k*23)*6,rot=Math.sin(k*12+ph)*12;
+    p.style.transform=`translate(${x}px,${y}px) rotate(${rot}deg)`;requestAnimationFrame(fly)})(t0);
+  p.onclick=()=>{p.remove();recalc();const s=Math.round(60*durMult());addBuff(L("Hot off the press","Fresco di stampa"),60,{cm:2});
+    const w=window.open(PHX,"_blank","noopener");
+    toast(L("Hot off the press!","Fresco di stampa!"),L(`Production ×2 for ${s} seconds.`,`Produzione ×2 per ${s} secondi.`)+` <a href="${PHX}" target="_blank" rel="noopener">${w===null?L("Read The Phoenix ↗","Leggi The Phoenix ↗"):L("The Phoenix opened in a new tab ↗","The Phoenix aperto in una nuova scheda ↗")}</a>`,6000);
+    blip(660,.08,"triangle",.1);blip(990,.12,"triangle",.08)}}
+setInterval(()=>{if(document.hidden)return;if(Date.now()>nextPaper){spawnPaper();nextPaper=Date.now()+rnd(240,480)*1000}},2000);
 
 // ---------- beta tools ----------
 function devAmt(){const v=Number($("devAmt").value.trim().replace(/,/g,""));if(!isFinite(v)||v<0){toast("Beta",L("Type a number like 1e15 or 5000000.","Scrivi un numero come 1e15 o 5000000."));return null}return v}
@@ -2551,7 +2666,7 @@ $("p-dev").addEventListener("click",e=>{const b=e.target.closest("[data-dev]");i
   if(k==="x10")earn(S.d*9+10);if(k==="m1")earn(G.base*60);if(k==="h1")earn(G.base*3600);if(k==="d1")earn(G.base*86400);
   if(k==="shops")B.forEach((_,i)=>S.own[i]+=10);
   if(k==="upg")U.forEach(u=>S.up.add(u.id));
-  if(k==="gold")spawnGold();
+  if(k==="gold")spawnGold();if(k==="paper")spawnPaper();
   if(k==="l100")S.halo+=100;if(k==="l10k")S.halo+=1e4;if(k==="l1m")S.halo+=1e6;if(k==="cr10")S.crown+=10;if(k==="rp")addRP(1000);if(k==="tip")maybeTip(true);
   if(k==="bless")H.forEach(h=>S.hv.add(h[0]));
   if(k==="ach")A.forEach((_,i)=>S.ach.add(i));
@@ -2564,7 +2679,7 @@ function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt
 
 // ---------- tabs / layout ----------
 let tab="upg";
-$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;if(b.dataset.t==="mkt"){openMkt();return}if(b.dataset.t==="cx"){openCx();return}if(b.dataset.t==="kas"){openKas();return}if(b.dataset.t==="td"){TD.open();return}tab=b.dataset.t;[...$("tabs").children].forEach(x=>x.classList.toggle("on",x===b));
+$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;if(b.dataset.t==="mkt"){if(lastX==="cx")openCx();else openMkt();return}if(b.dataset.t==="kas"){openKas();return}if(b.dataset.t==="games"){openGames();return}tab=b.dataset.t;[...$("tabs").children].forEach(x=>x.classList.toggle("on",x===b));
   ["store","upg","ach","asc","stat","dev"].forEach(t=>$("p-"+t).hidden=t!==tab);hideTip();
   if(tab==="ach")renderAch();if(tab==="asc")renderAsc();if(tab==="stat")renderStats()};
 const mq=matchMedia("(max-width:900px)");
