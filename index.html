@@ -822,6 +822,23 @@ button.gmcard:hover .gmplay{background:#238a56}
 .mftouch button{width:62px;height:62px;border-radius:50%;background:rgba(10,10,14,.55);color:#fff;font:800 20px var(--fb);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35);touch-action:none}
 .mftouch button:active{background:rgba(240,192,64,.7)}
 @media (pointer:coarse){.mftouch{display:flex}}
+/* ===== La Discesa: downhill ski tricks ===== */
+.td.sk{--bg:#15253c;--bg2:#0d192b}
+.sk .tdside{border-left-color:#2a3d5a}
+.sk .tdfield{background:#9cc6ea;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+.sk .tdlogo i{color:#8fd0ff}
+.sk .tdmsg{top:auto;bottom:16px}
+.skgoal{padding:7px 0}.skgoal+.skgoal{border-top:1px solid var(--line)}
+.skgoal div{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.skgoal b{font:600 13px/1.3 var(--fb)}.skgoal span{flex:none;font:600 12px var(--fm);color:var(--verde)}
+.skgoal i{display:block;height:5px;border-radius:3px;margin-top:5px;background:linear-gradient(90deg,#2f7fd0 var(--p),var(--line) var(--p))}
+.sknote{display:block;margin-top:6px;font-size:12px;color:var(--imt)}
+.skcard{max-width:420px;text-align:center}.skcard h2 small{font:400 15px var(--fb);color:var(--imt)}.skcard .tdres{text-align:left}.skcard .tdbig small{font-weight:400;opacity:.8}
+.sktag{display:inline-block;font:700 11px var(--fb);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#2f6fb0;border-radius:99px;padding:3px 10px}.sktag.av{background:#8a1f24}
+.sktouch{display:none;position:absolute;right:0;bottom:0;padding:10px;gap:10px;pointer-events:none}
+.sktouch button{pointer-events:auto;width:62px;height:62px;border-radius:50%;background:rgba(10,20,40,.5);color:#fff;font:800 22px var(--fb);box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);touch-action:none}
+.sktouch button:active{background:rgba(143,208,255,.7)}
+@media (pointer:coarse){.sktouch{display:flex}.sk .tdmsg{top:10px;bottom:auto;font-size:13px}}
+.gmtag.snow{color:#2f6fb0;background:#dfeaf8}
 .gmq{aspect-ratio:20/12;display:grid;place-items:center;font:400 64px var(--fd);color:rgba(246,239,220,.3)}
 .gmcard.soon p{color:var(--mt)}
 @media (max-width:760px){.gmw{inset:0}.gm{border-radius:0}.gmbar{gap:6px 14px;padding:26px 12px 12px}.gmbody{padding:16px}}
@@ -1124,6 +1141,28 @@ button.gmcard:hover .gmplay{background:#238a56}
     <div class="gmbody"><div class="gmgrid" id="gmGrid"></div></div>
   </div>
 </div>
+<div class="tdw" id="skw" hidden role="dialog" aria-modal="true" aria-label="La Discesa, a ski trick game">
+  <div class="td sk">
+    <header class="tdbar">
+      <b class="tdlogo">La <i>Discesa</i></b>
+      <span class="tdst"><span title="Best score">🏆 <b id="skBest">0</b></span><span title="Furthest run">📏 <b id="skFar">0 m</b></span></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="skCash">0</b></span>
+      <button class="mclose" id="skClose" aria-label="Close La Discesa"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tdgrid">
+      <div class="tdfield" id="skField"><canvas id="skcv"></canvas><div class="tdmsg" id="skMsg"></div>
+        <div class="sktouch" id="skTouch"><button data-k="grab" aria-label="Grab">✋</button><button data-k="front" aria-label="Front flip">⟳</button></div>
+        <div class="tdov" id="skOv"></div></div>
+      <aside class="tdside">
+        <div class="tdp"><h4><span data-i="skRunH">This run</span></h4><dl class="tdrw" id="skRun"></dl></div>
+        <div class="tdp"><h4><span data-i="skGoalH">Goals</span><small data-i="skGoalS">each pays Duecks</small></h4><div id="skGoals"></div></div>
+        <div class="tdp"><h4><span data-i="skShopH">Ski hire</span><small data-i="fsShopS">paid in Duecks</small></h4><div id="skShop"></div></div>
+        <div class="tdp"><h4><span data-i="skRecH">Records</span></h4><dl class="tdrw" id="skRec"></dl></div>
+        <p class="tdhelp" data-i="skHelp"><b>Hold</b> (mouse, touch or <b>Space</b>) to crouch and pick up speed, let go to <b>jump</b>. In the air, <b>hold</b> or press <b>Left</b> to backflip, <b>Right</b> to frontflip, and <b>Z</b>, <b>X</b> or <b>C</b> to grab. Land with your skis along the slope, and let go of a grab before you touch down. Tricks chain into a <b>combo</b> while you keep landing them; it's banked when the bar runs out, and lost if you crash. Jump onto rails to grind, smash snowmen, dodge rocks, and stay ahead of the <b>avalanche</b>. <b>Down</b> tucks for speed. Every run pays Duecks.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div class="tdw" id="mfw" hidden role="dialog" aria-modal="true" aria-label="La Famiglia, a crime caper">
   <div class="td mf">
     <header class="tdbar">
@@ -1199,7 +1238,7 @@ const KEY="dueck-clicker-v1";
 let LANG="en";try{LANG=JSON.parse(localStorage.getItem(KEY)).lang==="it"?"it":"en"}catch(e){}
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. <b>Tieni premuto</b> per riavvolgere, lascia e l'esca affonda. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo. Poi tieni premuto e lascia per tenere il pesce nella barra verde finché non lo tiri su. I pesci rari stanno al largo e in profondità, e alcuni abboccano solo al tramonto o di notte. Appoggia l'esca su un tesoro sul fondo e tira per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve, evita le rocce e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. <b>Tieni premuto</b> per riavvolgere, lascia e l'esca affonda. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo. Poi tieni premuto e lascia per tenere il pesce nella barra verde finché non lo tiri su. I pesci rari stanno al largo e in profondità, e alcuni abboccano solo al tramonto o di notte. Appoggia l'esca su un tesoro sul fondo e tira per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1328,13 +1367,13 @@ B.slice(14).forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,
 [1,10,100].forEach((v,k)=>A.push({n:L(["Ascended","Royalty","Emperor"][k],["Asceso","Reale","Imperatore"][k]),d:L(`Own ${v} Crown${v>1?"s":""}.`,`Possiedi ${v} Coron${v>1?"e":"a"}.`),c:()=>S.crown>=v}));
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0}}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0}}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){if(!o||typeof o!=="object"||Array.isArray(o))throw new Error("bad save");const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.cv=new Set(o.cv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);
   ["pf","ord","lim","shs"].forEach(k=>{if(!S[k]||typeof S[k]!=="object"||Array.isArray(S[k]))S[k]={}});if(!Array.isArray(S.tips))S.tips=[];
   // crypto and casino data: older saves do not have it, and anything broken is replaced with safe defaults
-  if(!S.cx||typeof S.cx!=="object"||Array.isArray(S.cx))S.cx={};S.kas=Object.assign(fresh().kas,S.kas&&typeof S.kas==="object"&&!Array.isArray(S.kas)?S.kas:{});S.td=Object.assign(fresh().td,S.td&&typeof S.td==="object"&&!Array.isArray(S.td)?S.td:{});if(!Array.isArray(S.td.best))S.td.best=[0,0,0];S.fish=Object.assign(fresh().fish,S.fish&&typeof S.fish==="object"&&!Array.isArray(S.fish)?S.fish:{});if(!S.fish.sp||typeof S.fish.sp!=="object"||Array.isArray(S.fish.sp))S.fish.sp={};["n","earned","best"].forEach(k=>{if(typeof S.fish[k]!=="number"||!isFinite(S.fish[k]))S.fish[k]=0});S.fish.rod=Math.min(3,Math.max(0,S.fish.rod|0));S.fish.bait=Math.min(3,Math.max(0,S.fish.bait|0));S.mafia=Object.assign(fresh().mafia,S.mafia&&typeof S.mafia==="object"&&!Array.isArray(S.mafia)?S.mafia:{});["jobs","earned","rep","best"].forEach(k=>{if(typeof S.mafia[k]!=="number"||!isFinite(S.mafia[k])||S.mafia[k]<0)S.mafia[k]=0});S.mafia.car=Math.min(3,Math.max(0,S.mafia.car|0));["ctr","cprof"].forEach(k=>{if(typeof S[k]!=="number"||!isFinite(S[k]))S[k]=0});
+  if(!S.cx||typeof S.cx!=="object"||Array.isArray(S.cx))S.cx={};S.kas=Object.assign(fresh().kas,S.kas&&typeof S.kas==="object"&&!Array.isArray(S.kas)?S.kas:{});S.td=Object.assign(fresh().td,S.td&&typeof S.td==="object"&&!Array.isArray(S.td)?S.td:{});if(!Array.isArray(S.td.best))S.td.best=[0,0,0];S.fish=Object.assign(fresh().fish,S.fish&&typeof S.fish==="object"&&!Array.isArray(S.fish)?S.fish:{});if(!S.fish.sp||typeof S.fish.sp!=="object"||Array.isArray(S.fish.sp))S.fish.sp={};["n","earned","best"].forEach(k=>{if(typeof S.fish[k]!=="number"||!isFinite(S.fish[k]))S.fish[k]=0});S.fish.rod=Math.min(3,Math.max(0,S.fish.rod|0));S.fish.bait=Math.min(3,Math.max(0,S.fish.bait|0));S.ski=Object.assign(fresh().ski,S.ski&&typeof S.ski==="object"&&!Array.isArray(S.ski)?S.ski:{});["runs","earned","best","far","combo"].forEach(k=>{if(typeof S.ski[k]!=="number"||!isFinite(S.ski[k])||S.ski[k]<0)S.ski[k]=0});if(!Array.isArray(S.ski.gd))S.ski.gd=[];S.ski.gd=S.ski.gd.filter(x=>typeof x==="string");S.ski.ski=Math.min(3,Math.max(0,S.ski.ski|0));S.mafia=Object.assign(fresh().mafia,S.mafia&&typeof S.mafia==="object"&&!Array.isArray(S.mafia)?S.mafia:{});["jobs","earned","rep","best"].forEach(k=>{if(typeof S.mafia[k]!=="number"||!isFinite(S.mafia[k])||S.mafia[k]<0)S.mafia[k]=0});S.mafia.car=Math.min(3,Math.max(0,S.mafia.car|0));["ctr","cprof"].forEach(k=>{if(typeof S[k]!=="number"||!isFinite(S[k]))S[k]=0});
   if(o.ever==null)S.ever=S.all||0;S.buffs=[];S.lang=LANG;fixSpent()}
 // Laurels spent can only ever be what your Blessings cost (the first seven are free with the Crown upgrade that grants them).
 // A bug in the fishing shop once added Dueck prices here; this pulls it back down, and never raises it.
@@ -1349,6 +1388,7 @@ function load(){let r=null;try{r=localStorage.getItem(KEY)}catch(e){return}if(!r
   try{if(!localStorage.getItem(KEY+"-backup-before-casino"))localStorage.setItem(KEY+"-backup-before-casino",r)}catch(e){}
   try{if(!localStorage.getItem(KEY+"-backup-before-fishing"))localStorage.setItem(KEY+"-backup-before-fishing",r)}catch(e){}
   try{if(!localStorage.getItem(KEY+"-backup-before-famiglia"))localStorage.setItem(KEY+"-backup-before-famiglia",r)}catch(e){}
+  try{if(!localStorage.getItem(KEY+"-backup-before-discesa"))localStorage.setItem(KEY+"-backup-before-discesa",r)}catch(e){}
   try{hydrate(JSON.parse(r))}catch(e){LOADFAIL=true;S=fresh()}}
 function ser(){return JSON.stringify({...S,up:[...S.up],ach:[...S.ach],hv:[...S.hv],cv:[...S.cv],buffs:[],last:Date.now()})}
 function save(quiet){if(LOADFAIL){if(!quiet)toast(L("Saving is off","Salvataggio disattivato"),L("Your save couldn't be read, so it was left untouched. Nothing will be written over it.","Il salvataggio non è leggibile, quindi non è stato toccato. Non verrà sovrascritto."),8000);return false}
@@ -1511,7 +1551,7 @@ let ascArm=0;
 $("ascBtn").onclick=()=>{const gain=halosFor(S.all)-S.halo;if(gain<1)return;
   if(Date.now()-ascArm>3000){ascArm=Date.now();$("ascBtn").textContent=L(`Sure? Start over for +${fmt(gain)} Laurels`,`Sicuro? Ricomincia per +${fmt(gain)} Allori`);setTimeout(()=>{ascArm=0},3000);return}
   ascArm=0;const keep={all:S.all,halo:S.halo+gain,spent:S.spent,hv:S.hv,asc:S.asc+1,gold:S.gold,play:S.play,ach:S.ach,clicks:S.clicks,brand:S.brand,mute:S.mute};
-  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ctr:S.ctr,cprof:S.cprof});
+  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,ctr:S.ctr,cprof:S.cprof});
   S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));startShops();if(crn("c0"))S.d=1e9;
   lastUKey="";recalc();save(true);const p=hv("h14")?5:hv("h7")?3:2;toast(L("Reborn!","Rinascita!"),L(`+${fmt(gain)} Laurels. Production +${p}% each.`,`+${fmt(gain)} Allori. Produzione +${p}% ciascuno.`));blip(220,.4,"sine",.15)};
 const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("button");el.className="hu";
@@ -1540,7 +1580,7 @@ const crows=CR.map(([id,name,desc,cost])=>{const el=document.createElement("butt
 let crArm=0;
 $("ascendBtn").onclick=()=>{const g=crownsFor(S.halo);if(g<1)return;
   if(Date.now()-crArm>3000){crArm=Date.now();$("ascendBtn").textContent=L(`Sure? Lose ALL Laurels & Blessings for +${fmt(g)} Crowns`,`Sicuro? Perdi TUTTI gli Allori e le Benedizioni per +${fmt(g)} Corone`);setTimeout(()=>{crArm=0},3000);return}
-  crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ctr:S.ctr,cprof:S.cprof};
+  crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,ctr:S.ctr,cprof:S.cprof};
   S=Object.assign(fresh(),keep);if(crn("c6"))["h0","h1","h2","h3","h4","h5","h6"].forEach(id=>S.hv.add(id));if(crn("c0"))S.d=1e9;startShops();
   lastUKey="";recalc();toast(L("Ascended!","Asceso!"),L(`+${fmt(g)} Crowns. Every Crown is +10% production forever.`,`+${fmt(g)} Corone. Ogni Corona dà +10% di produzione per sempre.`),6000);blip(160,.6,"sine",.18)};
 function renderCrowns(){const free=S.crown-S.cspent,g=crownsFor(S.halo);
@@ -2422,7 +2462,7 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
 addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
@@ -3481,11 +3521,408 @@ function mini(c){const g=c.getContext("2d"),W=c.width,H=c.height,sc=.42,cx=VILLA
 return{open:openMF,close:closeMF,get isOpen(){return open},mini,stats:mfS,rank:()=>N(RANKS[rankI()][0]),_dbg:()=>({get P(){return P},get job(){return job},get wanted(){return wanted},set wanted(v){wanted=v},keys,cars:()=>cars,boom:(x,y)=>boom(x,y,null),startJob,makeOffers,VILLA,BANK,SHOPS,GARAGES,get offers(){return offers}})}})();
 
 
+// ===== La Discesa: a downhill trick run through the Dolomites =====
+// Hold to crouch, let go to jump. In the air, hold (or Left) to backflip, Right to frontflip, Z/X/C to grab.
+// Land with your skis along the slope. Chain tricks into combos, grind rails, smash snowmen, grab coins,
+// and stay ahead of the avalanche. Every run pays real Duecks, scaled by your production; goals pay bonuses.
+const SK=(()=>{
+const N=a=>L(a[0],a[1]);const rr=(a,b)=>a+Math.random()*(b-a);const cl=(v,a,b)=>Math.max(a,Math.min(b,v));const lerp=(a,b,k)=>a+(b-a)*k;
+const TAU=Math.PI*2,wrap=a=>{a=(a+Math.PI)%TAU;if(a<0)a+=TAU;return a-Math.PI};
+const GRAV=1150,DX=16,MPX=20;
+const base=()=>Math.max(G.cps||0,(G.click||1)*3,1);const priceOf=c=>Math.round(Math.max(c[0],base()*c[1]));
+const nf=n=>Math.round(n).toLocaleString(LANG==="it"?"it-IT":"en-US");
+const skS=()=>{if(!S.ski||typeof S.ski!=="object")S.ski={runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0};const k=S.ski;if(!Array.isArray(k.gd))k.gd=[];k.ski=cl(k.ski|0,0,3);return k};
+// skis: rs spin speed, lt landing tolerance (radians), sp top speed, mg coin magnet radius
+const SKIS=[{n:["Rental skis","Sci a noleggio"],rs:1,lt:.42,sp:1,mg:46,c:[0,0],col:"#b9b2a4",tip:"#8a8375"},
+ {n:["Carving skis","Sci da carving"],rs:1.14,lt:.5,sp:1.05,mg:76,c:[800,120],col:"#2f7fd0",tip:"#f0f4f8"},
+ {n:["Racing skis","Sci da gara"],rs:1.28,lt:.56,sp:1.1,mg:110,c:[12000,900],col:"#c9252b",tip:"#f6f6f6"},
+ {n:["The Golden Skis","Gli Sci d'Oro"],rs:1.46,lt:.64,sp:1.16,mg:160,c:[150000,6000],col:"#e8b52c",tip:"#fff2b4"}];
+const sk=()=>SKIS[skS().ski];
+// goals: three are open at a time, each pays base() × p Duecks the moment you do it
+const GOALS=[
+ {id:"g1",n:["Land a backflip","Atterra un salto indietro"],f:"flip",v:1,p:15},
+ {id:"g2",n:["Score 2,000 in one run","Fai 2.000 punti in una discesa"],f:"score",v:2000,p:20},
+ {id:"g3",n:["Grind a rail","Scivola su un binario"],f:"grind",v:1,p:20},
+ {id:"g4",n:["Grab 20 coins in one run","Prendi 20 monete in una discesa"],f:"coins",v:20,p:25},
+ {id:"g5",n:["Ski 800 m","Scia per 800 m"],f:"dist",v:800,p:30},
+ {id:"g6",n:["Smash 3 snowmen in one run","Abbatti 3 pupazzi di neve"],f:"snow",v:3,p:30},
+ {id:"g7",n:["Land a double flip","Atterra un doppio salto"],f:"flip",v:2,p:45},
+ {id:"g8",n:["Chain a ×5 combo","Fai una combo ×5"],f:"combo",v:5,p:50},
+ {id:"g9",n:["Score 10,000 in one run","Fai 10.000 punti in una discesa"],f:"score",v:10000,p:60},
+ {id:"g10",n:["Hold one grab for 1.5 s","Tieni una presa per 1,5 s"],f:"grabT",v:1.5,p:60},
+ {id:"g11",n:["5 perfect landings in one run","5 atterraggi perfetti in una discesa"],f:"perf",v:5,p:80},
+ {id:"g12",n:["Ski 2,500 m","Scia per 2.500 m"],f:"dist",v:2500,p:100},
+ {id:"g13",n:["Land a triple flip","Atterra un triplo salto"],f:"flip",v:3,p:150},
+ {id:"g14",n:["Chain a ×10 combo","Fai una combo ×10"],f:"combo",v:10,p:200},
+ {id:"g15",n:["Score 50,000 in one run","Fai 50.000 punti in una discesa"],f:"score",v:50000,p:300},
+ {id:"g16",n:["Grind 8 rails in one run","Scivola su 8 binari in una discesa"],f:"grind",v:8,p:300},
+ {id:"g17",n:["Ski 5,000 m","Scia per 5.000 m"],f:"dist",v:5000,p:450},
+ {id:"g18",n:["Score 150,000 in one run","Fai 150.000 punti in una discesa"],f:"score",v:150000,p:800}];
+const GRABS={mute:["Mute grab","Presa mute"],japan:["Japan grab","Presa japan"],tail:["Tail grab","Presa di coda"]};
+const cv=$("skcv");
+let open=false,raf=0,lastF=0,lay={},t=0,uiT=0,msgT=0,st="ready",P=null,T=null,gen=null,R=null,combo=null,cam={x:0,y:0,z:1},av=null,tod=.33,shake=0,keys={},hold=false,sfxT=0,flakes=[];
+let rails=[],rocks=[],snowmen=[],coins=[],deco=[],cliffs=[],parts=[],pops=[],track=[],scarf=[];
+// ---------- the mountain ----------
+function h(x){const f=x/DX-T.off,i=Math.floor(f),a=T.y[i],b=T.y[i+1];if(a===undefined)return i<0?T.y[0]:T.y[T.y.length-1];if(b===undefined)return a;return a+(b-a)*(f-i)}
+const slope=x=>Math.atan2(h(x+7)-h(x-7),14);
+const gx=()=>(T.off+T.y.length-1)*DX;
+function push(a,dy=0){gen.y+=Math.tan(a)*DX+dy;gen.a=a;T.y.push(gen.y)}
+function ease(a0,a1,n,fn){for(let i=1;i<=n;i++){const k=i/n,e=.5-.5*Math.cos(k*Math.PI);push(a0+(a1-a0)*e+(fn?fn(i,k):0))}}
+const D=()=>cl(gx()/110000,0,1);
+// trees, rocks, snowmen and coins on an ordinary stretch of slope
+function sprinkle(x0,x1,safe){const L_=x1-x0;if(L_<80)return;
+  for(let x=x0+rr(10,90);x<x1;x+=rr(50,190))deco.push({k:"tree",x,s:rr(.7,1.35),b:Math.random()<.55});
+  if(safe)return;
+  const nr=gx()<3000?0:Math.random()<.3+D()*.5?1+(Math.random()<D()?1:0):0;
+  for(let i=0;i<nr;i++){const x=x0+rr(.45,.88)*L_;if(rocks.some(r=>Math.abs(r.x-x)<200))continue;rocks.push({x,r:rr(17,23)+D()*6,sd:Math.random()*9})}
+  if(Math.random()<.45){const x=x0+rr(.15,.9)*L_;if(!rocks.some(r=>Math.abs(r.x-x)<90))snowmen.push({x,s:rr(.9,1.15),hat:Math.random()<.5})}
+  if(Math.random()<.55){const n=5+(Math.random()*5|0),xs=x0+rr(.1,.4)*L_,arc=Math.random()<.5;for(let i=0;i<n;i++){const x=xs+i*38;if(x>x1-20)break;coins.push({x,y:h(x)-30-(arc?Math.sin(i/(n-1)*Math.PI)*60:0)})}}}
+function fRun(){const x0=gx(),n=Math.round(rr(28,58)),a1=rr(.27,.42),ph=Math.random()*9,amp=rr(.02,.07);ease(gen.a,a1,n,(i,k)=>Math.sin(ph+i*.23)*amp*Math.sin(k*Math.PI));sprinkle(x0,gx())}
+function fKick(){const big=rr(.85,1.2)+D()*.45;ease(gen.a,.2,7);const x0=gx();sprinkle(x0-120,x0-30,1);
+  ease(.2,-.42*big-.12,Math.round(7*big));const lx=gx(),ly=gen.y,la=gen.a;deco.push({k:"kick",x:lx,y:ly,x0});
+  push(.62,rr(26,60)*big);ease(.62,.52,6);const xl=gx();ease(.52,.34,32);sprinkle(xl+200,gx(),1);
+  // a line of coins along the flight you'd take at a decent speed
+  const v=620+D()*120,vx=v*Math.cos(la),vy=v*Math.sin(la);for(let i=1;i<=7;i++){const tt=i*.13;coins.push({x:lx+vx*tt,y:ly+vy*tt+.5*GRAV*tt*tt-24})}}
+function fCliff(){ease(gen.a,.12,10);const x=gx(),y1=gen.y,dr=rr(130,220)+D()*230;push(.12,dr);cliffs.push({x,y1,y2:gen.y});deco.push({k:"warn",x:x-170});
+  ease(.68,.56,5);ease(.56,.34,34);sprinkle(x+420,gx(),1)}
+function fRail(){const a=rr(.2,.36);ease(gen.a,a,7);const x1=gx(),y1=gen.y,n=Math.round(rr(14,28)+D()*12);for(let i=0;i<n;i++)push(a);const x2=gx(),y2=gen.y,off=rr(26,36);
+  const r={x1,y1:y1-off,x2,y2:y2-off,a:Math.atan2(y2-y1,x2-x1),k:Math.random()<.5?"wood":"pipe"};rails.push(r);
+  for(let x=x1+30;x<x2-10;x+=44)coins.push({x,y:r.y1+(x-x1)*Math.tan(r.a)-26});ease(a,.34,12);sprinkle(x2+60,gx(),1)}
+function fRoll(){const nb=2+(Math.random()*2|0);for(let b=0;b<nb;b++){ease(gen.a,-.26-D()*.12,7);push(.56);ease(.56,.32,9)}const x0=gx();ease(.32,.34,10);sprinkle(x0,gx(),1)}
+function fVillage(){const x0=gx();ease(gen.a,.16,46,(i)=>Math.sin(i*.3)*.015);const x1=gx();
+  deco.push({k:"chalet",x:x0+rr(140,240),s:rr(.9,1.1),flip:Math.random()<.5});if(Math.random()<.6)deco.push({k:"chalet",x:x0+rr(470,600),s:rr(.75,.95)});
+  for(let x=x0+60;x<x1;x+=rr(100,160))if(Math.random()<.5)deco.push({k:"flag",x,c:["#2f8f4e","#f6f6f6","#c9252b"][Math.random()*3|0]});
+  for(let i=0;i<2;i++)snowmen.push({x:x0+rr(.2,.9)*(x1-x0),s:rr(.9,1.15),hat:Math.random()<.6});
+  for(let i=0;i<6;i++)coins.push({x:x0+300+i*40,y:h(x0+300+i*40)-30});ease(.16,.34,12)}
+let lastF_="";
+function feature(){const d=D(),m=gx()/MPX,opts=[["run",3],["kick",3.2],["rail",2.2],["roll",1.6],["cliff",m>350?1.6+d*1.4:0],["village",m>250&&lastF_!=="village"?.8:0]];
+  let tot=opts.reduce((a,o)=>a+o[1],0),r=Math.random()*tot,k="run";for(const o of opts){r-=o[1];if(r<=0){k=o[0];break}}
+  if(k===lastF_&&k!=="run")k="run";lastF_=k;({run:fRun,kick:fKick,rail:fRail,roll:fRoll,cliff:fCliff,village:fVillage})[k]()}
+function genTo(x){while(gx()<x)feature()}
+function prune(){const cut=Math.min(P.x,av?av.x:P.x)-1600;const k=Math.floor(cut/DX)-T.off;if(k>200){T.y.splice(0,k);T.off+=k}
+  const ok=o=>(o.x2??o.x)>cut;rails=rails.filter(ok);rocks=rocks.filter(ok);snowmen=snowmen.filter(ok);coins=coins.filter(c=>ok(c)&&!c.got);deco=deco.filter(ok);cliffs=cliffs.filter(ok)}
+function reset(){T={off:-60,y:[0]};gen={y:0,a:.02};rails=[];rocks=[];snowmen=[];coins=[];deco=[];cliffs=[];parts=[];pops=[];track=[];scarf=[];lastF_="";
+  for(let i=0;i<70;i++)push(.02);deco.push({k:"rifugio",x:-330},{k:"gate",x:22},{k:"tree",x:-520,s:1.2,b:0},{k:"tree",x:-150,s:.9,b:1},{k:"flag",x:240,c:"#2f8f4e"},{k:"flag",x:320,c:"#c9252b"});
+  ease(.02,.3,14);fRun();fKick();genTo(5000);
+  P={x:0,y:h(0),vx:0,vy:0,sp:0,ang:0,av:0,gr:true,cr:0,charge:0,air:null,rail:null,grab:null,rag:null,skis:null};
+  R={score:0,dist:0,coins:0,flip:0,grind:0,snow:0,combo:0,comboPts:0,perf:0,grabT:0,tricks:0,time:0,goalPay:0,x0:0};
+  combo={n:0,pts:0,t:0,list:[]};av={x:-1700,v:0,on:false};cam={x:P.x+180,y:P.y-30,z:1};tod=rr(.3,.4);st="ready";shake=0;hold=false}
+// ---------- tricks and combos ----------
+function pop(txt,col,big){pops.push({x:P.x,y:P.y-70-pops.filter(p=>p.t<.6).length*22,txt,col:col||"#fff",t:0,big})}
+function trick(name,pts,col){combo.n++;combo.pts+=pts;combo.t=1.9;combo.list.push(name);if(combo.list.length>4)combo.list.shift();R.tricks++;R.combo=Math.max(R.combo,combo.n);
+  pop(`${name} +${nf(pts)}`,col);SFX.tone(660*Math.pow(1.06,Math.min(combo.n,14)),.09,"triangle",.05);if(combo.n>=3)SFX.tone(1320*Math.pow(1.06,Math.min(combo.n,14)),.07,"sine",.03,.06);goals()}
+function bank(){if(!combo.n)return;const v=combo.pts*combo.n;R.score+=v;if(v>R.comboPts)R.comboPts=v;if(combo.n>1){pop(L(`Combo ×${combo.n}  +${nf(v)}`,`Combo ×${combo.n}  +${nf(v)}`),"#ffe08a",1);SFX.coin()}combo={n:0,pts:0,t:0,list:[]};goals()}
+function flipName(n,back){const b=back?["Backflip","Salto indietro"]:["Frontflip","Salto in avanti"],pre=[["",""],["",""],["Double ","Doppio "],["Triple ","Triplo "],["Quad ","Quadruplo "]];
+  if(n<=4)return L(pre[n][0]+b[0],(pre[n][1]+b[1]).replace("Doppio Salto","Doppio salto").replace("Triplo Salto","Triplo salto").replace("Quadruplo Salto","Quadruplo salto"));return L(`${n}× ${b[0]}`,`${n}× ${b[1]}`)}
+// ---------- goals ----------
+function goalVal(g){return g.f==="score"?R.score:g.f==="dist"?R.dist:R[g.f]||0}
+function openGoals(){const d=new Set(skS().gd);return GOALS.filter(g=>!d.has(g.id)).slice(0,3)}
+function goals(){if(!R||st==="ready")return;for(const g of openGoals())if(goalVal(g)>=g.v){const s=skS();s.gd.push(g.id);const pay=Math.round(base()*g.p);earn(pay);s.earned+=pay;R.goalPay+=pay;
+  msg(L(`Goal done: ${N(g.n)} · +${fmt(pay)} Duecks`,`Obiettivo: ${N(g.n)} · +${fmt(pay)} Dueck`),3.5);SFX.bell();for(let i=0;i<(PERF?14:40);i++)parts.push({k:"conf",x:P.x+rr(-60,60),y:P.y-rr(40,140),vx:rr(-200,200)+P.vx,vy:rr(-380,-80),life:rr(1,1.8),max:1.8,r:rr(3,6),col:["#2f8f4e","#ffffff","#c9252b","#f0c040"][i%4],a:Math.random()*6,va:rr(-12,12)});ui(true)}}
+// ---------- input ----------
+const kBack=()=>keys.ArrowLeft||keys.a||keys.A,kFront=()=>keys.ArrowRight||keys.d||keys.D||keys.front,kTuck=()=>keys.ArrowDown||keys.s||keys.S;
+const kGrab=()=>keys.z||keys.Z||keys.grab?"mute":keys.x||keys.X?"japan":keys.c||keys.C?"tail":null;
+function press(){if(st==="done"||st==="crash")return;hold=true;if(st==="ready"){st="run";P.sp=240;R.x0=P.x;deco.forEach(d=>{if(d.k==="gate")d.open=1});SFX.bell();msg(L("Go! Hold to crouch, let go to jump. Hold in the air to flip.","Via! Tieni premuto per accovacciarti, lascia per saltare. Tieni premuto in aria per il salto mortale."),4)}}
+function release(){if(!hold)return;hold=false;if(st!=="run")return;
+  if(P.gr||P.rail){const th=P.rail?P.rail.a:slope(P.x),imp=300+P.charge*330;if(P.rail)endGrind();
+    P.vx=P.sp*Math.cos(th)+imp*Math.sin(th);P.vy=P.sp*Math.sin(th)-imp*Math.cos(th);P.y-=2;takeoff();P.charge=0;
+    SFX.hiss(.12,1800,1,.06);SFX.tone(240,.08,"sine",.05,0,420);puff(P.x,P.y,8,"#fff",.6)}}
+function takeoff(){P.gr=false;P.air={t:0,rot:0,shown:0,grabT:0,grabs:new Set(),maxG:0};track.push(null)}
+// ---------- physics ----------
+function step(dt){t+=dt;
+  if(st==="run"||st==="crash"){R.time+=dt;const n=Math.ceil(dt/.004),h_=dt/n;for(let i=0;i<n;i++){if(st==="run")sub(h_);else if(st==="crash")rag(h_)}
+    if(st==="run"){R.dist=Math.max(R.dist,(P.x-R.x0)/MPX);if(combo.n&&!P.rail&&!(P.air&&(Math.abs(P.av)>2||P.grab))){combo.t-=dt;if(combo.t<=0)bank()}}
+    tod=(tod+dt*Math.max(0,P.vx)/MPX/9000)%1;
+    // the avalanche
+    if(st==="run"&&R.time>2.5){av.on=true;av.v=Math.min(990,500+R.time*6+R.dist*.04);av.x+=av.v*dt;if(P.x-av.x>1750)av.x=P.x-1750;if(av.x>P.x-16){crash(L("Caught by the avalanche!","Travolto dalla valanga!"),1)}}
+    else if(av.on){av.x+=av.v*dt}
+    const gap=P.x-av.x;if(av.on&&gap<900&&(sfxT<=0))SFX.hiss(.4,140,.7,.16*(1-gap/900),0,"lowpass",.05);
+    genTo(P.x+4200);prune()}
+  else if(st==="ready"){P.cr=lerp(P.cr,hold?1:.15,Math.min(1,dt*10))}
+  // sounds of speed
+  sfxT-=dt;if(sfxT<=0&&st==="run"){sfxT=.11;const sp=Math.hypot(P.vx,P.vy);SFX.hiss(.24,380+sp*.9,.6,Math.min(.07,sp/14000));if(P.gr)SFX.hiss(.12,2300+Math.random()*600,1.4,Math.min(.035,sp/26000));if(P.rail){SFX.hiss(.1,5400,7,.05);SFX.tone(2600+Math.random()*400,.05,"square",.008)}}
+  // particles
+  for(const p of parts){p.life-=dt;p.vy+=(p.k==="snow"||p.k==="conf"?380:p.k==="spark"?900:p.k==="smoke"?-30:0)*dt;p.vx*=Math.exp(-(p.k==="snow"?1.6:.6)*dt);p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.va)p.a+=p.va*dt}
+  parts=parts.filter(p=>p.life>0);if(parts.length>700)parts.splice(0,parts.length-700);
+  for(const p of pops){p.t+=dt;p.y-=28*dt}pops=pops.filter(p=>p.t<1.6);
+  shake=Math.max(0,shake-dt*2.2);
+  // camera
+  const gb=h(P.x+P.vx*.12),air=Math.max(0,gb-P.y),spd=Math.hypot(P.vx,P.vy);
+  const tz=cl(1.32-spd/3400-air/1500,.62,1.3);cam.z+=(tz-cam.z)*Math.min(1,dt*1.4);
+  const tx=P.x+cl(P.vx,0,1500)*.13+70,ty=P.y*.62+h(P.x+320)*.38+Math.min(air,500)*.42-40;
+  cam.x+=(tx-cam.x)*Math.min(1,dt*7);cam.y+=(ty-cam.y)*Math.min(1,dt*4.5);
+  // the scarf trails from the neck
+  const nk=neck();scarf.unshift(nk);if(scarf.length>8)scarf.length=8}
+function neck(){const c=P.cr||0,lx=4+c*5,ly=-38+c*12,ca=Math.cos(P.ang),sa=Math.sin(P.ang);return{x:P.x+lx*ca-ly*sa,y:P.y+lx*sa+ly*ca}}
+function sub(dt){const k=sk();
+  if(P.rail){grind(dt,k);return}
+  if(P.gr){const th=Math.atan2(h(P.x)-h(P.x-3),3),tk=hold||kTuck();P.cr=lerp(P.cr,hold?1:kTuck()?.7:0,Math.min(1,dt*12));if(hold)P.charge=Math.min(1,P.charge+dt*2.4);
+    const drag=(tk?.000165:.00033)/(k.sp*k.sp);P.sp+=(GRAV*Math.sin(th)-30-drag*P.sp*P.sp)*dt;P.sp=Math.max(P.sp,170);
+    P.vx=P.sp*Math.cos(th);P.vy=P.sp*Math.sin(th);const nx=P.x+P.vx*dt,ball=P.y+P.vy*dt+.5*GRAV*dt*dt,gy=h(nx);
+    if(gy>ball+1.8){P.x=nx;P.y=ball;P.vy+=GRAV*dt;takeoff()}else{P.x=nx;P.y=gy;P.ang+=wrap(th-P.ang)*Math.min(1,dt*20)}
+    if(Math.random()<dt*60*Math.min(1,P.sp/700))spray(th);
+    if(!track.length||track[track.length-1]===null||P.x-track[track.length-1].x>12){track.push({x:P.x,y:P.y});if(track.length>500)track.splice(0,track.length-500)}}
+  else{const a=P.air;a.t+=dt;const gr=kGrab();
+    const dir=(kBack()||hold)?-1:kFront()?1:0;
+    if(dir){P.av+=dir*30*k.rs*dt;const m=(gr?5.4:7.6)*k.rs;P.av=cl(P.av,-m,m)}else{P.av*=Math.exp(-5.5*dt);
+      if(Math.abs(P.av)<1.6){const tg=slope(P.x+P.vx*.14),d=wrap(tg-P.ang)*Math.min(1,dt*2.6);P.ang+=d;a.rot+=d}}
+    P.ang+=P.av*dt;a.rot+=P.av*dt;P.cr=lerp(P.cr,gr?.9:dir?.75:.25,Math.min(1,dt*10));
+    if(gr){if(P.grab!==gr){P.grab=gr;P.gT=0}P.gT+=dt;a.grabT+=dt;a.maxG=Math.max(a.maxG,P.gT);a.grabs.add(gr);R.grabT=Math.max(R.grabT,P.gT)}else P.grab=null;
+    const nf_=Math.floor((Math.abs(a.rot)+.6)/TAU);if(nf_>a.shown){a.shown=nf_;pop(nf_===1?L("Flip!","Salto!"):`${nf_}×!`,"#bfe6ff");SFX.tone(980+nf_*160,.06,"square",.03)}
+    const py=P.y;P.vy+=GRAV*dt;P.x+=P.vx*dt;P.y+=P.vy*dt;
+    if(P.vy>0)for(const r of rails){if(P.x<r.x1||P.x>r.x2)continue;const ry=r.y1+(P.x-r.x1)*Math.tan(r.a);if(py<=ry+1.5&&P.y>=ry-.5&&Math.abs(wrap(P.ang-r.a))<k.lt+.55&&!gr){P.y=ry;startGrind(r);return}}
+    const gy=h(P.x);if(P.y>=gy){P.y=gy;land(k)}}
+  // things in the way
+  for(const r of rocks){if(Math.abs(P.x-r.x)<r.r*.9&&P.y>h(r.x)-r.r*1.25){crash(L("Hit a rock!","Contro una roccia!"));return}}
+  for(const s of snowmen){if(!s.hit&&Math.abs(P.x-s.x)<18&&P.y>h(s.x)-52*s.s){s.hit=1;R.snow++;P.sp*=.94;P.vx*=.94;trick(L("Snowman!","Pupazzo!"),150,"#ffffff");shake=Math.max(shake,.25);
+    SFX.hiss(.3,900,.8,.25);SFX.tone(160,.15,"sine",.12,0,80);for(let i=0;i<(PERF?12:30);i++)parts.push({k:"snow",x:s.x+rr(-12,12),y:h(s.x)-rr(10,50),vx:P.vx*.6+rr(-150,250),vy:rr(-420,-60),life:rr(.6,1.2),max:1.2,r:rr(2.5,6),col:"#ffffff"})}}
+  for(const c of coins){if(c.got)continue;const dx=P.x-c.x,dy=P.y-22-c.y,d=Math.hypot(dx,dy);if(d<k.mg){c.x+=dx*Math.min(1,dt*9);c.y+=dy*Math.min(1,dt*9)}
+    if(d<24){c.got=1;R.coins++;R.score+=10;SFX.tone(1760+Math.min(R.coins%12,11)*60,.07,"square",.025);for(let i=0;i<5;i++)parts.push({k:"gold",x:c.x,y:c.y,vx:rr(-90,90)+P.vx*.5,vy:rr(-160,20),life:.45,max:.45,r:2.4,col:"#ffe08a"});if(R.coins%10===0)goals()}}}
+function land(k){const a=P.air,th=slope(P.x),d=Math.abs(wrap(P.ang-th)),along=P.vx*Math.cos(th)+P.vy*Math.sin(th),norm=Math.max(0,-P.vx*Math.sin(th)+P.vy*Math.cos(th));
+  P.gr=true;P.air=null;P.sp=Math.max(170,along);P.av=0;const g=P.grab;P.grab=null;
+  if(!a||(a.t<.32&&Math.abs(a.rot)<1)){P.ang=th;return}
+  const flips=Math.floor((Math.abs(a.rot)+.6)/TAU);
+  if(d>k.lt+.48||(g&&d>k.lt)){crash(g?L("Let go of the grab before you land!","Molla la presa prima di atterrare!"):L("Wipeout!","Che caduta!"));return}
+  P.ang=th;const thud=Math.min(1,norm/900);shake=Math.max(shake,thud*.5);SFX.tone(95,.14,"sine",.06+thud*.12,0,55);SFX.hiss(.18,1200,.6,.08+thud*.15);
+  for(let i=0;i<(PERF?8:10+thud*26);i++)spray(th,1.6);
+  let mult=1,late=false;if(g){late=true;mult=.5;P.sp*=.8}
+  if(flips){R.flip=Math.max(R.flip,flips);trick(flipName(flips,a.rot<0),Math.round(400*flips*(flips+1)/2*mult),"#bfe6ff")}
+  for(const gn of a.grabs)trick(N(GRABS[gn]),Math.round((180+a.grabT/a.grabs.size*520)*mult),"#ffd0a0");
+  if(a.t>2.6)trick(L("Huge air","Volo enorme"),Math.round(a.t*160),"#d8c8ff");else if(a.t>1.5)trick(L("Big air","Gran volo"),Math.round(a.t*110),"#d8c8ff");
+  if(late){pop(L("Late release","Presa lunga"),"#ff9a8a");P.cr=1}
+  else if(d<.12&&(flips||a.t>.9)){R.perf++;P.sp=Math.min(P.sp*1.07+40,1700);trick(L("Perfect landing","Atterraggio perfetto"),250,"#9cf0a8");SFX.tone(1568,.12,"sine",.05,.04);for(let i=0;i<10;i++)parts.push({k:"gold",x:P.x+rr(-20,20),y:P.y-rr(0,20),vx:rr(-200,200),vy:rr(-300,-60),life:.6,max:.6,r:2.2,col:"#bff7c8"})}
+  else if(d>k.lt){P.sp*=.74;pop(L("Sketchy!","Traballante!"),"#ffb38a");P.cr=1}
+  goals()}
+function startGrind(r){P.rail=r;P.gT=0;P.ang=r.a;P.av=0;const a=P.air;P.air=null;P.gr=false;
+  if(a){const fl=Math.floor((Math.abs(a.rot)+.6)/TAU);if(fl){R.flip=Math.max(R.flip,fl);trick(flipName(fl,a.rot<0),Math.round(400*fl*(fl+1)/2),"#bfe6ff")}}
+  P.sp=Math.max(220,P.vx*Math.cos(r.a)+P.vy*Math.sin(r.a));SFX.tone(1900,.1,"square",.03);SFX.hiss(.15,4000,3,.12);combo.t=Math.max(combo.t,1.9);track.push(null)}
+function grind(dt,k){const r=P.rail;P.sp+=(GRAV*Math.sin(r.a)*.85-12)*dt;P.sp=Math.max(P.sp,200);P.x+=P.sp*Math.cos(r.a)*dt;P.y=r.y1+(P.x-r.x1)*Math.tan(r.a);P.ang=r.a;P.gT+=dt;P.vx=P.sp*Math.cos(r.a);P.vy=P.sp*Math.sin(r.a);
+  P.cr=lerp(P.cr,hold?1:.45,Math.min(1,dt*12));if(hold)P.charge=Math.min(1,P.charge+dt*2.4);
+  if(Math.random()<dt*70)parts.push({k:"spark",x:P.x+rr(-8,8),y:P.y,vx:-P.vx*rr(.1,.4)+rr(-80,80),vy:rr(-260,-40),life:rr(.2,.45),max:.45,r:1.6,col:Math.random()<.5?"#fff3b0":"#ffb347"});
+  if(P.x>=r.x2){endGrind();takeoff()}}
+function endGrind(){const r=P.rail;if(!r)return;P.rail=null;R.grind++;trick(L("Rail grind","Scivolata"),Math.round(200+P.gT*460),"#ffe08a")}
+function spray(th,f=1){const sp=Math.min(1,P.sp/900);parts.push({k:"snow",x:P.x-Math.cos(th)*rr(4,22),y:P.y-rr(0,4),vx:-P.vx*rr(.05,.3)*f+rr(-60,60)*f,vy:-rr(60,260)*sp*f,life:rr(.35,.8),max:.8,r:rr(1.4,3.4)*f,col:"#ffffff"})}
+function puff(x,y,n,col,f){for(let i=0;i<(PERF?Math.ceil(n/2):n);i++)parts.push({k:"snow",x:x+rr(-10,10),y:y-rr(0,8),vx:rr(-120,120)*f,vy:-rr(40,200)*f,life:rr(.3,.7),max:.7,r:rr(1.5,3.5),col})}
+function crash(why,byAv){if(st!=="run")return;st="crash";P.why=why;P.byAv=byAv;P.crT=0;if(P.rail)P.rail=null;
+  if(combo.n){pop(L("Combo lost","Combo persa"),"#ff8a7a");combo={n:0,pts:0,t:0,list:[]}}
+  const vx=P.gr?P.sp*Math.cos(P.ang):P.vx,vy=P.gr?P.sp*Math.sin(P.ang)-200:P.vy;
+  P.rag={vx:vx*.85,vy:Math.min(vy,0)-180,spin:rr(6,11)*(Math.random()<.5?-1:1)};
+  P.skis=[0,1].map(i=>({x:P.x+(i?10:-10),y:P.y-4,vx:vx*rr(.5,1)+rr(-120,120),vy:-rr(250,520),a:P.ang,va:rr(-16,16)}));P.grab=null;P.gr=false;P.air=null;
+  shake=.7;SFX.hiss(.6,600,.6,.3);SFX.tone(120,.35,"sine",.2,0,45);SFX.lose();for(let i=0;i<(PERF?16:44);i++)spray(P.ang,2)}
+function rag(dt){P.crT+=dt;const g=P.rag;g.vy+=GRAV*dt;P.x+=g.vx*dt;P.y+=g.vy*dt;P.ang+=g.spin*dt;const gy=h(P.x);
+  if(P.y>gy){P.y=gy;const th=slope(P.x);if(g.vy>60){g.vy*=-.32;g.vx*=.78;g.spin*=.65;if(Math.abs(g.vy)>120)for(let i=0;i<6;i++)spray(th,1.2)}else{g.vy=0;g.vx*=Math.exp(-2.2*dt);g.spin*=Math.exp(-4*dt)}}
+  P.vx=g.vx;P.vy=g.vy;
+  for(const s of P.skis){s.vy+=GRAV*dt;s.x+=s.vx*dt;s.y+=s.vy*dt;s.a+=s.va*dt;const y=h(s.x);if(s.y>y){s.y=y;s.vy*=-.3;s.vx*=.7;s.va*=.6}}
+  if(P.crT>2.1)finish()}
+function finish(silent){if(st!=="run"&&st!=="crash")return;bank();const s=skS(),pay=Math.round(base()*(R.score/250+R.coins*.4));st="done";
+  if(pay>0){earn(pay);s.earned+=pay}s.runs++;const best=R.score>s.best&&R.score>0;s.best=Math.max(s.best,R.score);s.far=Math.max(s.far,Math.round(R.dist));s.combo=Math.max(s.combo,R.combo);
+  if(silent)return;showResult(pay,best);if(best){SFX.win(2);coinRain(PERF?8:24)}ui(true)}
+// ---------- drawing ----------
+function mixC(a,b,k){const p=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)),x=p(a),y=p(b);return"rgb("+x.map((v,i)=>Math.round(v+(y[i]-v)*k)).join(",")+")"}
+// sky keyframes over the day: [time, top, horizon, light on the snow, alpenglow strength]
+const SKY=[[0,"#0a0f2c","#25305a","#5a6a96",0],[.2,"#16204c","#5a5a8c","#7a86b0",0],[.25,"#3a4a8a","#f0a27c","#dcc6d6",.7],[.31,"#3f8fd8","#bfe3f6","#ffffff",0],
+  [.43,"#3a86d0","#d6ecf6","#ffffff",0],[.48,"#4a6ab8","#f6c28a","#ffe6d0",.5],[.52,"#3a3c86","#f28a6a","#f4c2c6",1],[.57,"#1c214e","#7a4c80","#9a90c0",.4],[.66,"#0a0f2c","#25305a","#5a6a96",0],[1,"#0a0f2c","#25305a","#5a6a96",0]];
+function sky(){let i=0;while(i<SKY.length-2&&tod>=SKY[i+1][0])i++;const a=SKY[i],b=SKY[i+1],k=(tod-a[0])/(b[0]-a[0]||1);return{top:mixC(a[1],b[1],k),hor:mixC(a[2],b[2],k),lit:mixC(a[3],b[3],k),glow:a[4]+(b[4]-a[4])*k,night:tod<.24||tod>.6}}
+// mountain ridges: periodic so they tile forever
+const RIDGE=[0,1,2].map(l=>{const n=512,o=new Float32Array(n),ph=[...Array(24)].map(()=>Math.random()*TAU);for(let i=0;i<n;i++){let v=0;for(let k=1;k<=24;k++)v+=Math.sin(TAU*k*i/n+ph[k-1])/Math.pow(k,l===0?.85:1.05);o[i]=v}
+  let mn=Math.min(...o),mx=Math.max(...o);for(let i=0;i<n;i++)o[i]=(o[i]-mn)/(mx-mn);
+  if(l<2)for(let s=0;s<(l?9:7);s++){const c=Math.random()*n|0,w=4+Math.random()*(l?7:10),hh=.25+Math.random()*.35;for(let j=-w*2;j<=w*2;j++){const ii=(c+j+n)%n,q=1-Math.abs(j)/(w*2);if(q>0)o[ii]=Math.max(o[ii],o[ii]*.6+hh+Math.pow(q,.6)*.45*(1+Math.sin(j*1.7)*.12))}}
+  mn=Math.min(...o);mx=Math.max(...o);for(let i=0;i<n;i++)o[i]=(o[i]-mn)/(mx-mn);return o});
+const STARS=[...Array(90)].map(()=>[Math.random(),Math.random()*.55,Math.random()*1.3+.3,Math.random()*6]);
+function ridgeAt(l,u){const r=RIDGE[l],n=r.length,f=((u%n)+n)%n,i=f|0,k=f-i;return r[i]+(r[(i+1)%n]-r[i])*k}
+function backdrop(g,W,H,sk_){const gr=g.createLinearGradient(0,0,0,H*.8);gr.addColorStop(0,sk_.top);gr.addColorStop(1,sk_.hor);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  if(sk_.night||tod<.27||tod>.55){const a=sk_.night?1:.35;g.fillStyle="#fff";for(const s of STARS){g.globalAlpha=a*(.45+.55*Math.sin(t*1.6+s[3]))*.9;g.fillRect(s[0]*W,s[1]*H,s[2],s[2])}g.globalAlpha=1}
+  // sun or moon on an arc
+  const sa=(tod-.25)/.32,ma=((tod+.5)%1-.25)/.32;
+  if(sa>-.1&&sa<1.1){const x=W*(.1+sa*.8),y=H*(.62-Math.sin(cl(sa,0,1)*Math.PI)*.5);const rg=g.createRadialGradient(x,y,0,x,y,H*.28);rg.addColorStop(0,"rgba(255,240,200,.55)");rg.addColorStop(1,"rgba(255,220,160,0)");g.fillStyle=rg;g.fillRect(x-H*.3,y-H*.3,H*.6,H*.6);g.fillStyle=sa>.8||sa<.15?"#ffcf8a":"#fff6dc";g.beginPath();g.arc(x,y,H*.04,0,TAU);g.fill()}
+  if(ma>-.1&&ma<1.1){const x=W*(.1+ma*.8),y=H*(.62-Math.sin(cl(ma,0,1)*Math.PI)*.5);g.fillStyle="#eef2ff";g.beginPath();g.arc(x,y,H*.03,0,TAU);g.fill();g.fillStyle=sk_.top;g.beginPath();g.arc(x+H*.012,y-H*.006,H*.026,0,TAU);g.fill()}
+  // three ranges of Dolomites, with pink alpenglow at dawn and dusk
+  const L_=[[.03,H*.5,H*.36,"#c8d4e6","#8a98b4",.55],[.08,H*.6,H*.3,"#b4c2d8","#6a7896",.75],[.16,H*.7,H*.2,"#9aaac2","#55627e",.95]];
+  L_.forEach(([p,by,hh,c1,c2,fog],l)=>{const off=cam.x*p*.5,sc=l===0?2.2:l===1?1.6:1.2;g.beginPath();g.moveTo(-4,H);for(let x=-4;x<=W+12;x+=8)g.lineTo(x,by-ridgeAt(l,(x+off)/sc)*hh);g.lineTo(W+12,H);g.closePath();
+    const lg=g.createLinearGradient(0,by-hh,0,by+H*.1);lg.addColorStop(0,mixC("#ffffff",sk_.night?"#3a4670":"#ffffff",.0));lg.addColorStop(.3,mixC(c1,sk_.night?"#2a3458":c1,sk_.night?.8:0));lg.addColorStop(.7,mixC(c2,sk_.night?"#1c2440":c2,sk_.night?.8:0));lg.addColorStop(1,sk_.hor);
+    g.fillStyle=lg;g.fill();if(sk_.night){g.fillStyle="rgba(10,16,44,"+(.45-l*.08)+")";g.fill()}
+    if(sk_.glow>0){g.fillStyle=`rgba(255,120,150,${sk_.glow*(.32-l*.08)})`;g.fill()}
+    g.fillStyle=sk_.hor;g.globalAlpha=.25*fog*(1-l*.3);g.fill();g.globalAlpha=1});
+  // a far pine forest with a chairlift over it
+  const fo=cam.x*.3*.5,fy=H*.8;g.fillStyle=sk_.night?"#0e1a2a":"#2c4a44";g.beginPath();g.moveTo(0,H);for(let x=0;x<=W+10;x+=10)g.lineTo(x,fy-Math.sin((x+fo)*.004)*H*.05-Math.sin((x+fo)*.011)*H*.02);g.lineTo(W+10,H);g.fill();
+  for(let i=Math.floor(fo/13)-1;i<(fo+W)/13+1;i++){const x=i*13-fo,hs=((i*928371)%97)/97,yb=fy-Math.sin((x+fo)*.004)*H*.05-Math.sin((x+fo)*.011)*H*.02+3,th=H*(.04+hs*.035);g.beginPath();g.moveTo(x-th*.32,yb);g.lineTo(x,yb-th);g.lineTo(x+th*.32,yb);g.fill()}
+  const lo=cam.x*.24*.5,ly=H*.5;g.strokeStyle=sk_.night?"rgba(160,170,200,.35)":"rgba(40,50,60,.45)";g.lineWidth=1;const pyl=420;
+  for(let i=Math.floor(lo/pyl)-1;i<(lo+W)/pyl+1;i++){const x=i*pyl-lo;g.beginPath();g.moveTo(x,ly+H*.3);g.lineTo(x,ly-H*.02);g.moveTo(x-10,ly-H*.02);g.lineTo(x+10,ly-H*.02);g.stroke();
+    g.beginPath();g.moveTo(x,ly-H*.02);g.quadraticCurveTo(x+pyl/2,ly+H*.03,x+pyl,ly-H*.02);g.stroke()}
+  for(let j=0;j<8;j++){const u=((t*22+j*pyl/2)%(pyl*4)),x=u-((lo)%(pyl*4))-pyl;const xi=((x%pyl)+pyl)%pyl,yy=ly-H*.02+Math.sin(xi/pyl*Math.PI)*H*.025*.95;g.fillStyle=j%2?"#c9252b":"#2f8f4e";g.fillRect(x-4,yy+6,8,6);g.beginPath();g.moveTo(x,yy);g.lineTo(x,yy+6);g.stroke()}}
+function tree(g,x,y,s,far,night){const hh=64*s,w=22*s;g.fillStyle="#5a3d2a";g.fillRect(x-2*s,y-8*s,4*s,9*s);
+  const c=far?(night?"#1a2e36":"#3d6656"):(night?"#12262c":"#1f4a3a"),sn=night?"#b8c4e0":"#ffffff";
+  for(let i=0;i<3;i++){const ty=y-8*s-i*hh*.27,ww=w*(1-i*.24);g.fillStyle=c;g.beginPath();g.moveTo(x-ww,ty);g.lineTo(x,ty-hh*.42);g.lineTo(x+ww,ty);g.closePath();g.fill();
+    g.fillStyle=sn;g.beginPath();g.moveTo(x-ww*.5,ty-hh*.21);g.lineTo(x,ty-hh*.42);g.lineTo(x+ww*.55,ty-hh*.2);g.quadraticCurveTo(x,ty-hh*.27,x-ww*.5,ty-hh*.21);g.fill()}}
+function chalet(g,x,y,s,night,big){g.save();g.translate(x,y);g.scale(s,s);const w=big?130:96,hh=big?62:48;
+  g.fillStyle="#7a4a2c";g.fillRect(-w/2,-hh,w,hh+6);g.fillStyle="#5e3820";for(let i=0;i<hh;i+=8)g.fillRect(-w/2,-hh+i,w,1.5);
+  g.fillStyle="#d8cfc0";g.fillRect(-w/2,-12,w,18);
+  g.fillStyle=night?"#ffcf6a":"#2a3a52";[-w*.3,w*.05,w*.3].forEach(wx=>{g.fillRect(wx-8,-hh+16,16,14)});if(night){g.fillStyle="rgba(255,200,100,.18)";g.beginPath();g.arc(0,-hh+24,w*.7,0,TAU);g.fill()}
+  g.fillStyle="#3a2416";g.beginPath();g.moveTo(-w/2-14,-hh+2);g.lineTo(0,-hh-40);g.lineTo(w/2+14,-hh+2);g.closePath();g.fill();
+  g.fillStyle=night?"#c6d0ec":"#fdfeff";g.beginPath();g.moveTo(-w/2-16,-hh+2);g.lineTo(0,-hh-42);g.lineTo(w/2+16,-hh+2);g.lineTo(w/2+10,-hh+6);g.lineTo(0,-hh-32);g.lineTo(-w/2-10,-hh+6);g.closePath();g.fill();
+  g.fillStyle="#6a6a6a";g.fillRect(w*.22,-hh-30,9,20);if(!PERF){g.fillStyle="rgba(220,220,230,.45)";for(let i=0;i<3;i++){g.beginPath();g.arc(w*.26+Math.sin(t+i)*4+i*5,-hh-38-i*12-((t*14)%12),4+i*2,0,TAU);g.fill()}}
+  if(big){g.fillStyle="#2f8f4e";g.fillRect(-36,-hh-6,24,10);g.fillStyle="#f6f6f6";g.fillRect(-12,-hh-6,24,10);g.fillStyle="#c9252b";g.fillRect(12,-hh-6,24,10);g.fillStyle="#2a1a10";g.font="700 12px 'DM Sans',sans-serif";g.textAlign="center";g.fillText("RIFUGIO",0,-hh+52)}
+  g.restore()}
+function snowman(g,s,night){if(s.hit)return;const y=h(s.x),x=s.x,k=s.s;g.fillStyle="rgba(60,80,120,.18)";g.beginPath();g.ellipse(x,y,18*k,4*k,0,0,TAU);g.fill();
+  [[0,-11,13],[0,-30,10],[0,-45,7.5]].forEach(([dx,dy,r])=>{const gr=g.createRadialGradient(x-r*.3,y+dy*k-r*.3,1,x,y+dy*k,r*k);gr.addColorStop(0,"#ffffff");gr.addColorStop(1,night?"#9aa8cc":"#cfdcec");g.fillStyle=gr;g.beginPath();g.arc(x+dx,y+dy*k,r*k,0,TAU);g.fill()});
+  g.fillStyle="#222";g.fillRect(x+1*k,y-48*k,2*k,2*k);g.fillRect(x+4*k,y-48*k,2*k,2*k);g.fillStyle="#f07a20";g.beginPath();g.moveTo(x+5*k,y-45*k);g.lineTo(x+14*k,y-44*k);g.lineTo(x+5*k,y-43*k);g.fill();
+  g.fillStyle="#c9252b";g.fillRect(x-8*k,y-38*k,16*k,3.5*k);g.fillRect(x-7*k,y-38*k,4*k,10*k);
+  if(s.hat){g.fillStyle="#f8f8f8";g.fillRect(x-6*k,y-55*k,12*k,4*k);g.beginPath();g.arc(x,y-58*k,6.5*k,Math.PI,0);g.arc(x-4*k,y-60*k,4*k,0,TAU);g.arc(x+4*k,y-60*k,4*k,0,TAU);g.fill()}
+  else{g.fillStyle="#2a2a2a";g.fillRect(x-7*k,y-53*k,14*k,2.5*k);g.fillRect(x-4.5*k,y-62*k,9*k,9*k)}}
+function rock(g,r,night){const y=h(r.x)+3,x=r.x,s=r.r;g.fillStyle="rgba(30,40,70,.2)";g.beginPath();g.ellipse(x+3,y-1,s*1.5,s*.25,0,0,TAU);g.fill();g.fillStyle=night?"#3a3e4c":"#5c606a";g.beginPath();g.moveTo(x-s*1.3,y);g.lineTo(x-s*1.05,y-s*.8);g.lineTo(x-s*.35,y-s*1.4);g.lineTo(x+s*.45,y-s*1.25);g.lineTo(x+s*1.15,y-s*.6);g.lineTo(x+s*1.35,y);g.closePath();g.fill();
+  g.fillStyle=night?"#2a2e3a":"#50545e";g.beginPath();g.moveTo(x+s*.45,y-s*1.25);g.lineTo(x+s*1.15,y-s*.6);g.lineTo(x+s*1.35,y);g.lineTo(x+s*.2,y);g.closePath();g.fill();
+  g.fillStyle=night?"#c6d0ec":"#ffffff";g.beginPath();g.moveTo(x-s*1.0,y-s*.82);g.lineTo(x-s*.35,y-s*1.42);g.lineTo(x+s*.45,y-s*1.27);g.lineTo(x+s*.1,y-s*1.05);g.lineTo(x-s*.5,y-s*1.12);g.closePath();g.fill()}
+function rail(g,r,night){const n=Math.max(2,Math.round((r.x2-r.x1)/110));g.lineCap="round";
+  for(let i=0;i<=n;i++){const x=r.x1+(r.x2-r.x1)*i/n,y=r.y1+(x-r.x1)*Math.tan(r.a);g.strokeStyle=r.k==="wood"?"#5e3820":"#6a6e78";g.lineWidth=4;g.beginPath();g.moveTo(x,y);g.lineTo(x,h(x)+4);g.stroke()}
+  g.strokeStyle=r.k==="wood"?"#8a5a34":"#c9252b";g.lineWidth=r.k==="wood"?6:5;g.beginPath();g.moveTo(r.x1,r.y1);g.lineTo(r.x2,r.y2);g.stroke();
+  g.strokeStyle=r.k==="wood"?"rgba(255,230,190,.35)":"rgba(255,255,255,.55)";g.lineWidth=1.5;g.beginPath();g.moveTo(r.x1,r.y1-2);g.lineTo(r.x2,r.y2-2);g.stroke();
+  if(r.k==="wood"){g.strokeStyle=night?"#c6d0ec":"#fff";g.lineWidth=2.5;g.beginPath();g.moveTo(r.x1+6,r.y1-3);g.lineTo(lerp(r.x1,r.x2,.4),lerp(r.y1,r.y2,.4)-3);g.stroke()}}
+function coin(g,c){const w=Math.abs(Math.sin(t*4+c.x*.01))*9+1.5;g.fillStyle="#c98b10";g.beginPath();g.ellipse(c.x,c.y,w,10,0,0,TAU);g.fill();g.fillStyle="#ffd54a";g.beginPath();g.ellipse(c.x,c.y,w*.78,8,0,0,TAU);g.fill();
+  if(w>5){g.fillStyle="#b07a08";g.font="800 10px 'DM Sans',sans-serif";g.textAlign="center";g.textBaseline="middle";g.fillText("D",c.x,c.y+.5);g.textBaseline="alphabetic"}}
+function flag(g,x,c,night){const y=h(x);g.strokeStyle="#333";g.lineWidth=2;g.beginPath();g.moveTo(x,y);g.lineTo(x,y-46);g.stroke();g.fillStyle=c;const w=Math.sin(t*5+x)*3;g.beginPath();g.moveTo(x,y-46);g.quadraticCurveTo(x+12,y-42+w,x+22,y-40+w);g.lineTo(x,y-32);g.fill()}
+function gate(g,o){const y=h(o.x);g.fillStyle="#2a3a52";g.fillRect(o.x-4,y-70,6,70);g.fillRect(o.x+60,y-70,6,70);g.fillStyle="#c9252b";g.fillRect(o.x-8,y-84,78,16);g.fillStyle="#fff";g.font="800 11px 'DM Sans',sans-serif";g.textAlign="center";g.fillText(L("START","PARTENZA"),o.x+31,y-72);
+  g.save();g.translate(o.x+2,y-28);g.rotate(o.open?-1.4*Math.min(1,o.open):0);g.fillStyle="#f0c040";g.fillRect(0,-3,56,6);g.fillStyle="#2a2a2a";for(let i=6;i<56;i+=14)g.fillRect(i,-3,6,6);g.restore();if(o.open)o.open+=.03}
+function kick(g,o,night){const y=h(o.x0);g.fillStyle="#c9252b";g.fillRect(o.x0-2,y-30,4,30);g.fillRect(o.x0-2,y-30,14,9);g.fillStyle="#2f8f4e";g.fillRect(o.x-2,o.y-30,4,30);g.fillRect(o.x-2,o.y-30,14,9);
+  g.strokeStyle="rgba(201,37,43,.7)";g.lineWidth=3;g.setLineDash([8,6]);g.beginPath();g.moveTo(o.x-60,h(o.x-60)-1);g.lineTo(o.x,o.y-1);g.stroke();g.setLineDash([])}
+function warn(g,o){const y=h(o.x);g.strokeStyle="#333";g.lineWidth=2.5;g.beginPath();g.moveTo(o.x,y);g.lineTo(o.x,y-50);g.stroke();g.fillStyle="#f0c040";g.beginPath();g.moveTo(o.x,y-78);g.lineTo(o.x+16,y-50);g.lineTo(o.x-16,y-50);g.closePath();g.fill();g.strokeStyle="#2a2a2a";g.stroke();g.fillStyle="#2a2a2a";g.font="900 16px 'DM Sans',sans-serif";g.textAlign="center";g.fillText("!",o.x,y-54)}
+function cliffFace(g,c,night){const x=c.x,x2=c.x+DX,y1=c.y1,y2=c.y2,dh=y2-y1;g.fillStyle=night?"#2e3240":"#5d616c";g.beginPath();g.moveTo(x+1,y1+3);for(let i=1;i<=8;i++){const k=i/8;g.lineTo(lerp(x,x2,k)+Math.sin(i*2.3+x)*5-3,y1+dh*k)}g.lineTo(x2-30,y2+10);g.lineTo(x-34,y1+dh*.7);g.lineTo(x-26,y1+dh*.3);g.lineTo(x-12,y1+10);g.closePath();g.fill();
+  g.strokeStyle=night?"#22252f":"#474a53";g.lineWidth=2;for(let i=1;i<5;i++){const yy=y1+dh*i/5;g.beginPath();g.moveTo(x-20,yy+6);g.lineTo(x+8,yy);g.stroke()}
+  g.fillStyle=night?"#c6d0ec":"#ffffff";for(let i=1;i<4;i++){const yy=y1+dh*i/4;g.beginPath();g.ellipse(x-6,yy,10,2.5,-.3,0,TAU);g.fill()}}
+function drawSkier(g,o,k){g.save();g.translate(o.x,o.y);g.rotate(o.ang);const c=o.cr||0,gr=o.grab,crash=o.crash;
+  if(!o.noSkis){g.lineCap="round";g.strokeStyle=k.col;g.lineWidth=3.6;g.beginPath();g.moveTo(-25,-1);g.lineTo(24,-1);g.quadraticCurveTo(31,-1,33,-6);g.stroke();g.strokeStyle=k.tip;g.lineWidth=1.4;g.beginPath();g.moveTo(-22,-2);g.lineTo(20,-2);g.stroke()}
+  let hip=[-3,-21+c*8],knee=[6,-12+c*3],sh=[4+c*5,-38+c*12],hand=[15,-25+c*7],hand2=[11,-23+c*7],pole=!gr&&!crash;
+  if(gr==="mute"){hip=[-2,-18];knee=[10,-15];sh=[9,-29];hand=[24,-4]}
+  else if(gr==="tail"){hip=[-3,-18];knee=[5,-16];sh=[-3,-29];hand=[-20,-4];hand2=[10,-36]}
+  else if(gr==="japan"){hip=[0,-16];knee=[12,-19];sh=[6,-28];hand=[5,-4];hand2=[-6,-40]}
+  if(crash){hip=[-2,-20];knee=[5,-11];sh=[2,-36];hand=[18,-44];hand2=[-14,-42]}
+  const head=[sh[0]+3,sh[1]-8];g.lineCap="round";g.lineJoin="round";
+  // back arm and pole
+  if(pole){g.strokeStyle="#8a8a92";g.lineWidth=1.6;g.beginPath();g.moveTo(hand2[0],hand2[1]);g.lineTo(hand2[0]-24,hand2[1]+20);g.stroke()}
+  g.strokeStyle="#9a1c22";g.lineWidth=4.6;g.beginPath();g.moveTo(sh[0],sh[1]+2);g.lineTo((sh[0]+hand2[0])/2+2,(sh[1]+hand2[1])/2+3);g.lineTo(hand2[0],hand2[1]);g.stroke();
+  // legs
+  g.strokeStyle="#16223a";g.lineWidth=6.2;g.beginPath();g.moveTo(hip[0],hip[1]);g.lineTo(knee[0]-3,knee[1]+1);g.lineTo(-4,-4);g.stroke();
+  g.strokeStyle="#22304c";g.beginPath();g.moveTo(hip[0],hip[1]);g.lineTo(knee[0],knee[1]);g.lineTo(2,-4);g.stroke();
+  g.fillStyle="#2a2a30";g.fillRect(-7,-7,13,6);
+  // body
+  g.strokeStyle="#c9252b";g.lineWidth=11;g.beginPath();g.moveTo(hip[0],hip[1]-2);g.lineTo(sh[0],sh[1]+3);g.stroke();
+  g.strokeStyle="#f6f6f6";g.lineWidth=2;g.beginPath();g.moveTo(lerp(hip[0],sh[0],.35)-4,lerp(hip[1],sh[1],.35));g.lineTo(lerp(hip[0],sh[0],.35)+5,lerp(hip[1],sh[1],.35));g.stroke();
+  // head: white helmet with a green stripe, orange goggles
+  g.fillStyle="#f4f4f4";g.beginPath();g.arc(head[0],head[1],6.6,0,TAU);g.fill();g.strokeStyle="#2f8f4e";g.lineWidth=1.8;g.beginPath();g.arc(head[0],head[1],5.2,Math.PI*1.1,Math.PI*1.7);g.stroke();
+  g.fillStyle="#f6a21c";g.fillRect(head[0]+1.5,head[1]-1.5,6,3.6);g.fillStyle="rgba(255,255,255,.7)";g.fillRect(head[0]+3,head[1]-1,2,1.2);
+  // front arm and pole
+  g.strokeStyle="#d8333a";g.lineWidth=5;g.beginPath();g.moveTo(sh[0]+1,sh[1]+2);g.lineTo((sh[0]+hand[0])/2+3,(sh[1]+hand[1])/2+2);g.lineTo(hand[0],hand[1]);g.stroke();
+  g.fillStyle="#1a1a1a";g.beginPath();g.arc(hand[0],hand[1],2.6,0,TAU);g.fill();
+  if(pole){g.strokeStyle="#b0b0ba";g.lineWidth=1.8;g.beginPath();g.moveTo(hand[0],hand[1]);g.lineTo(hand[0]-26,hand[1]+22);g.stroke()}
+  g.restore()}
+function drawScarf(g){if(scarf.length<3||P.noSkis)return;const n=scarf[0],cols=["#2f8f4e","#f6f6f6","#c9252b"];g.lineCap="round";
+  const pts=scarf.map((p,i)=>({x:n.x+(p.x-n.x)*.32-i*2.2,y:n.y+(p.y-n.y)*.32+Math.sin(t*18+i*1.3)*i*.7}));
+  for(let i=0;i<pts.length-1;i++){g.strokeStyle=cols[Math.min(2,Math.floor(i/(pts.length-1)*3))];g.lineWidth=4.6-i*.4;g.beginPath();g.moveTo(pts[i].x,pts[i].y);g.lineTo(pts[i+1].x,pts[i+1].y);g.stroke()}}
+function drawAv(g,x0,y0,y1){if(!av.on&&st==="ready")return;const x=av.x;if(x<x0-260)return;
+  g.fillStyle="#f2f6fb";g.fillRect(x0-10,y0,x-x0+10,y1-y0);const n=PERF?10:18,sp=(y1-y0)/n;
+  for(let i=0;i<=n;i++){const y=y0+i*sp,r=sp*1.25+Math.sin(t*3+i*1.3)*sp*.3,xx=x-20+Math.sin(t*2.3+i*1.9)*22;g.fillStyle="#c6d2e2";g.beginPath();g.arc(xx+8,y+10,r,0,TAU);g.fill();g.fillStyle="#f6f9fd";g.beginPath();g.arc(xx,y,r,0,TAU);g.fill()}
+  if(!PERF&&Math.random()<.7)parts.push({k:"snow",x:x+rr(0,30),y:rr(y0,y1),vx:av.v*rr(.6,1.1),vy:rr(-200,50),life:rr(.4,.8),max:.8,r:rr(3,7),col:"#ffffff"})}
+function scene(g,W,H,dpr,hud){const sk_=sky(),night=sk_.night,k=sk();
+  g.setTransform(dpr,0,0,dpr,0,0);backdrop(g,W,H,sk_);
+  const s=H/600*cam.z,sx=W*.36,sy=H*.5;let shx=0,shy=0;if(shake>0){shx=rr(-1,1)*shake*14;shy=rr(-1,1)*shake*14}
+  g.setTransform(dpr*s,0,0,dpr*s,dpr*(sx-cam.x*s+shx),dpr*(sy-cam.y*s+shy));
+  const x0=cam.x-sx/s-60,x1=cam.x+(W-sx)/s+60,yTop=cam.y-sy/s-60,yBot=cam.y+(H-sy)/s+60;
+  // background-layer decor sits behind the snow line
+  for(const d of deco){if(d.x<x0-200||d.x>x1+200)continue;if(d.k==="tree"&&d.b)tree(g,d.x,h(d.x)+4,d.s*.8,1,night);else if(d.k==="chalet")chalet(g,d.x,h(d.x)+6,d.s,night);else if(d.k==="rifugio")chalet(g,d.x,h(d.x)+6,1.1,night,1)}
+  // the snow
+  const i0=Math.max(0,Math.floor(x0/DX)-T.off),i1=Math.min(T.y.length-1,Math.ceil(x1/DX)-T.off+1);
+  g.beginPath();g.moveTo((i0+T.off)*DX,yBot+400);for(let i=i0;i<=i1;i++)g.lineTo((i+T.off)*DX,T.y[i]);g.lineTo((i1+T.off)*DX,yBot+400);g.closePath();
+  const snow=night?"#8a98c4":"#dbe7f3",lit=sk_.lit;g.fillStyle=snow;g.fill();g.save();g.clip();
+  g.lineJoin="round";g.strokeStyle=mixC(night?"#9aa6d0":"#e8f0f8",night?"#9aa6d0":"#e8f0f8",0);g.lineWidth=70;g.beginPath();for(let i=i0;i<=i1;i++){const X=(i+T.off)*DX;i===i0?g.moveTo(X,T.y[i]):g.lineTo(X,T.y[i])}g.stroke();
+  g.strokeStyle=lit;g.lineWidth=22;g.stroke();
+  for(const c of cliffs)if(c.x>x0-60&&c.x<x1+60)cliffFace(g,c,night);
+  // glints in the snow
+  g.fillStyle=night?"rgba(220,230,255,.6)":"rgba(255,255,255,.95)";for(let i=i0;i<=i1;i++){const q=((i+T.off)*2654435761>>>0)%100;if(q<14){const X=(i+T.off)*DX+q%16,Y=T.y[i]+8+q*1.4;g.fillRect(X,Y,1.6,1.6)}}
+  // ski tracks
+  g.strokeStyle=night?"rgba(70,80,120,.4)":"rgba(140,160,200,.45)";g.lineWidth=1.6;g.beginPath();let pen=false;for(const p of track){if(!p||p.x<x0-50){pen=false;continue}if(!pen){g.moveTo(p.x,p.y+2);pen=true}else g.lineTo(p.x,p.y+2)}g.stroke();
+  g.restore();
+  g.strokeStyle=night?"#c8d2f0":"#ffffff";g.lineWidth=2.2;g.beginPath();for(let i=i0;i<=i1;i++){const X=(i+T.off)*DX;i===i0?g.moveTo(X,T.y[i]):g.lineTo(X,T.y[i])}g.stroke();
+  // things on the slope
+  for(const d of deco){if(d.x<x0-200||d.x>x1+200)continue;if(d.k==="tree"&&!d.b)tree(g,d.x,h(d.x)+5,d.s,0,night);else if(d.k==="flag")flag(g,d.x,d.c,night);else if(d.k==="gate")gate(g,d);else if(d.k==="kick")kick(g,d,night);else if(d.k==="warn")warn(g,d)}
+  for(const r of rails)if(r.x2>x0&&r.x1<x1)rail(g,r,night);
+  for(const r of rocks)if(r.x>x0-40&&r.x<x1+40)rock(g,r,night);
+  for(const s_ of snowmen)if(s_.x>x0-40&&s_.x<x1+40)snowman(g,s_,night);
+  for(const c of coins)if(!c.got&&c.x>x0-20&&c.x<x1+20)coin(g,c);
+  // the skier, the scarf, and loose skis after a crash
+  if(P){if(P.skis)for(const q of P.skis){g.save();g.translate(q.x,q.y);g.rotate(q.a);g.strokeStyle=k.col;g.lineWidth=3.6;g.lineCap="round";g.beginPath();g.moveTo(-25,0);g.lineTo(24,0);g.quadraticCurveTo(31,0,33,-5);g.stroke();g.restore()}
+    const gyP=h(P.x);if(gyP-P.y<300){const a=1-cl((gyP-P.y)/300,0,1);g.fillStyle=`rgba(40,60,110,${.22*a})`;g.beginPath();g.ellipse(P.x,gyP+1,26*(.5+a*.5),4,slope(P.x),0,TAU);g.fill()}
+    drawScarf(g);drawSkier(g,{x:P.x,y:P.y,ang:P.ang,cr:P.cr,grab:P.grab,crash:st==="crash"||st==="done",noSkis:!!P.skis},k)}
+  for(const p of parts){const a=cl(p.life/p.max,0,1);g.globalAlpha=a;g.fillStyle=p.col;if(p.k==="spark"){g.strokeStyle=p.col;g.lineWidth=1.6;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(p.x-p.vx*.03,p.y-p.vy*.03);g.stroke()}
+    else if(p.k==="conf"){g.save();g.translate(p.x,p.y);g.rotate(p.a);g.fillRect(-p.r,-p.r*.4,p.r*2,p.r*.8);g.restore()}else{g.beginPath();g.arc(p.x,p.y,p.r*(p.k==="snow"?.6+a*.4:1),0,TAU);g.fill()}}g.globalAlpha=1;
+  drawAv(g,x0,yTop,yBot);
+  for(const p of pops){const a=p.t<1.1?1:1-(p.t-1.1)/.5;g.globalAlpha=cl(a,0,1);g.font=`800 ${p.big?22:15}px 'DM Sans',sans-serif`;g.textAlign="center";g.lineWidth=4;g.strokeStyle="rgba(10,20,40,.75)";g.strokeText(p.txt,p.x,p.y);g.fillStyle=p.col;g.fillText(p.txt,p.x,p.y)}g.globalAlpha=1;
+  // falling snow and speed lines in screen space
+  g.setTransform(dpr,0,0,dpr,0,0);const vxS=(P?P.vx:0)*s;
+  if(!flakes.length||flakes.W!==W){flakes=[...Array(PERF?40:110)].map(()=>({x:Math.random()*W,y:Math.random()*H,z:rr(.3,1),r:rr(.8,2.4)}));flakes.W=W}
+  g.fillStyle=night?"rgba(230,236,255,.85)":"rgba(255,255,255,.9)";for(const f of flakes){g.globalAlpha=.35+f.z*.6;g.fillRect(f.x,f.y,f.r*f.z+.6,f.r*f.z+.6)}g.globalAlpha=1;
+  const spd=P?Math.hypot(P.vx,P.vy):0;if(spd>950&&st==="run"){g.strokeStyle="rgba(255,255,255,.5)";g.lineWidth=1.2;const n=Math.round((spd-950)/45);for(let i=0;i<n;i++){const y=(i*97+t*900)%H,x=(i*389+t*2400)%W;g.beginPath();g.moveTo(W-x,y);g.lineTo(W-x+40+spd*.04,y);g.stroke()}}
+  if(hud)drawHud(g,W,H)}
+function drawHud(g,W,H){const sc=cl(W/900,.7,1.2);g.textAlign="left";g.textBaseline="alphabetic";
+  const out=(txt,x,y,font,col)=>{g.font=font;g.lineWidth=4;g.strokeStyle="rgba(8,16,32,.6)";g.strokeText(txt,x,y);g.fillStyle=col;g.fillText(txt,x,y)};
+  out(nf(R.score),16,38*sc,`800 ${Math.round(30*sc)}px 'DM Sans',sans-serif`,"#ffffff");
+  out(`${nf(R.dist)} m · ${R.coins} ◉`,16,60*sc,`700 ${Math.round(14*sc)}px 'DM Sans',sans-serif`,"#e8f0ff");
+  if(combo.n){g.textAlign="center";const cx=W/2;out(combo.list.join(" + "),cx,34*sc,`700 ${Math.round(14*sc)}px 'DM Sans',sans-serif`,"#ffffff");
+    out(`${nf(combo.pts)} × ${combo.n}`,cx,62*sc,`800 ${Math.round(26*sc)}px 'DM Sans',sans-serif`,combo.n>=5?"#ffe08a":"#ffffff");
+    const bw=140*sc,f=P.rail||(P.air&&(Math.abs(P.av)>2||P.grab))?1:cl(combo.t/1.9,0,1);g.fillStyle="rgba(8,16,32,.5)";g.fillRect(cx-bw/2,70*sc,bw,5);g.fillStyle=combo.n>=5?"#f0c040":"#8fd0ff";g.fillRect(cx-bw/2,70*sc,bw*f,5);g.textAlign="left"}
+  if(av.on&&st==="run"){const gap=P.x-av.x;if(gap<1100){const a=cl(1-gap/1100,0,1);g.fillStyle=`rgba(255,255,255,${.25+a*.5})`;g.fillRect(0,0,10+a*30,H);
+    g.textAlign="left";out(L("AVALANCHE!","VALANGA!"),16,H-18,`900 ${Math.round(16*sc)}px 'DM Sans',sans-serif`,a>.6&&Math.sin(t*14)>0?"#ff5a4a":"#ffffff");
+    const bw=120*sc;g.fillStyle="rgba(8,16,32,.5)";g.fillRect(16,H-46,bw,6);g.fillStyle=a>.6?"#ff5a4a":"#f0c040";g.fillRect(16,H-46,bw*a,6)}}
+  if(st==="ready"){g.textAlign="center";const pulse=.75+Math.sin(t*4)*.25;g.globalAlpha=pulse;out(L("Hold anywhere (or Space) to start","Tieni premuto ovunque (o Spazio) per partire"),W/2,H*.82,`800 ${Math.round(18*sc)}px 'DM Sans',sans-serif`,"#ffffff");g.globalAlpha=1}}
+function render(){const g=cv.getContext("2d"),{W,H,dpr}=lay;if(!W)return;scene(g,W,H,dpr,1)}
+function layout(){const f=$("skField"),dpr=Math.min(2,devicePixelRatio||1),W=f.clientWidth,H=f.clientHeight;if(!W||!H)return;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);lay={W,H,dpr};flakes=[]}
+function frame(now){raf=0;if(!open)return;const dt=Math.min(.05,(now-(lastF||now))/1000);lastF=now;step(dt);
+  const s=lay.H/600*cam.z;for(const f of flakes){f.y+=(30+f.z*50)*dt;f.x-=(P.vx*s*.25*f.z+12)*dt;f.y-=P.vy*s*.12*f.z*dt;if(f.y>lay.H)f.y-=lay.H;if(f.y<0)f.y+=lay.H;if(f.x<0)f.x+=lay.W;if(f.x>lay.W)f.x-=lay.W}
+  if(msgT>0){msgT-=dt;if(msgT<=0)$("skMsg").classList.add("fade")}render();uiT-=dt;if(uiT<=0){uiT=.25;ui();if(st==="run")goals()}raf=requestAnimationFrame(frame)}
+function msg(s,sec){const m=$("skMsg");m.textContent=s;m.classList.remove("fade");msgT=sec}
+// ---------- cards ----------
+function showResult(pay,best){const ov=$("skOv"),cause=P.why||"";
+  ov.innerHTML=`<div class="tdcard skcard"><span class="sktag${P.byAv?" av":""}">${cause}</span>${best?`<span class="fsnew">${L("New best score!","Nuovo record!")}</span>`:""}
+    <h2>${nf(R.score)} <small>${L("points","punti")}</small></h2><dl class="tdres"><dt>${L("Distance","Distanza")}</dt><dd>${nf(R.dist)} m</dd><dt>${L("Best combo","Combo migliore")}</dt><dd>×${R.combo}${R.comboPts?` · ${nf(R.comboPts)}`:""}</dd><dt>${L("Tricks landed","Trucchi riusciti")}</dt><dd>${R.tricks}</dd><dt>${L("Coins","Monete")}</dt><dd>${R.coins}</dd>
+    ${R.goalPay?`<dt>${L("Goal bonuses","Bonus obiettivi")}</dt><dd>+${fmt(R.goalPay)}</dd>`:""}<dt><b>${L("Duecks earned","Dueck guadagnati")}</b></dt><dd><b>+${fmt(pay)}</b></dd></dl>
+    <button class="tdbig" id="skAgain">${L("Ski again","Scia ancora")} <small>(${L("Space","Spazio")})</small></button></div>`;$("skAgain").onclick=e=>{e.stopPropagation();again()}}
+function again(){$("skOv").innerHTML="";reset();SFX.chip();ui(true)}
+// ---------- side panel ----------
+let shopKey="";
+function ui(force){const s=skS();$("skCash").textContent=fmt(S.d);$("skBest").textContent=nf(s.best);$("skFar").textContent=nf(s.far)+" m";
+  if(R)$("skRun").innerHTML=`<dt>${L("Score","Punti")}</dt><dd>${nf(R.score)}</dd><dt>${L("Distance","Distanza")}</dt><dd>${nf(R.dist)} m</dd><dt>${L("Best combo","Combo migliore")}</dt><dd>×${R.combo}</dd><dt>${L("Coins","Monete")}</dt><dd>${R.coins}</dd><dt>${L("Pays about","Paga circa")}</dt><dd>+${fmt(Math.round(base()*((R.score+combo.pts*combo.n)/250+R.coins*.4)))}</dd>`;
+  const og=openGoals(),done=s.gd.length;$("skGoals").innerHTML=og.length?og.map(g=>{const v=R&&st!=="ready"?Math.min(goalVal(g),g.v):0;return`<div class="skgoal"><div><b>${N(g.n)}</b><span>+${fmt(Math.round(base()*g.p))}</span></div><i style="--p:${Math.round(v/g.v*100)}%"></i></div>`}).join("")+`<small class="sknote">${L(`${done} of ${GOALS.length} done`,`${done} su ${GOALS.length} fatti`)}</small>`:`<p class="sknote">${L("Every goal done. You're a legend of the Dolomites.","Tutti gli obiettivi fatti. Sei una leggenda delle Dolomiti.")}</p>`;
+  const nx=SKIS[s.ski+1],k=[s.ski,nx?priceOf(nx.c):0,LANG,S.d>=(nx?priceOf(nx.c):0)].join();
+  if(k!==shopKey||force){shopKey=k;const cur=sk();$("skShop").innerHTML=`<div class="fsrow"><div><small>${L("Your skis","I tuoi sci")}</small><b>${N(cur.n)}</b><span>${L(`Spin ×${cur.rs} · landing room ${Math.round(cur.lt*57)}° · coin magnet`,`Rotazione ×${cur.rs} · margine ${Math.round(cur.lt*57)}° · calamita`)}</span></div>${nx?`<button class="tdbtn" id="skBuy" ${S.d<priceOf(nx.c)?"disabled":""}>${L("Upgrade to","Passa a")} ${N(nx.n)}<br><small>${fmt(priceOf(nx.c))} Dueck</small></button>`:`<em>${L("Best there is","I migliori")}</em>`}</div>`}
+  $("skRec").innerHTML=`<dt>${L("Best score","Punteggio record")}</dt><dd>${nf(s.best)}</dd><dt>${L("Furthest run","Discesa più lunga")}</dt><dd>${nf(s.far)} m</dd><dt>${L("Biggest combo","Combo più grande")}</dt><dd>×${s.combo}</dd><dt>${L("Runs","Discese")}</dt><dd>${nf(s.runs)}</dd><dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>${fmt(s.earned)}</dd>`}
+$("skShop").addEventListener("click",e=>{if(!e.target.closest("#skBuy"))return;const s=skS(),nx=SKIS[s.ski+1];if(!nx)return;const c=priceOf(nx.c);if(S.d<c)return;S.d-=c;s.ski++;SFX.coin();msg(L(`New skis: ${N(nx.n)}`,`Sci nuovi: ${N(nx.n)}`),2.5);ui(true)});
+// ---------- window ----------
+function openSK(){closeAllWins();open=true;$("skw").hidden=false;hideTip();reset();keys={};$("skOv").innerHTML="";requestAnimationFrame(()=>{layout();lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui(true);
+  msg(L("Hold to crouch, let go to jump. In the air, hold to backflip.","Tieni premuto per accovacciarti, lascia per saltare. In aria, tieni premuto per il salto indietro."),5)}
+function closeSK(){if(st==="run"||st==="crash")finish(1);open=false;$("skw").hidden=true;keys={};hold=false;$("skOv").innerHTML=""}
+const fld=$("skField");fld.addEventListener("pointerdown",e=>{if(e.target.closest(".tdcard")||e.target.closest("[data-k]"))return;if(e.button>0)return;e.preventDefault();press()});
+addEventListener("pointerup",()=>{if(open)release()});addEventListener("pointercancel",()=>{if(open)release()});fld.addEventListener("contextmenu",e=>e.preventDefault());
+$("skTouch").addEventListener("pointerdown",e=>{const b=e.target.closest("[data-k]");if(!b)return;e.preventDefault();e.stopPropagation();keys[b.dataset.k]=true;b.setPointerCapture&&b.setPointerCapture(e.pointerId)});
+["pointerup","pointercancel","lostpointercapture"].forEach(ev=>$("skTouch").addEventListener(ev,e=>{const b=e.target.closest("[data-k]");if(b)keys[b.dataset.k]=false}));
+const JUMP=new Set([" ","ArrowUp","w","W"]);
+addEventListener("keydown",e=>{if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return;e.stopPropagation();
+  if(e.key==="Escape"){closeSK();return}
+  if(st==="done"&&(e.key===" "||e.key==="Enter")){e.preventDefault();if(!e.repeat)again();return}
+  if(JUMP.has(e.key)){e.preventDefault();if(!e.repeat)press();return}
+  if(e.key.startsWith("Arrow"))e.preventDefault();keys[e.key]=true},true);
+addEventListener("keyup",e=>{if(!open)return;if(JUMP.has(e.key)){e.preventDefault();release()}keys[e.key]=false;if(e.key.length===1)keys[e.key.toLowerCase()]=keys[e.key.toUpperCase()]=false});
+addEventListener("blur",()=>{if(open){keys={};release()}});
+addEventListener("resize",()=>{if(open)layout()});
+$("skClose").onclick=closeSK;
+// a still for the games room card: golden hour, mid-backflip
+function mini(c){if(open)return;reset();tod=.5;t=3;const x=520;P.x=x;P.y=h(x)-120;P.ang=-2.3;P.cr=.9;P.grab="mute";P.gr=false;cam={x:x+10,y:h(x)-40,z:1.9};
+  for(let i=0;i<5;i++)coins.push({x:x+70+i*30,y:P.y-50+Math.pow(i-2,2)*6});scarf=[];for(let i=0;i<8;i++)scarf.push({x:P.x-14-i*9,y:P.y-30+i*3});
+  const g=c.getContext("2d");flakes=[];scene(g,c.width,c.height,1,0);flakes=[];reset()}
+return{open:openSK,close:closeSK,get isOpen(){return open},mini,stats:skS,_dbg:()=>({get P(){return P},get R(){return R},get st(){return st},get combo(){return combo},get av(){return av},keys,press,release,h,slope,rails:()=>rails,rocks:()=>rocks,set tod(v){tod=v},reset})}})();
+
 // ---------- games room: pick a game ----------
 const GM={open:false};
 function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
 function closeGames(){GM.open=false;$("gmw").hidden=true}
-function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats();
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats();
   $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
     <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
     <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
@@ -3498,9 +3935,13 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("Drive a little Italian island town doing favours for the Don: deliveries, collection rounds, bank getaways and street races, with the police on your tail. Every job pays Duecks.","Guida per una piccola città su un'isola italiana facendo favori al Don: consegne, giri delle buste, colpi in banca e corse, con la polizia alle calcagna. Ogni lavoro paga Dueck.")}</p>
     <div class="gmst"><span>${L("Rank","Grado")} <b>${MF.rank()}</b></span><span>${L("Jobs","Lavori")} <b>${fmt(mf.jobs)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(mf.earned)}</b></span></div>
     <span class="gmplay">${L("Join the family","Entra in famiglia")}</span></div></button>
+    <button class="gmcard" data-game="sk"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag snow">${L("Ski tricks","Trucchi sugli sci")}</span><b>La Discesa</b>
+    <p>${L("Race down the Dolomites from dawn to dark: backflips off kickers, grabs over cliffs, rail grinds and snowman smashing, with an avalanche on your heels. Every run pays Duecks.","Scendi dalle Dolomiti dall'alba alla notte: salti mortali dai trampolini, prese sopra le rocce, binari e pupazzi di neve, con una valanga alle calcagna. Ogni discesa paga Dueck.")}</p>
+    <div class="gmst"><span>${L("Best","Record")} <b>${Math.round(sk.best||0).toLocaleString(LANG==="it"?"it-IT":"en-US")}</b></span><span>${L("Furthest","Più lontano")} <b>${Math.round(sk.far||0)} m</b></span><span>${L("Goals","Obiettivi")} <b>${(sk.gd||[]).length}/18</b></span></div>
+    <span class="gmplay">${L("Hit the slopes","Sulle piste")}</span></div></button>
     <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
-  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2])}
-$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open()};
+  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3])}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open()};
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
@@ -3533,7 +3974,7 @@ setInterval(()=>{if(document.hidden)return;if(Date.now()>nextPaper){spawnPaper()
 
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 $("saveBtn").onclick=()=>save();
 $("expBtn").onclick=()=>{const t=btoa(unescape(encodeURIComponent(ser())));$("saveTxt").value=t;$("saveTxt").select();
