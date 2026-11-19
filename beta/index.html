@@ -3054,7 +3054,7 @@ function ui(force){const s=fsS();$("fsCash").textContent=fmt(S.d);$("fsCaught").
     $("fsShop").innerHTML=row(L("Rod","Canna"),rod(),nr,r=>L(`Reel bar ${Math.round(r.z*100)}% · cast ${Math.round(r.cs*100)}%`,`Barra ${Math.round(r.z*100)}% · lancio ${Math.round(r.cs*100)}%`))+row(L("Bait","Esca"),bait(),nb,b=>L(`Bites ×${b.b} · rare fish ×${b.ra}`,`Abboccate ×${b.b} · pesci rari ×${b.ra}`))}
   $("fsShop").querySelectorAll("[data-buy]").forEach(b=>{const nx=b.dataset.buy==="rod"?nr:nb;b.disabled=!nx||S.d<priceOf(nx.c)})}
 $("fsShop").addEventListener("click",e=>{const b=e.target.closest("[data-buy]");if(!b)return;const s=fsS(),isR=b.dataset.buy==="rod",nx=isR?RODS[s.rod+1]:BAIT[s.bait+1];if(!nx)return;const c=priceOf(nx.c);if(S.d<c)return;
-  S.d-=c;if(typeof S.spent==="number")S.spent+=c;if(isR)s.rod++;else s.bait++;SFX.coin();msg(L(`Bought: ${N(nx.n)}`,`Comprato: ${N(nx.n)}`),2.5);ui(true)});
+  S.d-=c;if(isR)s.rod++;else s.bait++;SFX.coin();msg(L(`Bought: ${N(nx.n)}`,`Comprato: ${N(nx.n)}`),2.5);ui(true)});
 $("fsJBtn").onclick=journal;
 // ---------- window ----------
 function openFS(){closeAllWins();open=true;$("fsw").hidden=false;hideTip();requestAnimationFrame(()=>{layout();lastF=0;for(let i=0;i<8;i++)spawn();fish.forEach(f=>f.a=1);if(!raf)raf=requestAnimationFrame(frame)});

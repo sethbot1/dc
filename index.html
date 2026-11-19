@@ -1293,7 +1293,11 @@ function hydrate(o){if(!o||typeof o!=="object"||Array.isArray(o))throw new Error
   ["pf","ord","lim","shs"].forEach(k=>{if(!S[k]||typeof S[k]!=="object"||Array.isArray(S[k]))S[k]={}});if(!Array.isArray(S.tips))S.tips=[];
   // crypto and casino data: older saves do not have it, and anything broken is replaced with safe defaults
   if(!S.cx||typeof S.cx!=="object"||Array.isArray(S.cx))S.cx={};S.kas=Object.assign(fresh().kas,S.kas&&typeof S.kas==="object"&&!Array.isArray(S.kas)?S.kas:{});S.td=Object.assign(fresh().td,S.td&&typeof S.td==="object"&&!Array.isArray(S.td)?S.td:{});if(!Array.isArray(S.td.best))S.td.best=[0,0,0];S.fish=Object.assign(fresh().fish,S.fish&&typeof S.fish==="object"&&!Array.isArray(S.fish)?S.fish:{});if(!S.fish.sp||typeof S.fish.sp!=="object"||Array.isArray(S.fish.sp))S.fish.sp={};["n","earned","best"].forEach(k=>{if(typeof S.fish[k]!=="number"||!isFinite(S.fish[k]))S.fish[k]=0});S.fish.rod=Math.min(3,Math.max(0,S.fish.rod|0));S.fish.bait=Math.min(3,Math.max(0,S.fish.bait|0));["ctr","cprof"].forEach(k=>{if(typeof S[k]!=="number"||!isFinite(S[k]))S[k]=0});
-  if(o.ever==null)S.ever=S.all||0;S.buffs=[];S.lang=LANG}
+  if(o.ever==null)S.ever=S.all||0;S.buffs=[];S.lang=LANG;fixSpent()}
+// Laurels spent can only ever be what your Blessings cost (the first seven are free with the Crown upgrade that grants them).
+// A bug in the fishing shop once added Dueck prices here; this pulls it back down, and never raises it.
+function fixSpent(){const free=crn("c6")?new Set(["h0","h1","h2","h3","h4","h5","h6"]):new Set();let max=0;for(const h of H)if(S.hv.has(h[0])&&!free.has(h[0]))max+=+h[3]||0;
+  if(typeof S.spent!=="number"||!isFinite(S.spent)||S.spent>max||S.spent<0)S.spent=Math.min(Math.max(0,+S.spent||0),max)}
 // If a save exists but can't be read, never write over it: saving stays off and the player is told.
 let LOADFAIL=false;
 const BACKUP=KEY+"-backup-before-market";
@@ -3052,7 +3056,7 @@ function ui(force){const s=fsS();$("fsCash").textContent=fmt(S.d);$("fsCaught").
     $("fsShop").innerHTML=row(L("Rod","Canna"),rod(),nr,r=>L(`Reel bar ${Math.round(r.z*100)}% · cast ${Math.round(r.cs*100)}%`,`Barra ${Math.round(r.z*100)}% · lancio ${Math.round(r.cs*100)}%`))+row(L("Bait","Esca"),bait(),nb,b=>L(`Bites ×${b.b} · rare fish ×${b.ra}`,`Abboccate ×${b.b} · pesci rari ×${b.ra}`))}
   $("fsShop").querySelectorAll("[data-buy]").forEach(b=>{const nx=b.dataset.buy==="rod"?nr:nb;b.disabled=!nx||S.d<priceOf(nx.c)})}
 $("fsShop").addEventListener("click",e=>{const b=e.target.closest("[data-buy]");if(!b)return;const s=fsS(),isR=b.dataset.buy==="rod",nx=isR?RODS[s.rod+1]:BAIT[s.bait+1];if(!nx)return;const c=priceOf(nx.c);if(S.d<c)return;
-  S.d-=c;if(typeof S.spent==="number")S.spent+=c;if(isR)s.rod++;else s.bait++;SFX.coin();msg(L(`Bought: ${N(nx.n)}`,`Comprato: ${N(nx.n)}`),2.5);ui(true)});
+  S.d-=c;if(isR)s.rod++;else s.bait++;SFX.coin();msg(L(`Bought: ${N(nx.n)}`,`Comprato: ${N(nx.n)}`),2.5);ui(true)});
 $("fsJBtn").onclick=journal;
 // ---------- window ----------
 function openFS(){closeAllWins();open=true;$("fsw").hidden=false;hideTip();requestAnimationFrame(()=>{layout();lastF=0;for(let i=0;i<8;i++)spawn();fish.forEach(f=>f.a=1);if(!raf)raf=requestAnimationFrame(frame)});
