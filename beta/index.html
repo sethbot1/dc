@@ -2648,9 +2648,17 @@ function spawnPaper(){if(document.querySelector(".paper"))return;const p=documen
   p.innerHTML=`<span class="pp"><span class="mh">The Phoenix</span><span class="hl">EXTRA! EXTRA!</span><span class="sb">${L("×14 PRODUCTION","×14 PRODUZIONE")}</span></span>`;
   document.body.appendChild(p);
   const ltr=Math.random()<.5,W=innerWidth,H=innerHeight,y0=H*(.18+Math.random()*.5),dur=(PERF?11:15)*1000,amp=24+Math.random()*26,ph=Math.random()*6;
-  let t0=performance.now(),slow=0,el=0,last=t0;p.onmouseenter=()=>slow=1;p.onmouseleave=()=>slow=0;
+  let t0=performance.now(),slow=0,el=0,last=t0,flipUp=null;p.onmouseenter=()=>slow=1;p.onmouseleave=()=>slow=0;
   (function fly(now){if(!p.isConnected)return;const dt=now-last;last=now;el+=slow?dt*.15:dt;const k=el/dur;if(k>=1){p.remove();return}
-    const x=ltr?-100+(W+200)*k:W+100-(W+200)*k,y=y0+Math.sin(k*9+ph)*amp+Math.sin(k*23)*6,rot=Math.sin(k*12+ph)*12;
+    const x=ltr?-100+(W+200)*k:W+100-(W+200)*k;let y=y0+Math.sin(k*9+ph)*amp+Math.sin(k*23)*6,rot=Math.sin(k*12+ph)*12;
+    // never cross the Dueck face: arc around it and do a backflip on the way past
+    const f=$("face"),fr=f&&f.offsetParent?f.getBoundingClientRect():null;
+    if(fr&&fr.width){const fx=fr.left+fr.width/2,fy=fr.top+fr.height/2,R=Math.max(fr.width,fr.height)/2+64,dx=x+42-fx;
+      if(Math.abs(dx)<R){const h=Math.sqrt(R*R-dx*dx),cy=y+28;
+        if(flipUp==null&&Math.abs(cy-fy)<R)flipUp=cy<=fy;
+        if(flipUp!=null){if(flipUp?cy>fy-h:cy<fy+h)y=(flipUp?fy-h:fy+h)-28;
+          const t=(ltr?dx+R:R-dx)/(2*R),e=t*t*(3-2*t);rot+=(ltr?-360:360)*Math.min(1,Math.max(0,e))}}
+      else flipUp=null}
     p.style.transform=`translate(${x}px,${y}px) rotate(${rot}deg)`;requestAnimationFrame(fly)})(t0);
   p.onclick=()=>{p.remove();recalc();const s=Math.round(60*durMult());addBuff(L("Hot off the press","Fresco di stampa"),60,{cm:14});
     const w=window.open(PHX,"_blank","noopener");
