@@ -3652,7 +3652,7 @@ function step(dt){t+=dt;
 function neck(){const c=P.cr||0,lx=4+c*5,ly=-38+c*12,ca=Math.cos(P.ang),sa=Math.sin(P.ang);return{x:P.x+lx*ca-ly*sa,y:P.y+lx*sa+ly*ca}}
 function sub(dt){const k=sk();
   if(P.rail){grind(dt,k);return}
-  if(P.gr){const th=slope(P.x),tk=hold||kTuck();P.cr=lerp(P.cr,hold?1:kTuck()?.7:0,Math.min(1,dt*12));if(hold)P.charge=Math.min(1,P.charge+dt*2.4);
+  if(P.gr){const th=Math.atan2(h(P.x)-h(P.x-3),3),tk=hold||kTuck();P.cr=lerp(P.cr,hold?1:kTuck()?.7:0,Math.min(1,dt*12));if(hold)P.charge=Math.min(1,P.charge+dt*2.4);
     const drag=(tk?.000165:.00033)/(k.sp*k.sp);P.sp+=(GRAV*Math.sin(th)-30-drag*P.sp*P.sp)*dt;P.sp=Math.max(P.sp,170);
     P.vx=P.sp*Math.cos(th);P.vy=P.sp*Math.sin(th);const nx=P.x+P.vx*dt,ball=P.y+P.vy*dt+.5*GRAV*dt*dt,gy=h(nx);
     if(gy>ball+1.8){P.x=nx;P.y=ball;P.vy+=GRAV*dt;takeoff()}else{P.x=nx;P.y=gy;P.ang+=wrap(th-P.ang)*Math.min(1,dt*20)}
