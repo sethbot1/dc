@@ -811,6 +811,27 @@ button.gmcard:hover .gmplay{background:#238a56}
 .fsjb{width:100%}
 /* games room: little polish */
 .gmtag.sea{color:#1f6f99;background:#dcefF8}
+.gmtag.mob{color:#8a1f24;background:#f6dcd6}
+/* ===== La Famiglia: top-down crime caper ===== */
+.td.mf{--bg:#2a1a16;--bg2:#1a0f0c}
+.mf .tdside{border-left-color:#4a2c22}
+.mf .tdfield{background:#2f86a6;touch-action:none;user-select:none;-webkit-user-select:none}
+.mf .tdlogo i{color:#f0c040}
+.mf .tdst .wd b{color:#f0c040;letter-spacing:2px}
+.mfcard{max-width:440px}.mfcard.wide{max-width:640px}
+.mfoffers{display:grid;gap:8px;margin-top:14px}
+.mfoff{text-align:left;padding:12px 14px;border-radius:7px;background:#fffaf0;box-shadow:inset 0 0 0 1.5px var(--line);display:flex;flex-direction:column;gap:3px}
+.mfoff:hover{box-shadow:inset 0 0 0 2px var(--rosso);background:#fff5ec}
+.mfoff b{font:400 20px/1.1 var(--fd)}.mfoff small{font-size:13px;color:var(--imt);line-height:1.4}.mfoff span{font:600 13px var(--fm);color:var(--verde)}
+.mfnote{font-size:12px!important}.mfup{color:var(--verde)!important;font-weight:700}
+.mfpay{font:600 13px var(--fm)!important;color:var(--verde)!important}
+#mfJob b{font:400 18px/1.15 var(--fd)}#mfJob p{margin:4px 0 8px;font-size:13px;color:var(--imt);line-height:1.4}#mfJob .tdbtn{width:100%}
+.mfbar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:8px}.mfbar i{display:block;height:100%;background:var(--oro);border-radius:3px}
+.mftouch{display:none;position:absolute;inset:auto 0 0 0;padding:10px;justify-content:space-between;pointer-events:none}
+.mftouch div{display:flex;gap:8px;pointer-events:auto}
+.mftouch button{width:62px;height:62px;border-radius:50%;background:rgba(10,10,14,.55);color:#fff;font:800 20px var(--fb);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35);touch-action:none}
+.mftouch button:active{background:rgba(240,192,64,.7)}
+@media (pointer:coarse){.mftouch{display:flex}}
 .gmq{aspect-ratio:20/12;display:grid;place-items:center;font:400 64px var(--fd);color:rgba(246,239,220,.3)}
 .gmcard.soon p{color:var(--mt)}
 @media (max-width:760px){.gmw{inset:0}.gm{border-radius:0}.gmbar{gap:6px 14px;padding:26px 12px 12px}.gmbody{padding:16px}}
@@ -1119,6 +1140,27 @@ button.gmcard:hover .gmplay{background:#238a56}
     <div class="gmbody"><div class="gmgrid" id="gmGrid"></div></div>
   </div>
 </div>
+<div class="tdw" id="mfw" hidden role="dialog" aria-modal="true" aria-label="La Famiglia, a crime caper">
+  <div class="td mf">
+    <header class="tdbar">
+      <b class="tdlogo">La <i>Famiglia</i></b>
+      <span class="tdst"><span class="wd" title="Wanted level">🚨 <b id="mfStars">–</b></span><span title="Rank">🎩 <b id="mfRank">–</b></span></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="mfCash">0</b></span>
+      <button class="mclose" id="mfClose" aria-label="Close La Famiglia"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tdgrid">
+      <div class="tdfield" id="mfField"><canvas id="mfcv"></canvas><div class="tdmsg" id="mfMsg"></div>
+        <div class="mftouch" id="mfTouch"><div><button data-k="lt" aria-label="Steer left">◀</button><button data-k="rt" aria-label="Steer right">▶</button></div><div><button data-k="hb" aria-label="Handbrake">⤼</button><button data-k="dn" aria-label="Brake">▼</button><button data-k="up" aria-label="Gas">▲</button></div></div>
+        <div class="tdov" id="mfOv"></div></div>
+      <aside class="tdside">
+        <div class="tdp"><h4><span data-i="mfFamH">The family</span><small data-i="mfFamS">respect earns rank</small></h4><dl class="tdrw" id="mfFam"></dl><div class="mfbar"><i id="mfRep"></i></div></div>
+        <div class="tdp"><h4><span data-i="mfJobH">Current job</span></h4><div id="mfJob"></div></div>
+        <div class="tdp"><h4><span data-i="mfGarH">Garage</span><small data-i="fsShopS">paid in Duecks</small></h4><div id="mfGarage"></div></div>
+        <p class="tdhelp" data-i="mfHelp"><b>Arrows</b> or <b>WASD</b> to drive, <b>Space</b> for the handbrake, <b>H</b> for the horn. Drive into the Don's villa (gold ring) to pick a job. Hit a police car or get spotted and you're <b>wanted</b>: stay out of their sight to cool off, or duck into a <b>body shop</b> (blue ring) once they've lost you. Busted? The family lawyer gets you out, and you never lose Duecks.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div class="tdw" id="fsw" hidden role="dialog" aria-modal="true" aria-label="La Pesca, a fishing game">
   <div class="td fs">
     <header class="tdbar">
@@ -1173,7 +1215,7 @@ const $=id=>document.getElementById(id);
 let LANG=new URLSearchParams(location.search).get("lang")==="it"?"it":"en";
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. <b>Tieni premuto</b> per riavvolgere, lascia e l'esca affonda. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo. Poi tieni premuto e lascia per tenere il pesce nella barra verde finché non lo tiri su. I pesci rari stanno al largo e in profondità, e alcuni abboccano solo al tramonto o di notte. Appoggia l'esca su un tesoro sul fondo e tira per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. <b>Tieni premuto</b> per riavvolgere, lascia e l'esca affonda. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo. Poi tieni premuto e lascia per tenere il pesce nella barra verde finché non lo tiri su. I pesci rari stanno al largo e in profondità, e alcuni abboccano solo al tramonto o di notte. Appoggia l'esca su un tesoro sul fondo e tira per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1299,7 +1341,7 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0}}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0}}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -2375,7 +2417,7 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
 addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
@@ -3075,11 +3117,304 @@ function mini(c){const g=c.getContext("2d"),W=c.width,H=c.height,s=Math.min(W/WW
 return{open:openFS,close:closeFS,get isOpen(){return open},mini,stats:fsS,_dbg:()=>({get mode(){return mode},get F(){return F},get eng(){return eng},fish,set tod(v){tod=v},press,release,spawn,land:()=>land()})}})();
 
 
+// ===== La Famiglia: a top-down crime caper on a little Italian island =====
+// Drive around town doing jobs for the Don: deliveries, collection rounds, bank getaways and street races.
+// Police chase you when you're wanted; get out of sight or into a body shop to lose them. Getting busted
+// only fails the job: no Duecks are ever taken. Jobs pay real Duecks, scaled by your production and rank.
+const MF=(()=>{
+const T=64,BK=7,NBX=7,NBY=5,COLS=NBX*BK+1,ROWS=NBY*BK+1,MW=COLS*T,MH=ROWS*T,BS=6*T,LANE=15;
+const N=a=>L(a[0],a[1]);const rr=(a,b)=>a+Math.random()*(b-a);const cl=(v,a,b)=>Math.max(a,Math.min(b,v));const hyp=Math.hypot;
+const rrp=(g,x,y,w,h,r)=>{r=Math.min(r,w/2,h/2);g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()};
+let sd=4242;const R=()=>(sd=(sd*16807)%2147483647)/2147483647;
+const DIRS=[[1,0],[0,1],[-1,0],[0,-1]];
+const nodeP=(i,j)=>({x:(i*BK+.5)*T,y:(j*BK+.5)*T});
+// ---------- the city ----------
+const TYPES={};[[3,2,"villa"],[6,0,"bank"],[0,4,"garage"],[6,4,"garage"],[2,1,"piazza"],[5,3,"piazza"],[1,3,"park"],[4,0,"park"],[0,0,"park"]].forEach(([i,j,t])=>TYPES[i+","+j]=t);
+const SHOPN=[["Butcher","Macelleria"],["Bakery","Panificio"],["Pastry shop","Pasticceria"],["Gelato bar","Gelateria"],["Fishmonger","Pescheria"],["Tobacconist","Tabaccheria"],["Barber","Barbiere"],["Wine bar","Enoteca"],["Pizzeria","Pizzeria"],["Grocer","Alimentari"],["Florist","Fioraio"],["Tailor","Sartoria"],["Café","Caffè"],["Laundry","Lavanderia"],["Cheese shop","Formaggeria"],["Pharmacy","Farmacia"],["Bookshop","Libreria"],["Hat shop","Cappelleria"],["Shoemaker","Calzolaio"],["Deli","Salumeria"],["Toy shop","Giocattoli"],["Jeweller","Gioielleria"],["Ironmonger","Ferramenta"],["Trattoria","Trattoria"],["Fruit stall","Fruttivendolo"],["Pasta maker","Pastificio"]];
+const ROOF=["#b8553a","#c46a45","#a8472f","#cf7b4f","#9e5a3c","#c2603e","#b04d34"],WALLC=["#e8c99a","#e7b07a","#f1dcb4","#d9a27a","#efc7a8","#e3d1a6"];
+const blocks=[],solids=[],SHOPS=[];let VILLA,BANK,GARAGES=[];
+const bucket=Array.from({length:NBX*NBY},()=>[]);
+const addS=(bi,bj,s)=>{solids.push(s);bucket[bj*NBX+bi].push(s)};
+for(let bj=0;bj<NBY;bj++)for(let bi=0;bi<NBX;bi++){const x=(bi*BK+1)*T,y=(bj*BK+1)*T,t=TYPES[bi+","+bj]||"houses",b={bi,bj,x,y,t,bl:[],tr:[],dec:[]};blocks.push(b);
+  const ix=x+26,iy=y+26,is=BS-52;// inner area inside the sidewalk
+  const door=(side,k)=>{const m=BS*k;return side===0?{x:x+m,y:y+9}:side===1?{x:x+BS-9,y:y+m}:side===2?{x:x+m,y:y+BS-9}:{x:x+9,y:y+m}};
+  if(t==="houses"){const sp=Math.floor(R()*4);let rs=[];const g=16;
+    if(sp===0){const h=(is-g)/2;rs=[[ix,iy,h,h],[ix+h+g,iy,h,h],[ix,iy+h+g,h,h],[ix+h+g,iy+h+g,h,h]]}
+    else if(sp===1){const h=(is-g)/2;rs=[[ix,iy,is,h],[ix,iy+h+g,is,h]]}
+    else if(sp===2){const h=(is-g)/2;rs=[[ix,iy,h,is],[ix+h+g,iy,h,is]]}
+    else{const a=is*.58;rs=[[ix,iy,a,is],[ix+a+g,iy,is-a-g,(is-g)/2],[ix+a+g,iy+(is-g)/2+g,is-a-g,(is-g)/2]]}
+    rs.forEach(([a,c,w,h])=>{const s={x:a,y:c,w,h,roof:ROOF[Math.floor(R()*ROOF.length)],wall:WALLC[Math.floor(R()*WALLC.length)],ch:R(),ter:R()<.3,ac:R()<.5};b.bl.push(s);addS(bi,bj,s)});
+    const side=Math.floor(R()*4);SHOPS.push({...door(side,.5),n:SHOPN[SHOPS.length%SHOPN.length],b});if(R()<.5){const s2=(side+2)%4;SHOPS.push({...door(s2,.3+R()*.4),n:SHOPN[(SHOPS.length+7)%SHOPN.length],b})}}
+  else if(t==="piazza"){const f={x:x+BS/2,y:y+BS/2,r:38,c:1,fount:1};b.dec.push(f);addS(bi,bj,f);for(let k=0;k<4;k++){const a=k*Math.PI/2+.78,d=110;b.dec.push({um:1,x:x+BS/2+Math.cos(a)*d,y:y+BS/2+Math.sin(a)*d,col:k%2?"#c9252b":"#1d7a4b"})}
+    SHOPS.push({...door(0,.5),n:["Café on the piazza","Caffè in piazza"],b});SHOPS.push({...door(2,.5),n:["Gelato cart","Carretto dei gelati"],b})}
+  else if(t==="park"){for(let k=0;k<9;k++){const tx=ix+30+R()*(is-60),ty=iy+30+R()*(is-60);if(hyp(tx-(x+BS/2),ty-(y+BS/2))<40)continue;const s={x:tx,y:ty,r:14+R()*8,c:1,tree:1};b.tr.push(s);addS(bi,bj,s)}}
+  else if(t==="villa"){const s={x:ix+60,y:iy+40,w:is-120,h:is-150,roof:"#9e3b2a",wall:"#f3e6c8",villa:1};b.bl.push(s);addS(bi,bj,s);VILLA={...door(2,.5),n:["The Don's villa","La villa del Don"]}}
+  else if(t==="bank"){const s={x:ix+20,y:iy+20,w:is-40,h:is-40,roof:"#d8d2c4",wall:"#f4f1ea",bank:1};b.bl.push(s);addS(bi,bj,s);BANK={...door(2,.5),n:["Banca Centrale","Banca Centrale"]}}
+  else if(t==="garage"){const s={x:ix+20,y:iy+60,w:is-40,h:is-100,roof:"#6d7378",wall:"#c9ccd0",gar:1};b.bl.push(s);addS(bi,bj,s);GARAGES.push({...door(0,.5),n:["Body shop","Carrozzeria"]})}}
+// ---------- state ----------
+const CARS=[{n:["Nonna's little car","La macchinina della nonna"],c:"#e8c547",max:330,acc:430,grip:7,arm:1,len:34,wid:19,cost:[0,0]},
+  {n:["The family sedan","La berlina di famiglia"],c:"#3f6e9e",max:410,acc:540,grip:8,arm:1.3,len:40,wid:20,cost:[2500,150]},
+  {n:["The sports coupé","Il coupé sportivo"],c:"#c9252b",max:510,acc:700,grip:9,arm:1.25,len:40,wid:20,cost:[40000,1500]},
+  {n:["The Don's limousine","La limousine del Don"],c:"#1c1c1e",max:560,acc:660,grip:9.5,arm:2.2,len:50,wid:21,cost:[500000,12000]}];
+const RANKS=[[["Associate","Associato"],0],[["Soldier","Soldato"],5],[["Capo","Capo"],15],[["Underboss","Sottocapo"],35],[["Don","Don"],70]];
+const JOBN={del:["Special delivery","Consegna speciale"],col:["Collection round","Il giro delle buste"],get:["The bank job","Il colpo in banca"],race:["Street race","Corsa clandestina"]};
+const mfS=()=>{if(!S.mafia||typeof S.mafia!=="object")S.mafia={jobs:0,earned:0,rep:0,car:0,best:0};const m=S.mafia;["jobs","earned","rep","best"].forEach(k=>{if(typeof m[k]!=="number"||!isFinite(m[k]))m[k]=0});m.car=cl(m.car|0,0,CARS.length-1);return m};
+const rankI=()=>{const r=mfS().rep;let k=0;RANKS.forEach(([,v],i)=>{if(r>=v)k=i});return k};
+const base=()=>Math.max(G.cps||0,(G.click||1)*3,1);const priceOf=c=>Math.round(Math.max(c[0],base()*c[1]));
+let open=false,raf=0,lastF=0,P=null,cars=[],peds=[],skids=[],fx=[],job=null,wanted=0,lostT=0,bustT=0,hitCD=0,sirenT=0,offers=null,cam={x:0,y:0,z:1},lay={W:0,H:0,dpr:1},msgT=0,uiT=0,t=0,keys={},touch=false,sess={jobs:0,earned:0};
+const cv=$("mfcv");
+function mkCar(kind,x,y,a,o={}){const C=kind==="me"?CARS[mfS().car]:null;return Object.assign({kind,x,y,a,vx:0,vy:0,len:C?C.len:kind==="pol"?42:rr(34,42),wid:C?C.wid:kind==="pol"?21:rr(18,21),col:C?C.c:kind==="pol"?"#1d2c5a":kind==="riv"?"#121212":["#d9534a","#e8a33d","#f1d27a","#7fb3a8","#c9b7a0","#5d7fa8","#f0f0ea","#7a9a4a","#a3452c","#8a6fb0"][Math.floor(Math.random()*10)],sp:rr(120,175),st:0,stuck:0,r:15},o)}
+function spawnOnRoad(far){for(let k=0;k<40;k++){const i=Math.floor(Math.random()*(NBX+1)),j=Math.floor(Math.random()*(NBY+1)),d=Math.floor(Math.random()*4),ni=i+DIRS[d][0],nj=j+DIRS[d][1];if(ni<0||nj<0||ni>NBX||nj>NBY)continue;
+  const a=nodeP(i,j),b=nodeP(ni,nj),f=rr(.2,.8),rg=[-DIRS[d][1],DIRS[d][0]],x=a.x+(b.x-a.x)*f+rg[0]*LANE,y=a.y+(b.y-a.y)*f+rg[1]*LANE;
+  if(P&&far&&(hyp(x-P.x,y-P.y)<far[0]||hyp(x-P.x,y-P.y)>far[1]))continue;return{x,y,a:Math.atan2(DIRS[d][1],DIRS[d][0]),ti:ni,tj:nj,dir:d}}return null}
+function reset(){const v=VILLA;P=mkCar("me",v.x+LANE,v.y+110,-Math.PI/2);cars=[];for(let k=0;k<(PERF?16:26);k++){const s=spawnOnRoad();if(s)cars.push(mkCar("civ",s.x,s.y,s.a,{ti:s.ti,tj:s.tj,dir:s.dir}))}
+  peds=[];for(let k=0;k<(PERF?20:40);k++){const b=blocks[Math.floor(Math.random()*blocks.length)];peds.push({b,p:Math.random()*BS*4,s:rr(18,34)*(Math.random()<.5?-1:1),ox:0,oy:0,vx:0,vy:0,c:["#c9252b","#2f6fc0","#1d7a4b","#e8a33d","#8a3fc0","#333","#f0f0ea"][k%7],pan:0})}
+  wanted=0;skids=[];fx=[];cam.x=P.x;cam.y=P.y}
+// ---------- physics ----------
+function collideWorld(o){let hit=0;const r=o.r;
+  if(o.x<r){o.x=r;if(o.vx<0){hit=Math.max(hit,-o.vx);o.vx*=-.3}}if(o.y<r){o.y=r;if(o.vy<0){hit=Math.max(hit,-o.vy);o.vy*=-.3}}
+  if(o.x>MW-r){o.x=MW-r;if(o.vx>0){hit=Math.max(hit,o.vx);o.vx*=-.3}}if(o.y>MH-r){o.y=MH-r;if(o.vy>0){hit=Math.max(hit,o.vy);o.vy*=-.3}}
+  const bi=Math.floor(o.x/(BK*T)),bj=Math.floor(o.y/(BK*T));
+  for(let j=bj-1;j<=bj+1;j++)for(let i=bi-1;i<=bi+1;i++){if(i<0||j<0||i>=NBX||j>=NBY)continue;for(const s of bucket[j*NBX+i]){let px,py,rr2=r;
+    if(s.c){const dx=o.x-s.x,dy=o.y-s.y,d=hyp(dx,dy);if(d>=s.r+r||d===0)continue;const nx=dx/d,ny=dy/d;o.x=s.x+nx*(s.r+r);o.y=s.y+ny*(s.r+r);const vn=o.vx*nx+o.vy*ny;if(vn<0){hit=Math.max(hit,-vn);o.vx-=1.35*vn*nx;o.vy-=1.35*vn*ny}continue}
+    px=cl(o.x,s.x,s.x+s.w);py=cl(o.y,s.y,s.y+s.h);let dx=o.x-px,dy=o.y-py,d=hyp(dx,dy);if(d>=rr2)continue;
+    let nx,ny;if(d===0){const l=o.x-s.x,rt=s.x+s.w-o.x,tp=o.y-s.y,bt=s.y+s.h-o.y,m=Math.min(l,rt,tp,bt);[nx,ny]=m===l?[-1,0]:m===rt?[1,0]:m===tp?[0,-1]:[0,1];px=m===l?s.x:m===rt?s.x+s.w:o.x;py=m===tp?s.y:m===bt?s.y+s.h:o.y;d=0}else{nx=dx/d;ny=dy/d}
+    o.x=px+nx*r;o.y=py+ny*r;const vn=o.vx*nx+o.vy*ny;if(vn<0){hit=Math.max(hit,-vn);o.vx-=1.35*vn*nx;o.vy-=1.35*vn*ny}}}
+  return hit}
+function collideCars(all){for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){const a=all[i],b=all[j],dx=b.x-a.x,dy=b.y-a.y;if(Math.abs(dx)>40||Math.abs(dy)>40)continue;const d=hyp(dx,dy),m=a.r+b.r;if(d>=m||d===0)continue;
+  const nx=dx/d,ny=dy/d,ov=(m-d)/2;a.x-=nx*ov;a.y-=ny*ov;b.x+=nx*ov;b.y+=ny*ov;const rv=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rv>=0)continue;
+  const ma=a.kind==="pol"?1.6:a.kind==="me"?1.2:1,mb=b.kind==="pol"?1.6:b.kind==="me"?1.2:1,jj=-1.4*rv/(1/ma+1/mb);a.vx-=jj*nx/ma;a.vy-=jj*ny/ma;b.vx+=jj*nx/mb;b.vy+=jj*ny/mb;
+  if(a.kind==="me"||b.kind==="me"){const o=a.kind==="me"?b:a;crash(o,-rv)}else if(-rv>120)SFX.hiss(.08,700,1,.04)}}
+function crash(o,v){if(v<60)return;SFX.hiss(.14,500+Math.random()*300,1,Math.min(.14,v/1600));SFX.tone(110,.08,"sine",Math.min(.1,v/2500));if(v>160)fxT(o.x,o.y-20,["Hey!","Mamma mia!","Ma dai!","Oh!"][Math.floor(Math.random()*4)],"#fff");
+  if(o.kind==="pol"&&hitCD<=0){hitCD=2;addWanted(1,L("You hit a police car!","Hai colpito la polizia!"))}
+  else if(o.kind==="civ"&&v>230&&cops().some(c=>hyp(c.x-P.x,c.y-P.y)<520)&&hitCD<=0){hitCD=2;addWanted(1,L("The police saw that.","La polizia ha visto tutto."))}}
+function drive(c,dt,thr,steer,hand,C){const fx=Math.cos(c.a),fy=Math.sin(c.a),rx=-fy,ry=fx;let vf=c.vx*fx+c.vy*fy,vs=c.vx*rx+c.vy*ry;
+  if(thr>0)vf+=C.acc*thr*dt*(vf<0?2:1);else if(thr<0)vf+=(vf>20?-C.acc*1.6:-C.acc*.6)*-thr*dt;else vf*=1-Math.min(1,.9*dt);
+  vf=cl(vf,-C.max*.35,C.max);if(hand){vf*=1-1.2*dt}
+  const sf=Math.min(1,Math.abs(vf)/110)*Math.sign(vf||1);c.a+=steer*(hand?3.4:2.7)*sf*dt*(1-Math.min(.35,Math.abs(vf)/C.max*.35));
+  vs*=Math.exp(-(hand?1.4:C.grip)*dt);const nfx=Math.cos(c.a),nfy=Math.sin(c.a);c.vx=nfx*vf+(-nfy)*vs;c.vy=nfy*vf+nfx*vs;c.slide=Math.abs(vs)}
+// AI: follow the road grid, lane-keeping, pick a turn at each crossing
+function nextDir(c,goal){const opts=[];for(let d=0;d<4;d++){const ni=c.ti+DIRS[d][0],nj=c.tj+DIRS[d][1];if(ni<0||nj<0||ni>NBX||nj>NBY)continue;if(!goal&&d===(c.dir+2)%4)continue;opts.push(d)}
+  if(!opts.length)return(c.dir+2)%4;if(goal){let best=opts[0],bd=1e9;for(const d of opts){const n=nodeP(c.ti+DIRS[d][0],c.tj+DIRS[d][1]),dd=hyp(n.x-goal.x,n.y-goal.y)+(d===(c.dir+2)%4?200:0);if(dd<bd){bd=dd;best=d}}return best}
+  return opts[Math.floor(Math.random()*opts.length)]}
+function aiStep(c,dt,maxSp,goal,direct){let tx,ty;
+  if(direct&&goal){tx=goal.x;ty=goal.y}else{const n=nodeP(c.ti,c.tj),d=DIRS[c.dir],rg=[-d[1],d[0]];tx=n.x+rg[0]*LANE;ty=n.y+rg[1]*LANE;
+    if(hyp(tx-c.x,ty-c.y)<26){const nd=nextDir(c,goal);c.dir=nd;c.ti+=DIRS[nd][0];c.tj+=DIRS[nd][1];const n2=nodeP(c.ti,c.tj),d2=DIRS[nd],r2=[-d2[1],d2[0]];tx=n2.x+r2[0]*LANE;ty=n2.y+r2[1]*LANE}}
+  const want=Math.atan2(ty-c.y,tx-c.x);let da=((want-c.a+Math.PI*3)%(Math.PI*2))-Math.PI;
+  // brake for anything just ahead
+  let sp=maxSp*(Math.abs(da)>.6?.55:1);if(c.kind==="civ"){const fx=Math.cos(c.a),fy=Math.sin(c.a);for(const o of[P,...cars]){if(o===c)continue;const dx=o.x-c.x,dy=o.y-c.y,ah=dx*fx+dy*fy,sd2=Math.abs(-dx*fy+dy*fx);if(ah>0&&ah<62&&sd2<18){sp=Math.min(sp,ah<34?0:60);if(o===P&&ah<50&&Math.random()<dt*.5)SFX.tone(380,.18,"square",.02)}}}
+  if(c.unst>0){c.unst-=dt;c.a+=.0;const fx=Math.cos(c.a),fy=Math.sin(c.a);c.vx+=(-fx*120-c.vx)*Math.min(1,dt*4);c.vy+=(-fy*120-c.vy)*Math.min(1,dt*4);return}
+  c.a+=cl(da,-1,1)*Math.min(1,dt*4.5);const fx=Math.cos(c.a),fy=Math.sin(c.a);c.vx+=(fx*sp-c.vx)*Math.min(1,dt*2.5);c.vy+=(fy*sp-c.vy)*Math.min(1,dt*2.5);
+  const spd=hyp(c.vx,c.vy);if(sp>60&&spd<25){c.stuck+=dt;if(c.stuck>1.3){c.stuck=0;c.unst=.7}}else c.stuck=0}
+const cops=()=>cars.filter(c=>c.kind==="pol");
+function addWanted(n,why){const w=Math.min(5,wanted+n);if(w>wanted){wanted=w;lostT=0;SFX.tone(700,.12,"square",.04);SFX.tone(950,.12,"square",.04,.13);if(why)msg(why+" "+"★".repeat(wanted),2.5)}}
+// ---------- jobs ----------
+const near=(a,b)=>hyp(a.x-b.x,a.y-b.y);
+function makeOffers(){const r=rankI(),types=["del","col"];if(r>=1)types.push("get");if(r>=2)types.push("race");const out=[],used=new Set();
+  while(out.length<3){const ty=types[Math.floor(Math.random()*types.length)];if(used.has(ty)&&types.length>out.length&&Math.random()<.7)continue;used.add(ty);out.push(mkJob(ty,r))}return out}
+function pick(arr,f){const c=arr.filter(f);return c.length?c[Math.floor(Math.random()*c.length)]:arr[Math.floor(Math.random()*arr.length)]}
+function mkJob(ty,r){const mul={del:18,col:30,get:60,race:42}[ty],rep={del:1,col:2,get:4,race:3}[ty];let pts=[],time=0;
+  if(ty==="del"){const a=pick(SHOPS,s=>near(s,VILLA)>500),b=pick(SHOPS,s=>near(s,a)>1100);pts=[a,b];time=(near(VILLA,a)+near(a,b))/190+14}
+  else if(ty==="col"){const a=pick(SHOPS,()=>1);const rest=SHOPS.filter(s=>s!==a&&near(s,a)<1300&&near(s,a)>300).sort(()=>Math.random()-.5).slice(0,2);pts=[a,...rest];let l=near(VILLA,a);rest.forEach((s,i)=>l+=near(i?rest[i-1]:a,s));time=l/170+20}
+  else if(ty==="get"){const g=GARAGES.slice().sort((x,y)=>near(y,BANK)-near(x,BANK))[0];pts=[BANK,g];time=170}
+  else{const d=pick(SHOPS,s=>near(s,VILLA)>1500);pts=[d];time=0}
+  const pay=Math.round(Math.max(mul*40,base()*mul)*(1+r*.3));return{ty,pts,time,pay,rep,left:ty==="col"?[...pts]:null,stage:0,wait:0,tl:time}}
+function startJob(j){job=j;offers=null;$("mfOv").innerHTML="";SFX.bell();
+  if(j.ty==="race"){const s={x:P.x+40,y:P.y};const rv=mkCar("riv",VILLA.x+30,VILLA.y+40,-Math.PI/2,{sp:CARS[mfS().car].max*.88});rv.len=42;rv.wid=21;
+    const n=closestNode(rv);rv.ti=n.i;rv.tj=n.j;rv.dir=0;cars.push(rv);job.riv=rv;job.cd=3;msg(L("The Rossi boy wants a race. First to the finish wins. 3…","Il figlio dei Rossi vuole correre. Vince chi arriva primo. 3…"),3)}
+  else msg(L(`Job accepted: ${N(JOBN[j.ty])}`,`Lavoro accettato: ${N(JOBN[j.ty])}`),2.5);ui(true)}
+function closestNode(o){let best={i:0,j:0},bd=1e9;for(let i=0;i<=NBX;i++)for(let j=0;j<=NBY;j++){const n=nodeP(i,j),d=hyp(n.x-o.x,n.y-o.y);if(d<bd){bd=d;best={i,j}}}return best}
+function target(){if(!job)return VILLA;if(job.ty==="col")return null;if(job.ty==="race")return job.pts[0];return job.pts[job.stage]}
+function failJob(why){if(job&&job.riv)cars=cars.filter(c=>c!==job.riv);job=null;msg(why,3.5);SFX.lose();ui(true)}
+function doneJob(){const m=mfS(),j=job;earn(j.pay);m.jobs++;m.earned+=j.pay;m.best=Math.max(m.best,j.pay);const r0=rankI();m.rep+=j.rep;sess.jobs++;sess.earned+=j.pay;if(j.riv)cars=cars.filter(c=>c!==j.riv);job=null;
+  SFX.win(2);coinRain(PERF?8:24);const r1=rankI();$("mfOv").innerHTML=`<div class="tdcard mfcard"><h2>${L("Bravo! <i>Job done</i>","Bravo! <i>Lavoro fatto</i>")}</h2><p>${N(JOBN[j.ty])}</p>
+    <dl class="tdres"><dt>${L("The Don pays","Il Don paga")}</dt><dd>+${fmt(j.pay)}</dd><dt>${L("Respect","Rispetto")}</dt><dd>+${j.rep}</dd><dt>${L("Rank","Grado")}</dt><dd>${N(RANKS[r1][0])}</dd></dl>
+    ${r1>r0?`<p class="mfup">${L(`Promoted to ${N(RANKS[r1][0])}!`,`Promosso a ${N(RANKS[r1][0])}!`)} ${r1===1?L("Bank jobs are open to you now.","Ora puoi fare i colpi in banca."):r1===2?L("Street races are open to you now.","Ora puoi fare le corse."):""}</p>`:""}
+    <button class="tdbig" id="mfOk">${L("Back to the streets","Torna in strada")}</button></div>`;$("mfOk").onclick=()=>{$("mfOv").innerHTML="";SFX.chip()};if(r1>r0)SFX.big();ui(true)}
+function showOffers(){offers=offers||makeOffers();const ov=$("mfOv"),r=rankI();
+  ov.innerHTML=`<div class="tdcard mfcard wide"><h2>${L("The Don <i>has work</i>","Il Don <i>ha del lavoro</i>")}</h2><p>${L("\"Sit, sit. Have a cannolo. Now, my friend, I need a favour…\"","\"Siediti, siediti. Prendi un cannolo. Allora, amico mio, mi serve un favore…\"")}</p>
+    <div class="mfoffers">${offers.map((o,i)=>`<button class="mfoff" data-i="${i}"><b>${N(JOBN[o.ty])}</b><small>${jobDesc(o)}</small><span>+${fmt(o.pay)} · ${L("respect","rispetto")} +${o.rep}${o.time?` · ${Math.round(o.time)}s`:""}</span></button>`).join("")}</div>
+    <p class="mfnote">${r<1?L("Reach Soldier for bank jobs, Capo for street races.","Diventa Soldato per i colpi in banca, Capo per le corse."):r<2?L("Reach Capo for street races.","Diventa Capo per le corse."):""}</p>
+    <button class="tdbig alt" id="mfNo">${L("Not now, Don","Non ora, Don")}</button></div>`;
+  ov.querySelectorAll(".mfoff").forEach(b=>b.onclick=()=>startJob(offers[+b.dataset.i]));$("mfNo").onclick=()=>{ov.innerHTML="";P.x+=0;P.y+=60;P.vx=P.vy=0}}
+function jobDesc(o){const n=s=>N(s.n);return o.ty==="del"?L(`Pick up a box of "cannoli" at the ${n(o.pts[0])}, take it to the ${n(o.pts[1])}. Don't ask what's inside.`,`Ritira una scatola di "cannoli" da ${n(o.pts[0])}, portala a ${n(o.pts[1])}. Non chiedere cosa c'è dentro.`)
+  :o.ty==="col"?L(`Visit ${o.pts.map(n).join(", ")} and pick up the Don's envelopes, in any order.`,`Passa da ${o.pts.map(n).join(", ")} e ritira le buste del Don, in qualsiasi ordine.`)
+  :o.ty==="get"?L("Wait outside the bank while the boys go in. Then lose the police and hide the car at the body shop.","Aspetta fuori dalla banca mentre i ragazzi entrano. Poi semina la polizia e nascondi l'auto in carrozzeria.")
+  :L(`Race the Rossi family's driver to the ${n(o.pts[0])}. Winner takes the pot.`,`Sfida l'autista dei Rossi fino a ${n(o.pts[0])}. Chi vince prende tutto.`)}
+function jobLine(){if(!job)return L("Drive to the Don's villa (gold ring) for work.","Vai alla villa del Don (cerchio d'oro) per lavorare.");const j=job,n=s=>N(s.n);
+  if(j.ty==="del")return j.stage?L(`Deliver the box to the ${n(j.pts[1])}`,`Consegna la scatola a ${n(j.pts[1])}`):L(`Pick up the box at the ${n(j.pts[0])}`,`Ritira la scatola da ${n(j.pts[0])}`);
+  if(j.ty==="col")return L(`Envelopes left: ${j.left.length} · ${j.left.map(n).join(", ")}`,`Buste rimaste: ${j.left.length} · ${j.left.map(n).join(", ")}`);
+  if(j.ty==="get")return j.stage?(wanted?L("Lose the police, then reach the body shop","Semina la polizia, poi vai in carrozzeria"):L("Get to the body shop","Vai in carrozzeria")):j.wait>0?L("Hold still… the boys are inside","Fermo… i ragazzi sono dentro"):L("Pull up outside the bank","Fermati davanti alla banca");
+  return L(`Beat the Rossi driver to the ${n(j.pts[0])}`,`Batti l'autista dei Rossi fino a ${n(j.pts[0])}`)}
+// ---------- the loop ----------
+function step(dt){t+=dt;hitCD-=dt;const C=CARS[mfS().car];const ov=$("mfOv").innerHTML;
+  // player
+  const up=keys.up?1:0,dn=keys.dn?1:0,stv=(keys.rt?1:0)-(keys.lt?1:0);if(!ov)drive(P,dt,up-dn,stv,!!keys.hb,C);else{P.vx*=.9;P.vy*=.9}
+  if(keys.horn&&!P.horn){SFX.tone(415,.3,"square",.03);SFX.tone(523,.3,"square",.025);P.horn=1}else if(!keys.horn)P.horn=0;
+  const spd=hyp(P.vx,P.vy);
+  // traffic, police, rival
+  const want5=wanted;let pc=cops().length;if(want5>0&&pc<Math.min(5,wanted+(wanted>2?1:0))&&Math.random()<dt*1.2){const s=spawnOnRoad([650,1100]);if(s)cars.push(mkCar("pol",s.x,s.y,s.a,{ti:s.ti,tj:s.tj,dir:s.dir}))}
+  for(const c of cars){if(c.kind==="civ")aiStep(c,dt,c.sp,null,false);
+    else if(c.kind==="pol"){if(wanted>0){const d=hyp(P.x-c.x,P.y-c.y);aiStep(c,dt,250+wanted*45,{x:P.x+P.vx*.3,y:P.y+P.vy*.3},d<240)}else{c.leave=(c.leave||0)+dt;aiStep(c,dt,200,null,false)}}
+    else if(c.kind==="riv"){if(job&&job.cd>0){c.vx=c.vy=0;continue}const g=job?job.pts[0]:VILLA,d=hyp(g.x-c.x,g.y-c.y);aiStep(c,dt,c.sp*(1+Math.sin(t*.3)*.05),g,d<200)}
+    c.x+=c.vx*dt;c.y+=c.vy*dt;collideWorld(c)}
+  P.x+=P.vx*dt;P.y+=P.vy*dt;const hw=collideWorld(P);if(hw>90)crash({x:P.x,y:P.y,kind:"wall"},hw);
+  collideCars([P,...cars]);
+  // keep traffic around the player, and send the police home when you're clean
+  for(const c of cars)if(c.kind==="civ"&&hyp(c.x-P.x,c.y-P.y)>1500){const s=spawnOnRoad([700,1100]);if(s)Object.assign(c,{x:s.x,y:s.y,a:s.a,ti:s.ti,tj:s.tj,dir:s.dir,vx:0,vy:0})}
+  cars=cars.filter(c=>!(c.kind==="pol"&&wanted===0&&(c.leave>4||hyp(c.x-P.x,c.y-P.y)>1300)));
+  // wanted: stay out of sight to cool off
+  if(wanted>0){const seen=cops().some(c=>hyp(c.x-P.x,c.y-P.y)<480);if(seen)lostT=0;else{lostT+=dt;if(lostT>6){wanted--;lostT=0;msg(wanted?L("They're losing you… ","Ti stanno perdendo… ")+"★".repeat(wanted):L("You lost them.","Li hai seminati."),2);SFX.chip()}}
+    sirenT-=dt;if(sirenT<0&&seen){sirenT=.55;SFX.tone(Math.floor(t*1.8)%2?960:720,.5,"triangle",.018)}
+    const close=cops().find(c=>hyp(c.x-P.x,c.y-P.y)<46);if(close&&spd<70){bustT+=dt/C.arm;if(bustT>1.6)busted()}else bustT=Math.max(0,bustT-dt*1.5)}else bustT=0;
+  // peds on the sidewalks dive out of the way
+  for(const p of peds){p.p+=p.s*dt;const q=pedPos(p);p.pan=Math.max(0,p.pan-dt);const dx=q.x+p.ox-P.x,dy=q.y+p.oy-P.y,d=hyp(dx,dy);
+    if(d<70&&spd>60&&p.pan<=0){p.pan=.6;const k=170/(d||1);p.vx=dx*k/170*170;p.vy=dy*k/170*170;if(Math.random()<.3)fxT(q.x,q.y-14,["Mamma mia!","Attenzione!","Aiuto!","Ehi!"][Math.floor(Math.random()*4)],"#ffe9a0")}
+    p.ox+=p.vx*dt;p.oy+=p.vy*dt;p.vx*=1-Math.min(1,dt*4);p.vy*=1-Math.min(1,dt*4);if(p.pan<=0){p.ox*=1-Math.min(1,dt*.8);p.oy*=1-Math.min(1,dt*.8)}}
+  // skid marks
+  if((P.slide>110||keys.hb&&spd>120)&&!PERF){const fx2=Math.cos(P.a),fy2=Math.sin(P.a);for(const sgn of[-1,1])skids.push({x:P.x-fx2*P.len*.35-fy2*sgn*P.wid*.4,y:P.y-fy2*P.len*.35+fx2*sgn*P.wid*.4,t:6})}
+  for(const s of skids)s.t-=dt;if(skids.length>500)skids.splice(0,skids.length-500);skids=skids.filter(s=>s.t>0);
+  for(const f of fx)f.t-=dt;fx=fx.filter(f=>f.t>0);
+  // rings: villa, body shops, job targets
+  if(!ov){if(!job&&near(P,VILLA)<46&&spd<160){P.vx*=.3;P.vy*=.3;showOffers()}
+    for(const g of GARAGES)if(near(P,g)<46&&wanted>0){if(cops().some(c=>hyp(c.x-P.x,c.y-P.y)<360)){if(Math.random()<dt*2)msg(L("Too hot! Shake the police first.","Troppa polizia! Seminala prima."),1.5)}else{wanted=0;lostT=0;msg(L("Fresh paint, new plates. You're clean.","Vernice nuova, targa nuova. Sei pulito."),2.5);SFX.coin()}}
+    if(job)jobStep(dt,spd)}}
+function jobStep(dt,spd){const j=job;if(j.time){j.tl-=dt;if(j.tl<=0)return failJob(L("Too late. The Don is disappointed.","Troppo tardi. Il Don è deluso."))}
+  if(j.ty==="del"){if(near(P,j.pts[j.stage])<46&&spd<200){if(j.stage===0){j.stage=1;SFX.coin();msg(L("Got the box. Drive carefully…","Preso la scatola. Guida con calma…"),2)}else doneJob()}}
+  else if(j.ty==="col"){for(const s of j.left)if(near(P,s)<46&&spd<200){j.left=j.left.filter(x=>x!==s);SFX.coin();fxT(P.x,P.y-24,"+✉️","#ffe08a");
+      if(!j.left.length){doneJob();return}if(j.left.length===1&&Math.random()<.4)addWanted(1,L("The shopkeeper called the police!","Il negoziante ha chiamato la polizia!"));else msg(L(`Envelope! ${j.left.length} to go.`,`Busta! Ne mancano ${j.left.length}.`),1.8);break}}
+  else if(j.ty==="get"){if(j.stage===0){if(near(P,BANK)<50&&spd<50){j.wait+=dt;if(j.wait>3){j.stage=1;addWanted(3,L("The boys are in! Go, go, go!","I ragazzi sono saliti! Vai, vai, vai!"));SFX.trumpet()}}else j.wait=Math.max(0,j.wait-dt)}
+    else if(near(P,j.pts[1])<46&&wanted===0)doneJob()}
+  else if(j.ty==="race"){if(j.cd>0){const c0=Math.ceil(j.cd);j.cd-=dt;const c1=Math.ceil(j.cd);if(c1!==c0)msg(c1>0?c1+"…":L("GO!","VIA!"),1);if(c1!==c0)SFX.tone(c1>0?600:1200,.15,"square",.04);return}
+    if(near(P,j.pts[0])<50)doneJob();else if(j.riv&&near(j.riv,j.pts[0])<60)failJob(L("The Rossi driver got there first. Humiliating.","L'autista dei Rossi è arrivato prima. Che figura."))}}
+function busted(){bustT=0;wanted=0;cars=cars.filter(c=>c.kind!=="pol");const had=!!job;if(job&&job.riv)cars=cars.filter(c=>c!==job.riv);job=null;P.x=VILLA.x+LANE;P.y=VILLA.y+110;P.vx=P.vy=0;P.a=-Math.PI/2;
+  $("mfOv").innerHTML=`<div class="tdcard mfcard"><h2>${L("Busted! <i>But not for long</i>","Arrestato! <i>Ma per poco</i>")}</h2><p>${L("The family lawyer had you out before lunch. You keep every Duecks you had","L'avvocato di famiglia ti ha fatto uscire prima di pranzo. Tieni tutti i tuoi Dueck")}${had?L(", but the job is off.",", ma il lavoro salta."):"."}</p><button class="tdbig" id="mfOk">${L("Back to the villa","Torna alla villa")}</button></div>`;
+  $("mfOk").onclick=()=>{$("mfOv").innerHTML="";SFX.chip()};SFX.lose();ui(true)}
+function pedPos(p){const b=p.b,per=BS*4,q=((p.p%per)+per)%per,i=9,s=BS-18;if(q<BS)return{x:b.x+i+q/BS*s,y:b.y+i};if(q<BS*2)return{x:b.x+BS-i,y:b.y+i+(q-BS)/BS*s};if(q<BS*3)return{x:b.x+BS-i-(q-BS*2)/BS*s,y:b.y+BS-i};return{x:b.x+i,y:b.y+BS-i-(q-BS*3)/BS*s}}
+function fxT(x,y,s,c){if(fx.length<30)fx.push({x,y,s,c,t:1.1})}
+// ---------- drawing the city (cached in chunks) ----------
+const CH=512,chunks={};
+function drawCity(g,x0,y0,x1,y1){
+  g.fillStyle="#2f86a6";g.fillRect(x0,y0,x1-x0,y1-y0);
+  g.strokeStyle="rgba(255,255,255,.18)";g.lineWidth=2;for(let y=Math.floor(y0/40)*40;y<y1;y+=40)for(let x=Math.floor(x0/90)*90+((y/40)%2)*45;x<x1;x+=90){if(x>-20&&x<MW+20&&y>-20&&y<MH+20)continue;g.beginPath();g.moveTo(x,y);g.quadraticCurveTo(x+12,y-6,x+24,y);g.stroke()}
+  // quay edge and asphalt
+  g.fillStyle="#cfc6b2";g.fillRect(-14,-14,MW+28,MH+28);g.fillStyle="#46474c";g.fillRect(0,0,MW,MH);
+  // lane dashes and crossings
+  g.strokeStyle="#e9e1c4";g.lineWidth=2.5;g.setLineDash([22,20]);
+  for(let i=0;i<=NBX;i++){const x=(i*BK+.5)*T;g.beginPath();g.moveTo(x,0);g.lineTo(x,MH);g.stroke()}for(let j=0;j<=NBY;j++){const y=(j*BK+.5)*T;g.beginPath();g.moveTo(0,y);g.lineTo(MW,y);g.stroke()}g.setLineDash([]);
+  for(let i=0;i<=NBX;i++)for(let j=0;j<=NBY;j++){const n=nodeP(i,j);g.fillStyle="#46474c";g.fillRect(n.x-T/2,n.y-T/2,T,T);g.fillStyle="rgba(240,236,220,.85)";
+    for(let k=0;k<5;k++){const o=-T/2+6+k*11;g.fillRect(n.x+o,n.y-T/2-14,6,12);g.fillRect(n.x+o,n.y+T/2+2,6,12);g.fillRect(n.x-T/2-14,n.y+o,12,6);g.fillRect(n.x+T/2+2,n.y+o,12,6)}}
+  for(const b of blocks){if(b.x>x1||b.y>y1||b.x+BS<x0||b.y+BS<y0)continue;drawBlock(g,b)}}
+function roofRect(g,s){g.fillStyle="rgba(0,0,0,.3)";g.fillRect(s.x+8,s.y+10,s.w,s.h);g.fillStyle=s.wall;g.fillRect(s.x,s.y+s.h-7,s.w,7);g.fillRect(s.x+s.w-5,s.y,5,s.h);
+  g.fillStyle=s.roof;g.fillRect(s.x,s.y,s.w-5,s.h-7);const hor=s.w>s.h;g.strokeStyle="rgba(0,0,0,.12)";g.lineWidth=1;
+  if(hor)for(let y=s.y+5;y<s.y+s.h-7;y+=6){g.beginPath();g.moveTo(s.x,y);g.lineTo(s.x+s.w-5,y);g.stroke()}else for(let x=s.x+5;x<s.x+s.w-5;x+=6){g.beginPath();g.moveTo(x,s.y);g.lineTo(x,s.y+s.h-7);g.stroke()}
+  g.strokeStyle="rgba(255,255,255,.25)";g.lineWidth=3;g.beginPath();if(hor){g.moveTo(s.x+6,s.y+(s.h-7)/2);g.lineTo(s.x+s.w-11,s.y+(s.h-7)/2)}else{g.moveTo(s.x+(s.w-5)/2,s.y+6);g.lineTo(s.x+(s.w-5)/2,s.y+s.h-13)}g.stroke()}
+function drawBlock(g,b){const{x,y}=b;g.fillStyle="#d3c9b3";g.fillRect(x,y,BS,BS);g.strokeStyle="#8f8676";g.lineWidth=2;g.strokeRect(x+1,y+1,BS-2,BS-2);
+  g.strokeStyle="rgba(0,0,0,.06)";g.lineWidth=1;for(let k=18;k<BS;k+=18){g.beginPath();g.moveTo(x+k,y);g.lineTo(x+k,y+18);g.moveTo(x+k,y+BS-18);g.lineTo(x+k,y+BS);g.moveTo(x,y+k);g.lineTo(x+18,y+k);g.moveTo(x+BS-18,y+k);g.lineTo(x+BS,y+k);g.stroke()}
+  const ix=x+22,iy=y+22,is=BS-44;
+  if(b.t==="houses"){g.fillStyle="#b9a888";g.fillRect(ix,iy,is,is);for(const s of b.bl){roofRect(g,s);
+      if(s.ch>.3){g.fillStyle="#7a3a28";g.fillRect(s.x+s.w*.2,s.y+s.h*.25,9,9)}if(s.ac){g.fillStyle="#c9ccd0";g.fillRect(s.x+s.w*.62,s.y+s.h*.6,14,10);g.fillStyle="#888";g.beginPath();g.arc(s.x+s.w*.62+7,s.y+s.h*.6+5,3.5,0,7);g.fill()}
+      if(s.ter){g.fillStyle="#e9dfc9";g.fillRect(s.x+s.w*.5,s.y+8,Math.min(60,s.w*.4),Math.min(50,s.h*.35));g.fillStyle="#4f8a3a";for(let k=0;k<3;k++){g.beginPath();g.arc(s.x+s.w*.5+8+k*16,s.y+16,5,0,7);g.fill()}}}
+    // washing lines across the alleys
+    g.strokeStyle="rgba(60,60,60,.5)";g.lineWidth=1;const cy=iy+is/2;g.beginPath();g.moveTo(ix+20,cy-4);g.lineTo(ix+is-20,cy+4);g.stroke();["#f0f0ea","#c9252b","#2f6fc0","#f1d27a","#fff"].forEach((c,k)=>{g.fillStyle=c;g.fillRect(ix+40+k*48,cy-4+k*1.6,10,8)})}
+  else if(b.t==="piazza"){g.fillStyle="#bdb4a2";g.fillRect(ix,iy,is,is);g.fillStyle="rgba(0,0,0,.05)";for(let yy=iy;yy<iy+is;yy+=12)for(let xx=ix+((yy/12)%2)*6;xx<ix+is;xx+=12)g.fillRect(xx,yy,10,10);
+    for(const d of b.dec){if(d.fount){g.fillStyle="#e8e0cc";g.beginPath();g.arc(d.x,d.y,d.r,0,7);g.fill();g.fillStyle="#58b4cf";g.beginPath();g.arc(d.x,d.y,d.r-7,0,7);g.fill();g.fillStyle="#e8e0cc";g.beginPath();g.arc(d.x,d.y,10,0,7);g.fill()}
+      else if(d.um){g.fillStyle="rgba(0,0,0,.25)";g.beginPath();g.arc(d.x+5,d.y+6,22,0,7);g.fill();for(let k=0;k<8;k++){g.fillStyle=k%2?"#f6f1e4":d.col;g.beginPath();g.moveTo(d.x,d.y);g.arc(d.x,d.y,22,k*Math.PI/4,(k+1)*Math.PI/4);g.fill()}}}}
+  else if(b.t==="park"){g.fillStyle="#6f9a4a";g.fillRect(ix,iy,is,is);g.strokeStyle="#d9c9a0";g.lineWidth=10;g.beginPath();g.moveTo(ix,iy);g.lineTo(ix+is,iy+is);g.moveTo(ix+is,iy);g.lineTo(ix,iy+is);g.stroke();
+    for(const s of b.tr){g.fillStyle="rgba(0,0,0,.25)";g.beginPath();g.arc(s.x+6,s.y+7,s.r,0,7);g.fill();g.fillStyle="#3f6b2c";g.beginPath();g.arc(s.x,s.y,s.r,0,7);g.fill();g.fillStyle="#5a8a3a";g.beginPath();g.arc(s.x-s.r*.25,s.y-s.r*.25,s.r*.6,0,7);g.fill()}}
+  else if(b.t==="villa"){g.fillStyle="#5d8a3a";g.fillRect(ix,iy,is,is);g.fillStyle="#e2d6b8";g.fillRect(x+BS/2-20,iy+is-110,40,110);g.fillStyle="#3f6b2c";for(let k=0;k<14;k++){g.beginPath();g.arc(ix+8+k*(is-16)/13,iy+6,8,0,7);g.fill()}
+    for(const s of b.bl)roofRect(g,s);g.fillStyle="#58b4cf";g.fillRect(ix+20,iy+is-80,60,40);g.strokeStyle="#fff";g.lineWidth=2;g.strokeRect(ix+20,iy+is-80,60,40);
+    g.fillStyle="#d4951a";g.font="700 20px 'Abril Fatface',serif";g.textAlign="center";g.fillText("D",x+BS/2,iy+78)}
+  else if(b.t==="bank"){g.fillStyle="#cfc6b2";g.fillRect(ix,iy,is,is);for(const s of b.bl){roofRect(g,s);g.fillStyle="#b9b2a2";for(let k=0;k<6;k++)g.fillRect(s.x+14+k*(s.w-40)/5,s.y+s.h-24,8,14);g.fillStyle="#7a6a4a";g.font="700 26px 'Abril Fatface',serif";g.textAlign="center";g.fillText("BANCA",s.x+s.w/2,s.y+s.h/2)}}
+  else if(b.t==="garage"){g.fillStyle="#9a9a96";g.fillRect(ix,iy,is,is);for(const s of b.bl){roofRect(g,s);g.fillStyle="#f0c040";g.font="700 18px 'DM Sans',sans-serif";g.textAlign="center";g.fillText(L("BODY SHOP","CARROZZERIA"),s.x+s.w/2,s.y+s.h/2)}g.fillStyle="#333";g.fillRect(x+BS/2-40,iy,80,40)}}
+function chunk(cx,cy){const k=cx+","+cy;if(chunks[k])return chunks[k];const sc=Math.min(1.5,lay.dpr),c=document.createElement("canvas");c.width=c.height=Math.ceil(CH*sc);const g=c.getContext("2d");g.scale(sc,sc);g.translate(-cx*CH,-cy*CH);g.beginPath();g.rect(cx*CH,cy*CH,CH,CH);g.clip();drawCity(g,cx*CH,cy*CH,cx*CH+CH,cy*CH+CH);return chunks[k]=c}
+// ---------- cars, people, HUD ----------
+function drawCar(g,c){g.save();g.translate(c.x,c.y);g.rotate(c.a);const l=c.len,w=c.wid;g.fillStyle="rgba(0,0,0,.3)";rrp(g,-l/2+4,-w/2+5,l,w,6);g.fill();
+  g.fillStyle=c.col;rrp(g,-l/2,-w/2,l,w,6);g.fill();g.strokeStyle="rgba(0,0,0,.35)";g.lineWidth=1;g.stroke();
+  g.fillStyle="rgba(255,255,255,.18)";rrp(g,-l*.15,-w/2+3,l*.4,w-6,3);g.fill();
+  g.fillStyle="#1d2733";g.beginPath();g.moveTo(l*.22,-w/2+3);g.lineTo(l*.36,-w/2+4);g.lineTo(l*.36,w/2-4);g.lineTo(l*.22,w/2-3);g.closePath();g.fill();g.fillRect(-l*.36,-w/2+4,l*.1,w-8);
+  if(c.kind==="pol"){g.fillStyle="#fff";g.fillRect(-l*.12,-w/2+3,l*.3,w-6);const on=Math.floor(t*8)%2;g.fillStyle=on?"#ff3a3a":"#3a7bff";g.fillRect(-l*.02,-w/2+2,6,w/2-2);g.fillStyle=on?"#3a7bff":"#ff3a3a";g.fillRect(-l*.02,0,6,w/2-2);
+    g.fillStyle="#c9252b";g.fillRect(-l/2+2,-1.5,l-4,3)}
+  if(c.kind==="riv"){g.strokeStyle="#d4951a";g.lineWidth=1.5;g.strokeRect(-l/2+3,-w/2+3,l-6,w-6)}
+  g.fillStyle="#fff6c8";g.fillRect(l/2-3,-w/2+2,3,4);g.fillRect(l/2-3,w/2-6,3,4);g.fillStyle="#c9252b";g.fillRect(-l/2,-w/2+2,2.5,4);g.fillRect(-l/2,w/2-6,2.5,4);g.restore();
+  if(c.kind==="pol"&&!PERF){const on=Math.floor(t*8)%2,gr=g.createRadialGradient(c.x,c.y,2,c.x,c.y,60);gr.addColorStop(0,on?"rgba(255,60,60,.25)":"rgba(60,120,255,.25)");gr.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=gr;g.beginPath();g.arc(c.x,c.y,60,0,7);g.fill()}}
+function ring(g,p,col,label,pulse){const r=40+Math.sin(t*4)*3*pulse;g.strokeStyle=col;g.lineWidth=5;g.globalAlpha=.9;g.beginPath();g.arc(p.x,p.y,r,0,7);g.stroke();g.globalAlpha=.18;g.fillStyle=col;g.fill();g.globalAlpha=1;
+  if(label){g.font="700 14px 'DM Sans',sans-serif";g.textAlign="center";g.lineWidth=4;g.strokeStyle="rgba(0,0,0,.6)";g.strokeText(label,p.x,p.y-r-8);g.fillStyle="#fff";g.fillText(label,p.x,p.y-r-8)}}
+function render(){const g=cv.getContext("2d"),{W,H,dpr}=lay;if(!W)return;const spd=hyp(P.vx,P.vy),C=CARS[mfS().car];
+  const tz=cl(Math.min(W,H)/720,.5,1.1)*(1-Math.min(.22,spd/C.max*.22));cam.z+=(tz-cam.z)*.05;const lx=P.x+P.vx*.35,ly=P.y+P.vy*.35;cam.x+=(lx-cam.x)*.12;cam.y+=(ly-cam.y)*.12;
+  const z=cam.z,vx0=cam.x-W/2/z,vy0=cam.y-H/2/z,vx1=cam.x+W/2/z,vy1=cam.y+H/2/z;
+  g.setTransform(dpr*z,0,0,dpr*z,dpr*(W/2-cam.x*z),dpr*(H/2-cam.y*z));
+  for(let cy=Math.floor(vy0/CH);cy<=Math.floor(vy1/CH);cy++)for(let cx=Math.floor(vx0/CH);cx<=Math.floor(vx1/CH);cx++)g.drawImage(chunk(cx,cy),cx*CH,cy*CH,CH,CH);
+  g.fillStyle="rgba(20,20,20,.35)";for(const s of skids){g.globalAlpha=Math.min(1,s.t/2)*.6;g.fillRect(s.x-2,s.y-2,4,4)}g.globalAlpha=1;
+  // rings
+  if(!job)ring(g,VILLA,"#f0c040",N(VILLA.n),1);
+  if(wanted>0)for(const q of GARAGES)ring(g,q,"#58b4cf",N(q.n),1);
+  if(job){if(job.ty==="col")job.left.forEach(s=>ring(g,s,"#5fd37a",N(s.n),1));else{const tg=target();if(tg)ring(g,tg,job.ty==="race"?"#ff6a5a":"#5fd37a",N(tg.n),1)}
+    if(job.ty==="get"&&job.stage===0&&job.wait>0){g.fillStyle="rgba(0,0,0,.6)";g.fillRect(BANK.x-30,BANK.y+48,60,8);g.fillStyle="#f0c040";g.fillRect(BANK.x-29,BANK.y+49,58*Math.min(1,job.wait/3),6)}}
+  // people
+  for(const p of peds){const q=pedPos(p),x=q.x+p.ox,y=q.y+p.oy;if(x<vx0-20||x>vx1+20||y<vy0-20||y>vy1+20)continue;g.fillStyle="rgba(0,0,0,.25)";g.beginPath();g.arc(x+2,y+3,6,0,7);g.fill();g.fillStyle=p.c;g.beginPath();g.arc(x,y,6,0,7);g.fill();g.fillStyle="#e8b48c";g.beginPath();g.arc(x,y,3.5,0,7);g.fill()}
+  for(const c of cars)if(c.x>vx0-60&&c.x<vx1+60&&c.y>vy0-60&&c.y<vy1+60)drawCar(g,c);g.strokeStyle=`rgba(255,255,255,${.45+Math.sin(t*5)*.2})`;g.lineWidth=2.5;g.beginPath();g.arc(P.x,P.y,P.len*.72,0,7);g.stroke();drawCar(g,P);
+  if(bustT>0){g.fillStyle="rgba(0,0,0,.6)";g.fillRect(P.x-26,P.y-34,52,7);g.fillStyle="#ff6a5a";g.fillRect(P.x-25,P.y-33,50*Math.min(1,bustT/1.6),5)}
+  for(const f of fx){g.globalAlpha=Math.min(1,f.t*2);g.font="800 15px 'DM Sans',sans-serif";g.textAlign="center";g.lineWidth=4;g.strokeStyle="rgba(0,0,0,.6)";const yy=f.y-(1.1-f.t)*30;g.strokeText(f.s,f.x,yy);g.fillStyle=f.c;g.fillText(f.s,f.x,yy)}g.globalAlpha=1;
+  // HUD in screen space
+  g.setTransform(dpr,0,0,dpr,0,0);
+  const tg=job?(job.ty==="col"?job.left.reduce((a,s)=>!a||near(P,s)<near(P,a)?s:a,null):target()):VILLA;
+  if(tg){const sx=(tg.x-cam.x)*z+W/2,sy=(tg.y-cam.y)*z+H/2;if(sx<20||sy<20||sx>W-20||sy>H-20){const a=Math.atan2(sy-H/2,sx-W/2),m=Math.min((W/2-34)/Math.abs(Math.cos(a)||1e-9),(H/2-34)/Math.abs(Math.sin(a)||1e-9)),ax=W/2+Math.cos(a)*m,ay=H/2+Math.sin(a)*m;
+    g.save();g.translate(ax,ay);g.rotate(a);g.fillStyle=job?"#5fd37a":"#f0c040";g.strokeStyle="rgba(0,0,0,.5)";g.lineWidth=2;g.beginPath();g.moveTo(16,0);g.lineTo(-10,-11);g.lineTo(-5,0);g.lineTo(-10,11);g.closePath();g.fill();g.stroke();g.restore()}}
+  // job banner
+  const line=jobLine();g.font="700 14px 'DM Sans',sans-serif";const tw=g.measureText(line).width+(job&&job.time?70:0)+28;g.fillStyle="rgba(10,10,14,.72)";rrp(g,W/2-tw/2,10,tw,32,16);g.fill();g.fillStyle="#fff";g.textAlign="left";g.fillText(line,W/2-tw/2+14,31);
+  if(job&&job.time){const s=Math.max(0,Math.ceil(job.tl));g.fillStyle=s<15?"#ff8a7a":"#f0c040";g.textAlign="right";g.fillText(`⏱ ${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`,W/2+tw/2-14,31)}
+  // wanted stars
+  g.textAlign="right";g.font="900 24px 'DM Sans',sans-serif";for(let i=0;i<5;i++){const on=i<wanted,fl=on&&lostT>0&&Math.floor(t*4)%2;g.fillStyle=on?(fl?"#fff":"#f0c040"):"rgba(255,255,255,.22)";g.strokeStyle="rgba(0,0,0,.5)";g.lineWidth=3;g.strokeText("★",W-14-i*26,72);g.fillText("★",W-14-i*26,72)}
+  // speedometer
+  g.font="800 22px 'DM Mono',monospace";g.textAlign="right";g.fillStyle="#fff";g.strokeStyle="rgba(0,0,0,.6)";g.lineWidth=4;const kmh=Math.round(spd*.36);g.strokeText(kmh+" km/h",W-16,H-18);g.fillText(kmh+" km/h",W-16,H-18);
+  // minimap
+  const mw=Math.min(200,W*.3),mh=mw*MH/MW,mx=12,my=H-mh-12,k=mw/MW;g.fillStyle="rgba(20,60,80,.85)";rrp(g,mx-4,my-4,mw+8,mh+8,6);g.fill();g.fillStyle="#56575c";g.fillRect(mx,my,mw,mh);
+  for(const b of blocks){g.fillStyle=b.t==="park"?"#6f9a4a":b.t==="piazza"?"#bdb4a2":b.t==="villa"?"#d4951a":b.t==="bank"?"#e8e2d4":b.t==="garage"?"#58b4cf":"#b8553a";g.fillRect(mx+b.x*k,my+b.y*k,BS*k,BS*k)}
+  const dot=(p,c,r)=>{g.fillStyle=c;g.beginPath();g.arc(mx+p.x*k,my+p.y*k,r,0,7);g.fill()};
+  if(job){if(job.ty==="col")job.left.forEach(s=>dot(s,"#5fd37a",4));else if(target())dot(target(),"#5fd37a",4.5)}else dot(VILLA,"#f0c040",4.5);
+  for(const c of cars)if(c.kind==="pol")dot(c,Math.floor(t*6)%2?"#ff3a3a":"#3a7bff",3);else if(c.kind==="riv")dot(c,"#111",3.5);
+  g.save();g.translate(mx+P.x*k,my+P.y*k);g.rotate(P.a);g.fillStyle="#fff";g.beginPath();g.moveTo(6,0);g.lineTo(-4,-4);g.lineTo(-4,4);g.closePath();g.fill();g.restore()}
+function layout(){const f=$("mfField"),dpr=Math.min(2,devicePixelRatio||1),W=f.clientWidth,H=f.clientHeight;if(!W||!H)return;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);if(lay.dpr!==dpr)for(const k in chunks)delete chunks[k];lay={W,H,dpr}}
+function frame(now){raf=0;if(!open)return;const dt=Math.min(.05,(now-(lastF||now))/1000);lastF=now;step(dt/2);step(dt/2);
+  if(msgT>0){msgT-=dt;if(msgT<=0)$("mfMsg").classList.add("fade")}render();uiT-=dt;if(uiT<=0){uiT=.3;ui()}raf=requestAnimationFrame(frame)}
+function msg(s,sec){const m=$("mfMsg");m.textContent=s;m.classList.remove("fade");msgT=sec}
+// ---------- side panel ----------
+let gk="";
+function ui(force){const m=mfS(),r=rankI();$("mfCash").textContent=fmt(S.d);$("mfStars").textContent=wanted?"★".repeat(wanted):"–";$("mfRank").textContent=N(RANKS[r][0]);
+  const nx=RANKS[r+1];$("mfFam").innerHTML=`<dt>${L("Rank","Grado")}</dt><dd>${N(RANKS[r][0])}</dd><dt>${L("Respect","Rispetto")}</dt><dd>${m.rep}${nx?` / ${nx[1]}`:""}</dd><dt>${L("Jobs done","Lavori fatti")}</dt><dd>${fmt(m.jobs)}</dd><dt>${L("This visit","Questa visita")}</dt><dd>${sess.jobs} · +${fmt(sess.earned)}</dd><dt>${L("All-time earnings","Guadagno totale")}</dt><dd>${fmt(m.earned)}</dd>`;
+  $("mfRep").style.width=(nx?Math.min(100,(m.rep-RANKS[r][1])/(nx[1]-RANKS[r][1])*100):100)+"%";
+  $("mfJob").innerHTML=job?`<b>${N(JOBN[job.ty])}</b><p>${jobLine()}</p><p class="mfpay">${L("Pays","Paga")} +${fmt(job.pay)}</p><button class="tdbtn sell" id="mfQuit">${L("Abandon job","Abbandona il lavoro")}</button>`:`<p>${jobLine()}</p>`;
+  const q=$("mfQuit");if(q)q.onclick=()=>failJob(L("You walked away from the job.","Hai mollato il lavoro."));
+  const nc=CARS[m.car+1],k=[m.car,nc?priceOf(nc.cost):0,LANG].join();
+  if(k!==gk||force){gk=k;const c=CARS[m.car];$("mfGarage").innerHTML=`<div class="fsrow"><div><small>${L("Your car","La tua auto")}</small><b>${N(c.n)}</b><span>${L(`Top speed ${Math.round(c.max*.36)} km/h`,`Velocità max ${Math.round(c.max*.36)} km/h`)}</span></div>${nc?`<button class="tdbtn" id="mfBuy">${L("Upgrade to","Passa a")} ${N(nc.n)}<br><small>${fmt(priceOf(nc.cost))} Dueck</small></button>`:`<em>${L("Fit for a Don","Degna di un Don")}</em>`}</div>`;
+    const b=$("mfBuy");if(b)b.onclick=()=>{const m2=mfS(),n2=CARS[m2.car+1];if(!n2)return;const p=priceOf(n2.cost);if(S.d<p)return;S.d-=p;m2.car++;const keep={x:P.x,y:P.y,a:P.a};P=mkCar("me",keep.x,keep.y,keep.a);SFX.coin();msg(L(`New wheels: ${N(n2.n)}`,`Auto nuova: ${N(n2.n)}`),2.5);ui(true)}}
+  const b=$("mfBuy");if(b)b.disabled=!nc||S.d<priceOf(nc.cost)}
+// ---------- input ----------
+const KM={ArrowUp:"up",w:"up",W:"up",ArrowDown:"dn",s:"dn",S:"dn",ArrowLeft:"lt",a:"lt",A:"lt",ArrowRight:"rt",d:"rt",D:"rt"," ":"hb",h:"horn",H:"horn"};
+addEventListener("keydown",e=>{if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return;if(e.key==="Escape"){e.stopPropagation();if($("mfOv").innerHTML){$("mfOv").innerHTML="";if(!job&&near(P,VILLA)<60){P.y+=60}}else closeMF();return}
+  const k=KM[e.key];if(k){keys[k]=true;e.preventDefault();e.stopPropagation()}},true);
+addEventListener("keyup",e=>{const k=KM[e.key];if(k)keys[k]=false});
+addEventListener("blur",()=>{keys={}});
+$("mfTouch").addEventListener("pointerdown",e=>{const b=e.target.closest("[data-k]");if(!b)return;e.preventDefault();keys[b.dataset.k]=true;b.setPointerCapture(e.pointerId)});
+["pointerup","pointercancel","lostpointercapture"].forEach(ev=>$("mfTouch").addEventListener(ev,e=>{const b=e.target.closest("[data-k]");if(b)keys[b.dataset.k]=false}));
+addEventListener("resize",()=>{if(open)layout()});
+// ---------- window ----------
+function openMF(){closeAllWins();open=true;$("mfw").hidden=false;hideTip();if(!P)reset();keys={};sess={jobs:0,earned:0};requestAnimationFrame(()=>{layout();lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui(true);
+  msg(L("Arrows or WASD to drive, Space for the handbrake. The Don is waiting at his villa.","Frecce o WASD per guidare, Spazio per il freno a mano. Il Don ti aspetta alla villa."),5)}
+function closeMF(){open=false;$("mfw").hidden=true;keys={}}
+$("mfClose").onclick=closeMF;
+// a still for the games room card
+function mini(c){const g=c.getContext("2d"),W=c.width,H=c.height,sc=.42,cx=VILLA.x,cy=VILLA.y-60;g.save();g.translate(W/2-cx*sc,H/2-cy*sc);g.scale(sc,sc);drawCity(g,cx-W/2/sc,cy-H/2/sc,cx+W/2/sc,cy+H/2/sc);
+  const keep=t;t=.3;const demo=[mkCar("me",VILLA.x-40,VILLA.y+30,-.3),mkCar("pol",VILLA.x+120,VILLA.y+15,Math.PI),mkCar("civ",nodeP(3,3).x+LANE,VILLA.y-200,Math.PI/2),mkCar("pol",VILLA.x+200,VILLA.y+45,Math.PI*1.05)];demo[0].col="#c9252b";demo[0].len=40;demo.forEach(d=>drawCar(g,d));ring(g,VILLA,"#f0c040","",0);t=keep;g.restore()}
+return{open:openMF,close:closeMF,get isOpen(){return open},mini,stats:mfS,rank:()=>N(RANKS[rankI()][0]),_dbg:()=>({get P(){return P},get job(){return job},get wanted(){return wanted},set wanted(v){wanted=v},keys,cars:()=>cars,startJob,makeOffers,VILLA,BANK,SHOPS,GARAGES,get offers(){return offers}})}})();
+
+
 // ---------- games room: pick a game ----------
 const GM={open:false};
 function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
 function closeGames(){GM.open=false;$("gmw").hidden=true}
-function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats();
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats();
   $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
     <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
     <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
@@ -3088,9 +3423,13 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("Cast off the harbour wall as the sun sets over the coast. Sardines close in, tuna and swordfish far out, and somewhere down there, the Golden Dueck. Every catch sells for Duecks.","Lancia dal molo mentre il sole tramonta sulla costa. Sardine vicino, tonni e pesci spada al largo, e da qualche parte laggiù, il Dueck d'Oro. Ogni pesce si vende per Dueck.")}</p>
     <div class="gmst"><span>${L("Caught","Pescati")} <b>${fmt(fs.n||0)}</b></span><span>${L("Journal","Diario")} <b>${Object.keys(fs.sp||{}).length}/13</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(fs.earned||0)}</b></span></div>
     <span class="gmplay">${L("Go fishing","Vai a pescare")}</span></div></button>
+    <button class="gmcard" data-game="mf"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag mob">${L("Crime caper","Crimine")}</span><b>La Famiglia</b>
+    <p>${L("Drive a little Italian island town doing favours for the Don: deliveries, collection rounds, bank getaways and street races, with the police on your tail. Every job pays Duecks.","Guida per una piccola città su un'isola italiana facendo favori al Don: consegne, giri delle buste, colpi in banca e corse, con la polizia alle calcagna. Ogni lavoro paga Dueck.")}</p>
+    <div class="gmst"><span>${L("Rank","Grado")} <b>${MF.rank()}</b></span><span>${L("Jobs","Lavori")} <b>${fmt(mf.jobs)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(mf.earned)}</b></span></div>
+    <span class="gmplay">${L("Join the family","Entra in famiglia")}</span></div></button>
     <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
-  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1])}
-$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open()};
+  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2])}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open()};
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
@@ -3136,7 +3475,7 @@ $("p-dev").addEventListener("click",e=>{const b=e.target.closest("[data-dev]");i
   lastUKey="";recalc();toast("Beta",b.textContent,1500)});
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 
 // ---------- tabs / layout ----------
