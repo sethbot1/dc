@@ -787,7 +787,7 @@ button.gmcard:hover .gmplay{background:#238a56}
 /* ===== La Pesca: fishing off the harbour wall. Same frame as Difesa, in sea colours ===== */
 .td.fs{--bg:#123247;--bg2:#0a2133}
 .fs .tdside{border-left-color:#24506a}
-.fs .tdfield{background:#0a2133;cursor:pointer;user-select:none;-webkit-user-select:none}
+.fs .tdfield{background:#0a2133;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
 .fs .tdlogo i{color:#8fd3f0}
 .fs .tdst b{color:var(--tx)}
 .fscard{max-width:420px;text-align:center}
@@ -2803,8 +2803,8 @@ const SPI=Object.fromEntries(SP.map(s=>[s.id,s]));
 // things that sit on the seabed: rest the lure on one, then reel to snag it
 const JK={boot:{e:"👢",n:["Old boot","Scarpa vecchia"],v:.5,df:.5,r:10},can:{e:"🥫",n:["Tin of tomatoes","Barattolo di pelati"],v:.7,df:.5,r:10},
   amph:{e:"🏺",n:["Roman amphora","Anfora romana"],v:50,df:1.6,r:3,tr:1},chest:{e:"🧰",n:["Sunken chest","Forziere sommerso"],v:260,df:2.4,r:1,tr:1}};
-const RODS=[{n:["Bamboo pole","Canna di bambù"],z:.25,rl:1,cs:.58,c:[0,0]},{n:["Carbon rod","Canna in carbonio"],z:.31,rl:1.25,cs:.78,c:[300,60]},
-  {n:["Deep-sea rod","Canna da altura"],z:.37,rl:1.5,cs:.93,c:[4000,400]},{n:["The Golden Rod","La Canna d'Oro"],z:.45,rl:1.85,cs:1,c:[60000,2500]}];
+const RODS=[{n:["Bamboo pole","Canna di bambù"],z:.34,rl:1,cs:.58,c:[0,0]},{n:["Carbon rod","Canna in carbonio"],z:.4,rl:1.25,cs:.78,c:[300,60]},
+  {n:["Deep-sea rod","Canna da altura"],z:.46,rl:1.5,cs:.93,c:[4000,400]},{n:["The Golden Rod","La Canna d'Oro"],z:.54,rl:1.85,cs:1,c:[60000,2500]}];
 const BAIT=[{n:["Worms","Lombrichi"],b:1,ra:1,col:"#d9737c",c:[0,0]},{n:["Shrimp","Gamberetti"],b:1.4,ra:1.6,col:"#f29a6b",c:[200,40]},
   {n:["Baby squid","Calamaretti"],b:1.8,ra:2.4,col:"#efe2d6",c:[3000,300]},{n:["Golden lure","Esca d'oro"],b:2.3,ra:3.6,col:"#ffd54a",c:[40000,2000]}];
 const base=()=>Math.max(G.cps||0,(G.click||1)*3,1);
@@ -2850,13 +2850,13 @@ function press(){if(!open||$("fsOv").innerHTML&&mode!=="catch")return;hold=true;
   if(mode==="ready"){mode="charge";charge=0;chDir=1;return}
   if(mode==="water"){
     if(eng&&eng.st==="bite"){hook(eng);return}
-    if(eng&&eng.st==="nib"){spook(eng);hold=false;return}
+    if(eng&&(eng.st==="nib"||eng.st==="app")){hold=false;msg(L("Something's nibbling… wait for the !","Qualcosa rosicchia… aspetta il !"),1.6);return}
     const j=junk.find(o=>o.a>.8&&Math.hypot(o.x-lure.x,o.y-lure.y)<24&&lure.y>=seabed(lure.x)-12);if(j){snag(j);return}}}
 function release(){hold=false;if(mode==="charge")cast(charge)}
 function cast(p){mode="fly";const dist=30+p*(WW-PIER-110)*rod().cs,tx=Math.min(WW-30,TIPX+dist),T=.55+p*.5,g=900;
   lure={x:TIPX,y:TIPY,vx:(tx-TIPX)/T,vy:(SURF-TIPY-.5*g*T*T)/T,tw:0,g};SFX.hiss(.3,1600,.6,.09);SFX.hiss(.2,3200,1,.04,.05)}
 function spook(f){f.st="flee";eng=null;msg(L("Too soon! You scared it off. Wait for the !","Troppo presto! L'hai spaventato. Aspetta il !"),2.5);SFX.lose(1)}
-function hook(f){f.st="hooked";mode="fight";F={f,mk:.45,tgt:.5,mt:0,z:.25,zv:0,pr:.32,sx:lure.x,sy:lure.y};
+function hook(f){f.st="hooked";mode="fight";F={f,mk:.45,tgt:.5,mt:0,z:.25,zv:0,pr:.4,sx:lure.x,sy:lure.y};
   SFX.tone(880,.07,"square",.04);SFX.tone(1320,.12,"square",.035,.06);puff(lure.x,SURF,10,"#e8f6ff",1);
   if(!hint){hint=1;msg(L("Hooked! Hold to lift the green bar, let go to drop it. Keep the fish inside.","Preso! Tieni premuto per alzare la barra verde, lascia per abbassarla. Tieni dentro il pesce."),4)}}
 function snag(j){mode="fight";F={j,f:{S:{df:JK[j.k].df,len:20}},mk:.45,tgt:.5,mt:0,z:.25,zv:0,pr:.4,sx:lure.x,sy:lure.y};junk=junk.filter(o=>o!==j);SFX.tone(240,.12,"triangle",.06);msg(L("Snagged something on the bottom…","Hai agganciato qualcosa sul fondo…"),2)}
@@ -2876,27 +2876,28 @@ function step(dt){t+=dt;tod=(tod+dt/DAY)%1;
     if(f.st==="swim"){f.a=Math.min(1,f.a+dt*.8);f.life-=dt;const[x0,x1]=xr(f.S);f.x+=f.dir*f.sp*dt;if(f.x<x0&&f.dir<0||f.x>x1&&f.dir>0)f.dir*=-1;if(Math.random()<dt*.2)f.ty=yFor(f.S,f.x);
       f.y+=(f.ty-f.y)*dt*.6+Math.sin(f.ph*2)*dt*4;if(f.life<0)f.st="leave";if(!canBite(f.S))f.life=Math.min(f.life,2)}
     else if(f.st==="leave"||f.st==="flee"){f.a-=dt*(f.st==="flee"?1.3:.6);f.x+=f.dir*f.sp*(f.st==="flee"?3.5:1)*dt;if(f.st==="flee"&&lure)f.dir=f.x<lure.x?-1:1}
-    else if(f.st==="app"){const dir=lure.x>f.x?1:-1;f.dir=dir;const tx=lure.x-dir*f.len*.48,ty=lure.y,dx=tx-f.x,dy=ty-f.y,d=Math.hypot(dx,dy),mv=(f.sp*2+24)*dt;
-      if(d<=mv){f.x=tx;f.y=ty;f.st="nib";f.nb=1+Math.floor(Math.random()*3);f.tt=rr(.5,1)}else{f.x+=dx/d*mv;f.y+=dy/d*mv}}
+    else if(f.st==="app"){const dir=lure.x>f.x?1:-1;f.dir=dir;const tx=lure.x-dir*f.len*.48,ty=cl(lure.y,SURF+8,seabed(tx)-8),dx=tx-f.x,dy=ty-f.y,d=Math.hypot(dx,dy),mv=(f.sp*3+60)*dt;
+      f.at=(f.at||0)+dt;if(f.at>6){f.st="swim";f.at=0;f.life=Math.min(f.life,3);if(eng===f)eng=null;continue}
+      if(d<=mv+3){f.at=0;f.x=tx;f.y=ty;f.st="nib";f.nb=Math.floor(Math.random()*2);f.tt=rr(.3,.6)}else{f.x+=dx/d*mv;f.y+=dy/d*mv}}
     else if(f.st==="nib"||f.st==="bite"){f.x=lure.x-f.dir*f.len*.48;f.y=lure.y;f.tt-=dt;
-      if(f.st==="nib"&&f.tt<0){if(f.nb>0){f.nb--;f.tt=rr(.55,1.1);lure.tw=.16;SFX.tone(620,.05,"sine",.045);bubble(lure.x,lure.y)}else{f.st="bite";f.tt=.8+fsS().rod*.08;lure.tw=.5;SFX.tone(1040,.06,"square",.04);SFX.tone(1560,.09,"square",.035,.07);puff(lure.x,SURF,6,"#e8f6ff",1)}}
+      if(f.st==="nib"&&f.tt<0){if(f.nb>0){f.nb--;f.tt=rr(.35,.6);lure.tw=.16;SFX.tone(620,.05,"sine",.045);bubble(lure.x,lure.y)}else{f.st="bite";f.tt=1.5+fsS().rod*.1;lure.tw=.5;SFX.tone(1040,.06,"square",.04);SFX.tone(1560,.09,"square",.035,.07);puff(lure.x,SURF,6,"#e8f6ff",1)}}
       else if(f.st==="bite"&&f.tt<0){f.st="flee";eng=null;msg(L("Too slow! It stole the bait.","Troppo lento! Ha rubato l'esca."),2.2);SFX.lose(1)}}
     f.y=cl(f.y,SURF+8,bot)}
   fish=fish.filter(f=>f.a>0||f.st==="swim"||f.st==="hooked");
   if(mode==="charge"){charge+=chDir*dt*1.15;if(charge>=1){charge=1;chDir=-1}if(charge<=0){charge=0;chDir=1}}
   else if(mode==="fly"){lure.vy+=lure.g*dt;lure.x+=lure.vx*dt;lure.y+=lure.vy*dt;if(lure.y>=SURF){lure.y=SURF+2;mode="water";puff(lure.x,SURF,14,"#e8f6ff",1);SFX.hiss(.3,900,.5,.16);SFX.tone(180,.12,"sine",.08,0,90);for(let i=0;i<5;i++)bubble(lure.x+rr(-6,6),SURF+rr(4,16))}}
   else if(mode==="water"){lure.tw=Math.max(0,lure.tw-dt);const bot=seabed(lure.x)-5;const busy=eng&&(eng.st==="nib"||eng.st==="bite");
-    if(hold&&!busy){const tx=PIER+8,ty=SURF+4,dx=tx-lure.x,dy=ty-lure.y,d=Math.hypot(dx,dy),mv=120*rod().rl*dt;
+    if(hold&&!busy){const tx=PIER+8,ty=SURF+4,dx=tx-lure.x,dy=ty-lure.y,d=Math.hypot(dx,dy),mv=175*rod().rl*dt;
       if(d<16){mode="ready";if(eng){eng.st="swim";eng=null}}else{lure.x+=dx/d*mv;lure.y+=dy/d*mv*1.1;lure.y=Math.min(lure.y,bot)}
       reelT-=dt;if(reelT<0){reelT=.08;SFX.tick()}}
-    else if(!busy)lure.y=Math.min(bot,lure.y+42*dt);
+    else if(!busy)lure.y=Math.min(bot,lure.y+75*dt);
     if(Math.random()<dt*.6)bubble(lure.x,lure.y);
-    biteT-=dt;if(biteT<0&&!eng&&mode==="water"){biteT=.4;for(const f of fish){if(f.st!=="swim"||f.a<.8)continue;const d=Math.hypot(f.x-lure.x,f.y-lure.y);
-      if(d<130&&Math.random()<.13*bait().b*(f.S.v>=50?.75:1)*(hold?.5:1)){eng=f;f.st="app";break}}}}
-  else if(mode==="fight"){const df=F.f.S.df,r=rod();F.mt-=dt;if(F.mt<0){F.tgt=cl(F.mk+rr(-.5,.5)*(.6+df*.12),0,1);F.mt=rr(.35,1.5)/(1+df*.12)}
-    const spd=(.22+df*.1)*dt;F.mk=cl(F.mk+cl(F.tgt-F.mk,-spd,spd)+Math.sin(t*(4+df))*.003*df,0,1);
-    F.zv+=(hold?2.9:-2.5)*dt;F.z+=F.zv*dt;if(F.z<0){F.z=0;F.zv=-F.zv*.3}if(F.z>1-r.z){F.z=1-r.z;F.zv=Math.min(0,F.zv)}
-    const inZ=F.mk>=F.z-.01&&F.mk<=F.z+r.z+.01;F.in=inZ;F.pr+=inZ?.3*r.rl/(1+df*.08)*dt:-(.13+df*.028)*dt;
+    biteT-=dt;if(biteT<0&&!eng&&mode==="water"){biteT=.3;for(const f of fish){if(f.st!=="swim"||f.a<.8)continue;const d=Math.hypot(f.x-lure.x,f.y-lure.y);
+      if(d<170&&Math.random()<.35*bait().b*(f.S.v>=50?.75:1)*(hold?.6:1)){eng=f;f.st="app";break}}}}
+  else if(mode==="fight"){const df=F.f.S.df,r=rod();F.mt-=dt;if(F.mt<0){F.tgt=cl(F.mk+rr(-.5,.5)*(.4+df*.08),0,1);F.mt=rr(.6,1.8)/(1+df*.08)}
+    const spd=(.12+df*.06)*dt;F.mk=cl(F.mk+cl(F.tgt-F.mk,-spd,spd)+Math.sin(t*(4+df))*.003*df,0,1);
+    F.zv+=((hold?1.15:-1.05)-F.zv)*Math.min(1,dt*12);F.z+=F.zv*dt;if(F.z<0){F.z=0;F.zv=-F.zv*.3}if(F.z>1-r.z){F.z=1-r.z;F.zv=Math.min(0,F.zv)}
+    const inZ=F.mk>=F.z-.01&&F.mk<=F.z+r.z+.01;F.in=inZ;F.pr+=inZ?.42*r.rl/(1+df*.06)*dt:-(.08+df*.018)*dt;
     const k=F.pr*.85;lure.x=F.sx+(PIER+16-F.sx)*k+Math.sin(t*17)*(inZ?1:4);lure.y=F.sy+(SURF+18-F.sy)*k+Math.cos(t*13)*(inZ?1:3);
     if(F.f.st==="hooked"){F.f.x=lure.x+F.f.dir*F.f.len*.45;F.f.y=lure.y;F.f.dir=lure.x>PIER+40?1:-1}
     reelT-=dt;if(reelT<0){reelT=inZ?.07:.16;SFX.tone(inZ?2300:900,.02,"square",.016)}if(Math.random()<dt*4)bubble(lure.x,lure.y);
@@ -2923,7 +2924,8 @@ function drawFish(g,S,x,y,len,dir,tt,a,dark){g.save();g.translate(x,y);g.scale(d
   const er=Math.max(1.6,h*.12);g.fillStyle="#fff";g.beginPath();g.arc(w*.66,-h*.1,er,0,7);g.fill();g.fillStyle="#111";g.beginPath();g.arc(w*.68,-h*.1,er*.55,0,7);g.fill();
   if(S.gold){g.fillStyle="rgba(255,255,255,.9)";for(let i=0;i<3;i++){const sx=Math.sin(tt*3+i*2.1)*w*.6,sy=Math.cos(tt*2.3+i)*h*.4,s=1.5+Math.sin(tt*6+i)*1.2;if(s>.5){g.fillRect(sx-s*2,sy-.5,s*4,1);g.fillRect(sx-.5,sy-s*2,1,s*4)}}}
   g.restore()}
-function scene(g,W,H,s,ox,oy,dpr,simple){const[skT,skB,sea,deep,hill]=pal(),nf=night();
+let BG=null;
+function staticScene(g,W,H,s,ox,oy,dpr,skT,skB,sea,deep,hill,nf,simple){
   g.setTransform(dpr,0,0,dpr,0,0);
   // sky and sea fill the whole canvas, so letterbox edges never show
   const sy=oy+SURF*s;let gr=g.createLinearGradient(0,0,0,sy);gr.addColorStop(0,skT);gr.addColorStop(1,skB);g.fillStyle=gr;g.fillRect(0,0,W,sy+1);
@@ -2942,6 +2944,23 @@ function scene(g,W,H,s,ox,oy,dpr,simple){const[skT,skB,sea,deep,hill]=pal(),nf=n
     for(let i=0;i<4;i++)if(h.win[i]&&h.h>(i>1?30:16)){const wx=h.x+(i%2?h.w*.6:h.w*.2),wy=y+6+(i>1?14:0);g.fillStyle=nf>.3?`rgba(255,${200+((i*37)%40)},120,${nf})`:"rgba(40,40,60,.45)";g.fillRect(wx,wy,h.w*.2,5)}}
   {const lx=955,ly=cliffY(955);g.fillStyle=mix("#f2ece0",hill,nf*.5);g.beginPath();g.moveTo(lx-6,ly);g.lineTo(lx-4,ly-56);g.lineTo(lx+4,ly-56);g.lineTo(lx+6,ly);g.fill();g.fillStyle=mix("#c9252b",hill,nf*.4);g.fillRect(lx-5,ly-40,10,7);g.fillRect(lx-5,ly-22,10,7);
     g.fillStyle="#333";g.fillRect(lx-6,ly-64,12,8);g.fillStyle=nf>.2?"#ffe9a0":"#d9d2b8";g.fillRect(lx-4,ly-63,8,6);
+  }
+  // seabed, rocks and weed
+  gr=g.createLinearGradient(0,320,0,600);gr.addColorStop(0,mix("#c9b27a",deep,.25+nf*.4));gr.addColorStop(1,mix("#8a7448",deep,.45+nf*.4));g.fillStyle=gr;
+  g.beginPath();g.moveTo(L0,B1);g.lineTo(L0,seabed(PIER));for(let x=Math.max(L0,PIER-200);x<=R1;x+=8)g.lineTo(x,seabed(x));g.lineTo(R1,B1);g.fill();
+  g.fillStyle=mix("#5d5a52",deep,.3+nf*.4);for(const r of ROCKS){g.beginPath();g.ellipse(r.x,seabed(r.x)+2,r.r*1.3,r.r*.7,0,Math.PI,0);g.fill()}
+  g.lineCap="round";for(const w of WEED){const by=seabed(w.x)+2;g.strokeStyle=mix(w.c,deep,.2+nf*.45);g.lineWidth=3;g.beginPath();g.moveTo(w.x,by);const sw=Math.sin(t*1.2+w.ph)*8;g.quadraticCurveTo(w.x+sw,by-w.h*.6,w.x+sw*1.6,by-w.h);g.stroke();g.beginPath();g.moveTo(w.x+4,by);g.quadraticCurveTo(w.x+4-sw,by-w.h*.4,w.x+4-sw*.8,by-w.h*.7);g.stroke()}
+  // pier legs
+  const wood="#6b4526",woodD="#4a2e18";for(const px of[-120,-40,40,110,PIER-8]){gr=g.createLinearGradient(px-6,0,px+6,0);gr.addColorStop(0,woodD);gr.addColorStop(.5,mix(wood,deep,nf*.3));gr.addColorStop(1,woodD);g.fillStyle=gr;g.fillRect(px-6,SURF-34,12,seabed(px)-SURF+40);g.fillStyle=mix("#3f6b34",deep,.3);g.fillRect(px-6,SURF+6,12,8)}}
+function scene(g,W,H,s,ox,oy,dpr,simple){const[skT,skB,sea,deep,hill]=pal(),nf=night();const L0=-ox/s-2,R1=(W-ox)/s+2,B1=(H-oy)/s+2;let gr;
+  // the far scenery and the seabed only change with the clock, so they're drawn to a cached canvas a few times a minute
+  if(simple)staticScene(g,W,H,s,ox,oy,dpr,skT,skB,sea,deep,hill,nf,simple);
+  else{const k=W+"x"+H+"x"+dpr;if(!BG||BG.k!==k||Math.abs(BG.tod-tod)>.004){const c=BG&&BG.k===k?BG.c:document.createElement("canvas");c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
+      staticScene(c.getContext("2d"),W,H,s,ox,oy,dpr,skT,skB,sea,deep,hill,nf);BG={c,k,tod}}
+    g.setTransform(1,0,0,1,0,0);g.drawImage(BG.c,0,0)}
+  g.setTransform(dpr*s,0,0,dpr*s,dpr*ox,dpr*oy);
+  const woodD="#4a2e18",sunK=tod<.6?tod/.6:tod>.9?(tod-1)/.6:null;
+  {const lx=955,ly=cliffY(955);
     if(nf>.2&&!simple){const sw=Math.sin(t*.5),len=420*Math.abs(sw)+60,ex=lx-Math.sign(sw||1)*len,bg2=g.createLinearGradient(lx,0,ex,0);bg2.addColorStop(0,`rgba(255,242,192,${nf*.3})`);bg2.addColorStop(1,"rgba(255,242,192,0)");
       g.fillStyle=bg2;g.beginPath();g.moveTo(lx,ly-60);g.lineTo(ex,ly-60-len*.05);g.lineTo(ex,ly-60+len*.05);g.fill()}}
   // a little sailboat crossing the horizon
@@ -2952,13 +2971,6 @@ function scene(g,W,H,s,ox,oy,dpr,simple){const[skT,skB,sea,deep,hill]=pal(),nf=n
   g.globalAlpha=.35;g.fillStyle=nf>.5?"#dfe6ff":"#fff2c8";const rx=sunK!=null?80+840*cl(sunK,0,1):900-780*cl((tod-.55)/.42,0,1);for(let i=0;i<7;i++){const w=30-i*3;g.fillRect(rx-w/2+Math.sin(t*2+i)*4,SURF+4+i*7,w,2)}g.globalAlpha=1;
   // light shafts by day
   if(nf<.7&&!simple){g.save();g.globalAlpha=(1-nf)*.08;g.fillStyle="#ffffff";for(let i=0;i<6;i++){const x=PIER+60+i*150+Math.sin(t*.4+i)*30;g.beginPath();g.moveTo(x,SURF);g.lineTo(x+40,SURF);g.lineTo(x-60,B1);g.lineTo(x-150,B1);g.fill()}g.restore()}
-  // seabed, rocks and weed
-  gr=g.createLinearGradient(0,320,0,600);gr.addColorStop(0,mix("#c9b27a",deep,.25+nf*.4));gr.addColorStop(1,mix("#8a7448",deep,.45+nf*.4));g.fillStyle=gr;
-  g.beginPath();g.moveTo(L0,B1);g.lineTo(L0,seabed(PIER));for(let x=Math.max(L0,PIER-200);x<=R1;x+=8)g.lineTo(x,seabed(x));g.lineTo(R1,B1);g.fill();
-  g.fillStyle=mix("#5d5a52",deep,.3+nf*.4);for(const r of ROCKS){g.beginPath();g.ellipse(r.x,seabed(r.x)+2,r.r*1.3,r.r*.7,0,Math.PI,0);g.fill()}
-  g.lineCap="round";for(const w of WEED){const by=seabed(w.x)+2;g.strokeStyle=mix(w.c,deep,.2+nf*.45);g.lineWidth=3;g.beginPath();g.moveTo(w.x,by);const sw=Math.sin(t*1.2+w.ph)*8;g.quadraticCurveTo(w.x+sw,by-w.h*.6,w.x+sw*1.6,by-w.h);g.stroke();g.beginPath();g.moveTo(w.x+4,by);g.quadraticCurveTo(w.x+4-sw,by-w.h*.4,w.x+4-sw*.8,by-w.h*.7);g.stroke()}
-  // pier legs
-  const wood="#6b4526",woodD="#4a2e18";for(const px of[-120,-40,40,110,PIER-8]){gr=g.createLinearGradient(px-6,0,px+6,0);gr.addColorStop(0,woodD);gr.addColorStop(.5,mix(wood,deep,nf*.3));gr.addColorStop(1,woodD);g.fillStyle=gr;g.fillRect(px-6,SURF-34,12,seabed(px)-SURF+40);g.fillStyle=mix("#3f6b34",deep,.3);g.fillRect(px-6,SURF+6,12,8)}
   // seabed treasures
   for(const j of junk){g.globalAlpha=j.a;const im=emo(JK[j.k].e,22);g.drawImage(im,j.x-im.width/2,j.y-im.height/2-4);if(JK[j.k].tr&&!simple){const s2=2+Math.sin(t*4+j.x)*2;if(s2>1){g.fillStyle="rgba(255,250,210,.9)";g.fillRect(j.x+6-s2*2,j.y-12,s2*4,1.2);g.fillRect(j.x+6-.6,j.y-12-s2*2,1.2,s2*4)}}g.globalAlpha=1}
   // fish, a little darker the deeper they swim
