@@ -2640,21 +2640,21 @@ $("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(c&&c.dataset.
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
-// Catch it for double production, and The Phoenix (the Holy Family student paper) opens in a new tab.
+// Catch it for ×14 production, and The Phoenix (the Holy Family student paper) opens in a new tab.
 const PHX="https://hfphoenix.com/";let nextPaper=Date.now()+rnd(150,300)*1000;
 function spawnPaper(){if(document.querySelector(".paper"))return;const p=document.createElement("button");p.className="paper";
-  p.title=L("Catch it: ×2 production for 60s, and read The Phoenix","Prendilo: produzione ×2 per 60s, e leggi The Phoenix");
-  p.setAttribute("aria-label",L("The Phoenix newspaper. Catch it for double production. Opens hfphoenix.com in a new tab.","Il giornale The Phoenix. Prendilo per produzione doppia. Apre hfphoenix.com in una nuova scheda."));
-  p.innerHTML=`<span class="pp"><span class="mh">The Phoenix</span><span class="hl">EXTRA! EXTRA!</span><span class="sb">${L("MORE PRODUCTION","PIÙ PRODUZIONE")}</span></span>`;
+  p.title=L("Catch it: ×14 production for 60s, and read The Phoenix","Prendilo: produzione ×14 per 60s, e leggi The Phoenix");
+  p.setAttribute("aria-label",L("The Phoenix newspaper. Catch it for ×14 production. Opens hfphoenix.com in a new tab.","Il giornale The Phoenix. Prendilo per produzione ×14. Apre hfphoenix.com in una nuova scheda."));
+  p.innerHTML=`<span class="pp"><span class="mh">The Phoenix</span><span class="hl">EXTRA! EXTRA!</span><span class="sb">${L("×14 PRODUCTION","×14 PRODUZIONE")}</span></span>`;
   document.body.appendChild(p);
   const ltr=Math.random()<.5,W=innerWidth,H=innerHeight,y0=H*(.18+Math.random()*.5),dur=(PERF?11:15)*1000,amp=24+Math.random()*26,ph=Math.random()*6;
   let t0=performance.now(),slow=0,el=0,last=t0;p.onmouseenter=()=>slow=1;p.onmouseleave=()=>slow=0;
   (function fly(now){if(!p.isConnected)return;const dt=now-last;last=now;el+=slow?dt*.15:dt;const k=el/dur;if(k>=1){p.remove();return}
     const x=ltr?-100+(W+200)*k:W+100-(W+200)*k,y=y0+Math.sin(k*9+ph)*amp+Math.sin(k*23)*6,rot=Math.sin(k*12+ph)*12;
     p.style.transform=`translate(${x}px,${y}px) rotate(${rot}deg)`;requestAnimationFrame(fly)})(t0);
-  p.onclick=()=>{p.remove();recalc();const s=Math.round(60*durMult());addBuff(L("Hot off the press","Fresco di stampa"),60,{cm:2});
+  p.onclick=()=>{p.remove();recalc();const s=Math.round(60*durMult());addBuff(L("Hot off the press","Fresco di stampa"),60,{cm:14});
     const w=window.open(PHX,"_blank","noopener");
-    toast(L("Hot off the press!","Fresco di stampa!"),L(`Production ×2 for ${s} seconds.`,`Produzione ×2 per ${s} secondi.`)+` <a href="${PHX}" target="_blank" rel="noopener">${w===null?L("Read The Phoenix ↗","Leggi The Phoenix ↗"):L("The Phoenix opened in a new tab ↗","The Phoenix aperto in una nuova scheda ↗")}</a>`,6000);
+    toast(L("Hot off the press!","Fresco di stampa!"),L(`Production ×14 for ${s} seconds.`,`Produzione ×14 per ${s} secondi.`)+` <a href="${PHX}" target="_blank" rel="noopener">${w===null?L("Read The Phoenix ↗","Leggi The Phoenix ↗"):L("The Phoenix opened in a new tab ↗","The Phoenix aperto in una nuova scheda ↗")}</a>`,6000);
     blip(660,.08,"triangle",.1);blip(990,.12,"triangle",.08)}}
 setInterval(()=>{if(document.hidden)return;if(Date.now()>nextPaper){spawnPaper();nextPaper=Date.now()+rnd(240,480)*1000}},2000);
 
