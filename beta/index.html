@@ -4643,7 +4643,7 @@ function drawP(g,p,X,Y,u){const T=p.team?TEAMS[Gm?Gm.opp:p.tm||"NAP"]:TEAMS[ME],
     g.rotate(rot);if(fall)g.translate(0,-u*.18*fall);
     const by=cel?-Math.abs(Math.sin(t*8))*u*.55:-Math.abs(Math.sin(p.ph))*u*.07*runk+(big&&(st==="pre"||st==="set")?u*.14:0)+(p.role==="hold"?u*.3:0);
     // legs: the far one first, a bit darker
-    for(const i of[1,0]){const a=p.ph+i*Math.PI,hx=(i?-.08:.08)*u*w,hy=-u*.62+by,th=Math.sin(a)*.75*runk,kn=Math.max(0,-Math.cos(a))*1.3*runk+(big&&(st==="pre"||st==="set")?.5:0);
+    for(const i of[1,0]){const a=p.ph+i*Math.PI,hx=(i?-.08:.08)*u*w,hy=-u*.62+by,th=-Math.sin(a)*.75*runk,kn=Math.max(0,-Math.cos(a))*1.3*runk+(big&&(st==="pre"||st==="set")?.5:0);
       const kx=hx+Math.sin(th)*u*.31*f,ky=hy+Math.cos(th)*u*.31,sx=kx+Math.sin(th-kn)*u*.31*f,sy=Math.min(ky+Math.cos(th-kn)*u*.31,0);
       g.lineCap="round";g.lineWidth=u*.19*w;g.strokeStyle=i?shade(pant,-.25):pant;g.beginPath();g.moveTo(hx,hy);g.lineTo(kx,ky);g.stroke();
       g.lineWidth=u*.15*w;g.strokeStyle=i?shade(sock,-.3):sock;g.beginPath();g.moveTo(kx,ky);g.lineTo(sx,sy);g.stroke();
@@ -4652,7 +4652,7 @@ function drawP(g,p,X,Y,u){const T=p.team?TEAMS[Gm?Gm.opp:p.tm||"NAP"]:TEAMS[ME],
     const catching=ball&&!ball.done&&p===ball.tg&&ball.k>.5,throwing=p.thT>0;
     const arm=(side,a1,a2,back)=>{const sx=side*u*.34*w,sy=-u*1.12+by,ex=sx+Math.sin(a1)*u*.3*f,ey=sy+Math.cos(a1)*u*.3,hx=ex+Math.sin(a2)*u*.27*f,hy=ey+Math.cos(a2)*u*.27;
       g.lineCap="round";g.lineWidth=u*.15*w;g.strokeStyle=back?shade(jer,-.3):jer;g.beginPath();g.moveTo(sx,sy);g.lineTo(ex,ey);g.stroke();g.lineWidth=u*.12;g.strokeStyle=back?shade(skin,-.2):skin;g.beginPath();g.moveTo(ex,ey);g.lineTo(hx,hy);g.stroke();return[hx,hy]};
-    const sw=Math.sin(p.ph)*runk;let hand=null;
+    const sw=-Math.sin(p.ph)*runk;let hand=null;
     if(cel){arm(-f,Math.PI*.95,Math.PI*1.05,1);arm(f,-Math.PI*.95+Math.PI*2,Math.PI*.95,0)}
     else if(catching){arm(-f,Math.PI*.85,Math.PI*.9,1);hand=arm(f,Math.PI*.8,Math.PI*.85,0)}
     else if(throwing){const k=1-p.thT/.3;arm(-f,.6,1.2,1);arm(f,Math.PI*(1.1-k*.8),Math.PI*(1.2-k*.9),0)}
