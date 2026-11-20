@@ -2604,7 +2604,7 @@ function waveDef(w){const n=Math.round(6+w*1.35),g=[];
   if(w>=7)g.push({t:"critic",n:Math.round(1+w/5),gap:1.5});
   if(w>=9&&w%3===0)g.push({t:"insp",n:Math.max(1,Math.round(w/7)),gap:2.4});
   if(w>=12&&w%4===0)g.push({t:"tax",n:Math.max(1,Math.round(w/8)),gap:3});
-  if(w>30)g.push({t:["critic","tax","pigeon","insp"][w%4],n:Math.round((w-30)/2)+2,gap:1.2});
+  if(w>30){const t=["critic","tax","pigeon","insp"][w%4];g.push({t,n:t==="insp"?Math.min(4,Math.round((w-30)/6)+2):Math.round((w-30)/2)+2,gap:t==="insp"?2.4:1.2})}
   return g}
 const hpMul=w=>Math.pow(1.095,w-1)*(w>30?Math.pow(1.05,w-30):1)*st.D.hp*(st.M.hp||1);
 const goldOf=(T,w)=>Math.round(T.g*1.6*(1+.025*(w-1)));
@@ -2663,7 +2663,7 @@ function step(dt){st.t+=dt;if(st.shake>0)st.shake-=dt;
   const n=st.en.length;
   for(let i=0;i<n;i++){const e=st.en[i];if(e.dead)continue;if(e.slowT>0)e.slowT-=dt;else e.slow=0;if(e.hitT>0)e.hitT-=dt;
     e.d+=e.T.sp*(1-e.slow)*dt;const p=posOn(e.P,e.d);if(Math.abs(p[2])>.01)e.dir=p[2]>0?1:-1;e.x=p[0];e.y=p[1];
-    if(e.T.heal){e.cd-=dt;if(e.cd<=0){e.cd=1;let h=0;for(const o of st.en)if(o!==e&&!o.dead&&o.hp<o.max&&Math.hypot(o.x-e.x,o.y-e.y)<1.6){o.hp=Math.min(o.max,o.hp+o.max*.05);h=1}if(h)st.fx.push({k:"ring",x:e.x,y:e.y,r:1.6,t:.5,m:.5,c:"#7be08f"})}}
+    if(e.T.heal){e.cd-=dt;if(e.cd<=0){e.cd=1;let h=0;for(const o of st.en)if(o!==e&&!o.dead&&!o.T.heal&&o.hp<o.max&&!(o.hT>st.t)&&Math.hypot(o.x-e.x,o.y-e.y)<1.6){o.hp=Math.min(o.max,o.hp+o.max*.05);o.hT=st.t+.95;h=1}if(h)st.fx.push({k:"ring",x:e.x,y:e.y,r:1.6,t:.5,m:.5,c:"#7be08f"})}}
     if(e.T.spawn){e.cd-=dt;if(e.cd<=0){e.cd=4;for(let k=1;k<=2;k++)spawn(e.T.spawn,e.pi,e.d-k*.35,e.w);snd("squeak")}}
     if(e.d>=e.P.len){e.dead=1;e.esc=1;st.lives-=e.T.lv;st.leaks+=e.T.lv;st.shake=.25;SFX.lose(1);fxText(e.x-.6,e.y,"-"+e.T.lv+" ❤️","#ff8f86");
       if(st.lives<=0){st.lives=0;gameOver();return}}}
