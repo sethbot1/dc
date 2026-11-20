@@ -884,7 +884,7 @@ button.gmcard:hover .gmplay{background:#238a56}
 .fbhow{text-align:left;margin:14px 0 0;padding-left:22px;display:grid;gap:10px;font-size:14px;line-height:1.4}.fbhow b{display:block;font-size:15px}
 .gmtag.turf{color:#2b7a2f;background:#dff2df}
 @media (max-width:900px){.fb .tdfield{aspect-ratio:4/3}}
-@media (max-width:560px){.fb .tdfield{height:calc(100vw*3/4)}.fbplay{width:30%;font-size:11px;padding:4px 4px 6px}.fbplay svg{height:42px}.fbplay.sp{width:30%}.fbcalls{grid-template-columns:1fr}.fbplays{gap:5px;padding:20px 6px 6px}}
+@media (max-width:560px){.fb .tdfield{height:calc(100vw*3/4)}.fbplay{width:23%;font-size:10.5px;padding:4px 3px 6px}.fbplay svg{height:38px}.fbplay.sp{width:23%}.fbcalls{grid-template-columns:1fr}.fbplays{gap:5px;padding:20px 6px 6px}}
 .gmq{aspect-ratio:20/12;display:grid;place-items:center;font:400 64px var(--fd);color:rgba(246,239,220,.3)}
 .gmcard.soon p{color:var(--mt)}
 @media (max-width:760px){.gmw{inset:0}.gm{border-radius:0}.gmbar{gap:6px 14px;padding:26px 12px 12px}.gmbody{padding:16px}}
@@ -4195,7 +4195,9 @@ const CALLS=[{k:"blitz",n:["Blitz","Blitz"],d:["More sacks and turnovers, but mo
 // routes: waypoints [downfield, toward the middle] from where the receiver lines up; s: settle at the end
 const RT={go:{w:[[32,0]]},slant:{w:[[2,0],[9,6]]},out:{w:[[7,0],[7.6,-7]]},dig:{w:[[11,0],[11.6,11]]},post:{w:[[11,0],[24,9]]},
  corner:{w:[[10,0],[21,-9]]},curl:{w:[[10,0],[8.5,1.2]],s:1},hitch:{w:[[6,0],[5,.4]],s:1},flat:{w:[[1,-4],[3,-10]]},seam:{w:[[28,0]]},
- drag:{w:[[2.5,1],[4.5,22]]},wheel:{w:[[1,-6],[24,-8]]},check:{w:[[1.5,3],[3.5,3.5]],s:1},screen:{w:[[-1.5,-5],[-1,-7.5]],s:1}};
+ drag:{w:[[2.5,1],[4.5,22]]},wheel:{w:[[1,-6],[24,-8]]},check:{w:[[1.5,3],[3.5,3.5]],s:1},screen:{w:[[-1.5,-5],[-1,-7.5]],s:1},
+ comeback:{w:[[14,0],[12,-2.5]],s:1},flag:{w:[[6,0],[18,-9]]},sit:{w:[[5,.5]],s:1},angle:{w:[[1,-3.5],[5,3]]},pcorner:{w:[[9,0],[12,4],[21,-7]]},
+ zin:{w:[[16,0],[16.6,13]]},fade:{w:[[30,-3.5]]},dout:{w:[[13,0],[13.6,-9]]},shallow:{w:[[1.5,1],[3,24]]},whip:{w:[[4,4],[4.5,-4]],s:1}};
 const PLAYS=[
  {id:"verts",n:["Four verticals","Quattro verticali"],r:{w1:"go",sl:"seam",te:"seam",w2:"go",rb:"check"}},
  {id:"slants",n:["Double slants","Doppio slant"],r:{w1:"slant",sl:"hitch",te:"flat",w2:"slant",rb:"block"}},
@@ -4205,9 +4207,22 @@ const PLAYS=[
  {id:"curls",n:["Curl flats","Curl e flat"],r:{w1:"curl",sl:"out",te:"seam",w2:"curl",rb:"flat"}},
  {id:"screen",n:["HB screen","Screen al running back"],r:{w1:"go",sl:"hitch",te:"block",w2:"go",rb:"screen"}},
  {id:"corners",n:["Corners","Corner"],r:{w1:"corner",sl:"out",te:"drag",w2:"post",rb:"check"}},
+ {id:"flood",n:["Flood","Flood"],r:{w1:"go",sl:"flag",te:"out",w2:"dig",rb:"flat"}},
+ {id:"levels",n:["Levels","Livelli"],r:{w1:"zin",sl:"dig",te:"sit",w2:"slant",rb:"check"}},
+ {id:"comebacks",n:["Comebacks","Comeback"],r:{w1:"comeback",sl:"seam",te:"flat",w2:"comeback",rb:"check"}},
+ {id:"dpost",n:["Double post","Doppio post"],r:{w1:"post",sl:"curl",te:"drag",w2:"post",rb:"block"}},
+ {id:"fades",n:["Fade and slant","Fade e slant"],r:{w1:"fade",sl:"slant",te:"seam",w2:"fade",rb:"flat"}},
+ {id:"pcorner",n:["Post-corner","Post-corner"],r:{w1:"hitch",sl:"pcorner",te:"drag",w2:"pcorner",rb:"wheel"}},
+ {id:"outs",n:["Quick outs","Out veloci"],r:{w1:"out",sl:"whip",te:"sit",w2:"out",rb:"angle"}},
+ {id:"hail",n:["Hail Mary","Ave Maria"],r:{w1:"fade",sl:"go",te:"seam",w2:"fade",rb:"block"}},
+ {id:"cross",n:["Shallow cross","Incrocio corto"],r:{w1:"dout",sl:"shallow",te:"dig",w2:"go",rb:"check"}},
  {id:"dive",run:1,n:["HB dive","Corsa centrale"]},
  {id:"toss",run:2,n:["Toss sweep","Corsa esterna"]},
- {id:"keep",run:3,n:["QB keeper","Corsa del QB"]}];
+ {id:"keep",run:3,n:["QB keeper","Corsa del QB"]},
+ {id:"counter",run:4,n:["Counter","Counter"]},{id:"stretch",run:5,n:["Outside stretch","Stretch esterno"]},{id:"draw",run:6,n:["HB draw","Draw"]},{id:"jet",run:7,n:["Jet sweep","Jet sweep"]}];
+// runs: handoff time, where the ball carrier meets the quarterback, and the cut he starts with
+const RUNS={1:{t:.45,m:(x,y,s)=>[x-3.4,y+.5]},2:{t:.32,m:(x,y,s)=>[x-4,y+s*5.5],at:.75,au:.8},3:{t:.22,m:(x,y)=>[x-4.3,y]},
+ 4:{t:.55,m:(x,y,s)=>[x-3.6,y-s*1.4],at:.6,au:.9},5:{t:.4,m:(x,y,s)=>[x-3.6,y+s*3],at:.7,au:.6},6:{t:.95,m:(x,y)=>[x-5.6,y+.6]},7:{t:.55,m:(x,y)=>[x-2.4,y+.3],at:.6,au:.8}};
 const ORD=n=>L(["1st","2nd","3rd","4th"][n-1]||"4th",["1°","2°","3°","4°"][n-1]||"4°");
 // ---------- save ----------
 const NUMK=["games","wins","loss","ties","titles","tds","earned","pass","rush","long","best"];
@@ -4221,7 +4236,7 @@ const fbS=()=>{if(!S.foot||typeof S.foot!=="object")S.foot={};const f=S.foot;if(
   if(!okSea(f.sea))f.sea=newSeason(f.yr);if(!Array.isArray(f.sea.log))f.sea.log=[];return f};
 const rt=(id,k)=>{const f=fbS();if(id===ME){const l=f.lv;return k==="o"?(l.qb*1.3+l.rb*.8+l.wr*1.1+l.ol*.8)/4:l.df}const s=f.sea;return Math.max(.5,TEAMS[id][k]+(s.yr-1)*.5+s.j[id][k==="o"?0:1])};
 // ---------- simulated drives (their offence against your defence, and the rest of the league) ----------
-function drive(oid,did,start,call,remT,need,txt){const e=(rt(oid,"o")-rt(did,"d"))*.6,bl=call==="blitz",pv=call==="prevent",dn_=N(TEAMS[did].s);
+function drive(oid,did,start,call,remT,need,txt,boost=0){const e=(rt(oid,"o")-rt(did,"d"))*.6+boost,bl=call==="blitz",pv=call==="prevent",dn_=N(TEAMS[did].s);
   let p=start,dn=1,tg=10,t=0,res="";const lines=[],say=s=>{if(txt)lines.push(s)};
   for(let i=0;i<40&&!res;i++){
     if(remT!=null&&t>=remT){res="clock";say(L("The clock runs out.","Il tempo scade."));break}
@@ -4301,7 +4316,7 @@ function snap(){const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by;st="live
   const l2=D.find(p=>p.man&&p.man.id==="rb");if(g.blitz&&l2){l2.blitz=true;l2.man=null}
   if(!PLY.run){for(const p of O){if(!p.id)continue;const R=RT[PLY.r[p.id]];if(!R){p.blocker=true;continue}const inn=p.sy<bY-.1?1:-1;
       p.rt={w:R.w.map(([dx,dy])=>[Math.min(p.sx+dx,107.5),cl(p.sy+dy*inn,1,FW-1)]),s:!!R.s,i:0}}}
-  else{g.hand=PLY.run===3?qb:O.find(p=>p.id==="rb");g.side=PLY.run===2?(bY>MID?-1:1):0;O.forEach(p=>{if(p.id&&p!==g.hand)p.blocker=true})}}
+  else{const sl=O.find(p=>p.id==="sl");g.hand=PLY.run===3?qb:PLY.run===7?sl:O.find(p=>p.id==="rb");g.side=PLY.run===7?(sl.sy<bY?1:-1):[2,4,5].includes(PLY.run)?(bY>MID?-1:1):0;O.forEach(p=>{if(p.id&&p!==g.hand)p.blocker=true})}}
 function lagPos(r,lag){const h=r.hist;if(!h||!h.length)return r;const tt=pt-lag;for(let i=h.length-1;i>=0;i--)if(h[i][0]<=tt)return{x:h[i][1],y:h[i][2]};return{x:h[0][1],y:h[0][2]}}
 function routeStep(p){const r=p.rt;if(!r){seek(p,p.x,p.y);return}
   if(p.x>105.5&&(r.i>=r.w.length||r.w[r.i][0]>105)){r.i=r.w.length;seek(p,Math.min(p.x,107),cl(p.y+(p.y<MID?2:-2),2,FW-2),.5);return}
@@ -4311,16 +4326,16 @@ function routeStep(p){const r=p.rt;if(!r){seek(p,p.x,p.y);return}
   let ty=p.y+dy/d*10;if(ty<1.5||ty>FW-1.5)ty=cl(ty,1.5,FW-1.5);seek(p,p.x+dx/d*10,ty,1,false)}
 function stepLive(dt){pt+=dt;if(!Gm.ot&&!Gm.xp&&!Gm.flag)Gm.clk=Math.max(0,Gm.clk-dt*1.4);const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by,O=OFF(),D=DEF();
   for(const p of pl){p.dvx=0;p.dvy=0;for(const k of["stun","eng","jk","jcd","bcd"])if(p[k]>0)p[k]-=dt}
-  if(PLY.run&&!car&&g.hand){const tH=PLY.run===3?.22:PLY.run===2?.32:.45;if(pt>=tH){car=g.hand;car.auto=g.side*.8;car.autoT=PLY.run===2?.75:0;if(car!==qb)SFX.hiss(.05,900,1,.08)}}
+  if(PLY.run&&!car&&g.hand){const R=RUNS[PLY.run],[mx,my]=R.m(x0,bY,g.side);if(pt>=R.t&&(Math.hypot(g.hand.x-mx,g.hand.y-my)<1.8||pt>R.t+.6)){car=g.hand;car.auto=g.side*(R.au||0);car.autoT=R.at||0;if(car!==qb)SFX.hiss(.05,900,1,.08)}}
   const foe=car||qb;
   for(const p of O){
     if(p===car){runCarrier(p,dt);continue}
     if(p.role==="ol"){const d=p.blk;if(d&&d.role!=="dl"){if(d.eng>0&&p.blk===d||dst(p,d)<5)blockOn(p,d);else blockNearest(p,foe,7);continue}
-      if(d&&!d.sh&&d.stun<=0&&!(car&&car.x>x0+2)){if(PLY.run)seek(p,d.x-.6,d.y,.9,false);else{const dd=Math.hypot(qb.x-d.x,qb.y-d.y)||1;seek(p,d.x+(qb.x-d.x)/dd*.95,d.y+(qb.y-d.y)/dd*.95)}}
+      if(d&&!d.sh&&d.stun<=0&&!(car&&car.x>x0+2)){if(PLY.run&&!(PLY.run===6&&!car))seek(p,d.x-.6,d.y,.9,false);else{const dd=Math.hypot(qb.x-d.x,qb.y-d.y)||1;seek(p,d.x+(qb.x-d.x)/dd*.95,d.y+(qb.y-d.y)/dd*.95)}}
       else blockNearest(p,foe,7);continue}
     if(p===qb){if(!PLY.run&&!thrown){if(pt<1.1)seek(p,x0-6.6,bY,.85);else{let near=null,nd=5;for(const d of D)if((d.sh||d.blitz)&&dst(d,p)<nd){nd=dst(d,p);near=d}if(near)seek(p,p.x-.4,p.y+(p.y>near.y?1:-1)*2,.55);else seek(p,p.x,p.y)}}
-      else if(PLY.run)seek(p,p.x-1,p.y+(g.side?-g.side*3:2),.45);continue}
-    if(PLY.run){if(p===g.hand&&!car)seek(p,PLY.run===2?x0-4:x0-3.4,PLY.run===2?bY+g.side*5.5:bY+.5);else blockNearest(p,foe,10);continue}
+      else if(PLY.run===6&&!car)seek(p,x0-5.2,bY,.85);else if(PLY.run)seek(p,p.x-1,p.y+(g.side?-g.side*3:2),.45);continue}
+    if(PLY.run){if(p===g.hand&&!car){const [mx,my]=RUNS[PLY.run].m(x0,bY,g.side);seek(p,mx,my,1,false)}else blockNearest(p,foe,10);continue}
     if(car){blockNearest(p,car,12);continue}
     if(ball&&!ball.done&&p===ball.tg&&Math.hypot(p.x-ball.lx,p.y-ball.ly)<11){seek(p,ball.lx,ball.ly,1,false);continue}
     if(p.blocker){const b=D.find(d=>d.blitz&&d.eng<=0&&d.stun<=0);if(b&&dst(p,b)<9)blockOn(p,b);else seek(p,x0-4.5,p.sy,.6);continue}
@@ -4419,10 +4434,10 @@ function afterScore(){snap_();endOurDrive(Math.round(rr(20,30)))}
 function endOurDrive(theirStart){const g=Gm;snap_();if(g.ot)return oppDrive(75,L("Overtime","Supplementari"));if(g.flag==="half")return halftime();if(g.flag==="end")return regEnd();oppDrive(theirStart,"")}
 // ---------- picking a play ----------
 function toPre(){st="pre";setup();const g=Gm,f=fbS(),passes=shuf(PLAYS.filter(p=>!p.run)),runs=shuf(PLAYS.filter(p=>p.run));
-  offer=g.togo<=2&&!g.xp?[passes[0],runs[0],runs[1]]:[passes[0],passes[1],runs[0]];
+  offer=g.togo<=2&&!g.xp?[passes[0],runs[0],runs[1],runs[2]]:g.xp?[passes[0],passes[1],passes[2],runs[0]]:[passes[0],passes[1],runs[0],Math.random()<.5?passes[2]:runs[1]];
   const fd=Math.round(117-g.los),canFG=!g.xp&&(g.down===4||g.ot&&g.down>=3||((g.q===2||g.q===4)&&g.clk<=40))&&fd<=f.lv.k*4.5+44;
   if(g.down===4&&!g.ot&&!g.xp)offer.push({id:"punt",sp:1,n:["Punt","Punt"]});if(canFG)offer.push({id:"fg",sp:1,n:[`Field goal · ${fd} yds`,`Calcio · ${fd} yd`]});
-  const box=$("fbPlays");box.innerHTML=offer.map((p,i)=>{const tg=p.id==="punt"?["Give it away, far","Calcia lontano","k"]:p.id==="fg"?["3 points","3 punti","k"]:p.run?["Run","Corsa","r"]:["verts","deep","corners"].includes(p.id)?["Long passes","Passaggi lunghi","d"]:["Short passes","Passaggi corti","s"];return`<button class="fbplay${p.sp?" sp":""}" data-i="${i}">${p.sp?`<span class="fbico">${p.id==="punt"?"⤴":"⊓"}</span>`:diagram(p)}<b>${N(p.n)}</b><em class="fbt ${tg[2]}">${L(tg[0],tg[1])}</em><kbd>${i+1}</kbd></button>`}).join("");box.hidden=false;
+  const box=$("fbPlays");box.innerHTML=offer.map((p,i)=>{const tg=p.id==="punt"?["Give it away, far","Calcia lontano","k"]:p.id==="fg"?["3 points","3 punti","k"]:p.run?["Run","Corsa","r"]:["verts","deep","corners","dpost","fades","pcorner","hail","comebacks"].includes(p.id)?["Long passes","Passaggi lunghi","d"]:["Short passes","Passaggi corti","s"];return`<button class="fbplay${p.sp?" sp":""}" data-i="${i}">${p.sp?`<span class="fbico">${p.id==="punt"?"⤴":"⊓"}</span>`:diagram(p)}<b>${N(p.n)}</b><em class="fbt ${tg[2]}">${L(tg[0],tg[1])}</em><kbd>${i+1}</kbd></button>`}).join("");box.hidden=false;
   cam.tx=g.los+9}
 function choose(i){const p=offer[i];if(!p||st!=="pre")return;$("fbPlays").hidden=true;SFX.chip();
   if(p.id==="punt")return doPunt();if(p.id==="fg")return startKick("fg");PLY=p;st="set";stT=.5;msg(L("Hut!","Hut!"),.8)}
@@ -4431,7 +4446,7 @@ function diagram(p){const X=x=>((x+7)*2.85).toFixed(1),Y=y=>(30+(y-MID)*1.05).to
   const pos={w1:[-.6,bY-15.5],sl:[-1.3,bY-8],te:[-1,bY+4.4],w2:[-.6,bY+15],rb:[-4.8,bY+1.9]};s+=`<circle cx="${X(-4.3)}" cy="${Y(bY)}" r="2" class="qb"/>`;
   const path=pts=>`<polyline points="${pts.map(q=>X(q[0])+","+Y(q[1])).join(" ")}" class="rt"/>`;
   if(p.run){const rb=pos.rb;s+=`<circle cx="${X(rb[0])}" cy="${Y(rb[1])}" r="2" class="rc"/>`;
-    s+=p.run===1?path([rb,[-3.4,bY+.5],[9,bY+.5]]):p.run===2?path([rb,[-4,bY+6.5],[2,bY+11],[11,bY+13]]):path([[-4.3,bY],[1,bY-2],[10,bY-3]]);
+    const RP={1:[rb,[-3.4,bY+.5],[9,bY+.5]],2:[rb,[-4,bY+6.5],[2,bY+11],[11,bY+13]],3:[[-4.3,bY],[1,bY-2],[10,bY-3]],4:[rb,[-3.6,bY-1.4],[-1.5,bY+3],[10,bY+7]],5:[rb,[-3.6,bY+3.5],[3,bY+9.5],[11,bY+11.5]],6:[rb,[-5.6,bY+.6],[9,bY+.6]],7:[[-1.3,bY-8],[-2.4,bY+.3],[3,bY+10],[11,bY+13]]};s+=path(RP[p.run]);
     for(const k of["w1","sl","te","w2"])s+=`<circle cx="${X(pos[k][0])}" cy="${Y(pos[k][1])}" r="1.8" class="rc dim"/>`}
   else for(const k of["w1","sl","te","w2","rb"]){const [x,y]=pos[k],R=RT[p.r[k]];s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="1.9" class="rc"/>`;if(!R)continue;const inn=y<bY-.1?1:-1;
     const w=R.w.map(([dx,dy])=>[x+dx,cl(y+dy*inn,1,FW-1)]);if(!R.s){const a=w.length>1?w[w.length-2]:[x,y],b=w[w.length-1],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;w.push([Math.min(b[0]+dx/d*5,26),cl(b[1]+dy/d*5,-2,FW+2)])}
@@ -4476,7 +4491,7 @@ function oppDrive(start,why){const g=Gm,T=TEAMS[g.opp];
   <p class="fbq">${L("Call your defence:","Scegli la difesa:")}</p><div class="fbcalls">${CALLS.map((c,i)=>`<button class="fbcall" data-call="${c.k}"><b>${N(c.n)}</b><small>${N(c.d)}</small><kbd>${i+1}</kbd></button>`).join("")}</div>`);
   g.pend={start}}
 function callD(k){const g=Gm;if(st!=="card"||!g||!g.pend)return;const start=g.pend.start;g.pend=null;SFX.chip();
-  const remT=g.ot?null:g.clk+(g.q===1||g.q===3?QLEN:0),need=g.ot?g.us-g.th:0,r=drive(g.opp,ME,start,k,remT,need,true),T=TEAMS[g.opp],my=++tok;
+  const remT=g.ot?null:g.clk+(g.q===1||g.q===3?QLEN:0),need=g.ot?g.us-g.th:0,r=drive(g.opp,ME,start,k,remT,need,true,.45+cl((g.us-g.th)/10,0,2)*.5),T=TEAMS[g.opp],my=++tok;
   let pts_=0,pay=0,head="",ours=0;
   if(r.res==="td"){pts_=Math.random()<.95?7:6;r.lines.push(pts_===7?L("Extra point good.","Trasformazione riuscita."):L("Extra point missed!","Trasformazione sbagliata!"))}
   else if(r.res==="fg")pts_=3;else if(r.res==="safety")ours=2;
