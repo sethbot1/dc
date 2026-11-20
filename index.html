@@ -3002,7 +3002,7 @@ function press(){if(!open||$("fsOv").innerHTML&&mode!=="catch")return;hold=true;
     if(eng&&(eng.st==="nib"||eng.st==="app")){hold=false;msg(L("Something's nibbling… wait for the !","Qualcosa rosicchia… aspetta il !"),1.6);return}
     const j=junk.find(o=>o.a>.8&&Math.hypot(o.x-lure.x,o.y-lure.y)<26&&lure.y>=seabed(lure.x)-14);if(j){snag(j);return}}}
 function release(){hold=false;if(mode==="charge")cast(charge)}
-function cast(p){mode="fly";const dist=30+p*(WW-PIER-110)*rod().cs,tx=Math.min(WW-24,TIPX+dist),T=.55+p*.5,g=900;
+function cast(p){mode="fly";const dist=40+p*(XR-PIER-130)*(.5+.5*rod().cs),tx=Math.min(XR-40,TIPX+dist),T=.6+p*.75,g=900;
   lure={x:TIPX,y:TIPY,vx:(tx-TIPX)/T,vy:(SURF-TIPY-.5*g*T*T)/T,tw:0,g};zoneSeen=0;SFX.hiss(.3,1600,.6,.09);SFX.hiss(.2,3200,1,.04,.05)}
 function hook(f){f.st="hooked";mode="fight";F={f,mk:.45,tgt:.5,mt:0,z:.25,zv:0,pr:.4,sx:lure.x,sy:lure.y};
   SFX.tone(880,.07,"square",.04);SFX.tone(1320,.12,"square",.035,.06);puff(lure.x,lure.y,8,"#e8f6ff",0);
@@ -3064,7 +3064,7 @@ function step(dt){t+=dt;tod=(tod+dt/DAY)%1;
   for(const p of snow){p.y+=(6+p.z*8)*dt;p.x+=Math.sin(t*.5+p.y*.02)*3*dt;if(p.y>WH)p.y-=WH}}
 // the camera: whole harbour at the top, then it zooms in and follows the lure as it goes deep
 function camStep(dt,dive){let tz=1,tx=WW/2,ty=0;if(dive){const m=dep(lure.y);tz=1+.6*cl((m-12)/90,0,1);tx=lure.x;ty=lure.y-WH/2+20}
-  const k=Math.min(1,dt*(mode==="fight"?5:3));camZ+=(tz-camZ)*k;const vw=(lay.W&&lay.s?lay.W/lay.s:WW)/camZ,vh=(lay.H&&lay.s?lay.H/lay.s:WH)/camZ,lo=vw/2-30,hi=(camZ>1.15?XR+30:WW+40)-vw/2;
+  const k=Math.min(1,dt*(mode==="fight"?5:3));camZ+=(tz-camZ)*k;const vw=(lay.W&&lay.s?lay.W/lay.s:WW)/camZ,vh=(lay.H&&lay.s?lay.H/lay.s:WH)/camZ,lo=vw/2-30,hi=(camZ>1.15||lure.x>WW-80?XR+30:WW+40)-vw/2;
   tx=lo<hi?cl(tx,lo,hi):WW/2;const cyT=cl(ty+WH/2,Math.min(WH/2,vh/2),FLOORY+30-vh/2);camX+=(tx-camX)*k;camY+=(cyT-WH/2-camY)*k}
 // ---------- drawing ----------
 const eC={};function emo(e,px){px=Math.max(8,Math.round(px));const k=e+px;if(eC[k])return eC[k];const c=document.createElement("canvas"),s=Math.ceil(px*1.4);c.width=c.height=s;const g=c.getContext("2d");
@@ -3175,8 +3175,8 @@ function scene(g,W,H,s,dpr,simple){const[skT,skB,sea,deep,hill]=pal(),nf=night()
   const sc=s*camZ,cy=camY+WH/2,X0=W/2-camX*sc,Y0=H/2-cy*sc,L0=-X0/sc-2,R1=(W-X0)/sc+2,T0=-Y0/sc-2,B1=(H-Y0)/sc+2;
   // sky: cached, then slid up as the camera dives
   const skyBottom=Y0+SURF*sc;
-  if(skyBottom>0){if(simple){skyScene(g,W,H,sc,X0+(WW/2-WW/2),Y0,dpr,skT,skB,hill,nf)}else{const k=W+"x"+H+"x"+dpr;if(!BG||BG.k!==k||Math.abs(BG.tod-tod)>.004){const c=BG&&BG.k===k?BG.c:document.createElement("canvas");c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
-      skyScene(c.getContext("2d"),W,H,s,ox,oy,dpr,skT,skB,hill,nf);BG={c,k,tod}}g.setTransform(camZ,0,0,camZ,dpr*(W/2*(1-camZ)+camZ*s*(WW/2-camX)),dpr*(H/2*(1-camZ)+camZ*s*(WH/2-cy)));g.drawImage(BG.c,0,0)}}
+  if(skyBottom>0){if(simple){skyScene(g,W,H,sc,X0+(WW/2-WW/2),Y0,dpr,skT,skB,hill,nf)}else{const k=W+"x"+H+"x"+dpr;if(!BG||BG.k!==k||Math.abs(BG.tod-tod)>.004){const c=BG&&BG.k===k?BG.c:document.createElement("canvas");const ext=Math.ceil((XR+60-WW)*s);c.width=Math.round((W+ext)*dpr);c.height=Math.round(H*dpr);
+      skyScene(c.getContext("2d"),W+ext,H,s,ox,oy,dpr,skT,skB,hill,nf);BG={c,k,tod}}g.setTransform(camZ,0,0,camZ,dpr*(W/2*(1-camZ)+camZ*s*(WW/2-camX)),dpr*(H/2*(1-camZ)+camZ*s*(WH/2-cy)));g.drawImage(BG.c,0,0)}}
   g.setTransform(dpr*sc,0,0,dpr*sc,dpr*X0,dpr*Y0);
   // the water column, coloured by depth
   const wt=Math.max(SURF,T0);if(B1>wt){gr=g.createLinearGradient(0,wt,0,B1);for(let i=0;i<=6;i++){const y=wt+(B1-wt)*i/6;gr.addColorStop(i/6,waterAt(dep(y),sea,deep,nf))}g.fillStyle=gr;g.fillRect(L0,wt,R1-L0,B1-wt)}
