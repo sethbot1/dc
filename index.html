@@ -4571,7 +4571,7 @@ function camStep(dt,snapTo){let fx,fy=MID;
   else if(Gm&&(st==="live"||st==="dead"))fx=(res&&res.spot!=null&&st==="dead"?res.spot:Gm.los)+(PLY&&!PLY.run?8:7),fy=lerp(MID,qb?qb.y:MID,.3);
   else if(Gm)fx=Gm.los+9,fy=Gm.by;else fx=50;
   const k=snapTo?1:1-Math.exp(-dt*3);cam.x=lerp(cam.x,fx,k);cam.y=lerp(cam.y,lerp(MID,fy,.45),snapTo?1:1-Math.exp(-dt*2.4));
-  const hh=(lay.H||400)/2/(cam.s*SQ);cam.y=cl(cam.y,Math.min(MID,hh-7),Math.max(MID,FW+7-hh));cam.x=cl(cam.x,-6,106)}
+  const hh=(lay.H||400)/2/(cam.s*SQ);cam.y=cl(cam.y,Math.min(MID,hh-7),Math.max(MID,FW+7-hh));const hw=(lay.W||800)/2/cam.s;cam.x=hw>60?50:cl(cam.x,-11.5+hw,111.5-hw)}
 // ---------- drawing ----------
 const CROWD=["#e8c9a0","#c98b5a","#8a5a3a","#f1d6b8","#5a3b28","#d9a877"],SHIRT=["#f2b632","#17306a","#ffffff","#c8321f","#2768b3","#f2b632","#17306a","#3b3b3b","#e04646","#4ade80"];
 const hsh=(i,r)=>{let h=(i*73856093)^(r*19349663);h=(h^(h>>>13))*1274126177;return(h^(h>>>16))>>>0};
@@ -4661,7 +4661,7 @@ function drawP(g,p,X,Y,u){const T=p.team?TEAMS[Gm?Gm.opp:p.tm||"NAP"]:TEAMS[ME],
     if(cel){arm(-f,Math.PI*.95,Math.PI*1.05,1);arm(f,-Math.PI*.95+Math.PI*2,Math.PI*.95,0)}
     else if(catching){arm(-f,Math.PI*.85,Math.PI*.9,1);hand=arm(f,Math.PI*.8,Math.PI*.85,0)}
     else if(throwing){const k=1-p.thT/.3;arm(-f,.6,1.2,1);arm(f,Math.PI*(1.1-k*.8),Math.PI*(1.2-k*.9),0)}
-    else{arm(-f,sw*1.1,sw*1.1-1.2*runk-.2,1);if(p===car&&!fall)hand=arm(f,.9,-.9,0);else arm(f,-sw*1.1,-sw*1.1-1.2*runk-.2,0)}
+    else{arm(-f,sw*1.1,sw*1.1+1.4*runk+.25,1);if(p===car&&!fall)hand=arm(f,-.25,2.1,0);else arm(f,-sw*1.1,-sw*1.1+1.4*runk+.25,0)}
     // torso with pads
     const tw=u*.36*w,top=-u*1.3+by,wa=-u*.6+by;const gr=g.createLinearGradient(0,top,0,wa);gr.addColorStop(0,shade(jer,.18));gr.addColorStop(1,shade(jer,-.15));
     g.fillStyle=gr;g.beginPath();g.moveTo(-tw*1.2,top+u*.06);g.quadraticCurveTo(0,top-u*.08,tw*1.2,top+u*.06);g.lineTo(tw*.86,wa);g.lineTo(-tw*.86,wa);g.closePath();g.fill();
