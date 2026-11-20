@@ -849,6 +849,50 @@ button.gmcard:hover .gmplay{background:#238a56}
 .sktouch button:active{background:rgba(143,208,255,.7)}
 @media (pointer:coarse){.sktouch{display:flex}.sk .tdmsg{top:10px;bottom:auto;font-size:13px}}
 .gmtag.snow{color:#2f6fb0;background:#dfeaf8}
+/* ===== La Meta: arcade football ===== */
+.td.fb{--bg:#121a2b;--bg2:#0b1120}
+.fb .tdside{border-left-color:#26324a}
+.fb .tdfield{background:#0b1220;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none}
+.fb .tdlogo i{color:#f2b632}
+.fb .tdmsg{top:96px}
+.fbplays{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:center;padding:26px 10px 10px;flex-wrap:wrap;background:linear-gradient(rgba(6,10,20,0),rgba(6,10,20,.75));z-index:2}
+.fbplays[hidden]{display:none}
+.fbplay{position:relative;width:132px;padding:6px 6px 8px;border-radius:9px;background:rgba(16,24,40,.94);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),0 6px 16px rgba(0,0,0,.35);font:700 12.5px/1.2 var(--fb);display:flex;flex-direction:column;align-items:center;gap:5px;transition:transform .12s}
+.fbplay:hover{box-shadow:inset 0 0 0 2px #f2b632,0 6px 16px rgba(0,0,0,.35);background:rgba(28,40,64,.96);transform:translateY(-2px)}
+.fbplay svg{width:100%;height:auto;background:#2f7a31;border-radius:5px}
+.fbplay svg .los{stroke:#7ab8ff;stroke-width:1}.fbplay svg .ol{fill:#e9e4d8}.fbplay svg .qb{fill:#f2b632}.fbplay svg .rc{fill:#fff}.fbplay svg .rc.dim{opacity:.4}
+.fbplay svg .rt{fill:none;stroke:#ffe08a;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.fbplay kbd{position:absolute;top:3px;left:5px;font:700 10px var(--fm);color:#101820;background:#f2b632;border-radius:4px;padding:0 4px}
+.fbplay.sp{justify-content:center;width:112px;background:rgba(48,30,10,.94)}.fbico{font-size:30px;line-height:1.7;color:#ffe08a}
+.fbcard{max-width:470px;text-align:center}.fbcard h2{margin:10px 0 0}
+.fbtag{display:inline-block;margin:0 3px;font:700 11px var(--fb);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--c);border-radius:99px;padding:3px 10px}
+.fbscore{display:flex;justify-content:center;align-items:center;gap:12px;margin:12px 0 4px;font:700 14px var(--fb)}
+.fbscore span{display:flex;align-items:center;gap:8px;padding:4px 10px;border-radius:7px;background:var(--c);color:#fff}
+.fbscore b{font-size:20px}.fbscore i{font-style:normal;color:var(--imt);font-size:13px}.fbscore.big b{font-size:30px}
+.fbsub{margin:6px 0 0;color:var(--imt);font-size:14px}
+.fbq{margin:14px 0 6px;font-weight:600}
+.fbcalls{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.fbcalls.two{grid-template-columns:1fr 1fr;margin-top:14px}
+.fbcall{position:relative;padding:14px 8px 12px;border-radius:8px;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line),0 2px 0 rgba(0,0,0,.08);text-align:center;display:flex;flex-direction:column;gap:4px}
+.fbcall:hover{box-shadow:inset 0 0 0 2px var(--verde),0 2px 0 rgba(0,0,0,.08)}
+.fbcall b{font:700 15px var(--fb)}.fbcall small{font-size:12px;color:var(--imt);line-height:1.3}
+.fbcall kbd{position:absolute;top:4px;left:6px;font:700 10px var(--fm);color:var(--imt)}
+.fblog{list-style:none;margin:12px 0 0;padding:10px 12px;max-height:200px;overflow:auto;text-align:left;background:rgba(0,0,0,.05);border-radius:8px;font:500 13px/1.55 var(--fm)}
+.fblog li{animation:fbIn .25s ease-out}
+@keyframes fbIn{from{opacity:0;transform:translateY(4px)}}
+.fbhead{margin:14px 0 0;font:400 24px var(--fd)}.fbhead.ok{color:var(--verde)}.fbhead.bad{color:#a3262b}.fbhead small{font:600 14px var(--fm);color:var(--verde)}
+.fbvs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:16px 0 12px}
+.fbvs div{display:flex;flex-direction:column;align-items:center;gap:5px}.fbvs b{font:400 18px/1.15 var(--fd)}.fbvs small{color:var(--imt);font:600 12px var(--fm)}.fbvs em{font:italic 400 22px var(--fd);color:var(--imt)}
+.fbhelm{display:block;width:50px;height:42px;border-radius:52% 48% 38% 44%;background:var(--h);box-shadow:inset -10px -5px 0 var(--j),0 3px 0 rgba(0,0,0,.15)}
+.fbmatch{display:grid;grid-template-columns:1fr 120px;gap:8px 12px;text-align:left;font-size:13px;margin:8px 0}.fbmatch dt{color:var(--imt)}.fbmatch dd{margin:0;display:flex;align-items:center}
+.fbbar{display:block;width:100%;height:8px;border-radius:4px;background:linear-gradient(90deg,#2f8f4e var(--p),#b8383d var(--p))}
+.fblink{display:block;margin:10px auto 0;font:600 13px var(--fb);color:var(--imt);text-decoration:underline;background:none}
+.fbtab{width:100%;border-collapse:collapse;font-size:13px}.fbtab th{font:600 11px var(--fb);text-transform:uppercase;color:var(--imt);text-align:right;padding:2px 4px}.fbtab th:nth-child(2){text-align:left}
+.fbtab td{padding:4px;text-align:right;font-family:var(--fm)}.fbtab td:nth-child(2){text-align:left;font-family:var(--fb)}.fbtab td i{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--c);margin-right:6px}
+.fbtab tr.me td{font-weight:700;background:rgba(242,182,50,.16)}.fbtab tr.cut td{border-bottom:1px dashed var(--imt)}
+.fbst{display:block;color:#d49a12;letter-spacing:1px;font-size:12px}.fbst i{font-style:normal;opacity:.25}
+.gmtag.turf{color:#2b7a2f;background:#dff2df}
+@media (max-width:900px){.fb .tdfield{aspect-ratio:4/3}}
+@media (max-width:560px){.fb .tdfield{height:calc(100vw*3/4)}.fbplay{width:30%;font-size:11px;padding:4px 4px 6px}.fbplay svg{height:42px}.fbplay.sp{width:30%}.fbcalls{grid-template-columns:1fr}.fbplays{gap:5px;padding:20px 6px 6px}}
 .gmq{aspect-ratio:20/12;display:grid;place-items:center;font:400 64px var(--fd);color:rgba(246,239,220,.3)}
 .gmcard.soon p{color:var(--mt)}
 @media (max-width:760px){.gmw{inset:0}.gm{border-radius:0}.gmbar{gap:6px 14px;padding:26px 12px 12px}.gmbody{padding:16px}}
@@ -1179,6 +1223,26 @@ button.gmcard:hover .gmplay{background:#238a56}
     </div>
   </div>
 </div>
+<div class="tdw" id="fbw" hidden role="dialog" aria-modal="true" aria-label="La Meta, an arcade football game">
+  <div class="td fb">
+    <header class="tdbar">
+      <b class="tdlogo">La <i>Meta</i></b>
+      <span class="tdst"><span title="Titles">🏆 <b id="fbTitles">0</b></span><span title="This season">📋 <b id="fbWL">0–0</b></span></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="fbCash">0</b></span>
+      <button class="mclose" id="fbClose" aria-label="Close La Meta"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tdgrid">
+      <div class="tdfield" id="fbField"><canvas id="fbcv"></canvas><div class="tdmsg" id="fbMsg"></div><div class="fbplays" id="fbPlays" hidden></div><div class="tdov" id="fbOv"></div></div>
+      <aside class="tdside">
+        <div class="tdp"><h4><span data-i="fbGameH">This game</span></h4><dl class="tdrw" id="fbGame"></dl></div>
+        <div class="tdp"><h4><span data-i="fbSeaH">Standings</span><small id="fbSeaS"></small></h4><table class="fbtab" id="fbTab"></table></div>
+        <div class="tdp"><h4><span data-i="fbRosH">Roster</span><small data-i="fsShopS">paid in Duecks</small></h4><div id="fbRoster"></div></div>
+        <div class="tdp"><h4><span data-i="fbRecH">Records</span></h4><dl class="tdrw" id="fbRec"></dl></div>
+        <p class="tdhelp" data-i="fbHelp">Pick a play, then run it. <b>Drag back</b> from anywhere and let go to throw (the ring shows where the ball lands), or press <b>1</b>–<b>5</b> to hit that receiver. Green badges are open, red are covered. <b>Tap</b> (or <b>Space</b>) to tuck the ball and run. With the ball, <b>hold and move</b> up or down (or <b>Up</b>/<b>Down</b>) to steer, and <b>tap</b> or <b>Space</b> to juke a tackler. On 4th down you can punt or kick: stop the needle in the green. When the rivals have the ball, call your defence. Win 7 league games, make the top four and take the Golden Dueck Bowl. Touchdowns, wins and titles pay Duecks; train your players in the Roster.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div class="tdw" id="mfw" hidden role="dialog" aria-modal="true" aria-label="La Famiglia, a crime caper">
   <div class="td mf">
     <header class="tdbar">
@@ -1254,7 +1318,7 @@ const $=id=>document.getElementById(id);
 let LANG=new URLSearchParams(location.search).get("lang")==="it"?"it":"en";
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={fbGameH:"Questa partita",fbSeaH:"Classifica",fbRosH:"Rosa",fbRecH:"Record",fbHelp:"Scegli uno schema, poi giocalo. <b>Trascina all'indietro</b> da qualsiasi punto e lascia per lanciare (il cerchio mostra dove cade la palla), o premi <b>1</b>–<b>5</b> per servire quel ricevitore. I numeri verdi sono liberi, i rossi marcati. <b>Tocca</b> (o <b>Spazio</b>) per tenere la palla e correre. Con la palla, <b>tieni premuto e muoviti</b> su o giù (o <b>Su</b>/<b>Giù</b>) per sterzare, e <b>tocca</b> o <b>Spazio</b> per la finta. Al 4° down puoi calciare il punt o tentare il calcio: ferma l'ago nel verde. Quando la palla è agli avversari, scegli la difesa. Vinci 7 partite di campionato, entra tra le prime quattro e conquista il Golden Dueck Bowl. Touchdown, vittorie e titoli pagano Dueck; allena i giocatori nella Rosa.",skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1380,7 +1444,7 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0}}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0},foot:null}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -2456,7 +2520,7 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof FB!=="undefined"&&FB.isOpen)FB.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
 addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
@@ -4087,11 +4151,567 @@ function mini(c){if(open)return;reset();tod=.5;t=3;const x=520;P.x=x;P.y=h(x)-12
 return{open:openSK,close:closeSK,get isOpen(){return open},mini,stats:skS,_dbg:()=>({get P(){return P},get R(){return R},get st(){return st},get combo(){return combo},get av(){return av},keys,press,release,h,slope,rails:()=>rails,rocks:()=>rocks,set tod(v){tod=v},reset})}})();
 
 
+// ===== La Meta: arcade American football =====
+// You call every play and run the offence yourself: drag back from anywhere to aim a pass (or press 1-5), tap to
+// tuck it and run, steer the ball carrier with the pointer or Up/Down, tap or Space to juke. The defence is played
+// drive by drive from your call (blitz, balanced or prevent). A season is 7 league games and a playoff; touchdowns,
+// wins and titles pay real Duecks, and Duecks train your players.
+const FB=(()=>{
+const N=a=>L(a[0],a[1]);const rr=(a,b)=>a+Math.random()*(b-a);const cl=(v,a,b)=>Math.max(a,Math.min(b,v));const lerp=(a,b,k)=>a+(b-a)*k;
+const pick=a=>a[Math.random()*a.length|0],shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const gs=()=>{let u=0;while(!u)u=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*Math.random())};
+const dst=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const base=()=>Math.max(G.cps||0,(G.click||1)*3,1);const priceOf=c=>Math.round(Math.max(c[0],base()*c[1]));
+const nf=n=>Math.round(n).toLocaleString(LANG==="it"?"it-IT":"en-US");
+const FW=53.33,MID=FW/2,SQ=.6,QLEN=300,ME="DUK",MAXLV=8;
+const TEAMS={
+ DUK:{n:["Duecktown Ducks","Paperi di Dueckville"],s:["Ducks","Paperi"],j:"#17306a",h:"#f2b632",o:0,d:0},
+ NAP:{n:["Napoli Volcanoes","Vulcani di Napoli"],s:["Volcanoes","Vulcani"],j:"#c8321f",h:"#262626",o:2.5,d:2.1},
+ TOR:{n:["Torino Bulls","Tori di Torino"],s:["Bulls","Tori"],j:"#7d1536",h:"#e9d9a8",o:1.9,d:2.7},
+ VEN:{n:["Venezia Gondoliers","Gondolieri di Venezia"],s:["Gondoliers","Gondolieri"],j:"#137a71",h:"#f3ead0",o:2.2,d:1.7},
+ FIR:{n:["Firenze Lilies","Gigli di Firenze"],s:["Lilies","Gigli"],j:"#6a2fa3",h:"#f5f0ff",o:2.8,d:2.3},
+ PAL:{n:["Palermo Sharks","Squali di Palermo"],s:["Sharks","Squali"],j:"#2768b3",h:"#f3c53a",o:1.5,d:1.8},
+ BOL:{n:["Bologna Towers","Torri di Bologna"],s:["Towers","Torri"],j:"#b8562a",h:"#2c2c2c",o:2.1,d:2.5},
+ GEN:{n:["Genova Pirates","Pirati di Genova"],s:["Pirates","Pirati"],j:"#1f2733",h:"#e04646",o:3,d:2.9}};
+const IDS=Object.keys(TEAMS);
+const POS=[
+ {k:"qb",n:["Quarterback","Quarterback"],p:["Marco Bianchi, #7","Marco Bianchi, n. 7"],d:["Arm range and accuracy","Gittata e precisione"]},
+ {k:"wr",n:["Receivers","Ricevitori"],p:["The Ferrari brothers","I fratelli Ferrari"],d:["Speed and sure hands","Velocità e mani sicure"]},
+ {k:"rb",n:["Running back","Running back"],p:["Luca Russo, #22","Luca Russo, n. 22"],d:["Speed and broken tackles","Velocità e placcaggi rotti"]},
+ {k:"ol",n:["Offensive line","Linea d'attacco"],p:["Il Muro","Il Muro"],d:["More time to throw","Più tempo per lanciare"]},
+ {k:"df",n:["Defence","Difesa"],p:["La Cortina di Ferro","La Cortina di Ferro"],d:["Stops rival drives","Ferma i drive avversari"]},
+ {k:"k",n:["Kicker","Kicker"],p:["Gigi Esposito, #3","Gigi Esposito, n. 3"],d:["Range and a calmer kick meter","Gittata e mirino più calmo"]}];
+const upCost=lv=>[Math.round(400*Math.pow(4,lv-2)),40*Math.pow(2.25,lv-2)];
+const CALLS=[{k:"blitz",n:["Blitz","Blitz"],d:["More sacks and turnovers, but more big plays against you","Più sack e palle rubate, ma più giocate lunghe subite"]},
+ {k:"bal",n:["Balanced","Equilibrata"],d:["Solid all round","Solida in ogni zona"]},
+ {k:"prevent",n:["Prevent","Prevent"],d:["Gives up short gains, shuts down the long ball","Concede poco alla volta, chiude i lanci lunghi"]}];
+// routes: waypoints [downfield, toward the middle] from where the receiver lines up; s: settle at the end
+const RT={go:{w:[[32,0]]},slant:{w:[[2,0],[9,6]]},out:{w:[[7,0],[7.6,-7]]},dig:{w:[[11,0],[11.6,11]]},post:{w:[[11,0],[24,9]]},
+ corner:{w:[[10,0],[21,-9]]},curl:{w:[[10,0],[8.5,1.2]],s:1},hitch:{w:[[6,0],[5,.4]],s:1},flat:{w:[[1,-4],[3,-10]]},seam:{w:[[28,0]]},
+ drag:{w:[[2.5,1],[4.5,22]]},wheel:{w:[[1,-6],[24,-8]]},check:{w:[[1.5,3],[3.5,3.5]],s:1},screen:{w:[[-1.5,-5],[-1,-7.5]],s:1}};
+const PLAYS=[
+ {id:"verts",n:["Four verticals","Quattro verticali"],r:{w1:"go",sl:"seam",te:"seam",w2:"go",rb:"check"}},
+ {id:"slants",n:["Double slants","Doppio slant"],r:{w1:"slant",sl:"hitch",te:"flat",w2:"slant",rb:"block"}},
+ {id:"mesh",n:["Mesh","Incroci"],r:{w1:"post",sl:"drag",te:"curl",w2:"drag",rb:"flat"}},
+ {id:"smash",n:["Smash","Smash"],r:{w1:"hitch",sl:"corner",te:"drag",w2:"out",rb:"wheel"}},
+ {id:"deep",n:["Deep post","Post profondo"],r:{w1:"post",sl:"curl",te:"dig",w2:"go",rb:"block"}},
+ {id:"curls",n:["Curl flats","Curl e flat"],r:{w1:"curl",sl:"out",te:"seam",w2:"curl",rb:"flat"}},
+ {id:"screen",n:["HB screen","Screen al running back"],r:{w1:"go",sl:"hitch",te:"block",w2:"go",rb:"screen"}},
+ {id:"corners",n:["Corners","Corner"],r:{w1:"corner",sl:"out",te:"drag",w2:"post",rb:"check"}},
+ {id:"dive",run:1,n:["HB dive","Corsa centrale"]},
+ {id:"toss",run:2,n:["Toss sweep","Corsa esterna"]},
+ {id:"keep",run:3,n:["QB keeper","Corsa del QB"]}];
+const ORD=n=>L(["1st","2nd","3rd","4th"][n-1]||"4th",["1°","2°","3°","4°"][n-1]||"4°");
+// ---------- save ----------
+const NUMK=["games","wins","loss","ties","titles","tds","earned","pass","rush","long","best"];
+function okSea(s){return!!(s&&typeof s==="object"&&Array.isArray(s.rd)&&s.rd.length===7&&s.rd.every(r=>Array.isArray(r)&&r.length===4)&&s.tb&&IDS.every(i=>Array.isArray(s.tb[i])&&s.tb[i].length===5)&&s.j&&IDS.every(i=>Array.isArray(s.j[i])&&s.j[i].length===2)&&["reg","semi","final","over"].includes(s.ph)&&s.wk>=0&&s.wk<=7)}
+function newSeason(yr){const ids=[ME,...shuf(IDS.filter(i=>i!==ME))],rd=[];let r=ids.slice(1);
+  for(let w=0;w<7;w++){const a=[ids[0],...r],ps=[];for(let i=0;i<4;i++)ps.push([a[i],a[7-i]]);rd.push(ps);r=[r[6],...r.slice(0,6)]}
+  const tb={},j={};IDS.forEach(i=>{tb[i]=[0,0,0,0,0];j[i]=i===ME?[0,0]:[+rr(-.35,.35).toFixed(2),+rr(-.35,.35).toFixed(2)]});return{yr,rd,tb,j,wk:0,ph:"reg",po:null,champ:"",log:[]}}
+const fbS=()=>{if(!S.foot||typeof S.foot!=="object")S.foot={};const f=S.foot;if(!f.lv||typeof f.lv!=="object")f.lv={};
+  for(const p of POS){const v=f.lv[p.k]|0;f.lv[p.k]=v>=1?Math.min(MAXLV,v):2}
+  for(const k of NUMK)if(typeof f[k]!=="number"||!isFinite(f[k])||f[k]<0)f[k]=0;f.yr=Math.max(1,f.yr|0);
+  if(!okSea(f.sea))f.sea=newSeason(f.yr);if(!Array.isArray(f.sea.log))f.sea.log=[];return f};
+const rt=(id,k)=>{const f=fbS();if(id===ME){const l=f.lv;return k==="o"?(l.qb*1.3+l.rb*.8+l.wr*1.1+l.ol*.8)/4:l.df}const s=f.sea;return Math.max(.5,TEAMS[id][k]+(s.yr-1)*.5+s.j[id][k==="o"?0:1])};
+// ---------- simulated drives (their offence against your defence, and the rest of the league) ----------
+function drive(oid,did,start,call,remT,need,txt){const e=(rt(oid,"o")-rt(did,"d"))*.6,bl=call==="blitz",pv=call==="prevent",dn_=N(TEAMS[did].s);
+  let p=start,dn=1,tg=10,t=0,res="";const lines=[],say=s=>{if(txt)lines.push(s)};
+  for(let i=0;i<40&&!res;i++){
+    if(remT!=null&&t>=remT){res="clock";say(L("The clock runs out.","Il tempo scade."));break}
+    const dd=`${ORD(dn)} & ${p+tg>=100?"goal":tg}`;
+    if(dn===4){const fd=117-p,goFor=(need>3&&p>35)||(tg<=1&&p>=50&&p<=66&&Math.random()<.5)||(p>=55&&fd>52);
+      if(!goFor){if(fd<=52){t+=5;const ok=Math.random()<cl(1.1-(fd-18)*.02+rt(oid,"o")*.008,.12,.97);say(`${dd} · ${L(`Field goal from ${fd} yds`,`Calcio da ${fd} yd`)}… ${ok?L("good!","dentro!"):L("no good!","fuori!")}`);res=ok?"fg":"fgx";break}
+        const pd=Math.round(rr(36,47));t+=7;say(`${dd} · ${L(`Punt, ${pd} yds`,`Punt da ${pd} yd`)}`);p=Math.min(p+pd,100);res="punt";break}}
+    const pass=Math.random()<.56;let g=0,kind="";
+    if(Math.random()<cl(.017-e*.004+(bl?.012:0)-(pv?.003:0),.005,.055)){res=pass?"int":"fum";t+=rr(5,12);say(`${dd} · ${pass?L(`Intercepted by the ${dn_}!`,`Intercettato dai ${dn_}!`):L(`Fumble! The ${dn_} recover`,`Fumble! Recuperano i ${dn_}`)}`);break}
+    if(pass&&Math.random()<cl(.06-e*.01+(bl?.06:0)-(pv?.03:0),.01,.2)){g=-Math.round(rr(4,9));kind="sack"}
+    else if(pass&&Math.random()<cl(.31-e*.04+(pv?.04:0)-(bl?.03:0),.12,.6))kind="inc";
+    else if(Math.random()<cl(.09+e*.025+(bl?.05:0)-(pv?.05:0),.02,.28)){g=Math.round(rr(16,48));kind="big"}
+    else g=Math.round(pass?rr(3.5,14)+e*1.1:rr(-.5,7)+e*.8+(pv?1.5:0));
+    if(p+g>=100)g=100-p;t+=kind==="inc"?rr(5,8):rr(20,34);const num=pick(pass?[11,81,84,88,19,13]:[22,28,33]);
+    say(`${dd} · `+(kind==="sack"?L(`Sacked by the ${dn_}! ${g} yds`,`Sack dei ${dn_}! ${g} yd`):kind==="inc"?L("Pass incomplete","Passaggio incompleto"):(kind==="big"?L("Big play! ","Grande giocata! "):"")+(pass?L(`Pass to #${num}, ${g} yds`,`Passaggio al n. ${num}, ${g} yd`):L(`Run by #${num}, ${g} yds`,`Corsa del n. ${num}, ${g} yd`))));
+    p+=g;if(p>=100){res="td";say(L("TOUCHDOWN!","TOUCHDOWN!"));break}if(p<=0){res="safety";say(L("Safety!","Safety!"));break}
+    if(kind==="inc")dn++;else{tg-=g;if(tg<=0){dn=1;tg=Math.min(10,100-p)}else dn++}
+    if(dn>4){res="downs";say(L("Turnover on downs!","Palla persa sui down!"));break}}
+  return{res:res||"punt",p:cl(p,0,100),t,lines}}
+const pts=r=>r.res==="td"?(Math.random()<.95?7:6):r.res==="fg"?3:0;
+function simGame(a,b){let sa=0,sb=0;for(let i=0;i<11;i++){const A=i%2?b:a,B=i%2?a:b,r=drive(A,B,Math.round(rr(18,32)),"bal");if(i%2){sb+=pts(r);if(r.res==="safety")sa+=2}else{sa+=pts(r);if(r.res==="safety")sb+=2}}
+  while(sa===sb){if(Math.random()<.5)sa+=3;else sb+=3}return[sa,sb]}
+function table(){const s=fbS().sea;return IDS.slice().sort((a,b)=>{const A=s.tb[a],B=s.tb[b];return(B[0]+B[2]*.5)-(A[0]+A[2]*.5)||(B[3]-B[4])-(A[3]-A[4])||B[3]-A[3]})}
+function nextOpp(){const s=fbS().sea;if(s.ph==="reg"){const p=s.rd[s.wk].find(x=>x.includes(ME));return p[0]===ME?p[1]:p[0]}if(s.ph==="semi")return s.po.semi;if(s.ph==="final")return s.po.fin;return null}
+const stage=()=>{const s=fbS().sea;return s.ph==="reg"?L(`Week ${s.wk+1} of 7`,`Giornata ${s.wk+1} di 7`):s.ph==="semi"?L("Semi-final","Semifinale"):s.ph==="final"?L("The Golden Dueck Bowl","Il Golden Dueck Bowl"):L("Season over","Stagione finita")};
+// ---------- state ----------
+const cv=$("fbcv");
+let SPD=1,open=false,raf=0,lastF=0,lay={},t=0,uiT=0,msgT=0,st="idle",Gm=null;
+let pl=[],ball=null,car=null,qb=null,PLY=null,pt=0,stT=0,thrown=false,pops=[],parts=[],ptr=null,keys={},kick=null,cheer=0,shake=0,res=null,offer=[],bench=[],tok=0;
+let cam={x:25,y:MID,s:20};
+function mk(team,role,x,y,num,sp,ac){return{team,role,x,y,sx:x,sy:y,vx:0,vy:0,dvx:0,dvy:0,sp,ac:ac||18,num,eng:0,stun:0,jk:0,jcd:0,bcd:0,ph:Math.random()*6,face:team?-1:1,key:0,id:"",rt:null,man:null,blk:null,down:0,sh:false,shT:9,dbl:0,blitz:false,blocker:false,zone:0}}
+const OFF=()=>pl.filter(p=>!p.team),DEF=()=>pl.filter(p=>p.team);
+function newGame(opp){Gm={opp,us:0,th:0,q:1,clk:QLEN,los:25,down:1,togo:10,fdl:35,by:MID,ot:0,xp:false,flag:"",pay:0,hint:3,sim:false,stt:{pass:0,rush:0,comp:0,att:0,td:0,int:0,sk:0,long:0}};snap_()}
+function snap_(){if(!Gm)return;const f=fbS();f.live={o:Gm.opp,us:Gm.us,th:Gm.th,q:Gm.q,clk:Math.round(Gm.clk),ph:f.sea.ph,wk:f.sea.wk,yr:f.sea.yr}}
+// ---------- formation ----------
+function setup(){const g=Gm,x0=g.los,bY=g.by,l=fbS().lv,dR=rt(g.opp,"d");pl=[];ball=null;car=null;thrown=false;ptr=null;res=null;
+  const A=(tm,role,x,y,num,sp,ac)=>{const p=mk(tm,role,x,y,num,sp,ac);pl.push(p);return p};
+  const sW=6.85+l.wr*.2,sR=6.6+l.rb*.22,sQ=5.8+l.qb*.13,sO=5.1+l.ol*.1;
+  [-2,-1,0,1,2].forEach((i,k)=>A(0,"ol",x0-.8-Math.abs(i)*.12,bY+i*1.55,[74,66,60,64,77][k],sO,14));
+  qb=A(0,"qb",x0-4.3,bY,7,sQ,20);
+  const w1=A(0,"wr",x0-.6,cl(bY-15.5,3,FW-3),11,sW,19),sl=A(0,"wr",x0-1.3,cl(bY-8,3,FW-3),84,sW-.1,20),te=A(0,"te",x0-1,bY+4.4,88,sW-.75,17),
+    w2=A(0,"wr",x0-.6,cl(bY+15,3,FW-3),81,sW,19),rb=A(0,"rb",x0-4.8,bY+1.9,22,sR,21);
+  [[w1,"w1"],[sl,"sl"],[te,"te"],[w2,"w2"],[rb,"rb"]].forEach(([p,id],i)=>{p.id=id;p.key=i+1});
+  const sD=5.3+dR*.14,sL=6.15+dR*.16,sB=6.75+dR*.18,aD=12+dR*.6,aB=15+dR*.9;
+  [-2.4,-.8,.8,2.4].forEach((o,k)=>A(1,"dl",x0+1,bY+o,[93,97,90,99][k],sD,aD));
+  const l1=A(1,"lb",x0+4.8,bY+3.6,54,sL,aB),l2=A(1,"lb",x0+4.8,bY-3.4,52,sL,aB);
+  const c1=A(1,"cb",x0+6,w1.y+1,24,sB,aB),c2=A(1,"cb",x0+6,w2.y-1,21,sB,aB),nb=A(1,"cb",x0+4.5,sl.y+.8,31,sB-.1,aB);
+  const s1=A(1,"s",Math.min(x0+13,108),bY-9,29,sB-.05,aB),s2=A(1,"s",Math.min(x0+13,108),bY+9,20,sB-.05,aB);
+  c1.man=w1;c2.man=w2;nb.man=sl;l1.man=te;l2.man=rb;s1.zone=-1;s2.zone=1;
+  for(const p of pl){p.sx=p.x;p.sy=p.y}}
+// kick and punt formation: a line, a holder, the kicker and a rush
+function setupKick(kx,punt){const g=Gm,x0=g.los;pl=[];ball=null;car=null;thrown=true;ptr=null;
+  const A=(tm,role,x,y,num,sp,ac)=>{const p=mk(tm,role,x,y,num,sp,ac);pl.push(p);return p};
+  for(let i=-3;i<=3;i++)A(0,"ol",x0-.8,MID+i*1.5,[71,75,62,60,66,79,85][i+3],5,12);
+  if(!punt)A(0,"hold",kx,MID+.6,12,0,1);const k=A(0,"kick",kx-2.6,MID-1.4,3,5,14);k.key=0;
+  for(let i=-3;i<=3;i++)A(1,"dl",x0+1,MID+i*1.6+.5,90+i,5.5,12);A(1,"s",Math.min(x0+18,109),MID-6,29,6,12);A(1,"s",Math.min(x0+18,109),MID+6,20,6,12);return k}
+// ---------- moving bodies ----------
+function seek(p,tx,ty,m=1,arrive=true){const dx=tx-p.x,dy=ty-p.y,d=Math.hypot(dx,dy)||1e-6;let sp=p.sp*m*(p.stun>0?.3:1);if(arrive&&d<1.2)sp*=d/1.2;p.dvx=dx/d*sp;p.dvy=dy/d*sp}
+function pursue(d,c){const T=cl(dst(d,c)/d.sp,0,1.1)*.7;seek(d,c.x+c.vx*T,c.y+c.vy*T,1,false)}
+function integrate(dt){for(const p of pl){let ax=p.dvx-p.vx,ay=p.dvy-p.vy;const a=Math.hypot(ax,ay),mx=p.ac*dt;if(a>mx){ax*=mx/a;ay*=mx/a}p.vx+=ax;p.vy+=ay;p.x+=p.vx*dt;p.y+=p.vy*dt;
+    const sp=Math.hypot(p.vx,p.vy);p.ph+=sp*dt*2.3;if(Math.abs(p.vx)>.5)p.face=p.vx>0?1:-1}
+  for(let i=0;i<pl.length;i++)for(let j=i+1;j<pl.length;j++){const a=pl[i],b=pl[j];if((a===car&&b.team)||(b===car&&a.team))continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);
+    if(d<.72&&d>1e-4){const k=(.72-d)/d*.5;a.x-=dx*k;a.y-=dy*k;b.x+=dx*k;b.y+=dy*k}}}
+function blockOn(p,d){if(dst(p,d)<1.05&&d.eng<=0&&p.bcd<=0){const l=fbS().lv;d.eng=rr(.6,1.2)+(p.role==="ol"?l.ol*.09:l.wr*.04);p.bcd=d.eng+.6;p.blk=d}
+  seek(p,d.x+(car?(car.x-d.x)*.08:0),d.y,1,false)}
+function blockNearest(p,c,range){let b=null,bd=range;for(const d of pl)if(d.team&&d.stun<=0){const dd=dst(p,d)+(d.eng>0&&p.blk!==d?3:0);if(dd<bd&&dst(d,c)<dst(p,c)+4){bd=dd;b=d}}
+  if(b)blockOn(p,b);else if(c)seek(p,c.x+4,c.y+(p.y>c.y?2:-2),.8)}
+// ---------- the snap ----------
+function snap(){const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by;st="live";pt=0;SFX.tone(1700,.06,"square",.03);
+  const D=DEF(),O=OFF(),OL=O.filter(p=>p.role==="ol"),DL=D.filter(p=>p.role==="dl");
+  g.blitz=!PLY.run&&Math.random()<.22+dR*.01;
+  DL.forEach(d=>{d.shT=rr(.75,1.45)+1.15+l.ol*.3-dR*.12;if(PLY.run)d.shT*=1.2;d.sh=false;d.dbl=0});
+  if(PLY.run){const free=OL.slice();for(const d of DL){let b=null,bd=1e9;for(const o of free){const dd=dst(o,d);if(dd<bd){bd=dd;b=o}}free.splice(free.indexOf(b),1);b.blk=d;d.dbl=1}
+    for(const o of free){let b=null,bd=1e9;for(const d of D)if(d.role==="lb"&&!OL.some(q=>q.blk===d)){const dd=dst(o,d);if(dd<bd){bd=dd;b=d}}o.blk=b}}
+  else OL.forEach(o=>{let b=null,bd=1e9;for(const d of DL){const dd=dst(o,d)+d.dbl*2.6;if(dd<bd){bd=dd;b=d}}o.blk=b;b.dbl++});
+  DL.forEach(d=>{if(d.dbl>1)d.shT*=1.45});
+  const l2=D.find(p=>p.man&&p.man.id==="rb");if(g.blitz&&l2){l2.blitz=true;l2.man=null}
+  if(!PLY.run){for(const p of O){if(!p.id)continue;const R=RT[PLY.r[p.id]];if(!R){p.blocker=true;continue}const inn=p.sy<bY-.1?1:-1;
+      p.rt={w:R.w.map(([dx,dy])=>[p.sx+dx,cl(p.sy+dy*inn,1,FW-1)]),s:!!R.s,i:0}}}
+  else{g.hand=PLY.run===3?qb:O.find(p=>p.id==="rb");g.side=PLY.run===2?(bY>MID?-1:1):0;O.forEach(p=>{if(p.id&&p!==g.hand)p.blocker=true})}}
+function routeStep(p){const r=p.rt;if(!r){seek(p,p.x,p.y);return}
+  if(r.i<r.w.length){const [tx,ty]=r.w[r.i];seek(p,tx,ty,1,false);if(Math.hypot(tx-p.x,ty-p.y)<.7)r.i++;return}
+  if(r.s){seek(p,p.x+(qb.x>p.x?-.2:0),p.y,.4);return}
+  const a=r.w.length>1?r.w[r.w.length-2]:[p.sx,p.sy],b=r.w[r.w.length-1],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;
+  let ty=p.y+dy/d*10;if(ty<1.5||ty>FW-1.5)ty=cl(ty,1.5,FW-1.5);seek(p,p.x+dx/d*10,ty,1,false)}
+function stepLive(dt){pt+=dt;const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by,O=OFF(),D=DEF();
+  for(const p of pl){p.dvx=0;p.dvy=0;for(const k of["stun","eng","jk","jcd","bcd"])if(p[k]>0)p[k]-=dt}
+  if(PLY.run&&!car&&g.hand){const tH=PLY.run===3?.22:PLY.run===2?.32:.45;if(pt>=tH){car=g.hand;car.auto=g.side*.8;car.autoT=PLY.run===2?.75:0;if(car!==qb)SFX.hiss(.05,900,1,.08)}}
+  const foe=car||qb;
+  for(const p of O){
+    if(p===car){runCarrier(p,dt);continue}
+    if(p.role==="ol"){const d=p.blk;if(d&&d.role!=="dl"){if(d.eng>0&&p.blk===d||dst(p,d)<5)blockOn(p,d);else blockNearest(p,foe,7);continue}
+      if(d&&!d.sh&&d.stun<=0&&!(car&&car.x>x0+2)){if(PLY.run)seek(p,d.x-.6,d.y,.9,false);else{const dd=Math.hypot(qb.x-d.x,qb.y-d.y)||1;seek(p,d.x+(qb.x-d.x)/dd*.95,d.y+(qb.y-d.y)/dd*.95)}}
+      else blockNearest(p,foe,7);continue}
+    if(p===qb){if(!PLY.run&&!thrown){if(pt<1.1)seek(p,x0-6.6,bY,.85);else{let near=null,nd=5;for(const d of D)if((d.sh||d.blitz)&&dst(d,p)<nd){nd=dst(d,p);near=d}if(near)seek(p,p.x-.4,p.y+(p.y>near.y?1:-1)*2,.55);else seek(p,p.x,p.y)}}
+      else if(PLY.run)seek(p,p.x-1,p.y+(g.side?-g.side*3:2),.45);continue}
+    if(PLY.run){if(p===g.hand&&!car)seek(p,PLY.run===2?x0-4:x0-3.4,PLY.run===2?bY+g.side*5.5:bY+.5);else blockNearest(p,foe,10);continue}
+    if(car){blockNearest(p,car,12);continue}
+    if(ball&&!ball.done&&p===ball.tg&&Math.hypot(p.x-ball.lx,p.y-ball.ly)<11){seek(p,ball.lx,ball.ly,1,false);continue}
+    if(p.blocker){const b=D.find(d=>d.blitz&&d.eng<=0&&d.stun<=0);if(b&&dst(p,b)<9)blockOn(p,b);else seek(p,x0-4.5,p.sy,.6);continue}
+    routeStep(p)}
+  for(const d of D){
+    if(d.stun>0){seek(d,d.x,d.y);continue}
+    if(d.role==="dl"){if(!d.sh&&pt>=d.shT){d.sh=true;const b=pl.find(o=>o.blk===d&&o.role==="ol");if(b)b.stun=.5}
+      const tg=car||qb;if(!d.sh){const b=pl.find(o=>o.blk===d&&dst(o,d)<1.7);seek(d,tg.x,tg.y,b?.1:1,false)}else pursue(d,tg);continue}
+    if(d.eng>0){seek(d,foe.x,foe.y,.12,false);continue}
+    if(car){if(PLY.run&&pt<.38){seek(d,d.x+.3,d.y,.3);continue}pursue(d,car);continue}
+    if(ball&&!ball.done){const fl=ball.k*ball.T,ld=Math.hypot(d.x-ball.lx,d.y-ball.ly);if(fl>.12+(5-dR)*.05&&ld<15){seek(d,ball.lx,ball.ly,1,false);continue}}
+    if(d.blitz){if(pt>.15)pursue(d,qb);continue}
+    if(d.man){const r=d.man;if(pt<.15){seek(d,d.x+.2,d.y,.3);continue}
+      if(r.blocker&&!r.rt){seek(d,x0+5,lerp(d.y,qb.y,.3),.5);continue}
+      const inn=r.y<MID?1:-1;seek(d,r.x+r.vx*.3+1.3,r.y+r.vy*.3+inn*.6);continue}
+    if(d.zone){let deep=null;for(const r of O)if(r.key&&(d.zone<0?r.y<bY+3:r.y>bY-3)&&(!deep||r.x>deep.x))deep=r;
+      seek(d,Math.max(x0+11,(deep?deep.x:x0)+4.5),deep?lerp(MID+d.zone*10,deep.y,.55):MID+d.zone*10,.9);continue}
+    seek(d,x0+5,lerp(d.y,qb.y,.2),.5)}
+  integrate(dt);
+  // the ball
+  if(ball&&!ball.done){ball.k+=dt/ball.T;const k=Math.min(1,ball.k);ball.x=lerp(ball.sx,ball.lx,k);ball.y=lerp(ball.sy,ball.ly,k);ball.z=lerp(2.1,1.1,k)+4*ball.h*k*(1-k);if(ball.k>=1)arrive()}
+  if(st!=="live")return;
+  // sacks
+  if(!PLY.run&&!thrown&&!car){for(const d of D)if((d.sh||d.blitz)&&d.stun<=0&&dst(d,qb)<.85){g.stt.sk++;shake=.3;end("sack",{x:qb.x});return}}
+  if(car){
+    if(car.x>=100){end("td");return}
+    if(car.y<0||car.y>FW){end("oob");return}
+    for(const d of D){if(d.eng>0||d.stun>0||dst(d,car)>.85)continue;if(d.role==="dl"&&!d.sh&&pl.some(o=>o.blk===d&&dst(o,d)<1.7))continue;
+      if(car.jk>0){d.stun=.9;pop(car.x,car.y,L("Juked!","Finta!"),"#9fe6ff");continue}
+      const pb=(car.role==="rb"?.07+l.rb*.045:car.role==="qb"?.04+l.qb*.02:.05+l.wr*.028)-dR*.012;
+      if(Math.random()<pb){d.stun=1.1;car.vx*=.55;pop(car.x,car.y,L("Broken tackle!","Placcaggio rotto!"),"#ffe08a");SFX.hoof(1.2);continue}
+      shake=.25;SFX.hoof(1.6);if(Math.random()<.012){end("fum",{x:car.x});return}end(car.x<=x0&&!thrown&&!PLY.run?"sack":"tackle");return}}}
+function runCarrier(c,dt){let s=0;if(keys.ArrowUp||keys.w||keys.W)s-=1;if(keys.ArrowDown||keys.s||keys.S)s+=1;
+  if(ptr&&ptr.mode==="steer"&&ptr.held>.12){const fy=cam.y+(ptr.cy-lay.H/2)/(cam.s*SQ);s=cl((fy-c.y)/2.2,-1,1)}
+  if(c.autoT>0){c.autoT-=dt;if(!s)s=c.auto}
+  const slow=keys.ArrowLeft||keys.a||keys.A?.55:1,ang=s*1.05,sp=c.sp*slow*(c.jk>0?1.12:1)*(c.catchT>0?.85:1);if(c.catchT>0)c.catchT-=dt;
+  c.dvx=Math.cos(ang)*sp;c.dvy=Math.sin(ang)*sp;c.steer=s}
+function juke(){const c=car;if(!c||st!=="live"||c.jcd>0)return;let near=null,nd=6;for(const d of pl)if(d.team&&dst(d,c)<nd){nd=dst(d,c);near=d}
+  const dir=Math.sign(c.steer||0)||(near?(near.y<c.y?1:-1):1);c.jk=.34;c.jcd=.95;c.vy+=dir*6.2;c.vx*=.92;SFX.hiss(.12,2600,.8,.1)}
+// ---------- passing ----------
+const arm=()=>26+fbS().lv.qb*4;
+function throwTo(tx,ty){if(thrown||st!=="live"||qb.x>Gm.los||(car&&car!==qb)||PLY.run)return;const l=fbS().lv;let dx=tx-qb.x,dy=ty-qb.y,d=Math.hypot(dx,dy);const A=arm();
+  if(d<2)return;if(d>A){tx=qb.x+dx/d*A;ty=qb.y+dy/d*A;d=A}
+  let pr=1;for(const p of pl)if(p.team&&(p.sh||p.blitz)&&dst(p,qb)<2.6)pr=1.9;
+  const sg=(.062-l.qb*.0055)*d*pr;tx+=gs()*sg;ty+=gs()*sg*.8;
+  const v=16+l.qb*1.1,T=.25+d/v+Math.max(0,d-22)*.012;
+  ball={sx:qb.x+.3,sy:qb.y,lx:tx,ly:cl(ty,-1.5,FW+1.5),T,k:0,h:.45+d*.085,x:qb.x,y:qb.y,z:2.1,done:false,tg:null};
+  let best=null,bd=1e9;for(const p of pl)if(!p.team&&p.key&&p!==qb){const fx=p.x+p.vx*T,fy=p.y+p.vy*T,dd=Math.hypot(fx-tx,fy-ty);if(dd<bd){bd=dd;best=p}}ball.tg=bd<9?best:null;
+  thrown=true;car=null;Gm.stt.att++;ptr=null;SFX.hiss(.16,1600,.7,.12);if(Gm.hint>0)Gm.hint--}
+function leadTo(p){if(!p||!p.key||p===qb)return;const v=16+fbS().lv.qb*1.1;let tx=p.x,ty=p.y;for(let i=0;i<3;i++){const d=Math.hypot(tx-qb.x,ty-qb.y),T=.25+d/v+Math.max(0,d-22)*.012;tx=p.x+p.vx*T+p.vx*.06;ty=p.y+p.vy*T}throwTo(tx,ty)}
+function aimPt(){if(!ptr)return null;const px=ptr.sx-ptr.cx,py=ptr.sy-ptr.cy;let tx=qb.x+px*3.4/cam.s,ty=qb.y+py*3.4/(cam.s*SQ);const dx=tx-qb.x,dy=ty-qb.y,d=Math.hypot(dx,dy),A=arm();if(d>A){tx=qb.x+dx/d*A;ty=qb.y+dy/d*A}return{x:tx,y:ty,d:Math.min(d,A)}}
+function arrive(){const l=fbS().lv,dR=rt(Gm.opp,"d");let r=null,rd=1e9,d=null,dd=1e9;
+  for(const p of pl){if(p===qb)continue;const q=Math.hypot(p.x-ball.lx,p.y-ball.ly);if(!p.team&&p.key){if(q<rd){rd=q;r=p}}else if(p.team&&p.role!=="dl"&&p.stun<=0){if(q<dd){dd=q;d=p}}}
+  const cr=1.15+l.wr*.07,dr=.95+dR*.04;ball.done=true;
+  if(d&&dd<dr&&(!r||dd<rd-.1)){if(Math.random()<.2+dR*.035){pop(d.x,d.y,L("INTERCEPTED!","INTERCETTATO!"),"#ff6b5a");Gm.stt.int++;SFX.lose();end("int",{x:d.x,y:d.y});return}
+    return miss(L("Broken up!","Respinto!"))}
+  if(r&&rd<cr){const con=d&&dd<1.7,p=.95+l.wr*.006-(con?.33-l.wr*.025:0);if(Math.random()<p)return caught(r,con,false);return miss(L("Dropped!","Perso!"))}
+  if(r&&rd<cr*1.8&&Math.random()<.35+l.wr*.045)return caught(r,false,true);
+  miss("")}
+function miss(txt){ball.drop={vx:(ball.lx-ball.sx)/ball.T*.25,vy:(ball.ly-ball.sy)/ball.T*.25,vz:2,z:1.1,t:0};if(txt)pop(ball.lx,ball.ly,txt,"#ffffff");end("inc",{x:Gm.los})}
+function caught(r,con,dive){car=r;r.caught=1;r.catchT=.25;Gm.stt.comp++;SFX.chip();if(con||dive){SFX.crowd(1.2,.07);cheer=Math.max(cheer,1)}
+  pop(r.x,r.y,dive?L("Diving catch!","Presa in tuffo!"):con?L("Contested catch!","Presa contesa!"):L("Caught!","Presa!"),"#b8f5a0");
+  if(r.x>=100){end("td");return}if(dive){r.down=1;end("tackle",{x:r.x})}}
+// ---------- the end of a play ----------
+function end(k,o={}){if(st!=="live")return;st="dead";const g=Gm,c=car;let spot=o.x!=null?o.x:c?c.x+(c.vx>0&&k==="tackle"?.5:0):qb.x;
+  if((k==="tackle"||k==="sack"||k==="oob")&&spot<=0)k="safety";
+  const gain=k==="inc"?0:Math.round(spot-g.los);res={k,spot,y:o.y!=null?o.y:c?cl(c.y,0,FW):g.by,gain};if(c)c.down=k==="tackle"||k==="sack"||k==="safety"?1:c.down;
+  stT=k==="td"?2.6:k==="int"?1.8:1.3;SFX.tone(2600,.16,"sine",.05);SFX.tone(2900,.16,"sine",.03,.03);
+  const isP=!!(c&&c.caught);
+  if(k!=="inc"&&k!=="int"&&k!=="fum"&&k!=="safety"){const gn=Math.round((k==="td"?100:spot)-g.los);if(isP){g.stt.pass+=gn;g.stt.long=Math.max(g.stt.long,gn)}else if(k!=="sack")g.stt.rush+=gn}
+  if(k==="td"){g.stt.td++;cheer=3.2;shake=.4;SFX.crowd(3,.15);SFX.win(2);confetti();msg(L("TOUCHDOWN!","TOUCHDOWN!"),2.6)}
+  else if(k==="sack")msg(L(`Sacked! ${gain} yds`,`Sack! ${gain} yd`),1.6);
+  else if(k==="inc")msg(L("Incomplete","Incompleto"),1.4);
+  else if(k==="int")msg(L("Intercepted!","Intercettato!"),1.8);
+  else if(k==="fum"){msg(L("Fumble! They recover","Fumble! Recuperano loro"),1.8);SFX.lose()}
+  else if(k==="safety")msg(L("Safety! 2 points to them","Safety! 2 punti a loro"),1.8);
+  else{const txt=gain>0?L(`Gain of ${gain}`,`Guadagno di ${gain}`):gain<0?L(`Loss of ${-gain}`,`Perdita di ${-gain}`):L("No gain","Nessun guadagno");msg(k==="oob"?L("Out of bounds · ","Fuori · ")+txt:txt,1.3);if(gain>=20){SFX.crowd(1.6,.09);cheer=Math.max(cheer,1.6)}}}
+const late=()=>Gm&&(Gm.q===2||Gm.q===4)&&Gm.clk<=120;
+function tick(sec){const g=Gm;if(g.ot||g.xp||g.flag)return;g.clk-=sec;if(g.clk<=0){if(g.q===2||g.q===4){g.clk=0;g.flag=g.q===2?"half":"end"}else{g.q++;g.clk+=QLEN;msg(L(`End of the ${g.q===2?"first":"third"} quarter`,`Fine del ${g.q===2?"primo":"terzo"} quarto`),2)}}}
+function resolve(r){const g=Gm;
+  if(g.xp){g.xp=false;if(r.k==="td"){g.us+=2;msg(L("Two-point conversion is good!","Trasformazione da due riuscita!"),2)}else msg(L("The two-point try fails.","La trasformazione da due fallisce."),2);return afterScore()}
+  tick(pt*1.4+(r.k==="inc"||r.k==="oob"?1.5:late()?rr(5,9):rr(15,24)));
+  if(r.k==="td"){g.us+=6;const v=Math.round(base()*10);payOut(v);pop(cam.x,MID-6,"+"+fmt(v),"#ffe08a",3);snap_();return showPAT()}
+  if(r.k==="safety"){g.th+=2;snap_();return endOurDrive(Math.round(rr(32,45)))}
+  if(r.k==="int"||r.k==="fum")return endOurDrive(r.spot>=100?20:cl(Math.round(100-r.spot),1,99));
+  const ns=r.k==="inc"?g.los:cl(r.spot,1,99.4);
+  if(ns>=g.fdl){g.down=1;g.los=ns;g.togo=Math.min(10,100-ns);g.fdl=g.los+g.togo;if(!res||res.k!=="td")setTimeout(()=>{if(open)SFX.tick()},10)}
+  else{g.down++;g.togo=g.fdl-ns;g.los=ns;if(g.down>4){msg(L("Turnover on downs","Palla persa sui down"),2);return endOurDrive(cl(Math.round(100-ns),1,99))}}
+  if(g.flag)return endOurDrive(25);
+  if(r.k!=="inc")g.by=cl(r.y,23.6,29.7);snap_();toPre()}
+function payOut(v){earn(v);const f=fbS();f.earned+=v;Gm.pay+=v}
+function newDrive(start){const g=Gm;g.los=cl(start,1,99);g.down=1;g.togo=Math.min(10,100-g.los);g.fdl=g.los+g.togo;g.by=MID;g.xp=false;snap_();toPre()}
+function afterScore(){snap_();endOurDrive(Math.round(rr(20,30)))}
+function endOurDrive(theirStart){const g=Gm;snap_();if(g.ot)return oppDrive(75,L("Overtime","Supplementari"));if(g.flag==="half")return halftime();if(g.flag==="end")return regEnd();oppDrive(theirStart,"")}
+// ---------- picking a play ----------
+function toPre(){st="pre";setup();const g=Gm,f=fbS(),passes=shuf(PLAYS.filter(p=>!p.run)),runs=shuf(PLAYS.filter(p=>p.run));
+  offer=g.togo<=2&&!g.xp?[passes[0],runs[0],runs[1]]:[passes[0],passes[1],runs[0]];
+  const fd=Math.round(117-g.los),canFG=!g.xp&&(g.down===4||g.ot&&g.down>=3||((g.q===2||g.q===4)&&g.clk<=40))&&fd<=f.lv.k*4.5+44;
+  if(g.down===4&&!g.ot&&!g.xp)offer.push({id:"punt",sp:1,n:["Punt","Punt"]});if(canFG)offer.push({id:"fg",sp:1,n:[`Field goal · ${fd} yds`,`Calcio · ${fd} yd`]});
+  const box=$("fbPlays");box.innerHTML=offer.map((p,i)=>`<button class="fbplay${p.sp?" sp":""}" data-i="${i}">${p.sp?`<span class="fbico">${p.id==="punt"?"⤴":"⊓"}</span>`:diagram(p)}<b>${N(p.n)}</b><kbd>${i+1}</kbd></button>`).join("");box.hidden=false;
+  cam.tx=g.los+9}
+function choose(i){const p=offer[i];if(!p||st!=="pre")return;$("fbPlays").hidden=true;SFX.chip();
+  if(p.id==="punt")return doPunt();if(p.id==="fg")return startKick("fg");PLY=p;st="set";stT=.5;msg(L("Hut!","Hut!"),.8)}
+function diagram(p){const X=x=>((x+7)*2.85).toFixed(1),Y=y=>(30+(y-MID)*1.05).toFixed(1);const bY=MID;let s=`<svg viewBox="0 0 100 60" aria-hidden="true"><line x1="${X(0)}" y1="4" x2="${X(0)}" y2="56" class="los"/>`;
+  for(let i=-2;i<=2;i++)s+=`<rect x="${(+X(-.8))-1.6}" y="${(+Y(bY+i*1.55))-1.6}" width="3.2" height="3.2" class="ol"/>`;
+  const pos={w1:[-.6,bY-15.5],sl:[-1.3,bY-8],te:[-1,bY+4.4],w2:[-.6,bY+15],rb:[-4.8,bY+1.9]};s+=`<circle cx="${X(-4.3)}" cy="${Y(bY)}" r="2" class="qb"/>`;
+  const path=pts=>`<polyline points="${pts.map(q=>X(q[0])+","+Y(q[1])).join(" ")}" class="rt"/>`;
+  if(p.run){const rb=pos.rb;s+=`<circle cx="${X(rb[0])}" cy="${Y(rb[1])}" r="2" class="rc"/>`;
+    s+=p.run===1?path([rb,[-3.4,bY+.5],[9,bY+.5]]):p.run===2?path([rb,[-4,bY+6.5],[2,bY+11],[11,bY+13]]):path([[-4.3,bY],[1,bY-2],[10,bY-3]]);
+    for(const k of["w1","sl","te","w2"])s+=`<circle cx="${X(pos[k][0])}" cy="${Y(pos[k][1])}" r="1.8" class="rc dim"/>`}
+  else for(const k of["w1","sl","te","w2","rb"]){const [x,y]=pos[k],R=RT[p.r[k]];s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="1.9" class="rc"/>`;if(!R)continue;const inn=y<bY-.1?1:-1;
+    const w=R.w.map(([dx,dy])=>[x+dx,cl(y+dy*inn,1,FW-1)]);if(!R.s){const a=w.length>1?w[w.length-2]:[x,y],b=w[w.length-1],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;w.push([Math.min(b[0]+dx/d*5,26),cl(b[1]+dy/d*5,-2,FW+2)])}
+    s+=path([[x,y],...w])}
+  return s+"</svg>"}
+// ---------- kicks ----------
+function startKick(kind){const g=Gm,l=fbS().lv,d=kind==="pat"?32:Math.round(117-g.los);if(kind==="pat")g.los=85;
+  kick={kind,d,kx:g.los-7,ph:Math.random()*6,spd:2.3+d*.032-l.k*.11,w:cl(.3+l.k*.025-(d-30)*.0065,.06,.5),wind:+rr(-.28,.28).toFixed(2),rng:37+l.k*4.5,state:"aim",n:0,k:0};
+  kick.kicker=setupKick(kick.kx,false);st="kick";cam.tx=g.los+6;msg(kind==="pat"?L("Extra point: tap or Space when the needle is in the green","Trasformazione: tocca o Spazio quando l'ago è nel verde"):L(`Field goal from ${d} yds: tap or Space in the green`,`Calcio da ${d} yd: tocca o Spazio nel verde`),3)}
+function kickNow(){if(st!=="kick"||kick.state!=="aim")return;const off=(kick.n-kick.wind)/kick.w,short=kick.d>kick.rng*rr(.95,1.04);
+  kick.good=Math.abs(off)<1&&!short;kick.short=short;kick.off=off;kick.state="fly";kick.k=0;kick.T=1.25+kick.d*.008;
+  ball={sx:kick.kx,sy:MID+.6,lx:short?kick.kx+kick.rng:113,ly:cl(MID+.6+off*3.1*(116-kick.kx)/(110-kick.kx),MID-14,MID+14),z:0,x:kick.kx,y:MID,done:false,kick:1,h:short?5:8+kick.d*.11};
+  st="kfly";SFX.hoof(1.5);SFX.tone(110,.1,"sine",.12,0,60)}
+function doPunt(){const g=Gm,l=fbS().lv,dist=Math.round(rr(37,47)+l.k*1.2),land=g.los+dist;tick(7);setupKick(0,true);const k=pl.find(p=>p.role==="kick");k.x=g.los-13;k.y=MID;
+  kick={kind:"punt",state:"fly",k:0,T:2.1,theirs:land>=100?20:cl(Math.round(100-land+rr(0,9)),5,80),dist};
+  ball={sx:k.x+.5,sy:MID,lx:Math.min(land,108),ly:MID+rr(-8,8),z:0,x:k.x,y:MID,done:false,kick:1,h:15};st="kfly";SFX.hoof(1.4);msg(L(`Punt, ${dist} yards`,`Punt da ${dist} yard`),2)}
+function stepKick(dt){for(const p of pl){p.dvx=0;p.dvy=0}
+  if(st==="kick"){kick.ph+=dt*kick.spd;kick.n=Math.sin(kick.ph);integrate(dt);return}
+  kick.k+=dt/kick.T;const k=Math.min(1,kick.k);ball.x=lerp(ball.sx,ball.lx,k);ball.y=lerp(ball.sy,ball.ly,k);ball.z=4*ball.h*k*(1-k)+(kick.short?0:k*2);
+  for(const p of pl)if(p.team)seek(p,p.x-3,lerp(p.y,MID,.2),.6);integrate(dt);
+  if(kick.k>=1&&!kick.done){kick.done=true;stT=1.1;const g=Gm;
+    if(kick.kind==="punt"){msg(L("Punt downed","Punt fermato"),1.2)}
+    else if(kick.good){msg(L("It's good!","Dentro!"),1.6);SFX.crowd(1.6,.1);cheer=1.6;SFX.win()}
+    else{msg(kick.short?L("Short!","Corto!"):kick.off<0?L("Wide left!","Fuori a sinistra!"):L("Wide right!","Fuori a destra!"),1.6);SFX.lose(1)}}
+  if(kick.done){stT-=dt;if(stT<=0)kickDone()}}
+function kickDone(){const g=Gm,kk=kick;kick=null;ball=null;
+  if(kk.kind==="punt")return endOurDrive(kk.theirs);
+  if(kk.kind==="pat"){if(kk.good)g.us+=1;return afterScore()}
+  tick(5);if(kk.good){g.us+=3;const v=Math.round(base()*4);payOut(v);snap_();return endOurDrive(Math.round(rr(20,30)))}
+  endOurDrive(Math.max(20,Math.round(100-(g.los-7))))}
+// ---------- the cards between your drives ----------
+const ov=()=>$("fbOv");
+const spotTxt=(p,their)=>{const v=Math.round(p);if(v===50)return L("at midfield","a centrocampo");return v<50?(their?L(`on their own ${v}`,`sulle loro ${v} yard`):L(`on your own ${v}`,`sulle tue ${v} yard`)):(their?L(`on your ${100-v}`,`sulle tue ${100-v} yard`):L(`on their ${100-v}`,`sulle loro ${100-v} yard`))};
+const clockTxt=()=>Gm.ot?L("Overtime","Supplementari"):`Q${Gm.q} · ${Math.floor(Gm.clk/60)}:${String(Math.floor(Gm.clk%60)).padStart(2,"0")}`;
+const scoreLine=()=>`<div class="fbscore"><span style="--c:${TEAMS[ME].j}">${ME} <b>${Gm.us}</b></span><i>${clockTxt()}</i><span style="--c:${TEAMS[Gm.opp].j}"><b>${Gm.th}</b> ${Gm.opp}</span></div>`;
+function card(html){st="card";$("fbPlays").hidden=true;ov().innerHTML=`<div class="tdcard fbcard">${html}</div>`}
+function showPAT(){card(`<span class="fbtag" style="--c:#c99a1c">${L("Touchdown!","Touchdown!")}</span>${scoreLine()}<h2>${L("Go for one or two?","Uno o due punti?")}</h2>
+  <div class="fbcalls two"><button class="fbcall" data-pat="1"><b>${L("Kick the extra point","Calcia la trasformazione")}</b><small>${L("1 point, a 32-yard kick","1 punto, calcio da 32 yard")}</small><kbd>1</kbd></button><button class="fbcall" data-pat="2"><b>${L("Go for two","Tenta da due")}</b><small>${L("2 points, one play from the 3","2 punti, un'azione dalle 3 yard")}</small><kbd>2</kbd></button></div>`)}
+function pat(n){if(st!=="card"||!Gm)return;ov().innerHTML="";SFX.chip();if(n===1)return startKick("pat");const g=Gm;g.xp=true;g.los=97;g.down=1;g.togo=3;g.fdl=100;g.by=MID;msg(L("Two-point try from the 3","Trasformazione da due dalle 3 yard"),2);toPre()}
+function oppDrive(start,why){const g=Gm,T=TEAMS[g.opp];
+  card(`<span class="fbtag" style="--c:${T.j}">${why||L("Defence","Difesa")}</span>${scoreLine()}<h2>${L(`The ${N(T.s)} have the ball`,`Palla ai ${N(T.s)}`)}</h2><p class="fbsub">${spotTxt(start,1)}${g.ot?" · "+L("one possession each","un possesso a testa"):""}</p>
+  <p class="fbq">${L("Call your defence:","Scegli la difesa:")}</p><div class="fbcalls">${CALLS.map((c,i)=>`<button class="fbcall" data-call="${c.k}"><b>${N(c.n)}</b><small>${N(c.d)}</small><kbd>${i+1}</kbd></button>`).join("")}</div>`);
+  g.pend={start}}
+function callD(k){const g=Gm;if(st!=="card"||!g||!g.pend)return;const start=g.pend.start;g.pend=null;SFX.chip();
+  const remT=g.ot?null:g.clk+(g.q===1||g.q===3?QLEN:0),need=g.ot?g.us-g.th:0,r=drive(g.opp,ME,start,k,remT,need,true),T=TEAMS[g.opp],my=++tok;
+  let pts_=0,pay=0,head="",ours=0;
+  if(r.res==="td"){pts_=Math.random()<.95?7:6;r.lines.push(pts_===7?L("Extra point good.","Trasformazione riuscita."):L("Extra point missed!","Trasformazione sbagliata!"))}
+  else if(r.res==="fg")pts_=3;else if(r.res==="safety")ours=2;
+  if(r.res==="int"||r.res==="fum"){pay=Math.round(base()*4)}
+  head=r.res==="td"?L(`${N(T.s)} touchdown`,`Touchdown dei ${N(T.s)}`):r.res==="fg"?L(`${N(T.s)} field goal`,`Calcio dei ${N(T.s)}`):r.res==="int"||r.res==="fum"?L("Turnover! Your ball","Palla rubata! Tocca a te"):r.res==="downs"?L("Stopped on downs!","Fermati sui down!"):r.res==="safety"?L("Safety! 2 points to you","Safety! 2 punti a te"):r.res==="clock"?L("Time runs out","Il tempo scade"):r.res==="fgx"?L("Field goal missed!","Calcio sbagliato!"):L("Forced a punt","Costretti al punt");
+  const good=!pts_;
+  ov().querySelector(".fbcard").innerHTML=`<span class="fbtag" style="--c:${T.j}">${N(CALLS.find(c=>c.k===k).n)}</span>${scoreLine()}<ol class="fblog" id="fbLog"></ol><div id="fbEnd"></div>`;
+  let i=0;const lg=$("fbLog");const step=()=>{if(my!==tok||!open)return;if(i<r.lines.length){const li=document.createElement("li");li.textContent=r.lines[i++];lg.appendChild(li);lg.scrollTop=lg.scrollHeight;SFX.tick();setTimeout(step,i===r.lines.length?420:300);return}
+    g.th+=pts_;g.us+=ours;if(pay)payOut(pay);if(!g.ot){const rem=g.clk+(g.q===1||g.q===3?QLEN:0);if(r.t>=rem){g.clk=0;g.flag=g.q<=2?"half":"end"}else{g.clk-=r.t;while(g.clk<=0){g.q++;g.clk+=QLEN}}}
+    if(good)SFX.win();else SFX.lose(1);snap_();
+    const ourStart=r.res==="td"||r.res==="fg"?Math.round(rr(20,30)):r.res==="punt"?(r.p>=100?20:cl(Math.round(100-r.p),4,60)):r.res==="fgx"?Math.max(20,Math.round(100-(r.p-7))):r.res==="safety"?Math.round(rr(30,42)):r.res==="clock"?25:cl(Math.round(100-r.p),1,99);
+    g.next=ourStart;const nx=g.ot?(g.us!==g.th?L("See the result","Vedi il risultato"):L("Next overtime round","Prossimo supplementare")):g.flag==="half"?L("Halftime","Intervallo"):g.flag==="end"?L("Final whistle","Fischio finale"):L(`Your ball ${spotTxt(ourStart,0)}`,`Palla a te ${spotTxt(ourStart,0)}`);
+    $("fbEnd").innerHTML=`<h3 class="fbhead ${good?"ok":"bad"}">${head}${pay?` <small>+${fmt(pay)}</small>`:""}</h3>${scoreLine()}<button class="tdbig" id="fbGo">${nx} <small>(${L("Space","Spazio")})</small></button>`;$("fbGo").onclick=afterOpp};
+  setTimeout(step,250)}
+function afterOpp(){const g=Gm;if(!g||st!=="card")return;ov().innerHTML="";
+  if(g.ot){if(g.us!==g.th||(g.ot>=3&&fbS().sea.ph==="reg"))return finishGame();g.ot++;return card(`<span class="fbtag" style="--c:#8a5cf0">${L(`Overtime, round ${g.ot}`,`Supplementari, turno ${g.ot}`)}</span>${scoreLine()}<h2>${L("Still level!","Ancora pari!")}</h2><p class="fbsub">${L("You start on their 25 again.","Ripartite dalle loro 25 yard.")}</p><button class="tdbig" id="fbGo">${L("Play on","Si continua")} <small>(${L("Space","Spazio")})</small></button>`),$("fbGo").onclick=()=>{ov().innerHTML="";newDrive(75)}}
+  if(g.flag==="half")return halftime();if(g.flag==="end")return regEnd();newDrive(g.next)}
+function halftime(){const g=Gm;card(`<span class="fbtag" style="--c:#3b6fd6">${L("Halftime","Intervallo")}</span>${scoreLine()}<h2>${g.us>g.th?L("Leading at the break","In vantaggio all'intervallo"):g.us<g.th?L("Work to do","C'è da lavorare"):L("All square","Tutto pari")}</h2>
+  <dl class="tdres"><dt>${L("Passing","Passaggi")}</dt><dd>${g.stt.comp}/${g.stt.att} · ${g.stt.pass} yds</dd><dt>${L("Rushing","Corse")}</dt><dd>${g.stt.rush} yds</dd><dt>${L("Duecks so far","Dueck finora")}</dt><dd>+${fmt(g.pay)}</dd></dl>
+  <p class="fbsub">${L(`The ${N(TEAMS[g.opp].s)} get the ball to start the second half.`,`I ${N(TEAMS[g.opp].s)} ricevono a inizio ripresa.`)}</p><button class="tdbig" id="fbGo">${L("Second half","Secondo tempo")} <small>(${L("Space","Spazio")})</small></button>`);
+  $("fbGo").onclick=()=>{ov().innerHTML="";g.q=3;g.clk=QLEN;g.flag="";snap_();oppDrive(Math.round(rr(20,30)),L("Second half","Secondo tempo"))}}
+function regEnd(){const g=Gm;g.flag="";if(g.us!==g.th)return finishGame();g.ot=1;g.q=5;snap_();
+  card(`<span class="fbtag" style="--c:#8a5cf0">${L("Overtime","Supplementari")}</span>${scoreLine()}<h2>${L("Tied at the end of regulation!","Pari a fine partita!")}</h2><p class="fbsub">${L("One possession each from the 25. You go first.","Un possesso a testa dalle 25 yard. Inizi tu.")}</p><button class="tdbig" id="fbGo">${L("To overtime","Ai supplementari")} <small>(${L("Space","Spazio")})</small></button>`);
+  $("fbGo").onclick=()=>{ov().innerHTML="";newDrive(75)}}
+// ---------- games, the league and the season ----------
+function simRest(){const g=Gm;let rem=g.ot?0:g.clk+(4-g.q)*QLEN,who=1;
+  while(rem>30){const A=who?g.opp:ME,B=who?ME:g.opp,r=drive(A,B,Math.round(rr(18,32)),"bal",rem);if(who){g.th+=pts(r);if(r.res==="safety")g.us+=2}else{g.us+=pts(r);if(r.res==="safety")g.th+=2}rem-=Math.max(r.t,40);who^=1}
+  while(g.us===g.th){if(Math.random()<.5)g.us+=3;else g.th+=3}g.sim=true}
+function finishGame(){const g=Gm,f=fbS(),s=f.sea,w=g.us>g.th,tie=g.us===g.th,ph=s.ph,mult=ph==="semi"?2:ph==="final"?3:1;
+  let pay=Math.round(base()*(w?(60+12*(s.yr-1))*mult:tie?25:12)*(g.sim?.5:1)),title=0;
+  f.games++;if(w)f.wins++;else if(tie)f.ties++;else f.loss++;if(w)f.best=Math.max(f.best,g.us-g.th);f.tds+=g.stt.td;f.pass+=g.stt.pass;f.rush+=g.stt.rush;f.long=Math.max(f.long,g.stt.long);
+  const rec=(a,b,sa,sb)=>{const A=s.tb[a],B=s.tb[b];A[3]+=sa;A[4]+=sb;B[3]+=sb;B[4]+=sa;if(sa>sb){A[0]++;B[1]++}else if(sb>sa){B[0]++;A[1]++}else{A[2]++;B[2]++}};
+  s.log.push({o:g.opp,u:g.us,t:g.th,ph,wk:s.wk});if(s.log.length>12)s.log.shift();
+  if(ph==="reg"){rec(ME,g.opp,g.us,g.th);for(const [a,b] of s.rd[s.wk])if(a!==ME&&b!==ME){const [x,y]=simGame(a,b);rec(a,b,x,y)}s.wk++;if(s.wk>=7)toPlayoffs()}
+  else if(ph==="semi"){const [a,b]=s.po.oth,[x,y]=simGame(a,b),ow=x>y?a:b;s.po.res=[`${a} ${x} – ${y} ${b}`];if(w){s.po.fin=ow;s.ph="final"}else{const [p,q]=simGame(g.opp,ow);s.champ=p>q?g.opp:ow;s.po.res.push(`${g.opp} ${p} – ${q} ${ow}`);s.ph="over"}}
+  else if(ph==="final"){s.ph="over";s.champ=w?ME:g.opp;if(w){f.titles++;title=Math.round(base()*250*s.yr)}}
+  pay+=title;payOut(pay);f.live=null;const G_=g;Gm=null;st="idle";pl=[];ball=null;car=null;
+  if(w){SFX.big();coinRain(title?40:18);cheer=3}else SFX.lose(tie);
+  if(!open)return toast(L("La Meta","La Meta"),L(`Simulated: Ducks ${G_.us} – ${G_.th} ${N(TEAMS[G_.opp].s)}. +${fmt(G_.pay)} Duecks.`,`Simulata: Paperi ${G_.us} – ${G_.th} ${N(TEAMS[G_.opp].s)}. +${fmt(G_.pay)} Dueck.`));
+  const T=TEAMS[G_.opp];card(`<span class="fbtag" style="--c:${w?"#2f8f4e":tie?"#777":"#8a1f24"}">${title?L("Champions!","Campioni!"):w?L("Victory","Vittoria"):tie?L("A tie","Pareggio"):L("Defeat","Sconfitta")}</span>${G_.sim?`<span class="fbtag" style="--c:#555">${L("simulated","simulata")}</span>`:""}
+    <div class="fbscore big"><span style="--c:${TEAMS[ME].j}">${ME} <b>${G_.us}</b></span><i>${L("Final","Finale")}</i><span style="--c:${T.j}"><b>${G_.th}</b> ${G_.opp}</span></div>
+    ${title?`<h2>${L("The Golden Dueck Bowl is yours!","Il Golden Dueck Bowl è tuo!")}</h2>`:""}
+    <dl class="tdres"><dt>${L("Passing","Passaggi")}</dt><dd>${G_.stt.comp}/${G_.stt.att} · ${G_.stt.pass} yds</dd><dt>${L("Rushing","Corse")}</dt><dd>${G_.stt.rush} yds</dd><dt>${L("Touchdowns","Touchdown")}</dt><dd>${G_.stt.td}</dd><dt>${L("Interceptions thrown","Intercetti subiti")}</dt><dd>${G_.stt.int}</dd>
+    ${title?`<dt>${L("Title bonus","Premio titolo")}</dt><dd>+${fmt(title)}</dd>`:""}<dt><b>${L("Duecks earned","Dueck guadagnati")}</b></dt><dd><b>+${fmt(G_.pay)}</b></dd></dl>
+    <button class="tdbig" id="fbGo">${L("Continue","Continua")} <small>(${L("Space","Spazio")})</small></button>`);$("fbGo").onclick=()=>matchCard();ui(true)}
+function toPlayoffs(){const s=fbS().sea,tb=table(),top=tb.slice(0,4),i=top.indexOf(ME);
+  if(i>=0){s.po={semi:top[3-i],oth:top.filter((x,j)=>j!==i&&j!==3-i),seed:i+1,res:[]};s.ph="semi"}
+  else{const [a,b]=simGame(top[0],top[3]),[c,d]=simGame(top[1],top[2]),f1=a>b?top[0]:top[3],f2=c>d?top[1]:top[2],[x,y]=simGame(f1,f2);s.champ=x>y?f1:f2;s.po={res:[`${top[0]} ${a} – ${b} ${top[3]}`,`${top[1]} ${c} – ${d} ${top[2]}`,`${f1} ${x} – ${y} ${f2}`]};s.ph="over"}}
+function stars(v){const n=Math.round(v);return"★".repeat(Math.min(n,MAXLV))+`<i>${"★".repeat(Math.max(0,MAXLV-n))}</i>`}
+function bar(a,b){const p=cl(50+(a-b)*12,8,92);return`<i class="fbbar" style="--p:${p}%"></i>`}
+function matchCard(){const f=fbS(),s=f.sea;ov().innerHTML="";Gm=null;
+  if(s.ph==="over"){const champ=s.champ,me=champ===ME;card(`<span class="fbtag" style="--c:${me?"#c99a1c":"#555"}">${L(`Season ${s.yr} is over`,`Stagione ${s.yr} finita`)}</span>
+    <h2>${me?L("Champions of the league!","Campioni del campionato!"):L(`The ${N(TEAMS[champ].s)} won the title`,`Il titolo va ai ${N(TEAMS[champ].s)}`)}</h2>
+    <p class="fbsub">${L(`You finished ${s.tb[ME][0]}–${s.tb[ME][1]} in the league.`,`Hai chiuso il campionato ${s.tb[ME][0]}–${s.tb[ME][1]}.`)}</p>${(s.po&&s.po.res||[]).map(x=>`<p class="fbsub">${x}</p>`).join("")}
+    <p class="fbsub">${L("Next season every rival gets stronger. Train your players in the Roster panel.","La prossima stagione ogni rivale sarà più forte. Allena i giocatori nel pannello Rosa.")}</p>
+    <button class="tdbig" id="fbGo">${L(`Start season ${s.yr+1}`,`Inizia la stagione ${s.yr+1}`)} <small>(${L("Space","Spazio")})</small></button>`);
+    $("fbGo").onclick=()=>{f.yr=s.yr+1;f.sea=newSeason(f.yr);SFX.chip();matchCard();ui(true)};return}
+  const o=nextOpp(),T=TEAMS[o],r=s.tb[o],m=s.tb[ME];
+  card(`<span class="fbtag" style="--c:${s.ph==="reg"?"#3b6fd6":"#c99a1c"}">${stage()} · ${L(`Season ${s.yr}`,`Stagione ${s.yr}`)}</span>
+    <div class="fbvs"><div><i class="fbhelm" style="--j:${TEAMS[ME].j};--h:${TEAMS[ME].h}"></i><b>${N(TEAMS[ME].n)}</b><small>${m[0]}–${m[1]}${m[2]?"–"+m[2]:""}</small></div><em>vs</em><div><i class="fbhelm" style="--j:${T.j};--h:${T.h}"></i><b>${N(T.n)}</b><small>${r[0]}–${r[1]}${r[2]?"–"+r[2]:""}</small></div></div>
+    <dl class="fbmatch"><dt>${L("Your offence vs their defence","Il tuo attacco contro la loro difesa")}</dt><dd>${bar(rt(ME,"o"),rt(o,"d"))}</dd><dt>${L("Your defence vs their offence","La tua difesa contro il loro attacco")}</dt><dd>${bar(rt(ME,"d"),rt(o,"o"))}</dd></dl>
+    <p class="fbsub">${L(`A win pays about ${fmt(Math.round(base()*(60+12*(s.yr-1))*(s.ph==="semi"?2:s.ph==="final"?3:1)))} Duecks, plus ${fmt(Math.round(base()*10))} a touchdown.`,`Una vittoria paga circa ${fmt(Math.round(base()*(60+12*(s.yr-1))*(s.ph==="semi"?2:s.ph==="final"?3:1)))} Dueck, più ${fmt(Math.round(base()*10))} a touchdown.`)}</p>
+    <button class="tdbig" id="fbGo">${L("Kick off","Calcio d'inizio")} <small>(${L("Space","Spazio")})</small></button><button class="fblink" id="fbSim">${L("Simulate this game (half pay)","Simula la partita (metà premio)")}</button>`);
+  $("fbGo").onclick=kickoff;$("fbSim").onclick=()=>{newGame(o);simRest();finishGame()};ui(true)}
+function kickoff(){const o=nextOpp();if(!o)return;ov().innerHTML="";newGame(o);SFX.crowd(2,.1);cheer=1.5;msg(L(`Kick-off against the ${N(TEAMS[o].s)}!`,`Calcio d'inizio contro i ${N(TEAMS[o].s)}!`),2.2);newDrive(Math.round(rr(20,30)))}
+// a game left half-played (window closed, page reloaded) is finished by simulation
+function settleLive(){const f=fbS(),lv=f.live;if(!lv||Gm)return;f.live=null;const s=f.sea;if(lv.yr!==s.yr||lv.ph!==s.ph||lv.wk!==s.wk||lv.o!==nextOpp())return;
+  newGame(lv.o);Object.assign(Gm,{us:lv.us|0,th:lv.th|0,q:cl(lv.q|0,1,5),clk:cl(+lv.clk||0,0,QLEN)});if(Gm.q>4){Gm.q=4;Gm.clk=0}simRest();finishGame()}
+// ---------- fx ----------
+function pop(x,y,txt,c,life=1.4){pops.push({x,y,z:2.6,txt,c,life,max:life})}
+function confetti(){const W=lay.W||800;for(let i=0;i<(PERF?40:110);i++)parts.push({x:rr(0,W),y:rr(-60,-5),vx:rr(-40,40),vy:rr(60,180),r:rr(2,5),a:rr(0,6),va:rr(-8,8),c:pick(["#f2b632","#ffffff","#17306a","#ff6b5a","#4ade80"]),life:rr(2,3.4)})}
+// ---------- the loop ----------
+function step(dt){t+=dt;if(cheer>0)cheer=Math.max(0,cheer-dt);if(shake>0)shake=Math.max(0,shake-dt);if(ptr)ptr.held+=dt;
+  if(st==="set"){stT-=dt;if(stT<=0)snap()}
+  else if(st==="live")stepLive(dt);
+  else if(st==="dead"){for(const p of pl){p.dvx=0;p.dvy=0}integrate(dt);if(ball&&ball.drop){const b=ball.drop;b.t+=dt;ball.lx+=b.vx*dt;ball.ly+=b.vy*dt;b.vz-=12*dt;b.z=Math.max(0,b.z+b.vz*dt);if(b.z===0){b.vz=Math.abs(b.vz)*.45;b.vx*=.6;b.vy*=.6}}stT-=dt;if(stT<=0)resolve(res)}
+  else if(st==="kick"||st==="kfly")stepKick(dt);
+  for(const p of pops){p.life-=dt;p.z+=dt*1.6}pops=pops.filter(p=>p.life>0);
+  for(const q of parts){q.life-=dt;q.x+=q.vx*dt;q.y+=q.vy*dt;q.a+=q.va*dt;q.vx*=.99}parts=parts.filter(q=>q.life>0&&q.y<(lay.H||600)+10);
+  camStep(dt)}
+function camStep(dt,snapTo){let fx,fy=MID;
+  if(st==="kfly"&&ball){fx=ball.x+2;fy=ball.y}else if(st==="kick")fx=Gm.los+4;
+  else if(ball&&!ball.done){fx=ball.x+3;fy=ball.y}else if(car){fx=car.x+6;fy=car.y}
+  else if(Gm&&(st==="live"||st==="dead"))fx=(res&&res.spot!=null&&st==="dead"?res.spot:Gm.los)+(PLY&&!PLY.run?8:7),fy=lerp(MID,qb?qb.y:MID,.3);
+  else if(Gm)fx=Gm.los+9,fy=Gm.by;else fx=50;
+  const k=snapTo?1:1-Math.exp(-dt*3);cam.x=lerp(cam.x,fx,k);cam.y=lerp(cam.y,lerp(MID,fy,.45),snapTo?1:1-Math.exp(-dt*2.4));
+  const hh=(lay.H||400)/2/(cam.s*SQ);cam.y=cl(cam.y,Math.min(MID,hh-7),Math.max(MID,FW+7-hh));cam.x=cl(cam.x,-6,106)}
+// ---------- drawing ----------
+const CROWD=["#e8c9a0","#c98b5a","#8a5a3a","#f1d6b8","#5a3b28","#d9a877"],SHIRT=["#f2b632","#17306a","#ffffff","#c8321f","#2768b3","#f2b632","#17306a","#3b3b3b","#e04646","#4ade80"];
+const hsh=(i,r)=>{let h=(i*73856093)^(r*19349663);h=(h^(h>>>13))*1274126177;return(h^(h>>>16))>>>0};
+function scene(g,W,H,dpr,hud){const s=cam.s,sx=shake>0?(Math.random()-.5)*shake*14:0,sy=shake>0?(Math.random()-.5)*shake*10:0,X0=W/2-cam.x*s+sx,Y0=H/2-cam.y*s*SQ+sy;
+  const PX=x=>X0+x*s,PY=(y,z=0)=>Y0+(y*SQ-z*.85)*s,opp=Gm?Gm.opp:"NAP";
+  g.setTransform(dpr,0,0,dpr,0,0);const sky=g.createLinearGradient(0,0,0,H);sky.addColorStop(0,"#0b1220");sky.addColorStop(1,"#141c2c");g.fillStyle=sky;g.fillRect(0,0,W,H);
+  const xa=cam.x-W/2/s-3,xb=cam.x+W/2/s+3;
+  // far stands, rising away from the field
+  const yb=PY(-5.2),rowH=Math.max(3,s*.5);g.fillStyle="#1a2132";g.fillRect(0,0,W,yb);
+  for(let r=0;r<30;r++){const y=yb-(r+1)*rowH;if(y<-rowH)break;g.fillStyle=r%2?"#1e2638":"#222b3f";g.fillRect(0,y,W,rowH);
+    const sp=.75,i0=Math.floor(xa/sp),i1=Math.ceil(xb/sp);for(let i=i0;i<=i1;i++){const h=hsh(i,r);if(h%9===0)continue;const x=PX(i*sp+(r%2)*.37),bob=cheer>0?-Math.abs(Math.sin(t*11+h%7))*Math.min(1,cheer)*rowH*.35:0;
+      g.fillStyle=SHIRT[(h>>>4)%SHIRT.length];g.fillRect(x-rowH*.32,y+rowH*.42+bob,rowH*.64,rowH*.5);g.fillStyle=CROWD[(h>>>8)%CROWD.length];g.fillRect(x-rowH*.2,y+rowH*.08+bob,rowH*.4,rowH*.38)}}
+  // stadium lights glow
+  for(let i=Math.floor(xa/40);i<=Math.ceil(xb/40);i++){const x=PX(i*40+5),gr=g.createRadialGradient(x,-10,0,x,-10,s*14);gr.addColorStop(0,"rgba(255,248,220,.35)");gr.addColorStop(1,"rgba(255,248,220,0)");g.fillStyle=gr;g.fillRect(x-s*14,-10,s*28,s*14)}
+  // near stands
+  const yn=PY(FW+6.5);if(yn<H){g.fillStyle="#1a2132";g.fillRect(0,yn,W,H-yn);for(let r=0;r<20;r++){const y=yn+r*rowH*1.1+rowH*.3;if(y>H)break;const sp=.75,i0=Math.floor(xa/sp),i1=Math.ceil(xb/sp);
+    for(let i=i0;i<=i1;i++){const h=hsh(i,r+50);if(h%9===0)continue;const x=PX(i*sp+(r%2)*.37),bob=cheer>0?-Math.abs(Math.sin(t*11+h%7))*Math.min(1,cheer)*rowH*.35:0;g.fillStyle=SHIRT[(h>>>4)%SHIRT.length];g.fillRect(x-rowH*.34,y+rowH*.45+bob,rowH*.68,rowH*.6);g.fillStyle=CROWD[(h>>>8)%CROWD.length];g.fillRect(x-rowH*.22,y+rowH*.05+bob,rowH*.44,rowH*.42)}}}
+  // the field, drawn in yards
+  g.setTransform(dpr*s,0,0,dpr*s*SQ,dpr*X0,dpr*Y0);
+  g.fillStyle="#2c6a2c";g.fillRect(xa,-5.2,xb-xa,FW+11.7);
+  for(let x=Math.floor(Math.max(xa,0)/5)*5;x<Math.min(xb,100);x+=5){g.fillStyle=(x/5)%2?"#3f8f3c":"#388535";g.fillRect(x,0,5,FW)}
+  for(let x=Math.floor(xa);x<xb;x++){if(x<0||x>=100)continue;g.fillStyle=(x%2)?"rgba(255,255,255,.018)":"rgba(0,0,0,.025)";g.fillRect(x,0,1,FW)}
+  const ez=(x0,c)=>{g.fillStyle=c;g.fillRect(x0,0,10,FW);g.fillStyle="rgba(255,255,255,.06)";for(let y=0;y<FW;y+=4)g.fillRect(x0,y,10,2)};ez(-10,TEAMS[ME].j);ez(100,TEAMS[opp].j);
+  g.strokeStyle="rgba(255,255,255,.92)";g.lineWidth=.22;g.beginPath();for(let x=Math.ceil(Math.max(xa,0)/5)*5;x<=Math.min(xb,100);x+=5){g.moveTo(x,0);g.lineTo(x,FW)}g.stroke();
+  g.lineWidth=.12;g.beginPath();for(let x=Math.ceil(Math.max(xa,1));x<Math.min(xb,100);x++){if(x%5===0)continue;for(const y of[.4,FW-1.1,23.36,29.36]){g.moveTo(x,y);g.lineTo(x,y+.7)}}g.stroke();
+  g.lineWidth=.6;g.strokeRect(-10,0,120,FW);g.lineWidth=.35;g.beginPath();g.moveTo(0,0);g.lineTo(0,FW);g.moveTo(100,0);g.lineTo(100,FW);g.stroke();
+  g.fillStyle="rgba(255,255,255,.12)";g.beginPath();g.ellipse(50,MID,6.5,6.5,0,0,Math.PI*2);g.fill();g.strokeStyle="rgba(242,182,50,.7)";g.lineWidth=.3;g.stroke();
+  if(Gm&&(st==="pre"||st==="set"||st==="live"||st==="dead")){g.fillStyle="rgba(90,170,255,.85)";g.fillRect(Gm.los-.15,0,.3,FW);if(Gm.fdl<100&&!Gm.xp){g.fillStyle="rgba(255,214,64,.9)";g.fillRect(Gm.fdl-.15,0,.3,FW)}}
+  // painted words
+  const wt=(txt,x,y,size,rot,col,font="900")=>{g.setTransform(dpr*s/10,0,0,dpr*s*SQ/10,dpr*PX(x),dpr*PY(y));if(rot)g.rotate(rot);g.fillStyle=col;g.font=`${font} ${Math.round(size*10)}px 'DM Sans',sans-serif`;g.textAlign="center";g.textBaseline="middle";g.fillText(txt,0,0)};
+  for(let x=10;x<=90;x+=10){if(x<xa-3||x>xb+3)continue;const n=String(x<=50?x:100-x);wt(n,x,8,2.3,0,"rgba(255,255,255,.85)");wt(n,x,FW-8,2.3,Math.PI,"rgba(255,255,255,.85)")}
+  if(xa<0)wt(N(TEAMS[ME].s).toUpperCase(),-5,MID,5,-Math.PI/2,TEAMS[ME].h);if(xb>100)wt(N(TEAMS[opp].s).toUpperCase(),105,MID,5,Math.PI/2,TEAMS[opp].h);
+  if(xa<56&&xb>44){wt("LA META",50,MID-.4,2.4,0,"rgba(242,182,50,.85)");wt("DUECK LEAGUE",50,MID+2.2,1,0,"rgba(255,255,255,.7)","700")}
+  g.setTransform(dpr,0,0,dpr,0,0);
+  // ad boards along the far sideline
+  const bt=PY(-4.6,1.1),bb=PY(-4.6);g.fillStyle="#0d1526";g.fillRect(0,bt,W,bb-bt);
+  for(let i=Math.floor(xa/12);i<=Math.ceil(xb/12);i++){const x=PX(i*12),w=12*s-4;g.fillStyle=i%3===0?"#17306a":i%3===1?"#1d2a44":"#7a1f24";g.fillRect(x+2,bt+2,w,bb-bt-4);g.fillStyle=i%3===2?"#ffe08a":"#f2b632";g.font=`800 ${Math.max(8,Math.round((bb-bt)*.5))}px 'DM Sans',sans-serif`;g.textAlign="center";g.textBaseline="middle";g.fillText(i%3===0?"DUECK CLICKER":i%3===1?"LA META":"CASINÒ",x+2+w/2,(bt+bb)/2)}
+  // things that stand up, sorted by depth
+  const L_=[];for(const p of pl)L_.push([p.y,()=>drawP(g,p,PX(p.x),PY(p.y),s)]);for(const p of bench)if(p.x>xa&&p.x<xb)L_.push([p.y,()=>drawP(g,p,PX(p.x),PY(p.y),s)]);
+  for(const gx of[-10.3,110.3])if(gx>xa-4&&gx<xb+4)L_.push([MID,()=>posts(g,PX,PY,s,gx)]);
+  if(ball&&!(car&&ball.done&&!ball.drop))L_.push([ball.drop?ball.ly:ball.y,()=>drawBall(g,PX,PY,s)]);
+  L_.sort((a,b)=>a[0]-b[0]);for(const q of L_)q[1]();
+  // routes before and just after the snap
+  if(Gm&&PLY&&!PLY.run&&(st==="set"||st==="live"&&pt<1.2&&!thrown)){const a=st==="set"?.55:.55*(1-pt/1.2);g.setLineDash([s*.5,s*.4]);g.lineWidth=Math.max(1.5,s*.12);g.strokeStyle=`rgba(255,240,180,${a})`;
+    for(const p of pl){if(!p.key||!PLY.r[p.id]||!RT[PLY.r[p.id]])continue;const R=RT[PLY.r[p.id]],inn=p.sy<Gm.by-.1?1:-1;g.beginPath();g.moveTo(PX(p.sx),PY(p.sy));for(const [dx,dy] of R.w)g.lineTo(PX(p.sx+dx),PY(cl(p.sy+dy*inn,1,FW-1)));g.stroke()}g.setLineDash([])}
+  // badges over receivers while you can throw
+  if(st==="live"&&!thrown&&!PLY.run&&(!car||car===qb&&qb.x<Gm.los)){for(const p of pl){if(!p.key)continue;let sep=99;for(const d of pl)if(d.team&&d.role!=="dl")sep=Math.min(sep,dst(d,p));
+    const x=PX(p.x),y=PY(p.y,2.6),r=Math.max(7,s*.34);g.fillStyle=sep>3?"#3ccf6e":sep>1.6?"#f0c040":"#ef5a4a";g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill();g.lineWidth=2;g.strokeStyle="rgba(0,0,0,.45)";g.stroke();
+    g.fillStyle="#101820";g.font=`800 ${Math.round(r*1.25)}px 'DM Sans',sans-serif`;g.textAlign="center";g.textBaseline="middle";g.fillText(p.key,x,y+1)}}
+  // aiming
+  if(st==="live"&&ptr&&ptr.mode==="aim"&&ptr.moved){const a=aimPt();if(a){const h=.45+a.d*.085;g.fillStyle="rgba(255,255,255,.85)";for(let i=1;i<=22;i++){const k=i/22,z=lerp(2.1,1.1,k)+4*h*k*(1-k);g.beginPath();g.arc(PX(lerp(qb.x,a.x,k)),PY(lerp(qb.y,a.y,k),z),Math.max(1.5,s*.07),0,Math.PI*2);g.fill()}
+    g.strokeStyle="#ffe08a";g.lineWidth=2.5;g.beginPath();g.ellipse(PX(a.x),PY(a.y),s*1.3,s*1.3*SQ,0,0,Math.PI*2);g.stroke();g.beginPath();g.ellipse(PX(a.x),PY(a.y),s*.35,s*.35*SQ,0,0,Math.PI*2);g.fillStyle="#ffe08a";g.fill()}}
+  // floating words
+  g.textAlign="center";g.textBaseline="middle";for(const p of pops){const a=Math.min(1,p.life/.4),sz=Math.max(12,Math.round(s*.85));g.globalAlpha=a;g.font=`900 ${sz}px 'DM Sans',sans-serif`;g.lineWidth=4;g.strokeStyle="rgba(8,12,24,.75)";const x=PX(p.x),y=PY(p.y,p.z);g.strokeText(p.txt,x,y);g.fillStyle=p.c;g.fillText(p.txt,x,y)}g.globalAlpha=1;
+  const vg=g.createRadialGradient(W/2,H/2,Math.min(W,H)*.45,W/2,H/2,Math.max(W,H)*.75);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(0,0,0,.35)");g.fillStyle=vg;g.fillRect(0,0,W,H);
+  for(const q of parts){g.save();g.translate(q.x,q.y);g.rotate(q.a);g.fillStyle=q.c;g.fillRect(-q.r,-q.r*.4,q.r*2,q.r*.8);g.restore()}
+  if(hud)drawHud(g,W,H)}
+function drawP(g,p,X,Y,u){const T=p.team?TEAMS[Gm?Gm.opp:p.tm||"NAP"]:TEAMS[ME],jer=T.j,hel=T.h,sp=Math.hypot(p.vx,p.vy),sw=Math.sin(p.ph)*cl(sp/4,0,1),f=p.face,wide=p.role==="ol"||p.role==="dl"?1.14:1;
+  g.fillStyle="rgba(0,0,0,.28)";g.beginPath();g.ellipse(X,Y,u*.46*wide,u*.18,0,0,Math.PI*2);g.fill();
+  if(p===car&&!p.down&&st!=="dead"){g.strokeStyle="rgba(255,224,138,.9)";g.lineWidth=Math.max(1.5,u*.09);g.beginPath();g.ellipse(X,Y,u*.62,u*.25,0,0,Math.PI*2);g.stroke()}
+  if(p.down){g.save();g.translate(X,Y-u*.25);g.fillStyle=jer;g.beginPath();g.roundRect(-u*.7,-u*.24,u*1.15,u*.48,u*.18);g.fill();g.fillStyle=hel;g.beginPath();g.arc(u*.62*f,-u*.05,u*.24,0,Math.PI*2);g.fill();g.restore();
+    if(p===car){g.fillStyle="#7a4320";g.beginPath();g.ellipse(X+u*.2,Y-u*.45,u*.2,u*.12,0,0,Math.PI*2);g.fill()}return}
+  const kn=p.role==="hold";if(kn){Y+=u*.25}
+  const lean=p.jk>0?Math.sin(p.jk*18)*.25:0;g.save();g.translate(X,Y);if(lean)g.rotate(lean);
+  const lw=u*.17,lh=u*.5;g.fillStyle="#e9e4d8";g.fillRect(-u*.2+sw*u*.12,-lh,lw,lh);g.fillRect(u*.04-sw*u*.12,-lh,lw,lh);
+  g.fillStyle="#111";g.fillRect(-u*.22+sw*u*.12,-u*.06,lw+u*.05,u*.08);g.fillRect(u*.02-sw*u*.12,-u*.06,lw+u*.05,u*.08);
+  g.fillStyle=p.team?"#d9d2c2":hel;g.fillRect(-u*.24*wide,-u*.68,u*.48*wide,u*.22);
+  g.fillStyle=jer;g.beginPath();g.roundRect(-u*.32*wide,-u*1.2,u*.64*wide,u*.56,u*.12);g.fill();g.beginPath();g.roundRect(-u*.4*wide,-u*1.22,u*.8*wide,u*.22,u*.1);g.fill();
+  g.fillStyle="rgba(255,255,255,.12)";g.fillRect(-u*.32*wide,-u*1.2,u*.64*wide,u*.1);
+  if(u>9){g.fillStyle=p.team?"#ffffff":hel;g.font=`800 ${Math.round(u*.32)}px 'DM Sans',sans-serif`;g.textAlign="center";g.textBaseline="middle";g.fillText(p.num,0,-u*.9)}
+  const ar=sw*u*.1;g.fillStyle=jer;g.fillRect(-u*.46*wide,-u*1.12+ar,u*.13,u*.38);g.fillRect(u*.33*wide,-u*1.12-ar,u*.13,u*.38);
+  if(p===car||(ball&&ball.done&&!ball.drop&&p===qb&&false)){g.fillStyle="#7a4320";g.beginPath();g.ellipse(u*.32*f,-u*.86,u*.2,u*.12,-.4*f,0,Math.PI*2);g.fill();g.strokeStyle="#fff";g.lineWidth=Math.max(1,u*.03);g.beginPath();g.moveTo(u*.26*f,-u*.88);g.lineTo(u*.38*f,-u*.86);g.stroke()}
+  if(p===qb&&!thrown&&!car&&st!=="pre"&&PLY&&!PLY.run){g.fillStyle="#7a4320";g.beginPath();g.ellipse(u*.3*f,-u*1.1,u*.2,u*.12,-.6*f,0,Math.PI*2);g.fill()}
+  g.fillStyle=hel;g.beginPath();g.arc(u*.03*f,-u*1.43,u*.27,0,Math.PI*2);g.fill();g.fillStyle="rgba(255,255,255,.25)";g.beginPath();g.arc(-u*.05*f,-u*1.52,u*.12,0,Math.PI*2);g.fill();
+  g.fillStyle=jer;g.fillRect(-u*.035,-u*1.7,u*.07,u*.3);g.strokeStyle="#9aa0a6";g.lineWidth=Math.max(1,u*.06);g.beginPath();g.arc(u*.2*f,-u*1.38,u*.14,-1.2,1.2);g.stroke();g.restore()}
+function posts(g,PX,PY,s,x){g.strokeStyle="#ffd43b";g.lineCap="round";g.lineWidth=Math.max(2,s*.22);const y=MID;g.beginPath();g.moveTo(PX(x),PY(y,0));g.lineTo(PX(x),PY(y,3.33));g.moveTo(PX(x),PY(y-3.08,3.33));g.lineTo(PX(x),PY(y+3.08,3.33));
+  g.moveTo(PX(x),PY(y-3.08,3.33));g.lineTo(PX(x),PY(y-3.08,11));g.moveTo(PX(x),PY(y+3.08,3.33));g.lineTo(PX(x),PY(y+3.08,11));g.stroke();g.lineCap="butt";g.fillStyle="#c62828";g.fillRect(PX(x)-s*.08,PY(y-3.08,11)-s*.6,s*.16,s*.6);g.fillRect(PX(x)-s*.08,PY(y+3.08,11)-s*.6,s*.16,s*.6)}
+function drawBall(g,PX,PY,s){const b=ball,bx=b.drop?b.lx:b.x,by=b.drop?b.ly:b.y,bz=b.drop?b.drop.z:b.z;g.fillStyle="rgba(0,0,0,.3)";g.beginPath();g.ellipse(PX(bx),PY(by),s*.22,s*.09,0,0,Math.PI*2);g.fill();
+  const X=PX(bx),Y=PY(by,bz),ang=b.drop?t*9:Math.atan2((b.ly-b.sy)*SQ,b.lx-b.sx),spin=.55+.45*Math.abs(Math.sin(t*(b.kick?14:22)));g.save();g.translate(X,Y);g.rotate(ang);g.fillStyle="#7a4320";g.beginPath();g.ellipse(0,0,s*.26,s*.15*spin,0,0,Math.PI*2);g.fill();
+  g.strokeStyle="#fff";g.lineWidth=Math.max(1,s*.035);g.beginPath();g.moveTo(-s*.08,0);g.lineTo(s*.08,0);g.stroke();g.restore()}
+function drawHud(g,W,H){const sc=cl(W/900,.62,1.15);g.setTransform(lay.dpr||1,0,0,lay.dpr||1,0,0);
+  const out=(txt,x,y,font,col)=>{g.font=font;g.lineWidth=4;g.strokeStyle="rgba(8,12,24,.7)";g.strokeText(txt,x,y);g.fillStyle=col;g.fillText(txt,x,y)};
+  if(Gm){const bw=340*sc,bh=40*sc,bx=W/2-bw/2,by=10*sc;g.fillStyle="rgba(8,12,22,.86)";g.beginPath();g.roundRect(bx,by,bw,bh,8*sc);g.fill();
+    const chip=(x,id,sc_,right)=>{const T=TEAMS[id];g.fillStyle=T.j;g.beginPath();g.roundRect(x,by+5*sc,74*sc,bh-10*sc,5*sc);g.fill();g.fillStyle=T.h;g.fillRect(right?x+70*sc:x,by+5*sc,4*sc,bh-10*sc);
+      g.fillStyle="#fff";g.font=`800 ${Math.round(14*sc)}px 'DM Sans',sans-serif`;g.textAlign="center";g.textBaseline="middle";g.fillText(id,x+37*sc,by+bh/2+1);g.font=`800 ${Math.round(22*sc)}px 'DM Sans',sans-serif`;g.fillText(sc_,right?x-24*sc:x+100*sc,by+bh/2+1)};
+    chip(bx+6*sc,ME,Gm.us,0);chip(bx+bw-80*sc,Gm.opp,Gm.th,1);g.fillStyle="#ffe08a";g.font=`700 ${Math.round(14*sc)}px 'DM Sans',sans-serif`;g.textAlign="center";g.fillText(clockTxt(),W/2,by+bh/2+1);
+    if(st==="pre"||st==="set"||st==="live"||st==="dead"){const g_=Gm,dd=g_.xp?L("Two-point try","Trasformazione da due"):`${ORD(g_.down)} & ${g_.fdl>=100?"goal":Math.max(1,Math.round(g_.togo))} · ${spotTxt(g_.los,0)}`;g.font=`700 ${Math.round(13*sc)}px 'DM Sans',sans-serif`;
+      const tw=g.measureText(dd).width+20*sc;g.fillStyle="rgba(8,12,22,.75)";g.beginPath();g.roundRect(W/2-tw/2,by+bh+5*sc,tw,22*sc,6*sc);g.fill();g.fillStyle="#fff";g.fillText(dd,W/2,by+bh+16.5*sc)}}
+  g.textBaseline="alphabetic";
+  if(st==="live"&&!thrown&&PLY&&!PLY.run&&!car&&Gm&&Gm.hint>0&&pt<3.2){g.textAlign="center";g.globalAlpha=.8+Math.sin(t*5)*.2;out(L("Drag back from anywhere and let go to throw · tap to run · or press 1–5","Trascina all'indietro e lascia per lanciare · tocca per correre · o premi 1–5"),W/2,H-58*sc,`800 ${Math.round(15*sc)}px 'DM Sans',sans-serif`,"#ffffff");g.globalAlpha=1}
+  if(st==="live"&&car&&car!==qb&&fbS().games<3&&pt<5){g.textAlign="center";out(L("Hold and move up or down to steer · tap or Space to juke","Tieni premuto e muoviti su o giù per sterzare · tocca o Spazio per la finta"),W/2,H-58*sc,`700 ${Math.round(14*sc)}px 'DM Sans',sans-serif`,"#e8f0ff")}
+  if(st==="kick"&&kick){const bw=Math.min(W*.7,380*sc),bx=W/2-bw/2,by=H-70*sc,bh=18*sc,X=v=>bx+(v+1)/2*bw;g.fillStyle="rgba(8,12,22,.85)";g.beginPath();g.roundRect(bx-8,by-30*sc,bw+16,bh+44*sc,8);g.fill();
+    g.fillStyle="#7a1f24";g.fillRect(bx,by,bw,bh);g.fillStyle="#3ccf6e";g.fillRect(X(kick.wind-kick.w),by,X(kick.wind+kick.w)-X(kick.wind-kick.w),bh);g.fillStyle="rgba(255,255,255,.7)";g.fillRect(X(kick.wind)-1,by,2,bh);
+    g.fillStyle="#fff";g.fillRect(X(kick.n)-2.5,by-6*sc,5,bh+12*sc);g.textAlign="center";g.font=`700 ${Math.round(13*sc)}px 'DM Sans',sans-serif`;g.fillStyle="#fff";
+    const wtxt=Math.abs(kick.wind)<.05?L("No wind","Niente vento"):(kick.wind<0?"← ":"")+L(`Wind ${Math.round(Math.abs(kick.wind)*30)} km/h`,`Vento ${Math.round(Math.abs(kick.wind)*30)} km/h`)+(kick.wind>0?" →":"");
+    g.fillText(`${kick.d} yds · ${L("range","gittata")} ${Math.round(kick.rng)} · ${wtxt}`,W/2,by-12*sc);if(kick.d>kick.rng){g.fillStyle="#ffb4a8";g.fillText(L("Out of range: it will likely fall short","Troppo lontano: probabilmente corto"),W/2,by+bh+14*sc)}}}
+function render(){const g=cv.getContext("2d"),{W,H,dpr}=lay;if(!W)return;scene(g,W,H,dpr,1)}
+function layout(){const f=$("fbField"),dpr=Math.min(2,devicePixelRatio||1),W=f.clientWidth,H=f.clientHeight;if(!W||!H)return;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);lay={W,H,dpr};
+  cam.s=Math.min(Math.max(W/(W<600?30:38),H/(FW*SQ+12)),H/(24*SQ))}
+function frame(now){raf=0;if(!open)return;const dt=Math.min(.05,(now-(lastF||now))/1000);lastF=now;for(let i=0;i<SPD;i++)step(dt);
+  if(msgT>0){msgT-=dt;if(msgT<=0)$("fbMsg").classList.add("fade")}render();uiT-=dt;if(uiT<=0){uiT=.3;ui()}raf=requestAnimationFrame(frame)}
+function msg(s,sec){const m=$("fbMsg");m.textContent=s;m.classList.remove("fade");msgT=sec}
+// ---------- side panel ----------
+let shopKey="";
+function ui(force){const f=fbS(),s=f.sea;$("fbCash").textContent=fmt(S.d);$("fbTitles").textContent=nf(f.titles);$("fbWL").textContent=`${s.tb[ME][0]}–${s.tb[ME][1]}`;
+  $("fbGame").innerHTML=Gm?`<dt>${L("Score","Punteggio")}</dt><dd>${Gm.us} – ${Gm.th}</dd><dt>${L("Passing","Passaggi")}</dt><dd>${Gm.stt.comp}/${Gm.stt.att} · ${Gm.stt.pass} yds</dd><dt>${L("Rushing","Corse")}</dt><dd>${Gm.stt.rush} yds</dd><dt>${L("Touchdowns","Touchdown")}</dt><dd>${Gm.stt.td}</dd><dt>${L("Duecks this game","Dueck in partita")}</dt><dd>+${fmt(Gm.pay)}</dd>`:`<dt>${stage()}</dt><dd>${nextOpp()||"—"}</dd>`;
+  const tb=table(),k2=[tb.join(),IDS.map(i=>s.tb[i].join()).join(),s.ph,LANG].join("|");
+  if(k2!==ui.k2||force){ui.k2=k2;$("fbSeaS").textContent=stage();$("fbTab").innerHTML=`<tr><th></th><th>${L("Team","Squadra")}</th><th>W</th><th>L</th><th>+/−</th></tr>`+tb.map((i,n)=>{const r=s.tb[i];return`<tr class="${i===ME?"me":""}${n===3?" cut":""}"><td>${n+1}</td><td><i style="--c:${TEAMS[i].j}"></i>${N(TEAMS[i].s)}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[3]-r[4]>0?"+":""}${r[3]-r[4]}</td></tr>`}).join("")}
+  const k=[POS.map(p=>f.lv[p.k]).join(),POS.map(p=>f.lv[p.k]<MAXLV&&S.d>=priceOf(upCost(f.lv[p.k]))?1:0).join(),Math.round(Math.log10(base())*20),LANG].join("|");
+  if(k!==shopKey||force){shopKey=k;$("fbRoster").innerHTML=POS.map(p=>{const lv=f.lv[p.k],c=lv<MAXLV?priceOf(upCost(lv)):0;return`<div class="fsrow"><div><small>${N(p.n)}</small><b>${N(p.p)}</b><span class="fbst">${stars(lv)}</span><span>${N(p.d)}</span></div>${lv<MAXLV?`<button class="tdbtn" data-up="${p.k}" ${S.d<c?"disabled":""}>${L("Train","Allena")}<br><small>${fmt(c)} Dueck</small></button>`:`<em>${L("Maxed","Al massimo")}</em>`}</div>`}).join("")}
+  $("fbRec").innerHTML=`<dt>${L("Titles","Titoli")}</dt><dd>${nf(f.titles)}</dd><dt>${L("Record","Bilancio")}</dt><dd>${nf(f.wins)}–${nf(f.loss)}${f.ties?"–"+nf(f.ties):""}</dd><dt>${L("Touchdowns","Touchdown")}</dt><dd>${nf(f.tds)}</dd><dt>${L("Passing yards","Yard su passaggio")}</dt><dd>${nf(f.pass)}</dd><dt>${L("Rushing yards","Yard su corsa")}</dt><dd>${nf(f.rush)}</dd><dt>${L("Longest play","Azione più lunga")}</dt><dd>${nf(f.long)} yds</dd><dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>${fmt(f.earned)}</dd>`}
+$("fbRoster").addEventListener("click",e=>{const b=e.target.closest("[data-up]");if(!b)return;const f=fbS(),k=b.dataset.up,lv=f.lv[k];if(lv>=MAXLV)return;const c=priceOf(upCost(lv));if(S.d<c)return;S.d-=c;f.lv[k]=lv+1;SFX.coin();
+  const p=POS.find(q=>q.k===k);msg(L(`${N(p.n)} trained to ${lv+1} stars`,`${N(p.n)} allenato a ${lv+1} stelle`),2.2);ui(true)});
+// ---------- window and input ----------
+function openFB(){closeAllWins();open=true;$("fbw").hidden=false;hideTip();keys={};ptr=null;settleLive();
+  if(!bench.length)for(let x=34;x<=66;x+=1.5)bench.push(Object.assign(mk(0,"wr",x+rr(-.3,.3),FW+2.6+rr(-.4,.4),[2,5,9,14,17,23,26,30,33,41,44,50,55,58,62,70,73,80,83,86,91,95][(x*7|0)%22],0),{face:Math.random()<.5?1:-1}));
+  if(!Gm)matchCard();requestAnimationFrame(()=>{layout();camStep(0,1);lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui(true)}
+function closeFB(){if(Gm){tok++;simRest();open=false;finishGame()}open=false;$("fbw").hidden=true;keys={};ptr=null;ov().innerHTML="";$("fbPlays").hidden=true;st="idle"}
+const fld=$("fbField"),rel=e=>{const r=fld.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+fld.addEventListener("pointerdown",e=>{if(e.target.closest(".tdcard")||e.target.closest("#fbPlays"))return;if(e.button>0)return;e.preventDefault();const [x,y]=rel(e);
+  if(st==="kick"){kickNow();return}
+  if(st!=="live")return;
+  const canThrow=!thrown&&!PLY.run&&(!car||car===qb&&qb.x<Gm.los);
+  ptr={sx:x,sy:y,cx:x,cy:y,t0:performance.now(),held:0,moved:false,mode:canThrow?"aim":"steer",id:e.pointerId};try{fld.setPointerCapture(e.pointerId)}catch(_){}});
+fld.addEventListener("pointermove",e=>{if(!ptr||e.pointerId!==ptr.id)return;const [x,y]=rel(e);ptr.cx=x;ptr.cy=y;if(Math.hypot(x-ptr.sx,y-ptr.sy)>14)ptr.moved=true});
+const up=e=>{if(!ptr||e.pointerId!==ptr.id)return;const p=ptr,quick=performance.now()-p.t0<260&&!p.moved;ptr=null;if(st!=="live")return;
+  if(p.mode==="aim"){if(p.moved&&!thrown&&qb){const a=(ptr=p,aimPt());ptr=null;if(a)throwTo(a.x,a.y)}else if(quick){if(!car){car=qb;qb.caught=0;SFX.hiss(.06,800,1,.08);msg(L("Tuck and run!","Si corre!"),1)}else juke()}}
+  else if(quick)juke()};
+fld.addEventListener("pointerup",up);fld.addEventListener("pointercancel",e=>{if(ptr&&e.pointerId===ptr.id)ptr=null});fld.addEventListener("contextmenu",e=>e.preventDefault());
+$("fbPlays").addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(b)choose(+b.dataset.i)});
+ov().addEventListener("click",e=>{const c=e.target.closest("[data-call]");if(c)return callD(c.dataset.call);const p=e.target.closest("[data-pat]");if(p)pat(+p.dataset.pat)});
+addEventListener("keydown",e=>{if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return;e.stopPropagation();const k=e.key;
+  if(k==="Escape"){closeFB();return}
+  if(k===" "||k==="Enter"||k.startsWith("Arrow"))e.preventDefault();if(e.repeat&&(k===" "||k==="Enter"||/^[1-9]$/.test(k)))return;
+  if(st==="card"||st==="idle"){const go=$("fbGo");if((k===" "||k==="Enter")&&go){go.click();return}if(/^[1-3]$/.test(k)){const c=ov().querySelectorAll("[data-call],[data-pat]")[+k-1];if(c)c.click()}return}
+  if(st==="pre"&&/^[1-9]$/.test(k)){choose(+k-1);return}
+  if(st==="kick"&&(k===" "||k==="Enter")){kickNow();return}
+  if(st==="live"){if(/^[1-5]$/.test(k)&&!thrown&&!PLY.run&&(!car||car===qb)){leadTo(pl.find(p=>p.key===+k));return}
+    if(k===" "){if(!car&&!thrown&&!PLY.run){car=qb;msg(L("Tuck and run!","Si corre!"),1)}else juke();return}}
+  keys[k]=true},true);
+addEventListener("keyup",e=>{if(!open)return;keys[e.key]=false;if(e.key.length===1)keys[e.key.toLowerCase()]=keys[e.key.toUpperCase()]=false});
+addEventListener("blur",()=>{if(open){keys={};ptr=null}});
+addEventListener("resize",()=>{if(open)layout()});
+$("fbClose").onclick=closeFB;
+// a still for the games room card: a deep ball in the air under the lights
+function mini(c){if(open)return;const sv={Gm,pl,ball,car,qb,PLY,cam:{...cam},st,thrown,pt,lay};
+  Gm={opp:"NAP",us:21,th:17,q:4,clk:44,los:38,down:2,togo:6,fdl:44,by:MID,stt:{},hint:0};PLY=PLAYS[0];setup();st="live";pt=2;thrown=true;
+  const pos={w1:[60,MID-14],sl:[55,MID-6],te:[50,MID+5],w2:[58,MID+13],rb:[40,MID+6]};for(const p of pl){if(p.id&&pos[p.id]){[p.x,p.y]=pos[p.id];p.vx=6;p.ph=Math.random()*6}else if(p.team&&p.man){p.x=p.man.x+1.3;p.y=p.man.y+.8;p.vx=5}else if(p.role==="dl"){p.x+=-1.2;p.sh=true}else if(p.role==="s"){p.x=63}}
+  qb.x=32.5;ball={sx:33,sy:MID,lx:60,ly:MID-14,T:1,k:.55,h:3,x:47,y:MID-7,z:5.5,done:false};car=null;
+  const W=c.width,H=c.height;lay={W,H,dpr:1};cam={x:47,y:MID-3,s:W/26};scene(c.getContext("2d"),W,H,1,0);
+  ({Gm,pl,ball,car,qb,PLY,st,thrown,pt,lay}=sv);cam=sv.cam}
+return{open:openFB,close:closeFB,get isOpen(){return open},mini,stats:fbS,_dbg:()=>({get Gm(){return Gm},get st(){return st},get pl(){return pl},get car(){return car},get qb(){return qb},get ball(){return ball},get kick(){return kick},get offer(){return offer},get PLY(){return PLY},get pt(){return pt},get res(){return res},get thrown(){return thrown},set spd(v){SPD=v},
+  choose,throwTo,leadTo,juke,kickNow,callD,pat,kickoff,matchCard,keys,set car(v){car=v},drive,simGame,table,rt,step})}})();
+
 // ---------- games room: pick a game ----------
 const GM={open:false};
 function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
 function closeGames(){GM.open=false;$("gmw").hidden=true}
-function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats();
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats(),fb=FB.stats();
   $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
     <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
     <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
@@ -4108,9 +4728,13 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("Race down the Dolomites from dawn to dark: backflips off kickers, grabs over cliffs, rail grinds and snowman smashing, with an avalanche on your heels. Every run pays Duecks.","Scendi dalle Dolomiti dall'alba alla notte: salti mortali dai trampolini, prese sopra le rocce, binari e pupazzi di neve, con una valanga alle calcagna. Ogni discesa paga Dueck.")}</p>
     <div class="gmst"><span>${L("Best","Record")} <b>${Math.round(sk.best||0).toLocaleString(LANG==="it"?"it-IT":"en-US")}</b></span><span>${L("Furthest","Più lontano")} <b>${Math.round(sk.far||0)} m</b></span><span>${L("Goals","Obiettivi")} <b>${(sk.gd||[]).length}/18</b></span></div>
     <span class="gmplay">${L("Hit the slopes","Sulle piste")}</span></div></button>
+    <button class="gmcard" data-game="fb"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag turf">${L("Football","Football")}</span><b>La Meta</b>
+    <p>${L("Arcade American football under the lights: call the play, throw the deep ball, juke the safety. Take the Ducks through a season and win the Golden Dueck Bowl. Touchdowns and wins pay Duecks.","Football americano arcade sotto i riflettori: scegli lo schema, lancia lungo, salta il safety con una finta. Porta i Paperi in fondo alla stagione e vinci il Golden Dueck Bowl. Touchdown e vittorie pagano Dueck.")}</p>
+    <div class="gmst"><span>${L("Season","Stagione")} <b>${fb.yr}</b></span><span>${L("Record","Bilancio")} <b>${fb.wins}–${fb.loss}</b></span><span>${L("Titles","Titoli")} <b>${fb.titles}</b></span></div>
+    <span class="gmplay">${L("Kick off","Calcio d'inizio")}</span></div></button>
     <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
-  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3])}
-$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open()};
+  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3]);FB.mini(cvs[4])}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open();else if(c.dataset.game==="fb")FB.open()};
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
@@ -4156,7 +4780,7 @@ $("p-dev").addEventListener("click",e=>{const b=e.target.closest("[data-dev]");i
   lastUKey="";recalc();toast("Beta",b.textContent,1500)});
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Football titles","Titoli di football"),fmt(FB.stats().titles)],[L("Football Duecks earned","Dueck dal football"),fmt(FB.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 
 // ---------- tabs / layout ----------
