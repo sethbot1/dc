@@ -2604,7 +2604,7 @@ function waveDef(w){const n=Math.round(6+w*1.35),g=[];
   if(w>=7)g.push({t:"critic",n:Math.round(1+w/5),gap:1.5});
   if(w>=9&&w%3===0)g.push({t:"insp",n:Math.max(1,Math.round(w/7)),gap:2.4});
   if(w>=12&&w%4===0)g.push({t:"tax",n:Math.max(1,Math.round(w/8)),gap:3});
-  if(w>30){const t=["critic","tax","pigeon","insp"][w%4];g.push({t,n:t==="insp"?Math.min(4,Math.round((w-30)/6)+2):Math.round((w-30)/2)+2,gap:t==="insp"?2.4:1.2})}
+  if(w>30)g.push({t:["critic","tax","pigeon","insp"][w%4],n:Math.round((w-30)/2)+2,gap:1.2});
   return g}
 const hpMul=w=>Math.pow(1.095,w-1)*(w>30?Math.pow(1.05,w-30):1)*st.D.hp*(st.M.hp||1);
 const goldOf=(T,w)=>Math.round(T.g*1.6*(1+.025*(w-1)));
@@ -2663,7 +2663,7 @@ function step(dt){st.t+=dt;if(st.shake>0)st.shake-=dt;
   const n=st.en.length;
   for(let i=0;i<n;i++){const e=st.en[i];if(e.dead)continue;if(e.slowT>0)e.slowT-=dt;else e.slow=0;if(e.hitT>0)e.hitT-=dt;
     e.d+=e.T.sp*(1-e.slow)*dt;const p=posOn(e.P,e.d);if(Math.abs(p[2])>.01)e.dir=p[2]>0?1:-1;e.x=p[0];e.y=p[1];
-    if(e.T.heal){e.cd-=dt;if(e.cd<=0){e.cd=1;let h=0;for(const o of st.en)if(o!==e&&!o.dead&&!o.T.heal&&o.hp<o.max&&!(o.hT>st.t)&&Math.hypot(o.x-e.x,o.y-e.y)<1.6){o.hp=Math.min(o.max,o.hp+o.max*.05);o.hT=st.t+.95;h=1}if(h)st.fx.push({k:"ring",x:e.x,y:e.y,r:1.6,t:.5,m:.5,c:"#7be08f"})}}
+    if(e.T.heal){e.cd-=dt;if(e.cd<=0){e.cd=1;let h=0;for(const o of st.en)if(o!==e&&!o.dead&&o.hp<o.max&&Math.hypot(o.x-e.x,o.y-e.y)<1.6){o.hp=Math.min(o.max,o.hp+o.max*.05);h=1}if(h)st.fx.push({k:"ring",x:e.x,y:e.y,r:1.6,t:.5,m:.5,c:"#7be08f"})}}
     if(e.T.spawn){e.cd-=dt;if(e.cd<=0){e.cd=4;for(let k=1;k<=2;k++)spawn(e.T.spawn,e.pi,e.d-k*.35,e.w);snd("squeak")}}
     if(e.d>=e.P.len){e.dead=1;e.esc=1;st.lives-=e.T.lv;st.leaks+=e.T.lv;st.shake=.25;SFX.lose(1);fxText(e.x-.6,e.y,"-"+e.T.lv+" ❤️","#ff8f86");
       if(st.lives<=0){st.lives=0;gameOver();return}}}
@@ -4276,7 +4276,7 @@ function setupKick(kx,punt){const g=Gm,x0=g.los;pl=[];ball=null;car=null;thrown=
 // ---------- moving bodies ----------
 function seek(p,tx,ty,m=1,arrive=true){const dx=tx-p.x,dy=ty-p.y,d=Math.hypot(dx,dy)||1e-6;let sp=p.sp*m*(p.stun>0?.3:1);if(arrive&&d<1.2)sp*=d/1.2;p.dvx=dx/d*sp;p.dvy=dy/d*sp}
 function pursue(d,c){const T=cl(dst(d,c)/d.sp,0,1.1)*.7;seek(d,c.x+c.vx*T,c.y+c.vy*T,1,false)}
-function integrate(dt){for(const p of pl){let ax=p.dvx-p.vx,ay=p.dvy-p.vy;const a=Math.hypot(ax,ay),mx=p.ac*dt;if(a>mx){ax*=mx/a;ay*=mx/a}p.vx+=ax;p.vy+=ay;p.x+=p.vx*dt;p.y+=p.vy*dt;
+function integrate(dt){for(const p of pl){let ax=p.dvx-p.vx,ay=p.dvy-p.vy;const a=Math.hypot(ax,ay),mx=p.ac*dt;if(a>mx){ax*=mx/a;ay*=mx/a}p.vx+=ax;p.vy+=ay;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.x>109.2){p.x=109.2;p.vx=Math.min(0,p.vx)}if(p.x<-9.2){p.x=-9.2;p.vx=Math.max(0,p.vx)}if(p.y<-2.5){p.y=-2.5;p.vy=Math.max(0,p.vy)}if(p.y>FW+2.5){p.y=FW+2.5;p.vy=Math.min(0,p.vy)}
     const sp=Math.hypot(p.vx,p.vy);p.ph+=sp*dt*2.3;if(Math.abs(p.vx)>.5)p.face=p.vx>0?1:-1}
   for(let i=0;i<pl.length;i++)for(let j=i+1;j<pl.length;j++){const a=pl[i],b=pl[j];if((a===car&&b.team)||(b===car&&a.team))continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);
     if(d<.72&&d>1e-4){const k=(.72-d)/d*.5;a.x-=dx*k;a.y-=dy*k;b.x+=dx*k;b.y+=dy*k}}}
@@ -4303,7 +4303,7 @@ function routeStep(p){const r=p.rt;if(!r){seek(p,p.x,p.y);return}
   if(r.s){seek(p,p.x+(qb.x>p.x?-.2:0),p.y,.4);return}
   const a=r.w.length>1?r.w[r.w.length-2]:[p.sx,p.sy],b=r.w[r.w.length-1],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;
   let ty=p.y+dy/d*10;if(ty<1.5||ty>FW-1.5)ty=cl(ty,1.5,FW-1.5);seek(p,p.x+dx/d*10,ty,1,false)}
-function stepLive(dt){pt+=dt;const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by,O=OFF(),D=DEF();
+function stepLive(dt){pt+=dt;if(!Gm.ot&&!Gm.xp&&!Gm.flag)Gm.clk=Math.max(0,Gm.clk-dt*1.4);const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by,O=OFF(),D=DEF();
   for(const p of pl){p.dvx=0;p.dvy=0;for(const k of["stun","eng","jk","jcd","bcd"])if(p[k]>0)p[k]-=dt}
   if(PLY.run&&!car&&g.hand){const tH=PLY.run===3?.22:PLY.run===2?.32:.45;if(pt>=tH){car=g.hand;car.auto=g.side*.8;car.autoT=PLY.run===2?.75:0;if(car!==qb)SFX.hiss(.05,900,1,.08)}}
   const foe=car||qb;
@@ -4398,7 +4398,7 @@ const late=()=>Gm&&(Gm.q===2||Gm.q===4)&&Gm.clk<=120;
 function tick(sec){const g=Gm;if(g.ot||g.xp||g.flag)return;g.clk-=sec;if(g.clk<=0){if(g.q===2||g.q===4){g.clk=0;g.flag=g.q===2?"half":"end"}else{g.q++;g.clk+=QLEN;msg(L(`End of the ${g.q===2?"first":"third"} quarter`,`Fine del ${g.q===2?"primo":"terzo"} quarto`),2)}}}
 function resolve(r){const g=Gm;
   if(g.xp){g.xp=false;if(r.k==="td"){g.us+=2;msg(L("Two-point conversion is good!","Trasformazione da due riuscita!"),2)}else msg(L("The two-point try fails.","La trasformazione da due fallisce."),2);return afterScore()}
-  tick(pt*1.4+(r.k==="inc"||r.k==="oob"?1.5:late()?rr(5,9):rr(15,24)));
+  tick((r.k==="inc"||r.k==="oob"?1.5:late()?rr(5,9):rr(15,24)));
   if(r.k==="td"){g.us+=6;const v=Math.round(base()*10);payOut(v);pop(cam.x,MID-6,"+"+fmt(v),"#ffe08a",3);snap_();return showPAT()}
   if(r.k==="safety"){g.th+=2;snap_();return endOurDrive(Math.round(rr(32,45)))}
   if(r.k==="int"||r.k==="fum")return endOurDrive(r.spot>=100?20:cl(Math.round(100-r.spot),1,99));
@@ -4555,7 +4555,7 @@ function step(dt){t+=dt;for(const p of pl){if(p.down&&p.fallT<1)p.fallT=Math.min
   for(const q of dust){q.life-=dt;q.x+=q.vx*dt;q.y+=q.vy*dt;q.r+=dt*.6}dust=dust.filter(q=>q.life>0);if(car&&st==="live"&&Math.random()<dt*8)dustAt(car.x-.3,car.y,1);if(cheer>0)cheer=Math.max(0,cheer-dt);if(shake>0)shake=Math.max(0,shake-dt);if(ptr)ptr.held+=dt;
   if(st==="set"){stT-=dt;if(stT<=0)snap()}
   else if(st==="live")stepLive(dt);
-  else if(st==="dead"){for(const p of pl){p.dvx=0;p.dvy=0}integrate(dt);if(ball&&ball.drop){const b=ball.drop;b.t+=dt;ball.lx+=b.vx*dt;ball.ly+=b.vy*dt;b.vz-=12*dt;b.z=Math.max(0,b.z+b.vz*dt);if(b.z===0){b.vz=Math.abs(b.vz)*.45;b.vx*=.6;b.vy*=.6}}stT-=dt;if(stT<=0)resolve(res)}
+  else if(st==="dead"){for(const p of pl){p.dvx=0;p.dvy=0;p.ac=Math.max(p.ac,24)}integrate(dt);if(ball&&ball.drop){const b=ball.drop;b.t+=dt;ball.lx+=b.vx*dt;ball.ly+=b.vy*dt;b.vz-=12*dt;b.z=Math.max(0,b.z+b.vz*dt);if(b.z===0){b.vz=Math.abs(b.vz)*.45;b.vx*=.6;b.vy*=.6}}stT-=dt;if(stT<=0)resolve(res)}
   else if(st==="kick"||st==="kfly")stepKick(dt);
   for(const p of pops){p.life-=dt;p.z+=dt*1.6}pops=pops.filter(p=>p.life>0);
   for(const q of parts){q.life-=dt;q.x+=q.vx*dt;q.y+=q.vy*dt;q.a+=q.va*dt;q.vx*=.99}parts=parts.filter(q=>q.life>0&&q.y<(lay.H||600)+10);
