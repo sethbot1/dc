@@ -4295,10 +4295,11 @@ function snap(){const g=Gm,l=fbS().lv,dR=rt(g.opp,"d"),x0=g.los,bY=g.by;st="live
   DL.forEach(d=>{if(d.dbl>1)d.shT*=1.45});
   const l2=D.find(p=>p.man&&p.man.id==="rb");if(g.blitz&&l2){l2.blitz=true;l2.man=null}
   if(!PLY.run){for(const p of O){if(!p.id)continue;const R=RT[PLY.r[p.id]];if(!R){p.blocker=true;continue}const inn=p.sy<bY-.1?1:-1;
-      p.rt={w:R.w.map(([dx,dy])=>[p.sx+dx,cl(p.sy+dy*inn,1,FW-1)]),s:!!R.s,i:0}}}
+      p.rt={w:R.w.map(([dx,dy])=>[Math.min(p.sx+dx,107.5),cl(p.sy+dy*inn,1,FW-1)]),s:!!R.s,i:0}}}
   else{g.hand=PLY.run===3?qb:O.find(p=>p.id==="rb");g.side=PLY.run===2?(bY>MID?-1:1):0;O.forEach(p=>{if(p.id&&p!==g.hand)p.blocker=true})}}
 function lagPos(r,lag){const h=r.hist;if(!h||!h.length)return r;const tt=pt-lag;for(let i=h.length-1;i>=0;i--)if(h[i][0]<=tt)return{x:h[i][1],y:h[i][2]};return{x:h[0][1],y:h[0][2]}}
 function routeStep(p){const r=p.rt;if(!r){seek(p,p.x,p.y);return}
+  if(p.x>105.5&&(r.i>=r.w.length||r.w[r.i][0]>105)){r.i=r.w.length;seek(p,Math.min(p.x,107),cl(p.y+(p.y<MID?2:-2),2,FW-2),.5);return}
   if(r.i<r.w.length){const [tx,ty]=r.w[r.i];seek(p,tx,ty,1,false);if(Math.hypot(tx-p.x,ty-p.y)<.7)r.i++;return}
   if(r.s){seek(p,p.x+(qb.x>p.x?-.2:0),p.y,.4);return}
   const a=r.w.length>1?r.w[r.w.length-2]:[p.sx,p.sy],b=r.w[r.w.length-1],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;
@@ -4329,9 +4330,9 @@ function stepLive(dt){pt+=dt;if(!Gm.ot&&!Gm.xp&&!Gm.flag)Gm.clk=Math.max(0,Gm.cl
     if(d.blitz){if(pt>.15)pursue(d,qb);continue}
     if(d.man){const r=d.man;if(pt<.15){seek(d,d.x+.2,d.y,.3);continue}
       if(r.blocker&&!r.rt){seek(d,x0+5,lerp(d.y,qb.y,.3),.5);continue}
-      const lp=lagPos(r,.4-dR*.03),inn=r.y<MID?1:-1;seek(d,lp.x+1.1,lp.y+inn*.5);continue}
+      const lp=lagPos(r,.4-dR*.03),inn=r.y<MID?1:-1;seek(d,Math.min(108.5,lp.x+1.1),lp.y+inn*.5);continue}
     if(d.zone){let deep=null;for(const r of O)if(r.key&&(d.zone<0?r.y<bY+3:r.y>bY-3)&&(!deep||r.x>deep.x))deep=r;
-      seek(d,Math.max(x0+11,(deep?deep.x:x0)+5),deep?lerp(MID+d.zone*10,deep.y,.4):MID+d.zone*10,.8);continue}
+      seek(d,Math.min(108,Math.max(x0+11,(deep?deep.x:x0)+5)),deep?lerp(MID+d.zone*10,deep.y,.4):MID+d.zone*10,.8);continue}
     seek(d,x0+5,lerp(d.y,qb.y,.2),.5)}
   integrate(dt);for(const p of O)if(p.key){(p.hist=p.hist||[]).push([pt,p.x,p.y]);if(p.hist.length>90)p.hist.shift()}
   // the ball
@@ -4359,14 +4360,14 @@ function dustAt(x,y,n){for(let i=0;i<n;i++)dust.push({x:x+rr(-.3,.3),y:y+rr(-.3,
 // ---------- passing ----------
 const arm=()=>26+fbS().lv.qb*4;
 function throwTo(tx,ty){if(thrown||st!=="live"||qb.x>Gm.los||(car&&car!==qb)||PLY.run)return;const l=fbS().lv;let dx=tx-qb.x,dy=ty-qb.y,d=Math.hypot(dx,dy);const A=arm();
-  if(d<2)return;if(d>A){tx=qb.x+dx/d*A;ty=qb.y+dy/d*A;d=A}
+  if(d<2)return;if(d>A){tx=qb.x+dx/d*A;ty=qb.y+dy/d*A;d=A}tx=Math.min(tx,107.8);ty=cl(ty,1.2,FW-1.2);
   let pr=1;for(const p of pl)if(p.team&&(p.sh||p.blitz)&&dst(p,qb)<2.6)pr=1.9;
   const sg=(.042-l.qb*.0038)*d*pr;tx+=gs()*sg;ty+=gs()*sg*.8;
   const v=16+l.qb*1.1,T=.25+d/v+Math.max(0,d-22)*.012;
-  ball={sx:qb.x+.3,sy:qb.y,lx:tx,ly:cl(ty,-1.5,FW+1.5),T,k:0,h:.45+d*.085,x:qb.x,y:qb.y,z:2.1,done:false,tg:null};
+  ball={sx:qb.x+.3,sy:qb.y,lx:Math.min(tx,108.6),ly:cl(ty,-1.5,FW+1.5),T,k:0,h:.45+d*.085,x:qb.x,y:qb.y,z:2.1,done:false,tg:null};
   let best=null,bd=1e9;for(const p of pl)if(!p.team&&p.key&&p!==qb){const fx=p.x+p.vx*T,fy=p.y+p.vy*T,dd=Math.hypot(fx-tx,fy-ty);if(dd<bd){bd=dd;best=p}}ball.tg=bd<9?best:null;
   thrown=true;car=null;qb.thT=.3;Gm.stt.att++;ptr=null;SFX.hiss(.16,1600,.7,.12);if(Gm.hint>0)Gm.hint--}
-function leadTo(p){if(!p||!p.key||p===qb)return;const v=16+fbS().lv.qb*1.1;let tx=p.x,ty=p.y;for(let i=0;i<3;i++){const d=Math.hypot(tx-qb.x,ty-qb.y),T=.25+d/v+Math.max(0,d-22)*.012;tx=p.x+p.vx*T+p.vx*.06;ty=p.y+p.vy*T}throwTo(tx,ty)}
+function leadTo(p){if(!p||!p.key||p===qb)return;const v=16+fbS().lv.qb*1.1;let tx=p.x,ty=p.y;for(let i=0;i<3;i++){const d=Math.hypot(tx-qb.x,ty-qb.y),T=.25+d/v+Math.max(0,d-22)*.012;tx=Math.min(p.x+p.vx*T+p.vx*.06,107.5);ty=cl(p.y+p.vy*T,1.5,FW-1.5)}throwTo(tx,ty)}
 function aimPt(){if(!ptr)return null;const px=ptr.sx-ptr.cx,py=ptr.sy-ptr.cy;let tx=qb.x+px*3.4/cam.s,ty=qb.y+py*3.4/(cam.s*SQ);const dx=tx-qb.x,dy=ty-qb.y,d=Math.hypot(dx,dy),A=arm();if(d>A){tx=qb.x+dx/d*A;ty=qb.y+dy/d*A}return{x:tx,y:ty,d:Math.min(d,A)}}
 function arrive(){const l=fbS().lv,dR=rt(Gm.opp,"d");let r=null,rd=1e9,d=null,dd=1e9;
   for(const p of pl){if(p===qb)continue;const q=Math.hypot(p.x-ball.lx,p.y-ball.ly);if(!p.team&&p.key){if(q<rd){rd=q;r=p}}else if(p.team&&p.role!=="dl"&&p.stun<=0){if(q<dd){dd=q;d=p}}}
