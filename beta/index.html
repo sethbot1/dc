@@ -849,6 +849,27 @@ button.gmcard:hover .gmplay{background:#238a56}
 .sktouch button:active{background:rgba(143,208,255,.7)}
 @media (pointer:coarse){.sktouch{display:flex}.sk .tdmsg{top:10px;bottom:auto;font-size:13px}}
 .gmtag.snow{color:#2f6fb0;background:#dfeaf8}
+/* ===== Dueck's Pizzeria ===== */
+.td.pz{--bg:#2a120c;--bg2:#1c0b07}
+.pz .tdside{border-left-color:#4a2418}
+.pz .tdfield{background:#5a1f17;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none}
+.pz .tdlogo i{color:#ffb347}
+.pz .tdmsg{top:70px;background:rgba(40,14,8,.86)}
+.pzcard{max-width:500px;text-align:center}.pzcard h2 i{color:#c9341f}
+.pzbig{margin:12px 0 4px;font:900 54px/1 var(--fb);color:var(--ink)}.pzbig small{display:block;font:600 13px var(--fb);color:var(--imt);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.pzres{display:grid;grid-template-columns:1fr auto;gap:6px 14px;max-width:300px;margin:12px auto 0;text-align:left;font-size:14px}.pzres dt{color:var(--imt)}.pzres dd{margin:0;font-family:var(--fm);text-align:right}
+.pzmodes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.pzmode{padding:14px 10px;border-radius:9px;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line),0 3px 0 rgba(0,0,0,.1);display:flex;flex-direction:column;gap:4px;align-items:center}
+.pzmode:hover{box-shadow:inset 0 0 0 2.5px #c9341f,0 3px 0 rgba(0,0,0,.1);transform:translateY(-1px)}
+.pzmode b{font:400 22px var(--fd)}.pzmode small{font-size:12.5px;color:var(--imt);line-height:1.3}.pzmode em{font:600 12px var(--fm);font-style:normal;color:#c9341f}
+.pzlegend{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
+.pzlegend li{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--imt);line-height:1.3;background:rgba(0,0,0,.04);border-radius:8px;padding:6px 8px}
+.pzlegend li:first-child{grid-column:1/-1;background:rgba(201,52,31,.1)}.pzlegend li span b{display:block;color:var(--ink);font-size:13.5px}
+.pzi{flex:none;width:44px;height:44px}.pzi canvas{width:44px;height:44px;display:block}
+.pzsw{display:inline-block;width:18px;height:6px;border-radius:3px;margin-right:7px;vertical-align:middle;background:var(--a);box-shadow:0 0 6px 1px var(--b)}
+.gmtag.pza{color:#a3301f;background:#fbe3d8}
+@media (max-width:900px){.pz .tdfield{aspect-ratio:4/3}}
+@media (max-width:560px){.pz .tdfield{aspect-ratio:auto;width:100%;height:min(118vw,66vh)}.pzlegend{grid-template-columns:1fr}.pzmodes{grid-template-columns:1fr}.pzbig{font-size:42px}}
 /* ===== La Meta: arcade football ===== */
 .td.fb{--bg:#121a2b;--bg2:#0b1120}
 .fb .tdside{border-left-color:#26324a}
@@ -1225,6 +1246,25 @@ button.gmcard:hover .gmplay{background:#238a56}
     </div>
   </div>
 </div>
+<div class="tdw" id="pzw" hidden role="dialog" aria-modal="true" aria-label="Dueck's Pizzeria, a slicing game">
+  <div class="td pz">
+    <header class="tdbar">
+      <b class="tdlogo">Dueck's <i>Pizzeria</i></b>
+      <span class="tdst"><span title="Best score">⭐ <b id="pzBest">0</b></span></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="pzCash">0</b></span>
+      <button class="mclose" id="pzClose" aria-label="Close Dueck's Pizzeria"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tdgrid">
+      <div class="tdfield" id="pzField"><canvas id="pzcv"></canvas><div class="tdmsg" id="pzMsg"></div><div class="tdov" id="pzOv"></div></div>
+      <aside class="tdside">
+        <div class="tdp"><h4><span data-i="pzRoundH">This round</span></h4><dl class="tdrw" id="pzRound"></dl></div>
+        <div class="tdp"><h4><span data-i="pzKnH">Knives</span><small data-i="fsShopS">paid in Duecks</small></h4><div id="pzShop"></div></div>
+        <div class="tdp"><h4><span data-i="pzRecH">Records</span></h4><dl class="tdrw" id="pzRec"></dl></div>
+        <p class="tdhelp" data-i="pzHelp"><b>Hold and swipe</b> (mouse or finger) to slice pizzas and toppings as they fly out of the kitchen. Slice three or more in one swipe for a <b>combo</b>. <b>Never slice a pineapple.</b> In <b>Classic</b>, dropping three things or slicing a pineapple ends the round; in <b>Rush</b> you get 60 seconds and a pineapple costs 10 points. Gelato slows time, chili starts a frenzy and the golden pizza doubles your points. Every point pays Duecks, and better knives pay more.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div class="tdw" id="fbw" hidden role="dialog" aria-modal="true" aria-label="La Meta, an arcade football game">
   <div class="td fb">
     <header class="tdbar">
@@ -1320,7 +1360,7 @@ const $=id=>document.getElementById(id);
 let LANG=new URLSearchParams(location.search).get("lang")==="it"?"it":"en";
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={fbGameH:"Questa partita",fbSeaH:"Classifica",fbRosH:"Rosa",fbRecH:"Record",fbHelp:"Scegli uno schema, poi giocalo. <b>Tocca un ricevitore</b> per lanciargli la palla (o premi <b>1</b>–<b>5</b>). I numeri verdi sono liberi, i rossi marcati. <b>Tocca</b> (o <b>Spazio</b>) per tenere la palla e correre. Con la palla, <b>tieni premuto e muoviti</b> su o giù (o <b>Su</b>/<b>Giù</b>) per sterzare, e <b>tocca</b> o <b>Spazio</b> per la finta. Al 4° down puoi calciare il punt o tentare il calcio: ferma l'ago nel verde. Quando la palla è agli avversari, scegli la difesa. Vinci 7 partite di campionato, entra tra le prime quattro e conquista il Golden Dueck Bowl. Touchdown, vittorie e titoli pagano Dueck; allena i giocatori nella Rosa.",skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={pzRoundH:"Questo turno",pzKnH:"Coltelli",pzRecH:"Record",pzHelp:"<b>Tieni premuto e trascina</b> (mouse o dito) per tagliare pizze e ingredienti mentre volano fuori dalla cucina. Tagliane tre o più in un colpo per una <b>combo</b>. <b>Mai tagliare l'ananas.</b> In <b>Classica</b>, far cadere tre cose o tagliare un ananas chiude il turno; in <b>Rush</b> hai 60 secondi e un ananas costa 10 punti. Il gelato rallenta il tempo, il peperoncino scatena una frenesia e la pizza d'oro raddoppia i punti. Ogni punto paga Dueck, e i coltelli migliori pagano di più.",fbGameH:"Questa partita",fbSeaH:"Classifica",fbRosH:"Rosa",fbRecH:"Record",fbHelp:"Scegli uno schema, poi giocalo. <b>Tocca un ricevitore</b> per lanciargli la palla (o premi <b>1</b>–<b>5</b>). I numeri verdi sono liberi, i rossi marcati. <b>Tocca</b> (o <b>Spazio</b>) per tenere la palla e correre. Con la palla, <b>tieni premuto e muoviti</b> su o giù (o <b>Su</b>/<b>Giù</b>) per sterzare, e <b>tocca</b> o <b>Spazio</b> per la finta. Al 4° down puoi calciare il punt o tentare il calcio: ferma l'ago nel verde. Quando la palla è agli avversari, scegli la difesa. Vinci 7 partite di campionato, entra tra le prime quattro e conquista il Golden Dueck Bowl. Touchdown, vittorie e titoli pagano Dueck; allena i giocatori nella Rosa.",skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1446,7 +1486,7 @@ B.forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,d:L(`Own $
 A.push({n:L("Self-Aware","Consapevole"),d:L("Click the title 10 times.","Clicca il titolo 10 volte."),c:()=>S.brand>=10,secret:1});
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0},foot:null}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0},foot:null,pz:null}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);S.buffs=[];S.lang=LANG}
@@ -2522,7 +2562,7 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof FB!=="undefined"&&FB.isOpen)FB.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof FB!=="undefined"&&FB.isOpen)FB.close();if(typeof PZ!=="undefined"&&PZ.isOpen)PZ.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
 addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
@@ -4770,11 +4810,254 @@ function mini(c){if(open)return;const sv={Gm,pl,ball,car,qb,PLY,cam:{...cam},st,
 return{open:openFB,close:closeFB,get isOpen(){return open},mini,stats:fbS,_dbg:()=>({get Gm(){return Gm},get st(){return st},get pl(){return pl},get car(){return car},get qb(){return qb},get ball(){return ball},get kick(){return kick},get offer(){return offer},get PLY(){return PLY},get pt(){return pt},get res(){return res},get lastArr(){return lastArr},get cam(){return cam},get lay(){return lay},get thrown(){return thrown},set spd(v){SPD=v},
   choose,throwTo,leadTo,juke,kickNow,callD,pat,kickoff,matchCard,keys,set car(v){car=v},drive,simGame,table,rt,step})}})();
 
+// ===== Dueck's Pizzeria: slice the toppings =====
+// Pizzas and toppings are tossed up from the counter; hold and swipe to slice them. Never slice a pineapple.
+// Classic: drop three and you're out. Rush: 60 seconds, as many points as you can. Points pay Duecks; better knives pay more.
+const PZ=(()=>{
+const rr=(a,b)=>a+Math.random()*(b-a),cl=(v,a,b)=>Math.max(a,Math.min(b,v)),pick=a=>a[Math.random()*a.length|0],TAU=Math.PI*2;
+const base=()=>Math.max(G.cps||0,(G.click||1)*3,1),priceOf=c=>Math.round(Math.max(c[0],base()*c[1]));
+const nf=n=>Math.round(n).toLocaleString(LANG==="it"?"it-IT":"en-US"),N=a=>L(a[0],a[1]);
+const sr=(s,i)=>{const v=Math.sin(s*12.9898+i*78.233)*43758.5453;return v-Math.floor(v)};
+const KN=[
+ {n:["Kitchen knife","Coltello da cucina"],m:1,w:1,c:"#ffffff",g:"#8fd0ff"},
+ {n:["Pizza wheel","Rotella per pizza"],m:1.5,w:1.15,c:"#fff4d6",g:"#ffad42",cost:[800,50]},
+ {n:["Mezzaluna","Mezzaluna"],m:2.2,w:1.3,c:"#eafff0",g:"#3ccf6e",cost:[8000,180]},
+ {n:["Chef's cleaver","Mannaia dello chef"],m:3.2,w:1.45,c:"#ffe4e0",g:"#ff5a4f",cost:[80000,600]},
+ {n:["Golden mezzaluna","Mezzaluna d'oro"],m:5,w:1.65,c:"#fff7c8",g:"#ffd24a",cost:[800000,2000]}];
+// r: size, p: points, sp: splat colour, in: the colour of the cut face
+const T={
+ marg:{r:37,p:3,sp:"#d23a28",in:"#f4d27a"},pep:{r:37,p:3,sp:"#c22d20",in:"#f4d27a"},slice:{r:30,p:2,sp:"#d8402c",in:"#f8d877"},
+ cal:{r:31,p:3,sp:"#d23a28",in:"#f2c46a"},tom:{r:23,p:1,sp:"#e2261c",in:"#ff8270"},mush:{r:22,p:1,sp:"#bfa98a",in:"#f3e9d6"},
+ pepr:{r:23,p:1,sp:"#55b334",in:"#d2f2b2"},oli:{r:15,p:2,sp:"#3a3340",in:"#a08e66"},chz:{r:25,p:2,sp:"#f2cc52",in:"#fff2b0"},
+ gar:{r:20,p:1,sp:"#efe8d4",in:"#fffdf4"},pine:{r:31,bomb:1,sp:"#f0c040",in:"#fbe27a"},
+ gel:{r:25,p:1,sp:"#a9e4ff",in:"#eefaff",fx:"freeze"},chi:{r:23,p:1,sp:"#ff3a1a",in:"#ffb070",fx:"frenzy"},gold:{r:36,p:5,sp:"#ffd24a",in:"#fff3b0",fx:"gold"}};
+const COMMON=["marg","pep","slice","slice","cal","tom","tom","mush","mush","pepr","pepr","oli","chz","gar"];
+const pzS=()=>{if(!S.pz||typeof S.pz!=="object"||Array.isArray(S.pz))S.pz={};const z=S.pz;
+  for(const k of["rounds","sliced","earned","bc","br","pines","combo","kn","own"])z[k]=Math.max(0,+z[k]||0);z.kn=cl(z.kn|0,0,KN.length-1);z.own=cl(Math.max(z.own|0,z.kn),0,KN.length-1);return z};
+let open=false,raf=0,lastF=0,lay={W:0,H:0,dpr:1},U=1,bg=null,cv=null,st="menu",mode="classic",R=null,t=0,shake=0,flash=0,msgT=0,uiT=0;
+let items=[],pcs=[],parts=[],splats=[],pops=[],trail=[],ptr=null;
+const ov=()=>$("pzOv");
+function newRound(m){mode=m;R={score:0,strikes:0,miss:[],e:0,left:60,next:.8,cut:0,best:0,pines:0,cn:0,ct:-9,fx:{freeze:0,frenzy:0,gold:0},fz:0,over:0,end:0,paid:0};
+  items=[];pcs=[];parts=[];pops=[];trail=[];st="play";ov().innerHTML="";t=0;SFX.chip();msg(m==="rush"?L("Rush! 60 seconds, slice everything","Rush! 60 secondi, taglia tutto"):L("Slice them all, don't drop three!","Tagliali tutti, non farne cadere tre!"),2.2)}
+// ---------- drawing the food ----------
+function circ(g,x,y,r){g.beginPath();g.arc(x,y,r,0,TAU);g.fill()}
+function pizza(g,r,s,kind){const gold=kind==="gold";
+  g.fillStyle=gold?"#b8860b":"#a8692f";circ(g,0,r*.04,r);g.fillStyle=gold?"#e7b828":"#d99a52";circ(g,0,0,r*.97);
+  g.fillStyle=gold?"#f5cf4a":"#ecb86c";circ(g,0,0,r*.86);g.fillStyle=gold?"#ffe27a":"#c9341f";circ(g,0,0,r*.79);
+  for(let i=0;i<8;i++){const a=i*.83+s*6,d=r*(.18+.38*sr(s,i));g.fillStyle=gold?"#fff2b8":(i%2?"#f8e3a0":"#f3d688");g.beginPath();g.ellipse(Math.cos(a)*d,Math.sin(a)*d,r*(.2+.08*sr(s,i+9)),r*.16,a,0,TAU);g.fill()}
+  if(kind==="pep")for(let i=0;i<7;i++){const a=i*TAU/7+s*3,d=i?r*.52:0;const x=Math.cos(a)*d,y=Math.sin(a)*d;g.fillStyle="#9e2418";circ(g,x,y,r*.15);g.fillStyle="#b8321f";circ(g,x-r*.02,y-r*.02,r*.11);g.fillStyle="rgba(60,10,5,.45)";circ(g,x+r*.04,y+r*.03,r*.025);circ(g,x-r*.05,y+r*.01,r*.02)}
+  else if(kind==="marg")for(let i=0;i<4;i++){const a=i*1.57+s*5,d=r*.45;g.save();g.translate(Math.cos(a)*d,Math.sin(a)*d);g.rotate(a+1);g.fillStyle="#2f8a2a";g.beginPath();g.ellipse(0,0,r*.15,r*.08,0,0,TAU);g.fill();g.strokeStyle="#5fbf4a";g.lineWidth=r*.02;g.beginPath();g.moveTo(-r*.12,0);g.lineTo(r*.12,0);g.stroke();g.restore()}
+  else if(gold){g.fillStyle="#fffbe6";for(let i=0;i<5;i++){const a=i*1.26+s;circ(g,Math.cos(a)*r*.45,Math.sin(a)*r*.45,r*.08)}g.fillStyle="#b8860b";g.font=`900 ${r*.62}px 'Abril Fatface',Georgia,serif`;g.textAlign="center";g.textBaseline="middle";g.fillText("D",0,r*.05)}
+  g.fillStyle="rgba(255,255,255,.16)";g.beginPath();g.ellipse(-r*.32,-r*.38,r*.32,r*.14,-.6,0,TAU);g.fill()}
+function drawItem(g,k,r,s,tt){
+  if(k==="marg"||k==="pep"||k==="gold"){pizza(g,r,s,k);return}
+  if(k==="slice"){g.fillStyle="#f0c24a";g.beginPath();g.moveTo(0,r*.98);g.lineTo(-r*.78,-r*.55);g.quadraticCurveTo(0,-r*.95,r*.78,-r*.55);g.closePath();g.fill();
+    g.fillStyle="#d84a2a";g.beginPath();g.moveTo(0,r*.7);g.lineTo(-r*.55,-r*.38);g.quadraticCurveTo(0,-r*.66,r*.55,-r*.38);g.closePath();g.globalAlpha=.35;g.fill();g.globalAlpha=1;
+    g.fillStyle="#f7dc86";g.beginPath();g.ellipse(-r*.18,r*.05,r*.2,r*.13,.4,0,TAU);g.fill();g.beginPath();g.ellipse(r*.2,-r*.25,r*.18,r*.1,-.3,0,TAU);g.fill();
+    g.beginPath();g.moveTo(r*.05,r*.62);g.quadraticCurveTo(r*.16,r*1.02,r*.08,r*1.08);g.quadraticCurveTo(0,r*1.02,0,r*.82);g.fill();
+    for(const[x,y]of[[0,-.22],[-.22,-.42],[.06,.32],[.3,-.48]]){g.fillStyle="#9e2418";circ(g,x*r,y*r,r*.13);g.fillStyle="#b8321f";circ(g,x*r-r*.02,y*r-r*.02,r*.09)}
+    g.strokeStyle="#b97535";g.lineCap="round";g.lineWidth=r*.24;g.beginPath();g.moveTo(-r*.74,-r*.6);g.quadraticCurveTo(0,-r*1.02,r*.74,-r*.6);g.stroke();
+    g.strokeStyle="#dca061";g.lineWidth=r*.1;g.beginPath();g.moveTo(-r*.66,-r*.66);g.quadraticCurveTo(0,-r*1.06,r*.66,-r*.66);g.stroke();return}
+  if(k==="cal"){g.fillStyle="#9c6128";g.beginPath();g.moveTo(-r,r*.32);g.arc(0,r*.32,r,Math.PI,0);g.closePath();g.fill();
+    g.fillStyle="#d9a058";g.beginPath();g.moveTo(-r*.92,r*.26);g.arc(0,r*.28,r*.92,Math.PI,0);g.closePath();g.fill();
+    g.fillStyle="#efc683";g.beginPath();g.ellipse(-r*.2,-r*.2,r*.42,r*.22,-.3,0,TAU);g.fill();
+    g.fillStyle="#b97535";for(let i=0;i<=8;i++){const a=Math.PI+i*Math.PI/8;circ(g,Math.cos(a)*r*.98,r*.32+Math.sin(a)*r*.98,r*.1)}
+    g.fillStyle="#7a4520";for(const[x,y]of[[-.3,-.05],[0,-.25],[.3,-.05]]){g.fillRect(x*r-r*.03,y*r,r*.06,r*.18)}return}
+  if(k==="tom"){g.fillStyle="#b81c12";circ(g,0,r*.05,r);g.fillStyle="#e5301e";circ(g,-r*.04,0,r*.93);g.fillStyle="rgba(255,255,255,.35)";g.beginPath();g.ellipse(-r*.38,-r*.32,r*.26,r*.15,-.7,0,TAU);g.fill();
+    g.fillStyle="#2f8a2a";g.beginPath();for(let i=0;i<10;i++){const a=i*TAU/10-Math.PI/2,d=i%2?r*.14:r*.42;g.lineTo(Math.cos(a)*d,-r*.72+Math.sin(a)*d*.6)}g.closePath();g.fill();g.fillStyle="#4a6b22";g.fillRect(-r*.05,-r*1.02,r*.1,r*.3);return}
+  if(k==="mush"){g.fillStyle="#efe3cc";g.beginPath();g.roundRect(-r*.3,-r*.1,r*.6,r*.95,r*.2);g.fill();g.fillStyle="#d8c9ae";g.fillRect(-r*.3,-r*.1,r*.6,r*.14);
+    g.fillStyle="#9c6e45";g.beginPath();g.ellipse(0,-r*.1,r,r*.78,0,Math.PI,0);g.closePath();g.fill();g.fillStyle="#b88a5c";g.beginPath();g.ellipse(-r*.05,-r*.16,r*.86,r*.62,0,Math.PI,0);g.closePath();g.fill();
+    g.fillStyle="#e6d4b4";circ(g,-r*.4,-r*.4,r*.1);circ(g,r*.15,-r*.58,r*.12);circ(g,r*.5,-r*.3,r*.08);return}
+  if(k==="pepr"){g.fillStyle="#2c7f22";g.beginPath();g.moveTo(-r*.8,-r*.4);g.bezierCurveTo(-r*1.05,r*.4,-r*.6,r*.95,-r*.2,r*.9);g.quadraticCurveTo(0,r*.75,r*.2,r*.9);g.bezierCurveTo(r*.6,r*.95,r*1.05,r*.4,r*.8,-r*.4);g.quadraticCurveTo(0,-r*.85,-r*.8,-r*.4);g.fill();
+    g.fillStyle="#3fa83a";g.beginPath();g.ellipse(-r*.32,r*.1,r*.32,r*.68,.08,0,TAU);g.fill();g.beginPath();g.ellipse(r*.32,r*.1,r*.32,r*.68,-.08,0,TAU);g.fill();
+    g.fillStyle="rgba(255,255,255,.28)";g.beginPath();g.ellipse(-r*.4,-r*.05,r*.09,r*.36,.1,0,TAU);g.fill();g.fillStyle="#5c6b1e";g.beginPath();g.roundRect(-r*.1,-r*.98,r*.2,r*.42,r*.06);g.fill();return}
+  if(k==="oli"){g.fillStyle="#1f1a24";g.beginPath();g.ellipse(0,0,r,r*.82,0,0,TAU);g.fill();g.fillStyle="#3a3343";g.beginPath();g.ellipse(-r*.1,-r*.08,r*.82,r*.64,0,0,TAU);g.fill();
+    g.fillStyle="#6e3a2a";g.beginPath();g.ellipse(0,0,r*.34,r*.28,0,0,TAU);g.fill();g.fillStyle="rgba(255,255,255,.35)";g.beginPath();g.ellipse(-r*.45,-r*.4,r*.2,r*.1,-.6,0,TAU);g.fill();return}
+  if(k==="chz"){g.fillStyle="#d9a52a";g.beginPath();g.moveTo(-r,r*.55);g.lineTo(r,r*.55);g.lineTo(r,r*.15);g.lineTo(-r*.55,-r*.75);g.closePath();g.fill();
+    g.fillStyle="#f6cf4d";g.beginPath();g.moveTo(-r,r*.55);g.lineTo(r*.8,r*.55);g.lineTo(r*.8,r*.15);g.lineTo(-r*.55,-r*.75);g.closePath();g.fill();
+    g.fillStyle="#fbe07a";g.beginPath();g.moveTo(r*.8,r*.15);g.lineTo(r,r*.15);g.lineTo(-r*.42,-r*.82);g.lineTo(-r*.55,-r*.75);g.closePath();g.fill();
+    g.fillStyle="#d8a52e";circ(g,-r*.2,r*.2,r*.14);circ(g,r*.35,r*.3,r*.1);circ(g,-r*.45,-r*.2,r*.08);circ(g,r*.1,-r*.05,r*.07);return}
+  if(k==="gar"){g.fillStyle="#e6dcc4";g.beginPath();g.moveTo(0,-r*1.02);g.bezierCurveTo(r*.15,-r*.6,r*.95,-r*.4,r*.88,r*.3);g.bezierCurveTo(r*.8,r*.9,-r*.8,r*.9,-r*.88,r*.3);g.bezierCurveTo(-r*.95,-r*.4,-r*.15,-r*.6,0,-r*1.02);g.fill();
+    g.fillStyle="#f7f2e4";g.beginPath();g.ellipse(-r*.1,r*.18,r*.62,r*.55,0,0,TAU);g.fill();g.strokeStyle="#cdbfa2";g.lineWidth=Math.max(1,r*.05);
+    for(const x of[-.45,0,.45]){g.beginPath();g.moveTo(x*r*.4,-r*.6);g.quadraticCurveTo(x*r*1.4,r*.1,x*r*.9,r*.72);g.stroke()}g.fillStyle="rgba(170,110,170,.25)";g.beginPath();g.ellipse(r*.45,r*.45,r*.3,r*.2,0,0,TAU);g.fill();return}
+  if(k==="pine"){const pu=.5+.5*Math.sin(tt*9);g.fillStyle="#2e7a26";for(let i=-2;i<=2;i++){g.save();g.translate(0,-r*.55);g.rotate(i*.38);g.beginPath();g.moveTo(-r*.13,0);g.lineTo(0,-r*(.62-.1*Math.abs(i)));g.lineTo(r*.13,0);g.fill();g.restore()}
+    g.save();g.beginPath();g.ellipse(0,r*.2,r*.66,r*.82,0,0,TAU);g.fillStyle="#d18f22";g.fill();g.clip();g.strokeStyle="#8a5512";g.lineWidth=Math.max(1,r*.06);
+    for(let i=-4;i<=4;i++){g.beginPath();g.moveTo(i*r*.3-r,r*1.1);g.lineTo(i*r*.3+r,-r*.7);g.stroke();g.beginPath();g.moveTo(i*r*.3+r,r*1.1);g.lineTo(i*r*.3-r,-r*.7);g.stroke()}
+    g.fillStyle="#f2c447";for(let i=-3;i<=3;i++)for(let j=-3;j<=3;j++)circ(g,i*r*.3+(j%2?r*.15:0),r*.2+j*r*.3,r*.05);g.restore();
+    g.strokeStyle=`rgba(230,30,30,${.55+pu*.35})`;g.lineWidth=r*.13;g.beginPath();g.arc(0,r*.05,r*1.18,0,TAU);g.stroke();g.beginPath();g.moveTo(-r*.83,-r*.78);g.lineTo(r*.83,r*.88);g.stroke();return}
+  if(k==="gel"){g.fillStyle="#c98c48";g.beginPath();g.moveTo(-r*.55,0);g.lineTo(r*.55,0);g.lineTo(0,r*1.05);g.closePath();g.fill();g.strokeStyle="#9e6630";g.lineWidth=Math.max(1,r*.05);
+    for(let i=-2;i<=2;i++){g.beginPath();g.moveTo(i*r*.25-r*.15,0);g.lineTo(i*r*.12+r*.2,r*.7);g.stroke()}
+    g.fillStyle="#bfeaff";circ(g,-r*.3,-r*.12,r*.38);circ(g,r*.3,-r*.12,r*.38);g.fillStyle="#f4fbff";circ(g,0,-r*.55,r*.42);g.fillStyle="#7cc8f2";circ(g,r*.12,-r*.7,r*.08);
+    g.strokeStyle="rgba(200,240,255,.9)";g.lineWidth=Math.max(1,r*.06);for(let i=0;i<3;i++){const a=tt*2+i*2.1,x=Math.cos(a)*r*1.1,y=Math.sin(a)*r*1.1;g.beginPath();g.moveTo(x-r*.12,y);g.lineTo(x+r*.12,y);g.moveTo(x,y-r*.12);g.lineTo(x,y+r*.12);g.stroke()}return}
+  if(k==="chi"){g.fillStyle=`rgba(255,150,40,${.25+.15*Math.sin(tt*14)})`;circ(g,0,0,r*1.25);g.strokeStyle="#c21a0c";g.lineCap="round";g.lineWidth=r*.62;g.beginPath();g.moveTo(-r*.62,-r*.38);g.quadraticCurveTo(-r*.1,r*.75,r*.72,r*.42);g.stroke();
+    g.strokeStyle="#ff3a1a";g.lineWidth=r*.42;g.beginPath();g.moveTo(-r*.62,-r*.42);g.quadraticCurveTo(-r*.12,r*.68,r*.72,r*.38);g.stroke();g.strokeStyle="rgba(255,255,255,.35)";g.lineWidth=r*.1;g.beginPath();g.moveTo(-r*.55,-r*.3);g.quadraticCurveTo(-r*.2,r*.4,r*.3,r*.4);g.stroke();
+    g.strokeStyle="#3e8f2f";g.lineWidth=r*.18;g.beginPath();g.moveTo(-r*.62,-r*.4);g.quadraticCurveTo(-r*.7,-r*.85,-r*.35,-r*.95);g.stroke();return}}
+// a pre-rendered half, with the cut face showing the inside colour
+function halfSprite(o,s,ca){const r=o.r,sz=Math.ceil(r*2.9),dp=lay.dpr||1,c=document.createElement("canvas");c.width=c.height=Math.ceil(sz*dp);const g=c.getContext("2d");g.setTransform(dp,0,0,dp,sz/2*dp,sz/2*dp);
+  g.save();g.rotate(ca);g.beginPath();g.rect(-sz,s>0?0:-sz,sz*2,sz);g.clip();g.rotate(-ca);drawItem(g,o.k,r,o.seed,0);g.restore();
+  g.globalCompositeOperation="source-atop";g.rotate(ca);g.fillStyle=T[o.k].in;const b=Math.max(2,r*.14);g.fillRect(-sz,s>0?0:-b,sz*2,b);g.fillStyle="rgba(255,255,255,.35)";g.fillRect(-sz,s>0?0:-b*.4,sz*2,b*.4);return{c,sz}}
+// ---------- the room ----------
+function buildBg(){const{W,H,dpr}=lay;bg=document.createElement("canvas");bg.width=Math.round(W*dpr);bg.height=Math.round(H*dpr);const g=bg.getContext("2d");g.setTransform(dpr,0,0,dpr,0,0);paintRoom(g,W,H)}
+function paintRoom(g,W,H){const cy=H*.84,u=Math.min(W,H)/560;
+  let gr=g.createLinearGradient(0,0,0,cy);gr.addColorStop(0,"#5a1f17");gr.addColorStop(1,"#8c3a24");g.fillStyle=gr;g.fillRect(0,0,W,cy);
+  const bw=46*u,bh=20*u;g.strokeStyle="rgba(30,8,4,.35)";g.lineWidth=Math.max(1,1.4*u);for(let y=0,r=0;y<cy;y+=bh,r++){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke();for(let x=(r%2)*bw/2;x<W;x+=bw){g.beginPath();g.moveTo(x,y);g.lineTo(x,y+bh);g.stroke()}}
+  for(let i=0;i<70;i++){g.fillStyle=`rgba(${Math.random()<.5?"255,200,160":"40,10,5"},${rr(.03,.08)})`;g.fillRect(Math.floor(Math.random()*W/bw)*bw+(Math.random()<.5?bw/2:0),Math.floor(Math.random()*cy/bh)*bh,bw,bh)}
+  // the wood-fired oven
+  const ox=W/2,oy=cy,orr=Math.min(W*.24,H*.36);g.fillStyle="#3b1a12";g.beginPath();g.arc(ox,oy,orr*1.22,Math.PI,0);g.fill();
+  g.fillStyle="#c8b49a";g.beginPath();g.arc(ox,oy,orr*1.12,Math.PI,0);g.fill();g.strokeStyle="#8f7a62";g.lineWidth=Math.max(1,2*u);
+  for(let i=0;i<=14;i++){const a=Math.PI+i*Math.PI/14;g.beginPath();g.moveTo(ox+Math.cos(a)*orr*.62,oy+Math.sin(a)*orr*.62);g.lineTo(ox+Math.cos(a)*orr*1.12,oy+Math.sin(a)*orr*1.12);g.stroke()}
+  g.fillStyle="#1a0a06";g.beginPath();g.arc(ox,oy,orr*.62,Math.PI,0);g.fill();
+  // sign
+  g.textAlign="center";g.textBaseline="middle";g.font=`${Math.round(34*u)}px 'Abril Fatface',Georgia,serif`;g.fillStyle="rgba(0,0,0,.35)";g.fillText("Dueck's Pizzeria",ox+2*u,H*.1+3*u);g.fillStyle="#ffe9b8";g.fillText("Dueck's Pizzeria",ox,H*.1);
+  g.font=`600 ${Math.round(12*u)}px 'DM Sans',sans-serif`;g.fillStyle="rgba(255,233,184,.7)";g.fillText(L("· WOOD-FIRED SINCE TODAY ·","· FORNO A LEGNA DA OGGI ·"),ox,H*.1+26*u);
+  // shelves with jars on the sides
+  for(const sx of[W*.1,W*.9]){g.fillStyle="#4a2a18";g.fillRect(sx-W*.08,H*.42,W*.16,6*u);for(let i=0;i<3;i++){const jx=sx-W*.05+i*W*.05,jh=(22+i*6)*u;g.fillStyle=["rgba(200,60,40,.85)","rgba(120,160,60,.85)","rgba(230,200,120,.85)"][i];g.beginPath();g.roundRect(jx-8*u,H*.42-jh,16*u,jh,3*u);g.fill();g.fillStyle="rgba(255,255,255,.25)";g.fillRect(jx-5*u,H*.42-jh+4*u,3*u,jh-8*u)}}
+  // tricolore trim and the counter
+  const th=7*u;[["#1f8a4c",0],["#f6efdc",1],["#c9252b",2]].forEach(([c,i])=>{g.fillStyle=c;g.fillRect(i*W/3,cy-th,W/3+1,th)});
+  gr=g.createLinearGradient(0,cy,0,H);gr.addColorStop(0,"#9a6236");gr.addColorStop(1,"#5e3519");g.fillStyle=gr;g.fillRect(0,cy,W,H-cy);
+  g.strokeStyle="rgba(40,18,6,.35)";g.lineWidth=Math.max(1,u);for(let i=0;i<9;i++){const y=cy+(H-cy)*(i+.5)/9;g.beginPath();g.moveTo(0,y);for(let x=0;x<=W;x+=W/12)g.lineTo(x,y+Math.sin(x*.02+i)*2*u);g.stroke()}
+  g.fillStyle="rgba(255,230,190,.12)";g.fillRect(0,cy,W,3*u)}
+function fire(g,W,H){const cy=H*.84,orr=Math.min(W*.24,H*.36),ox=W/2;g.save();g.beginPath();g.arc(ox,cy,orr*.6,Math.PI,0);g.clip();
+  const gr=g.createRadialGradient(ox,cy,0,ox,cy,orr*.7);gr.addColorStop(0,`rgba(255,${190+Math.sin(t*7)*30|0},80,.95)`);gr.addColorStop(.5,"rgba(230,90,20,.7)");gr.addColorStop(1,"rgba(60,10,0,0)");g.fillStyle=gr;g.fillRect(ox-orr,cy-orr,orr*2,orr);
+  for(let i=0;i<7;i++){const x=ox+(i-3)*orr*.15,h=orr*(.25+.18*Math.sin(t*(6+i)+i*2));g.fillStyle=i%2?"rgba(255,200,80,.8)":"rgba(255,120,30,.75)";g.beginPath();g.moveTo(x-orr*.09,cy);g.quadraticCurveTo(x-orr*.05,cy-h*.6,x,cy-h);g.quadraticCurveTo(x+orr*.05,cy-h*.6,x+orr*.09,cy);g.fill()}g.restore();
+  const gl=g.createRadialGradient(ox,cy,orr*.4,ox,cy,orr*1.6);gl.addColorStop(0,`rgba(255,150,60,${.16+Math.sin(t*5)*.03})`);gl.addColorStop(1,"rgba(255,150,60,0)");g.fillStyle=gl;g.fillRect(0,0,W,H)}
+// ---------- the round ----------
+function toss(k,side){const{W,H}=lay,o={k,r:T[k].r*U*1.12,seed:Math.random()*100,a:rr(0,TAU),va:rr(-3,3),cut:false,lift:true};
+  const g=H*1.3;if(side){o.x=side<0?-o.r:W+o.r;o.y=rr(.45,.8)*H;o.vx=-side*rr(.55,.85)*W;o.vy=-rr(.5,.85)*H;o.lift=false}
+  else{o.x=rr(.12,.88)*W;o.y=H+o.r;const apex=rr(.1,.38)*H,vy=Math.sqrt(2*g*(o.y-apex)),Tt=vy/g;o.vy=-vy;o.vx=(rr(.2,.8)*W-o.x)/Tt}
+  items.push(o);if(!side)SFX.hiss(.12,500,.8,.035,0,"lowpass")}
+function wave(){const e=R.e,rush=mode==="rush";let n=1+Math.floor(Math.random()*(rush?4:1+Math.min(4,e/18)));if(rush)n+=1;
+  const pP=rush?.13:e<8?0:Math.min(.2,.06+e*.0018);const salvo=Math.random()<.35;let pines=0;
+  for(let i=0;i<n;i++){let k=pick(COMMON);const q=Math.random();
+    if(q<pP&&pines<2&&(n>1||e>20)){k="pine";pines++}else if(q<pP+(rush?.04:.022))k=pick(["gel","chi","gold"]);
+    if(salvo)toss(k);else setTimeout(()=>{if(st==="play"&&R)toss(k)},i*rr(110,260)/(R.fx.freeze>0?.4:1))}
+  R.next=rush?rr(.75,1.25):Math.max(.62,rr(1.15,1.7)-e*.011)+n*.12}
+function cutItem(o,ang,p){o.cut=true;const tk=T[o.k],ca=ang-o.a,n=[-Math.sin(ang),Math.cos(ang)],sp=rr(70,120)*U;
+  for(const s of[1,-1]){const h=halfSprite(o,s,ca);pcs.push({h,x:o.x,y:o.y,vx:o.vx*.6+n[0]*s*sp+p.dx*.15,vy:Math.min(o.vy,0)*.4+n[1]*s*sp+p.dy*.1,a:o.a,va:o.va+s*rr(2,5),life:3})}
+  const c=tk.sp;for(let i=0;i<(PERF?8:16);i++){const a=rr(0,TAU),v=rr(80,340)*U;parts.push({x:o.x,y:o.y,vx:Math.cos(a)*v+p.dx*.2,vy:Math.sin(a)*v-80*U,r:rr(2,5.5)*U,c,life:rr(.4,.9)})}
+  if(splats.length>26)splats.shift();splats.push({x:o.x,y:o.y,r:o.r*rr(.8,1.25),c,life:3.5,seed:Math.random()*99});
+  if(tk.bomb){pineapple(o);return}
+  SFX.hiss(.09,rr(2600,4200),1.4,.12);SFX.tone(rr(140,190),.08,"sine",.05,0,70);
+  let pts=tk.p*(R.fx.gold>0?2:1);R.score+=pts;R.cut++;
+  if(t-R.ct<.32)R.cn++;else{flushCombo();R.cn=1}R.ct=t;
+  if(tk.fx){R.fx[tk.fx]=tk.fx==="gold"?7:tk.fx==="freeze"?4.5:4;SFX.win();
+    msg({freeze:L("Gelato! Time slows down","Gelato! Il tempo rallenta"),frenzy:L("Chili frenzy! Here they come","Frenesia piccante! Arrivano tutti"),gold:L("Golden pizza! Double points","Pizza d'oro! Punti doppi")}[tk.fx],2);
+    if(tk.fx==="gold"){const v=Math.round(base()*3*KN[pzS().kn].m);payOut(v);pops.push({x:o.x,y:o.y-o.r,txt:"+"+fmt(v)+" Dueck",c:"#ffd24a",life:1.4})}}
+  pops.push({x:o.x,y:o.y,txt:"+"+pts,c:R.fx.gold>0?"#ffd24a":"#fff6d6",life:.8,sm:1})}
+function flushCombo(){if(R&&R.cn>=3){const b=R.cn*(R.fx.gold>0?2:1);R.score+=b;R.best=Math.max(R.best,R.cn);const{W,H}=lay;
+  pops.push({x:cl(R.lx||W/2,90,W-90),y:cl(R.ly||H/2,60,H-80),txt:L(`${R.cn}-slice combo! +${b}`,`Combo da ${R.cn}! +${b}`),c:"#ffe08a",life:1.4,big:1});SFX.tone(880,.1,"triangle",.06);SFX.tone(1320,.18,"triangle",.06,.08)}if(R)R.cn=0}
+function pineapple(o){R.pines++;shake=.5;flash=1;SFX.hiss(.7,260,.6,.35,0,"lowpass");SFX.tone(90,.6,"sawtooth",.12,0,35);
+  for(let i=0;i<(PERF?14:30);i++){const a=rr(0,TAU),v=rr(150,520)*U;parts.push({x:o.x,y:o.y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:rr(3,7)*U,c:pick(["#f0c040","#3e8f2f","#ff7a1a","#fff"]),life:rr(.5,1.2)})}
+  if(mode==="rush"){R.score=Math.max(0,R.score-10);pops.push({x:o.x,y:o.y,txt:L("Pineapple! −10","Ananas! −10"),c:"#ff6a5a",life:1.3,big:1})}
+  else{pops.push({x:o.x,y:o.y,txt:L("PINEAPPLE ON PIZZA?!","ANANAS SULLA PIZZA?!"),c:"#ff6a5a",life:2,big:1});endRound(L("You sliced a pineapple. Not in this pizzeria!","Hai tagliato un ananas. Non in questa pizzeria!"))}}
+function payOut(v){if(!(v>0))return;earn(v);pzS().earned+=v;R.paid+=v}
+function endRound(why){if(st!=="play")return;flushCombo();st="end";R.why=why;R.end=1.3;ptr=null;trail=[]}
+function finish(){const z=pzS(),k=KN[z.kn],v=Math.round(R.score*base()*.25*k.m),rush=mode==="rush",prev=rush?z.br:z.bc;payOut(v);
+  z.rounds++;z.sliced+=R.cut;z.pines+=R.pines;z.combo=Math.max(z.combo,R.best);const nb=R.score>prev&&R.score>0;if(rush)z.br=Math.max(z.br,R.score);else z.bc=Math.max(z.bc,R.score);
+  if(nb){SFX.big();coinRain(24)}else if(v>0){SFX.win();coinRain(10)}else SFX.lose(1);st="over";R.v=v;R.nb=nb;card();ui(true)}
+function step(dt){t+=dt;shake=Math.max(0,shake-dt);flash=Math.max(0,flash-dt*2.2);const{W,H}=lay,g=H*1.3;
+  if(st==="end"){R.end-=dt;if(R.end<=0)finish()}
+  const fz=R&&R.fx.freeze>0&&st==="play",ts=fz?.38:1,d=dt*ts;
+  if(st==="play"){const f=R.fx;for(const k in f)f[k]=Math.max(0,f[k]-dt);R.e+=dt;
+    if(mode==="rush"){R.left-=dt;if(R.left<=0){R.left=0;endRound(L("Time's up!","Tempo scaduto!"))}}
+    R.next-=d;if(R.next<=0&&!(f.frenzy>0))wave();
+    if(f.frenzy>0){R.fq=(R.fq||0)-dt;if(R.fq<=0){R.fq=.13;toss(pick(COMMON),Math.random()<.5?-1:1)}}
+    if(R.cn&&t-R.ct>.32)flushCombo()}
+  for(const o of items){o.vy+=g*d;o.x+=o.vx*d;o.y+=o.vy*d;o.a+=o.va*d}
+  for(let i=items.length-1;i>=0;i--){const o=items[i];if(o.cut){items.splice(i,1);continue}
+    if(o.y>H+o.r*1.5&&o.vy>0||o.x<-o.r*3||o.x>W+o.r*3){items.splice(i,1);
+      if(st==="play"&&mode==="classic"&&!T[o.k].bomb&&!T[o.k].fx&&o.lift){R.strikes++;R.miss.push({x:cl(o.x,30,W-30),life:1.6});SFX.tone(220,.25,"triangle",.06,0,110);shake=Math.max(shake,.15);
+        if(R.strikes>=3)endRound(L("Three dropped. The kitchen is closed!","Tre cadute. La cucina chiude!"))}}}
+  for(const p of pcs){p.vy+=g*d;p.x+=p.vx*d;p.y+=p.vy*d;p.a+=p.va*d;p.life-=dt}pcs=pcs.filter(p=>p.life>0&&p.y<H+p.h.sz);
+  for(const p of parts){p.vy+=g*.8*d;p.x+=p.vx*d;p.y+=p.vy*d;p.life-=dt}parts=parts.filter(p=>p.life>0);
+  for(const s of splats)s.life-=dt;splats=splats.filter(s=>s.life>0);for(const p of pops){p.life-=dt;p.y-=(p.big?18:40)*dt}pops=pops.filter(p=>p.life>0);
+  if(R)for(const m of R.miss)m.life-=dt;
+  const now=t;trail=trail.filter(p=>now-p.t<.14);
+  if(msgT>0){msgT-=dt;if(msgT<=0)$("pzMsg").classList.add("fade")}}
+// the blade: each pointer move is a segment; anything it passes through is sliced
+function slash(x0,y0,x1,y1){if(st!=="play")return;const dx=x1-x0,dy=y1-y0,L2=dx*dx+dy*dy;if(L2<9)return;const ang=Math.atan2(dy,dx),k=KN[pzS().kn];
+  for(const o of items){if(o.cut)continue;const q=cl(((o.x-x0)*dx+(o.y-y0)*dy)/L2,0,1),px=x0+dx*q,py=y0+dy*q;if(Math.hypot(o.x-px,o.y-py)<o.r*(.88+.08*k.w)){R.lx=o.x;R.ly=o.y;cutItem(o,ang,{dx:dx*30,dy:dy*30});if(st!=="play")return}}}
+// ---------- render ----------
+function scene(g,W,H,dpr,live){g.setTransform(dpr,0,0,dpr,0,0);const sx=shake>0?rr(-1,1)*shake*16*U:0,sy=shake>0?rr(-1,1)*shake*16*U:0;g.translate(sx,sy);
+  if(bg&&live)g.drawImage(bg,0,0,W,H);else paintRoom(g,W,H);fire(g,W,H);
+  for(const s of splats){g.globalAlpha=Math.min(.55,s.life/3*.55);g.fillStyle=s.c;circ(g,s.x,s.y,s.r*.55);for(let i=0;i<7;i++){const a=sr(s.seed,i)*TAU,d=s.r*(.5+.6*sr(s.seed,i+7));circ(g,s.x+Math.cos(a)*d,s.y+Math.sin(a)*d,s.r*(.1+.14*sr(s.seed,i+3)))}}g.globalAlpha=1;
+  for(const p of pcs){g.save();g.translate(p.x,p.y);g.rotate(p.a);g.globalAlpha=Math.min(1,p.life*2);g.drawImage(p.h.c,-p.h.sz/2,-p.h.sz/2,p.h.sz,p.h.sz);g.restore()}g.globalAlpha=1;
+  for(const o of items){g.save();g.translate(o.x,o.y);g.fillStyle="rgba(0,0,0,.18)";g.beginPath();g.ellipse(o.r*.12,o.r*.2,o.r,o.r*.9,0,0,TAU);g.fill();
+    if(T[o.k].fx==="gold"){g.fillStyle=`rgba(255,220,90,${.25+.15*Math.sin(t*10)})`;circ(g,0,0,o.r*1.35)}g.rotate(o.a);drawItem(g,o.k,o.r,o.seed,t);g.restore()}
+  for(const p of parts){g.globalAlpha=Math.min(1,p.life*2.5);g.fillStyle=p.c;circ(g,p.x,p.y,p.r)}g.globalAlpha=1;
+  if(trail.length>1){const k=KN[pzS().kn],now=t;g.lineCap="round";g.lineJoin="round";
+    for(const[col,wm,al]of[[k.g,2.6,.35],[k.c,1,1]]){for(let i=1;i<trail.length;i++){const a=trail[i-1],b=trail[i],f=1-(now-b.t)/.14;if(f<=0)continue;g.strokeStyle=col;g.globalAlpha=al*f;g.lineWidth=Math.max(1,(2+7*f*i/trail.length)*U*k.w*wm);g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke()}}g.globalAlpha=1}
+  g.setTransform(dpr,0,0,dpr,0,0);
+  if(R&&R.fx.freeze>0&&st==="play"){g.fillStyle=`rgba(150,215,255,${Math.min(.22,R.fx.freeze*.1)})`;g.fillRect(0,0,W,H)}
+  if(R&&R.fx.frenzy>0&&st==="play"){g.fillStyle=`rgba(255,90,20,${Math.min(.12,R.fx.frenzy*.05)})`;g.fillRect(0,0,W,H)}
+  if(flash>0){g.fillStyle=`rgba(255,250,230,${flash*.8})`;g.fillRect(0,0,W,H)}
+  for(const p of pops){g.globalAlpha=Math.min(1,p.life*2);g.textAlign="center";g.textBaseline="middle";g.font=`900 ${Math.round((p.big?26:p.sm?17:20)*U)}px 'DM Sans',sans-serif`;g.lineWidth=4;g.strokeStyle="rgba(40,12,6,.75)";g.strokeText(p.txt,p.x,p.y);g.fillStyle=p.c;g.fillText(p.txt,p.x,p.y)}g.globalAlpha=1;
+  if(R&&live)hud(g,W,H)}
+function hud(g,W,H){const u=cl(W/900,.7,1.2),out=(s,x,y,f,c,al="left")=>{g.font=f;g.textAlign=al;g.textBaseline="top";g.lineWidth=5;g.strokeStyle="rgba(40,12,6,.7)";g.strokeText(s,x,y);g.fillStyle=c;g.fillText(s,x,y)};
+  if(st==="play"||st==="end"){const z=pzS();out(nf(R.score),16*u,12*u,`900 ${Math.round(40*u)}px 'DM Sans',sans-serif`,"#ffe9b8");out(L("Best ","Record ")+nf(mode==="rush"?z.br:z.bc),18*u,58*u,`700 ${Math.round(13*u)}px 'DM Sans',sans-serif`,"#f3d6b0");
+    if(mode==="rush"){const s=Math.ceil(R.left);out(`0:${String(s).padStart(2,"0")}`,W-16*u,12*u,`900 ${Math.round(34*u)}px 'DM Sans',sans-serif`,s<=10&&s%2?"#ff8a7a":"#ffe9b8","right")}
+    else for(let i=0;i<3;i++){const x=W-(26+i*36)*u,y=30*u,on=i<R.strikes;g.save();g.translate(x,y);g.lineCap="round";g.lineWidth=(on?7:5)*u;g.strokeStyle=on?"#e5352a":"rgba(255,233,184,.35)";g.beginPath();g.moveTo(-11*u,-11*u);g.lineTo(11*u,11*u);g.moveTo(11*u,-11*u);g.lineTo(-11*u,11*u);g.stroke();g.restore()}
+    let y=82*u;for(const[k,c,n]of[["gold","#ffd24a",L("Double points","Punti doppi")],["freeze","#a9e4ff",L("Slow motion","Rallentatore")],["frenzy","#ff7a3a",L("Frenzy","Frenesia")]]){const v=R.fx[k];if(v<=0)continue;
+      g.fillStyle="rgba(30,10,5,.6)";g.beginPath();g.roundRect(16*u,y,140*u,20*u,6*u);g.fill();g.fillStyle=c;g.beginPath();g.roundRect(16*u,y,140*u*Math.min(1,v/(k==="gold"?7:4.5)),20*u,6*u);g.fill();
+      g.fillStyle="#2a120a";g.font=`800 ${Math.round(11*u)}px 'DM Sans',sans-serif`;g.textAlign="left";g.textBaseline="middle";g.fillText(n,22*u,y+10*u);y+=26*u}
+    for(const m of R.miss){g.globalAlpha=Math.min(1,m.life);g.strokeStyle="#ff4a3a";g.lineWidth=6*u;g.lineCap="round";const x=m.x,y2=H-28*u;g.beginPath();g.moveTo(x-12*u,y2-12*u);g.lineTo(x+12*u,y2+12*u);g.moveTo(x+12*u,y2-12*u);g.lineTo(x-12*u,y2+12*u);g.stroke()}g.globalAlpha=1;
+    if(pzS().rounds<2&&R.e<6&&st==="play"){g.globalAlpha=.85+Math.sin(t*5)*.15;out(L("HOLD AND SWIPE TO SLICE · never the pineapple!","TIENI PREMUTO E TRASCINA PER TAGLIARE · mai l'ananas!"),W/2,H-62*u,`900 ${Math.round(16*u)}px 'DM Sans',sans-serif`,"#ffffff","center");g.globalAlpha=1}}}
+function render(){if(!cv)return;const g=cv.getContext("2d"),{W,H,dpr}=lay;if(!W)return;scene(g,W,H,dpr,1)}
+function layout(){const f=$("pzField"),dpr=Math.min(2,devicePixelRatio||1),W=f.clientWidth,H=f.clientHeight;if(!W||!H)return;const o=lay.W?{W:lay.W,H:lay.H}:null;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);lay={W,H,dpr};U=cl(Math.min(W,H)/560,.62,1.5);buildBg();
+  if(o&&(o.W!==W||o.H!==H)){const sx=W/o.W,sy=H/o.H;for(const a of[items,pcs,parts,splats])for(const p of a){p.x*=sx;p.y*=sy}}}
+function frame(now){raf=0;if(!open)return;const dt=Math.min(.05,(now-(lastF||now))/1000);lastF=now;step(dt);render();uiT-=dt;if(uiT<=0){uiT=.3;ui()}raf=requestAnimationFrame(frame)}
+function msg(s,sec){const m=$("pzMsg");m.textContent=s;m.classList.remove("fade");msgT=sec}
+// ---------- cards and side panel ----------
+function card(){const z=pzS(),o=ov();
+  if(st==="over"){const rush=mode==="rush";o.innerHTML=`<div class="tdcard pzcard"><h2>${R.nb?L("New record!","Nuovo record!"):L("Kitchen closed","Cucina chiusa")}</h2><p>${R.why}</p>
+    <div class="pzbig">${nf(R.score)}<small>${L("points","punti")}</small></div>
+    <dl class="pzres"><dt>${L("Sliced","Tagliati")}</dt><dd>${nf(R.cut)}</dd><dt>${L("Best combo","Combo migliore")}</dt><dd>${R.best>=3?"×"+R.best:"–"}</dd><dt>${L("Best","Record")} (${rush?"Rush":L("Classic","Classica")})</dt><dd>${nf(rush?z.br:z.bc)}</dd><dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>+${fmt(R.paid)}</dd></dl>
+    <div class="pzmodes"><button class="tdbtn go" data-mode="${mode}" id="pzGo">${L("Play again","Gioca ancora")}</button><button class="tdbtn alt" data-mode="${rush?"classic":"rush"}">${rush?L("Try Classic","Prova Classica"):L("Try Rush","Prova Rush")}</button></div></div>`;return}
+  o.innerHTML=`<div class="tdcard pzcard"><h2>Dueck's <i>Pizzeria</i></h2><p>${L("The oven is hot and the orders are flying. Hold and swipe to slice the pizzas and toppings in mid-air. Slice several in one swipe for a combo.","Il forno è caldo e gli ordini volano. Tieni premuto e trascina per tagliare pizze e ingredienti al volo. Tagliane tanti in un colpo per una combo.")}</p>
+    <ul class="pzlegend"><li><b class="pzi" data-k="pine"></b><span><b>${L("Never slice a pineapple","Mai tagliare l'ananas")}</b>${L("Not on our pizza. In Classic it ends the round.","Non sulla nostra pizza. In Classica finisce il turno.")}</span></li>
+    <li><b class="pzi" data-k="gel"></b><span><b>${L("Gelato","Gelato")}</b>${L("Slows time down","Rallenta il tempo")}</span></li><li><b class="pzi" data-k="chi"></b><span><b>${L("Chili","Peperoncino")}</b>${L("A frenzy of toppings","Una frenesia di ingredienti")}</span></li><li><b class="pzi" data-k="gold"></b><span><b>${L("Golden pizza","Pizza d'oro")}</b>${L("Double points and a Dueck bonus","Punti doppi e Dueck extra")}</span></li></ul>
+    <div class="pzmodes"><button class="pzmode" data-mode="classic" id="pzGo"><b>${L("Classic","Classica")}</b><small>${L("Drop three and you're out","Ne fai cadere tre e sei fuori")}</small><em>${L("Best","Record")} ${nf(z.bc)}</em></button>
+    <button class="pzmode" data-mode="rush"><b>Rush</b><small>${L("60 seconds, no drops, pineapples cost 10","60 secondi, niente cadute, l'ananas costa 10")}</small><em>${L("Best","Record")} ${nf(z.br)}</em></button></div></div>`;
+  o.querySelectorAll(".pzi").forEach(b=>{const c=document.createElement("canvas"),s=44,dp=2;c.width=c.height=s*dp;const g=c.getContext("2d");g.setTransform(dp,0,0,dp,s/2*dp,s/2*dp);drawItem(g,b.dataset.k,15,3,0);b.appendChild(c)})}
+let shopKey="";
+function ui(force){const z=pzS();$("pzCash").textContent=fmt(S.d);$("pzBest").textContent=nf(Math.max(z.bc,z.br));
+  $("pzRound").innerHTML=R&&(st==="play"||st==="end")?`<dt>${L("Mode","Modalità")}</dt><dd>${mode==="rush"?"Rush":L("Classic","Classica")}</dd><dt>${L("Points","Punti")}</dt><dd>${nf(R.score)}</dd><dt>${L("Sliced","Tagliati")}</dt><dd>${nf(R.cut)}</dd><dt>${L("Duecks at the end","Dueck alla fine")}</dt><dd>+${fmt(Math.round(R.score*base()*.25*KN[z.kn].m)+R.paid)}</dd>`
+    :`<dt>${L("Pay","Paga")}</dt><dd>${fmt(Math.round(base()*.25*KN[z.kn].m))} / ${L("point","punto")}</dd><dt>${L("Knife","Coltello")}</dt><dd>${N(KN[z.kn].n)}</dd>`;
+  const k=[z.kn,z.own,KN.map((q,i)=>q.cost&&i>z.own&&S.d>=priceOf(q.cost)?1:0).join(),Math.round(Math.log10(base())*20),LANG].join("|");
+  if(k!==shopKey||force){shopKey=k;$("pzShop").innerHTML=KN.map((q,i)=>{const own=i<=z.own,c=q.cost?priceOf(q.cost):0;
+    return`<div class="fsrow"><div><b><i class="pzsw" style="--a:${q.c};--b:${q.g}"></i>${N(q.n)}</b><span>${L("Pays","Paga")} ×${q.m}${q.w>1?L(", wider blade",", lama più larga"):""}</span></div>${i===z.kn?`<button class="tdbtn alt" disabled>${L("In hand","In mano")}</button>`:own?`<button class="tdbtn alt" data-use="${i}">${L("Use","Usa")}</button>`:i===z.own+1?`<button class="tdbtn" data-buy="${i}" ${S.d<c?"disabled":""}>${L("Buy","Compra")}<br><small>${fmt(c)} Dueck</small></button>`:`<button class="tdbtn" disabled>🔒</button>`}</div>`}).join("")}
+  $("pzRec").innerHTML=`<dt>${L("Best, Classic","Record, Classica")}</dt><dd>${nf(z.bc)}</dd><dt>${L("Best, Rush","Record, Rush")}</dt><dd>${nf(z.br)}</dd><dt>${L("Rounds","Turni")}</dt><dd>${nf(z.rounds)}</dd><dt>${L("Things sliced","Cose tagliate")}</dt><dd>${nf(z.sliced)}</dd><dt>${L("Biggest combo","Combo più grande")}</dt><dd>${z.combo>=3?"×"+z.combo:"–"}</dd><dt>${L("Pineapples sliced","Ananas tagliati")}</dt><dd>${nf(z.pines)}</dd><dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>${fmt(z.earned)}</dd>`}
+$("pzShop").addEventListener("click",e=>{const z=pzS(),b=e.target.closest("[data-buy],[data-use]");if(!b)return;
+  if(b.dataset.use){z.kn=cl(+b.dataset.use,0,z.own);SFX.chip();ui(true);return}const i=+b.dataset.buy;if(i!==z.own+1)return;const c=priceOf(KN[i].cost);if(S.d<c)return;S.d-=c;z.own=i;z.kn=i;SFX.coin();msg(L(`New knife: ${N(KN[i].n)}`,`Nuovo coltello: ${N(KN[i].n)}`),2);ui(true)});
+// ---------- window and input ----------
+function openPZ(){closeAllWins();open=true;$("pzw").hidden=false;hideTip();cv=$("pzcv");ptr=null;if(st!=="play"&&st!=="end"){st="menu";card()}
+  requestAnimationFrame(()=>{layout();lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui(true)}
+function closePZ(){if(st==="play"||st==="end"){st="play";endRound("");finish()}open=false;$("pzw").hidden=true;ptr=null;ov().innerHTML="";st="menu";items=[];pcs=[];parts=[];pops=[];R=null}
+const fld=$("pzField"),rel=e=>{const r=fld.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+fld.addEventListener("pointerdown",e=>{if(e.target.closest(".tdcard"))return;if(e.button>0)return;e.preventDefault();const[x,y]=rel(e);ptr={x,y,id:e.pointerId};trail=[{x,y,t}];try{fld.setPointerCapture(e.pointerId)}catch(_){}});
+fld.addEventListener("pointermove",e=>{if(!ptr||e.pointerId!==ptr.id)return;const evs=e.getCoalescedEvents?e.getCoalescedEvents():[e];for(const ev of(evs.length?evs:[e])){const[x,y]=rel(ev);slash(ptr.x,ptr.y,x,y);ptr.x=x;ptr.y=y;trail.push({x,y,t})}if(trail.length>40)trail.splice(0,trail.length-40)});
+const up=e=>{if(ptr&&e.pointerId===ptr.id)ptr=null};fld.addEventListener("pointerup",up);fld.addEventListener("pointercancel",up);fld.addEventListener("contextmenu",e=>e.preventDefault());
+ov().addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(b)newRound(b.dataset.mode)});
+addEventListener("keydown",e=>{if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return;e.stopPropagation();const k=e.key;if(k==="Escape"){closePZ();return}
+  if((k===" "||k==="Enter")&&(st==="menu"||st==="over")){e.preventDefault();const go=$("pzGo");if(go)go.click()}},true);
+addEventListener("blur",()=>{if(open)ptr=null});addEventListener("resize",()=>{if(open)layout()});
+$("pzClose").onclick=closePZ;
+// a still for the games room card
+function mini(c){if(open)return;const sv={items,pcs,parts,splats,pops,trail,R,lay,U,t,st};const W=c.width,H=c.height;lay={W,H,dpr:1};U=cl(Math.min(W,H)/360,.5,1.2);t=1;R=null;st="menu";
+  items=[["marg",.3,.38,.4],["tom",.62,.3,1],["mush",.78,.55,-.5],["pine",.5,.62,.2],["slice",.16,.62,2.6]].map(([k,x,y,a],i)=>({k,x:x*W,y:y*H,a,r:T[k].r*U*1.12,seed:i*7+1}));
+  const cut={k:"pep",x:W*.58,y:H*.34,a:.3,r:T.pep.r*U*1.12,seed:4,vx:0,vy:0,va:0};items=items.filter(o=>o.k!=="tom");pcs=[];parts=[];splats=[{x:W*.62,y:H*.4,r:30*U,c:T.pep.sp,life:3,seed:5}];pops=[];
+  for(const s of[1,-1]){const h=halfSprite(cut,s,-.5-.3);pcs.push({h,x:cut.x-Math.sin(-.8)*s*10*U,y:cut.y+Math.cos(-.8)*s*10*U,a:.3+s*.15,life:3})}
+  for(let i=0;i<12;i++){const a=i*.52;parts.push({x:cut.x+Math.cos(a)*rr(10,40)*U,y:cut.y+Math.sin(a)*rr(10,40)*U,r:rr(1.5,3.5)*U,c:"#d23a28",life:1})}
+  trail=[];for(let i=0;i<10;i++)trail.push({x:W*(.4+i*.04),y:H*(.55-i*.045),t:t-.13+i*.012});
+  const kn=pzS().kn;scene(c.getContext("2d"),W,H,1,0);({items,pcs,parts,splats,pops,trail,R,lay,U,t,st}=sv)}
+return{open:openPZ,close:closePZ,get isOpen(){return open},mini,stats:pzS,_dbg:()=>({get R(){return R},get items(){return items},get st(){return st},get lay(){return lay},toss,slash,newRound,step})}})();
+
 // ---------- games room: pick a game ----------
 const GM={open:false};
 function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
 function closeGames(){GM.open=false;$("gmw").hidden=true}
-function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats(),fb=FB.stats();
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats(),fb=FB.stats(),pz=PZ.stats();
   $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
     <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
     <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
@@ -4795,9 +5078,13 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("Arcade American football under the lights: call the play, throw the deep ball, juke the safety. Take the Ducks through a season and win the Golden Dueck Bowl. Touchdowns and wins pay Duecks.","Football americano arcade sotto i riflettori: scegli lo schema, lancia lungo, salta il safety con una finta. Porta i Paperi in fondo alla stagione e vinci il Golden Dueck Bowl. Touchdown e vittorie pagano Dueck.")}</p>
     <div class="gmst"><span>${L("Season","Stagione")} <b>${fb.yr}</b></span><span>${L("Record","Bilancio")} <b>${fb.wins}–${fb.loss}</b></span><span>${L("Titles","Titoli")} <b>${fb.titles}</b></span></div>
     <span class="gmplay">${L("Kick off","Calcio d'inizio")}</span></div></button>
+    <button class="gmcard" data-game="pz"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag pza">${L("Slicing","Affettare")}</span><b>Dueck's Pizzeria</b>
+    <p>${L("The oven is roaring and the orders are flying across the kitchen. Swipe to slice pizzas, tomatoes, mushrooms and cheese in mid-air, chain combos, and never, ever slice the pineapple. Every point pays Duecks.","Il forno è al massimo e gli ordini volano per la cucina. Trascina per tagliare al volo pizze, pomodori, funghi e formaggio, concatena combo e mai, mai tagliare l'ananas. Ogni punto paga Dueck.")}</p>
+    <div class="gmst"><span>${L("Best","Record")} <b>${Math.max(pz.bc,pz.br).toLocaleString(LANG==="it"?"it-IT":"en-US")}</b></span><span>${L("Sliced","Tagliati")} <b>${fmt(pz.sliced)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(pz.earned)}</b></span></div>
+    <span class="gmplay">${L("Start slicing","Inizia a tagliare")}</span></div></button>
     <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
-  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3]);FB.mini(cvs[4])}
-$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open();else if(c.dataset.game==="fb")FB.open()};
+  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3]);FB.mini(cvs[4]);PZ.mini(cvs[5])}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open();else if(c.dataset.game==="fb")FB.open();else if(c.dataset.game==="pz")PZ.open()};
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
@@ -4843,7 +5130,7 @@ $("p-dev").addEventListener("click",e=>{const b=e.target.closest("[data-dev]");i
   lastUKey="";recalc();toast("Beta",b.textContent,1500)});
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Football titles","Titoli di football"),fmt(FB.stats().titles)],[L("Football Duecks earned","Dueck dal football"),fmt(FB.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Football titles","Titoli di football"),fmt(FB.stats().titles)],[L("Football Duecks earned","Dueck dal football"),fmt(FB.stats().earned)],[L("Pizzeria best score","Record in pizzeria"),fmt(Math.max(PZ.stats().bc,PZ.stats().br))],[L("Pizzeria Duecks earned","Dueck dalla pizzeria"),fmt(PZ.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 
 // ---------- tabs / layout ----------
