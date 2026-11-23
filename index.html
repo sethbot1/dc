@@ -860,6 +860,42 @@ button.gmcard:hover .gmplay{background:#238a56}
 .gmtag.pza{color:#a3301f;background:#fbe3d8}
 @media (max-width:900px){.pz .tdfield{aspect-ratio:4/3}}
 @media (max-width:560px){.pz .tdfield{aspect-ratio:auto;width:100%;height:min(118vw,66vh)}.pzlegend{grid-template-columns:1fr}.pzmodes{grid-template-columns:1fr}.pzbig{font-size:42px}}
+/* ===== Night Shift at Dueck's ===== */
+.td.ns{--bg:#0e0f14;--bg2:#08090c}
+.ns .tdside{border-left-color:#262a35}
+.ns .tdfield{background:#000;user-select:none;-webkit-user-select:none;touch-action:none}
+.ns .tdlogo i{color:#ff5a3c}
+.ns .tdmsg{top:auto;bottom:56px;background:rgba(8,10,14,.9);white-space:normal;text-align:center;max-width:min(560px,92%);font-size:14px;line-height:1.35}
+.nsoff{position:absolute;inset:0;pointer-events:none}.nsoff.hide{display:none}
+.nsb{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;width:62px;height:38px;border-radius:7px;font:800 11px/1.05 var(--fb);letter-spacing:.06em;color:#f3e6d8;background:#4a1612;box-shadow:inset 0 -3px 0 rgba(0,0,0,.4),0 0 0 2px #15151a,0 4px 10px rgba(0,0,0,.5);touch-action:none}
+.nsb.lt{background:#2c2e35}.nsb.sm{width:56px;height:30px;font-size:10px}
+.nsb.on{background:#e8392b;color:#fff;box-shadow:inset 0 -3px 0 rgba(0,0,0,.3),0 0 0 2px #15151a,0 0 16px 3px rgba(255,70,50,.65)}
+.nsb.lt.on{background:#fff2b8;color:#2a1a08;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),0 0 0 2px #15151a,0 0 18px 5px rgba(255,236,160,.6)}
+.nsb:disabled{opacity:.3}
+.nswin{position:absolute;left:34%;top:14%;width:32%;height:30%;pointer-events:auto;background:transparent;border-radius:4px;cursor:pointer;touch-action:none;display:flex;align-items:flex-end;justify-content:center;padding:6px}
+.nswin span{font:700 11px var(--fb);color:rgba(255,240,200,.45);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.nswin.on span{opacity:0}.nswin:focus-visible{outline:2px solid #ffe9a0}
+.nscam{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:min(40%,320px);height:36px;border-radius:8px;font:800 12px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:#d8f0e0;background:rgba(30,60,45,.82);box-shadow:inset 0 0 0 1.5px rgba(160,230,190,.55);z-index:1}
+.nscam:hover{background:rgba(45,90,65,.9)}.nscam.on{background:rgba(124,220,160,.9);color:#0c2016}.nscam:disabled{opacity:.3}
+.nsmap{position:absolute;right:14px;bottom:54px;width:min(300px,46%);aspect-ratio:29/22;display:none;background:rgba(6,14,10,.7);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(160,230,190,.35)}
+.nsmap.show{display:block}
+.nsmap button{position:absolute;font:700 11px var(--fm);color:#cfe9da;background:rgba(20,44,32,.85);box-shadow:inset 0 0 0 1.5px rgba(160,230,190,.6);border-radius:3px;padding:0;display:grid;place-items:center}
+.nsmap button:hover{background:rgba(50,100,70,.9)}.nsmap button.sel{background:#7cdca0;color:#0c2016}
+.nsyou{position:absolute;left:42%;top:84%;width:16%;height:13%;display:grid;place-items:center;font:800 10px var(--fb);font-style:normal;color:#0c2016;background:#e8c23a;border-radius:3px}
+.nscard{max-width:560px;text-align:center}.nscard h2 i{color:#c9341f}.nstip{font-size:13.5px;color:var(--imt);background:rgba(0,0,0,.05);border-radius:8px;padding:8px 12px}
+.nsnights{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.nsnight{padding:10px 6px;border-radius:9px;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line),0 3px 0 rgba(0,0,0,.1);display:flex;flex-direction:column;gap:3px;align-items:center}
+.nsnight:hover:not(:disabled){box-shadow:inset 0 0 0 2.5px #c9341f,0 3px 0 rgba(0,0,0,.1);transform:translateY(-1px)}
+.nsnight:disabled{opacity:.45;cursor:default}.nsnight.done{background:#f1f8ef}
+.nsnight b{font:400 19px var(--fd)}.nsnight small{font-size:12px;color:var(--imt)}.nsnight em{font:600 12px var(--fm);font-style:normal;color:#c9341f}
+.nskeys{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:12.5px;color:var(--imt)}
+.nskeys kbd{font:600 11px var(--fm);background:#eee8da;border-radius:4px;padding:1px 6px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.2);color:var(--ink)}
+.nswho{display:flex;gap:10px;align-items:center;padding:6px 0}.nswho+.nswho{border-top:1px solid var(--line)}
+.nswho canvas{flex:none;width:44px;height:44px;border-radius:8px}.nswho b{display:block;font:600 13px var(--fb)}.nswho span{display:block;font-size:12px;color:var(--imt);line-height:1.3}
+.nswho em{font:600 11px var(--fb);font-style:normal;color:#7a7a7a}.nswho.off{opacity:.55}
+.gmtag.fear{color:#e9e2d4;background:#2a2c35}
+@media (max-width:900px){.ns .tdfield{aspect-ratio:16/10}}
+@media (max-width:560px){.ns .tdfield{aspect-ratio:auto;width:100%;height:min(100vw,62vh)}.nsb{width:50px;height:34px;font-size:10px}.nsb.sm{width:46px;height:28px;font-size:9px}.nsnights{grid-template-columns:repeat(2,1fr)}.nsmap{width:62%;bottom:50px;right:8px}.nscam{width:60%}.nswin span{display:none}}
 /* ===== La Meta: arcade football ===== */
 .td.fb{--bg:#121a2b;--bg2:#0b1120}
 .fb .tdside{border-left-color:#26324a}
@@ -1249,6 +1285,25 @@ button.gmcard:hover .gmplay{background:#238a56}
     </div>
   </div>
 </div>
+<div class="tdw" id="nsw" hidden role="dialog" aria-modal="true" aria-label="Night Shift at Dueck's, a survival horror game">
+  <div class="td ns">
+    <header class="tdbar">
+      <b class="tdlogo">Night Shift <i>at Dueck's</i></b>
+      <span class="tdst"><span title="Best night beaten">🌙 <b id="nsBest">0</b></span></span>
+      <span class="mcash"><small data-i="cashL">Cash</small><b id="nsCash">0</b></span>
+      <button class="mclose" id="nsClose" aria-label="Close Night Shift at Dueck's"><span data-i="backL">Back to the shop</span> ✕</button>
+    </header>
+    <div class="tdgrid">
+      <div class="tdfield" id="nsField"><canvas id="nscv"></canvas><div class="nsoff hide" id="nsOff"></div><div class="nsmap" id="nsMap"></div><button class="nscam" id="nsCam" hidden>▲ Cameras</button><div class="tdmsg fade" id="nsMsg"></div><div class="tdov" id="nsOv"></div></div>
+      <aside class="tdside">
+        <div class="tdp"><h4><span data-i="nsNightH">Tonight</span></h4><dl class="tdrw" id="nsNight"></dl></div>
+        <div class="tdp"><h4><span data-i="nsWhoH">Who's out there</span></h4><div id="nsWho"></div></div>
+        <div class="tdp"><h4><span data-i="nsRecH">Records</span></h4><dl class="tdrw" id="nsRec"></dl></div>
+        <p class="tdhelp" data-i="nsHelp">After midnight the animatronics wander. <b>Cameras</b> (Space) show where they are. When one vanishes from a hall, hold that door's <b>light</b> (Q/E) and shut the <b>door</b> (A/D) if it's there. When the duct rattles, shut the <b>vent</b> (S). Hold the <b>torch</b> (F, or press and hold the window) on L'Ananas until it backs off. Doors, lights and cameras all drain <b>power</b>: run out and the lights go dark. Reach 6 AM to get paid in Duecks.</p>
+      </aside>
+    </div>
+  </div>
+</div>
 <div class="tdw" id="fbw" hidden role="dialog" aria-modal="true" aria-label="La Meta, an arcade football game">
   <div class="td fb">
     <header class="tdbar">
@@ -1344,7 +1399,7 @@ const KEY="dueck-clicker-v1";
 let LANG="en";try{LANG=JSON.parse(localStorage.getItem(KEY)).lang==="it"?"it":"en"}catch(e){}
 const L=(en,it)=>LANG==="it"?it:en;
 document.documentElement.lang=LANG;
-const IT={pzRoundH:"Questo turno",pzKnH:"Coltelli",pzRecH:"Record",pzHelp:"<b>Passa il mouse</b> sopra il cibo (non serve cliccare; sul telefono, trascina il dito) per tagliare pizze e ingredienti mentre volano fuori dalla cucina. Tagliane tre o più in un colpo per una <b>combo</b>. <b>Mai tagliare l'ananas.</b> In <b>Classica</b>, far cadere tre cose o tagliare un ananas chiude il turno; in <b>Rush</b> hai 60 secondi e un ananas costa 10 punti. Il gelato rallenta il tempo, il peperoncino scatena una frenesia e la pizza d'oro raddoppia i punti. Ogni punto paga Dueck, e i coltelli migliori pagano di più.",fbGameH:"Questa partita",fbSeaH:"Classifica",fbRosH:"Rosa",fbRecH:"Record",fbHelp:"Scegli uno schema, poi giocalo. <b>Tocca un ricevitore</b> per lanciargli la palla (o premi <b>1</b>–<b>5</b>). I numeri verdi sono liberi, i rossi marcati. <b>Tocca</b> (o <b>Spazio</b>) per tenere la palla e correre. Con la palla, <b>tieni premuto e muoviti</b> su o giù (o <b>Su</b>/<b>Giù</b>) per sterzare, e <b>tocca</b> o <b>Spazio</b> per la finta. Al 4° down puoi calciare il punt o tentare il calcio: ferma l'ago nel verde. Quando la palla è agli avversari, scegli la difesa. Vinci 7 partite di campionato, entra tra le prime quattro e conquista il Golden Dueck Bowl. Touchdown, vittorie e titoli pagano Dueck; allena i giocatori nella Rosa.",skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
+const IT={nsNightH:"Stanotte",nsWhoH:"Chi c'è là fuori",nsRecH:"Record",nsHelp:"Dopo mezzanotte gli animatronici si muovono. Le <b>telecamere</b> (Spazio) mostrano dove sono. Quando uno sparisce da un corridoio, tieni la <b>luce</b> di quella porta (Q/E) e chiudi la <b>porta</b> (A/D) se è lì. Quando il condotto sferraglia, chiudi la <b>grata</b> (S). Tieni la <b>torcia</b> (F, o tieni premuta la finestra) su L'Ananas finché non indietreggia. Porte, luci e telecamere consumano <b>energia</b>: se finisce, si spegne tutto. Arriva alle 6 per essere pagato in Dueck.",pzRoundH:"Questo turno",pzKnH:"Coltelli",pzRecH:"Record",pzHelp:"<b>Passa il mouse</b> sopra il cibo (non serve cliccare; sul telefono, trascina il dito) per tagliare pizze e ingredienti mentre volano fuori dalla cucina. Tagliane tre o più in un colpo per una <b>combo</b>. <b>Mai tagliare l'ananas.</b> In <b>Classica</b>, far cadere tre cose o tagliare un ananas chiude il turno; in <b>Rush</b> hai 60 secondi e un ananas costa 10 punti. Il gelato rallenta il tempo, il peperoncino scatena una frenesia e la pizza d'oro raddoppia i punti. Ogni punto paga Dueck, e i coltelli migliori pagano di più.",fbGameH:"Questa partita",fbSeaH:"Classifica",fbRosH:"Rosa",fbRecH:"Record",fbHelp:"Scegli uno schema, poi giocalo. <b>Tocca un ricevitore</b> per lanciargli la palla (o premi <b>1</b>–<b>5</b>). I numeri verdi sono liberi, i rossi marcati. <b>Tocca</b> (o <b>Spazio</b>) per tenere la palla e correre. Con la palla, <b>tieni premuto e muoviti</b> su o giù (o <b>Su</b>/<b>Giù</b>) per sterzare, e <b>tocca</b> o <b>Spazio</b> per la finta. Al 4° down puoi calciare il punt o tentare il calcio: ferma l'ago nel verde. Quando la palla è agli avversari, scegli la difesa. Vinci 7 partite di campionato, entra tra le prime quattro e conquista il Golden Dueck Bowl. Touchdown, vittorie e titoli pagano Dueck; allena i giocatori nella Rosa.",skRunH:"Questa discesa",skGoalH:"Obiettivi",skGoalS:"ognuno paga Dueck",skShopH:"Noleggio sci",skRecH:"Record",skHelp:"<b>Tieni premuto</b> (mouse, tocco o <b>Spazio</b>) per accovacciarti e prendere velocità, lascia per <b>saltare</b>. In aria, <b>tieni premuto</b> o premi <b>Sinistra</b> per il salto indietro, <b>Destra</b> per quello in avanti, e <b>Z</b>, <b>X</b> o <b>C</b> per una presa. Atterra con gli sci lungo il pendio, e molla la presa prima di toccare terra. I trucchi si sommano in una <b>combo</b> finché continui ad atterrarli; viene incassata quando la barra si esaurisce, e persa se cadi. Salta sui binari per scivolare, abbatti i pupazzi di neve e resta davanti alla <b>valanga</b>. <b>Giù</b> per la posizione a uovo. Ogni discesa paga Dueck.",mfFamH:"La famiglia",mfFamS:"il rispetto fa grado",mfJobH:"Lavoro in corso",mfGarH:"Garage",mfHelp:"<b>Frecce</b> o <b>WASD</b> per guidare, <b>Spazio</b> per il freno a mano, <b>H</b> per il clacson, <b>F</b> per sparare col carro armato. Entra nella villa del Don (cerchio d'oro) per scegliere un lavoro. Se colpisci la polizia o ti vedono, sei <b>ricercato</b>: stai lontano dalla loro vista per calmare le acque, o infilati in una <b>carrozzeria</b> (cerchio blu) quando ti hanno perso. Arrestato? L'avvocato di famiglia ti tira fuori, e non perdi mai Dueck.",fsBucketH:"Il secchio",fsBucketS:"venduti appena pescati",fsShopH:"Negozio di pesca",fsShopS:"si paga in Dueck",fsJH:"Diario",fsJBtn:"Apri il diario di pesca (J)",fsHelp:"<b>Tieni premuto</b> (mouse o <b>Spazio</b>) per caricare il lancio, lascia per lanciare. L'esca <b>affonda</b> e la telecamera la segue: <b>Sinistra/Destra</b> per guidarla, <b>Giù</b> per scendere più veloce, <b>tieni premuto</b> per riavvolgere. La <b>canna</b> decide quanto scende la lenza: migliorala per raggiungere la parete di corallo, la zona crepuscolare, la zona di mezzanotte e l'abisso. Laggiù è buio: l'esca ha una piccola luce, e l'esca luminosa illumina di più. Quando un pesce rosicchia, aspetta il <b>!</b> e clicca per agganciarlo, poi tienilo nella barra verde finché non lo tiri su. Appoggia l'esca su un tesoro sul fondo e clicca per agganciarlo.",tGames:"Giochi",gmSub:"Scegli a cosa giocare",xStk:"Azioni",xCx:"Cripto",tdSaveL:"Salva ora",tTd:"Difesa",gRl:"Roulette",rlLast:"Ultimi numeri",rlTip:"Clicca un punto per puntarci sopra. Tasto destro (o tieni premuto) per ritirare.",rlOnT:"Sul tavolo",rlSpinL:"Gira la ruota",rlClear:"Togli",rlRebet:"Ripeti",rlDbl:"Raddoppia",rlPayH:"Quanto paga",rlFine:"Una ruota a <b>zero singolo</b> con tutte le 37 caselle nel loro vero ordine. La casella viene estratta in modo onesto appena giri. Se esce lo <b>0</b>, le puntate semplici (rosso, nero, pari, dispari, 1–18, 19–36) riprendono <b>metà</b> (la partage): il vantaggio del banco è solo 1,35% su quelle e 2,7% sul resto.",tdWaveL:"Ondata",tdBuildH:"Costruisci",tdBuildS:"scegli, poi clicca la piazza",tdAutoL:"Avvia da sola la prossima ondata",tdRwH:"Premi",tdNewL:"Nuova partita",tdRestartL:"Ricomincia mappa",tdHelp:"Ferma i parassiti prima che arrivino alla porta della trattoria. Ogni uccisione paga <b>oro</b> per le torri; ogni ondata superata paga <b>Dueck</b> veri. Tasti: <b>1–7</b> scegli una torre, <b>Spazio</b> avvia l'ondata, <b>U</b> migliora, <b>S</b> vende, <b>Esc</b> annulla.",tCx:"Cripto",tKas:"Casinò",cx247:"Aperto 24/7",fgL:"Paura e Avidità",coinsH:"Monete",chg24:"variazione 24h",hi24:"Max 24h",lo24:"Min 24h",vol24:"Volume 24h",cxBuyL:"Compra con i tuoi Dueck",cxSellL:"Vendi le tue monete",walletH:"Il tuo wallet",cxNewsH:"Notizie cripto",
  cxHint:"<b>Le cripto non dormono mai.</b> Si scambiano a ogni ora e oscillano molto più delle azioni: pump, dump e qualche rug pull. I prezzi sono <b>uguali per tutti</b> nello stesso momento. Ogni operazione costa lo <b>0,5%</b>.",
  gSlots:"Slot",gBj:"Blackjack",gRace:"Ippica",slSub:"5 linee, e la faccia è jolly",credL:"Credito",betL:"Puntata",winL:"Vincita",auto10:"Auto ×10",auto50:"Auto ×50",pullL:"Tira per giocare",payH:"Tabella vincite",
  slFine:"La puntata è divisa su <b>5 linee</b>: le 3 righe e le due diagonali. Le vincite sono per linea, per la puntata di linea. La <b>faccia di Dueck è jolly</b> e raddoppia ogni vincita che aiuta a fare. Questa macchina restituisce circa il <b>95%</b> nel tempo, come una vera.",
@@ -1473,13 +1528,13 @@ B.slice(14).forEach(b=>[1,50,100,200,300].forEach(v=>A.push({n:`${b.name} ${v}`,
 [1,10,100].forEach((v,k)=>A.push({n:L(["Ascended","Royalty","Emperor"][k],["Asceso","Reale","Imperatore"][k]),d:L(`Own ${v} Crown${v>1?"s":""}.`,`Possiedi ${v} Coron${v>1?"e":"a"}.`),c:()=>S.crown>=v}));
 
 // ---------- state ----------
-function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0},foot:null,pz:null}}
+function fresh(){return{d:0,total:0,all:0,hand:0,clicks:0,own:B.map(()=>0),up:new Set(),ach:new Set(),halo:0,spent:0,hv:new Set(),asc:0,gold:0,play:0,run:0,last:Date.now(),buffs:[],brand:0,mute:false,lang:LANG,pf:{},ord:{},lim:{},shs:{},trades:0,profit:0,best:0,rp:0,divs:0,divEp:null,tips:[],combo:0,crown:0,cspent:0,cv:new Set(),ever:0,ascn:0,mchk:0,cx:{},ctr:0,cprof:0,kas:{net:0,played:0,best:0,spins:0,hands:0,races:0,rl:0},td:{waves:0,earned:0,wins:0,best:[0,0,0]},fish:{n:0,earned:0,sp:{},rod:0,bait:0,best:0},mafia:{jobs:0,earned:0,rep:0,car:0,best:0},ski:{runs:0,earned:0,best:0,far:0,ski:0,gd:[],combo:0},foot:null,pz:null,ns:null}}
 let S=fresh();
 const G={cps:0,click:0,nb:0,mult:1,base:0};
 function hydrate(o){if(!o||typeof o!=="object"||Array.isArray(o))throw new Error("bad save");const f=fresh();S=Object.assign(f,o);S.up=new Set(o.up||[]);S.ach=new Set(o.ach||[]);S.hv=new Set(o.hv||[]);S.cv=new Set(o.cv||[]);S.own=B.map((_,i)=>(o.own||[])[i]||0);
   ["pf","ord","lim","shs"].forEach(k=>{if(!S[k]||typeof S[k]!=="object"||Array.isArray(S[k]))S[k]={}});if(!Array.isArray(S.tips))S.tips=[];
   // crypto and casino data: older saves do not have it, and anything broken is replaced with safe defaults
-  if(!S.cx||typeof S.cx!=="object"||Array.isArray(S.cx))S.cx={};S.kas=Object.assign(fresh().kas,S.kas&&typeof S.kas==="object"&&!Array.isArray(S.kas)?S.kas:{});S.td=Object.assign(fresh().td,S.td&&typeof S.td==="object"&&!Array.isArray(S.td)?S.td:{});if(!Array.isArray(S.td.best))S.td.best=[0,0,0];S.fish=Object.assign(fresh().fish,S.fish&&typeof S.fish==="object"&&!Array.isArray(S.fish)?S.fish:{});if(!S.fish.sp||typeof S.fish.sp!=="object"||Array.isArray(S.fish.sp))S.fish.sp={};["n","earned","best"].forEach(k=>{if(typeof S.fish[k]!=="number"||!isFinite(S.fish[k]))S.fish[k]=0});S.fish.rod=Math.min(5,Math.max(0,S.fish.rod|0));S.fish.bait=Math.min(4,Math.max(0,S.fish.bait|0));if(typeof S.fish.deep!=="number"||!isFinite(S.fish.deep)||S.fish.deep<0)S.fish.deep=0;S.ski=Object.assign(fresh().ski,S.ski&&typeof S.ski==="object"&&!Array.isArray(S.ski)?S.ski:{});["runs","earned","best","far","combo"].forEach(k=>{if(typeof S.ski[k]!=="number"||!isFinite(S.ski[k])||S.ski[k]<0)S.ski[k]=0});if(!Array.isArray(S.ski.gd))S.ski.gd=[];S.ski.gd=S.ski.gd.filter(x=>typeof x==="string");S.ski.ski=Math.min(3,Math.max(0,S.ski.ski|0));if(!S.foot||typeof S.foot!=="object"||Array.isArray(S.foot))S.foot=null;if(!S.pz||typeof S.pz!=="object"||Array.isArray(S.pz))S.pz=null;S.mafia=Object.assign(fresh().mafia,S.mafia&&typeof S.mafia==="object"&&!Array.isArray(S.mafia)?S.mafia:{});["jobs","earned","rep","best"].forEach(k=>{if(typeof S.mafia[k]!=="number"||!isFinite(S.mafia[k])||S.mafia[k]<0)S.mafia[k]=0});S.mafia.car=Math.min(3,Math.max(0,S.mafia.car|0));["ctr","cprof"].forEach(k=>{if(typeof S[k]!=="number"||!isFinite(S[k]))S[k]=0});
+  if(!S.cx||typeof S.cx!=="object"||Array.isArray(S.cx))S.cx={};S.kas=Object.assign(fresh().kas,S.kas&&typeof S.kas==="object"&&!Array.isArray(S.kas)?S.kas:{});S.td=Object.assign(fresh().td,S.td&&typeof S.td==="object"&&!Array.isArray(S.td)?S.td:{});if(!Array.isArray(S.td.best))S.td.best=[0,0,0];S.fish=Object.assign(fresh().fish,S.fish&&typeof S.fish==="object"&&!Array.isArray(S.fish)?S.fish:{});if(!S.fish.sp||typeof S.fish.sp!=="object"||Array.isArray(S.fish.sp))S.fish.sp={};["n","earned","best"].forEach(k=>{if(typeof S.fish[k]!=="number"||!isFinite(S.fish[k]))S.fish[k]=0});S.fish.rod=Math.min(5,Math.max(0,S.fish.rod|0));S.fish.bait=Math.min(4,Math.max(0,S.fish.bait|0));if(typeof S.fish.deep!=="number"||!isFinite(S.fish.deep)||S.fish.deep<0)S.fish.deep=0;S.ski=Object.assign(fresh().ski,S.ski&&typeof S.ski==="object"&&!Array.isArray(S.ski)?S.ski:{});["runs","earned","best","far","combo"].forEach(k=>{if(typeof S.ski[k]!=="number"||!isFinite(S.ski[k])||S.ski[k]<0)S.ski[k]=0});if(!Array.isArray(S.ski.gd))S.ski.gd=[];S.ski.gd=S.ski.gd.filter(x=>typeof x==="string");S.ski.ski=Math.min(3,Math.max(0,S.ski.ski|0));if(!S.foot||typeof S.foot!=="object"||Array.isArray(S.foot))S.foot=null;if(!S.pz||typeof S.pz!=="object"||Array.isArray(S.pz))S.pz=null;if(!S.ns||typeof S.ns!=="object"||Array.isArray(S.ns))S.ns=null;S.mafia=Object.assign(fresh().mafia,S.mafia&&typeof S.mafia==="object"&&!Array.isArray(S.mafia)?S.mafia:{});["jobs","earned","rep","best"].forEach(k=>{if(typeof S.mafia[k]!=="number"||!isFinite(S.mafia[k])||S.mafia[k]<0)S.mafia[k]=0});S.mafia.car=Math.min(3,Math.max(0,S.mafia.car|0));["ctr","cprof"].forEach(k=>{if(typeof S[k]!=="number"||!isFinite(S[k]))S[k]=0});
   if(o.ever==null)S.ever=S.all||0;S.buffs=[];S.lang=LANG;fixSpent()}
 // Laurels spent can only ever be what your Blessings cost (the first seven are free with the Crown upgrade that grants them).
 // A bug in the fishing shop once added Dueck prices here; this pulls it back down, and never raises it.
@@ -1497,7 +1552,7 @@ function load(){let r=null;try{r=localStorage.getItem(KEY)}catch(e){return}if(!r
   try{if(!localStorage.getItem(KEY+"-backup-before-discesa"))localStorage.setItem(KEY+"-backup-before-discesa",r)}catch(e){}
   try{if(!localStorage.getItem(KEY+"-backup-before-deepsea"))localStorage.setItem(KEY+"-backup-before-deepsea",r)}catch(e){}
   try{if(!localStorage.getItem(KEY+"-backup-before-lameta"))localStorage.setItem(KEY+"-backup-before-lameta",r)}catch(e){}
-  try{if(!localStorage.getItem(KEY+"-backup-before-pizzeria"))localStorage.setItem(KEY+"-backup-before-pizzeria",r)}catch(e){}
+  try{if(!localStorage.getItem(KEY+"-backup-before-pizzeria"))localStorage.setItem(KEY+"-backup-before-pizzeria",r)}catch(e){}try{if(!localStorage.getItem(KEY+"-backup-before-nightshift"))localStorage.setItem(KEY+"-backup-before-nightshift",r)}catch(e){}
   try{hydrate(JSON.parse(r))}catch(e){LOADFAIL=true;S=fresh()}}
 function ser(){return JSON.stringify({...S,up:[...S.up],ach:[...S.ach],hv:[...S.hv],cv:[...S.cv],buffs:[],last:Date.now()})}
 function save(quiet){if(LOADFAIL){if(!quiet)toast(L("Saving is off","Salvataggio disattivato"),L("Your save couldn't be read, so it was left untouched. Nothing will be written over it.","Il salvataggio non è leggibile, quindi non è stato toccato. Non verrà sovrascritto."),8000);return false}
@@ -1660,7 +1715,7 @@ let ascArm=0;
 $("ascBtn").onclick=()=>{const gain=halosFor(S.all)-S.halo;if(gain<1)return;
   if(Date.now()-ascArm>3000){ascArm=Date.now();$("ascBtn").textContent=L(`Sure? Start over for +${fmt(gain)} Laurels`,`Sicuro? Ricomincia per +${fmt(gain)} Allori`);setTimeout(()=>{ascArm=0},3000);return}
   ascArm=0;const keep={all:S.all,halo:S.halo+gain,spent:S.spent,hv:S.hv,asc:S.asc+1,gold:S.gold,play:S.play,ach:S.ach,clicks:S.clicks,brand:S.brand,mute:S.mute};
-  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,foot:S.foot,pz:S.pz,ctr:S.ctr,cprof:S.cprof});
+  const kept=hv("h17")?[...S.up].filter(id=>{const u=UM[id];return u.kind==="b"&&u.t<2}):[];keep.trades=S.trades;keep.profit=S.profit;keep.best=S.best;Object.assign(keep,{rp:S.rp,crown:S.crown,cspent:S.cspent,cv:S.cv,ever:S.ever,ascn:S.ascn,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,foot:S.foot,pz:S.pz,ns:S.ns,ctr:S.ctr,cprof:S.cprof});
   S=Object.assign(fresh(),keep);kept.forEach(id=>S.up.add(id));startShops();if(crn("c0"))S.d=1e9;
   lastUKey="";recalc();save(true);const p=hv("h14")?5:hv("h7")?3:2;toast(L("Reborn!","Rinascita!"),L(`+${fmt(gain)} Laurels. Production +${p}% each.`,`+${fmt(gain)} Allori. Produzione +${p}% ciascuno.`));blip(220,.4,"sine",.15)};
 const hrows=H.map(([id,name,desc,cost])=>{const el=document.createElement("button");el.className="hu";
@@ -1689,7 +1744,7 @@ const crows=CR.map(([id,name,desc,cost])=>{const el=document.createElement("butt
 let crArm=0;
 $("ascendBtn").onclick=()=>{const g=crownsFor(S.halo);if(g<1)return;
   if(Date.now()-crArm>3000){crArm=Date.now();$("ascendBtn").textContent=L(`Sure? Lose ALL Laurels & Blessings for +${fmt(g)} Crowns`,`Sicuro? Perdi TUTTI gli Allori e le Benedizioni per +${fmt(g)} Corone`);setTimeout(()=>{crArm=0},3000);return}
-  crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,foot:S.foot,pz:S.pz,ctr:S.ctr,cprof:S.cprof};
+  crArm=0;const keep={crown:S.crown+g,cspent:S.cspent,cv:S.cv,ach:S.ach,rp:S.rp,trades:S.trades,profit:S.profit,best:S.best,gold:S.gold,play:S.play,clicks:S.clicks,brand:S.brand,mute:S.mute,asc:S.asc,ascn:S.ascn+1,ever:S.ever,divs:S.divs,combo:S.combo,kas:S.kas,td:S.td,fish:S.fish,mafia:S.mafia,ski:S.ski,foot:S.foot,pz:S.pz,ns:S.ns,ctr:S.ctr,cprof:S.cprof};
   S=Object.assign(fresh(),keep);if(crn("c6"))["h0","h1","h2","h3","h4","h5","h6"].forEach(id=>S.hv.add(id));if(crn("c0"))S.d=1e9;startShops();
   lastUKey="";recalc();toast(L("Ascended!","Asceso!"),L(`+${fmt(g)} Crowns. Every Crown is +10% production forever.`,`+${fmt(g)} Corone. Ogni Corona dà +10% di produzione per sempre.`),6000);blip(160,.6,"sine",.18)};
 function renderCrowns(){const free=S.crown-S.cspent,g=crownsFor(S.halo);
@@ -2571,7 +2626,7 @@ function kHead(){$("kCash").textContent=fmt(S.d);$("slCred").textContent=fmt(S.d
 $("kClose").onclick=closeKas;
 setInterval(()=>{if(kOpen){kHead();syncBets()}},250);
 addEventListener("resize",()=>{if(kOpen&&kg==="race"&&rState!=="run")drawTrack(rRace?RC.hs.map((_,i)=>posAt(rRace.t,i)):null);if(cOpen)renderCx(true)});
-function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof FB!=="undefined"&&FB.isOpen)FB.close();if(typeof PZ!=="undefined"&&PZ.isOpen)PZ.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
+function closeAllWins(){if(typeof mOpen!=="undefined"&&mOpen)closeMkt();if(cOpen)closeCx();if(kOpen)closeKas();if(typeof TD!=="undefined"&&TD.isOpen)TD.close();if(typeof FS!=="undefined"&&FS.isOpen)FS.close();if(typeof MF!=="undefined"&&MF.isOpen)MF.close();if(typeof SK!=="undefined"&&SK.isOpen)SK.close();if(typeof FB!=="undefined"&&FB.isOpen)FB.close();if(typeof PZ!=="undefined"&&PZ.isOpen)PZ.close();if(typeof NS!=="undefined"&&NS.isOpen)NS.close();if(typeof GM!=="undefined"&&GM.open)closeGames()}
 addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(kOpen)closeKas();if(cOpen)closeCx();if(GM.open)closeGames()});
 
 // crypto tab badge: how many coins you hold
@@ -5102,11 +5157,391 @@ function mini(c){if(open)return;const sv={items,pcs,parts,splats,pops,trail,R,la
   const kn=pzS().kn;scene(c.getContext("2d"),W,H,1,0);({items,pcs,parts,splats,pops,trail,R,lay,U,t,st}=sv)}
 return{open:openPZ,close:closePZ,get isOpen(){return open},mini,stats:pzS,_dbg:()=>({get R(){return R},get items(){return items},get st(){return st},get lay(){return lay},toss,slash,newRound,step})}})();
 
+// ===== Night Shift at Dueck's: five nights as the pizzeria's night guard =====
+// After closing, the pizzeria's animatronics (all wearing Dueck's face) wander the building. Watch the cameras,
+// shut the doors and the vent, hold the torch on the window, and keep the power up until 6 AM.
+const NS=(()=>{
+const rr=(a,b)=>a+Math.random()*(b-a),cl=(v,a,b)=>Math.max(a,Math.min(b,v)),TAU=Math.PI*2;
+const base=()=>Math.max(G.cps||0,(G.click||1)*3,1);
+const nf=n=>Math.round(n).toLocaleString(LANG==="it"?"it-IT":"en-US"),N=a=>L(a[0],a[1]);
+const HOUR=45,AI=[null,[3,2,0,0],[5,4,3,2],[7,6,5,4],[10,9,8,7],[13,12,11,10],[17,16,15,14]],PAY=[0,80,120,170,230,300,420];
+const DIFF=[null,["Easy","Facile"],["Medium","Media"],["Hard","Difficile"],["Brutal","Brutale"],["Insane","Folle"],["Nightmare","Incubo"]];
+const WHO={pom:{n:["Signor Pomodoro","Signor Pomodoro"],d:["The tomato chef. Comes up the West Hall to the left door.","Lo chef pomodoro. Arriva dal corridoio ovest alla porta sinistra."],every:4.8,tint:"rgba(255,60,30,.28)",eye:"255,80,40"},
+ moz:{n:["Mozza","Mozza"],d:["The waitress. Clatters through the kitchen and down the East Hall to the right door.","La cameriera. Passa dalla cucina e scende il corridoio est fino alla porta destra."],every:5,tint:"rgba(170,200,255,.25)",eye:"120,200,255"},
+ gno:{n:["Gnocchi","Gnocchi"],d:["A lump of dough that crawls through the air duct. When the duct rattles, shut the vent.","Un grumo di impasto che striscia nel condotto. Quando il condotto sferraglia, chiudi la grata."],every:5.4,tint:"rgba(255,225,150,.3)",eye:"255,230,120"},
+ ana:{n:["L'Ananas","L'Ananas"],d:["Banned from the menu, and angry about it. Creeps up to the window: hold the torch on it until it backs off.","Bandito dal menù, e arrabbiato. Si avvicina alla finestra: tienigli addosso la torcia finché non indietreggia."],every:6,tint:"rgba(255,200,0,.3)",eye:"190,255,60"}};
+const ORDER=["pom","moz","gno","ana"];
+const NEXT={pom:{stage:["dining"],dining:["lhall","back"],back:["lhall","dining"],lhall:["ldoor","back"]},
+ moz:{stage:["dining"],dining:["kitchen"],kitchen:["rhall","dining"],rhall:["rdoor","kitchen"]},
+ gno:{back:["storage"],storage:["vent"],vent:["vdoor","storage"]}};
+const RET={pom:"dining",moz:"kitchen",gno:"storage"},GATE={pom:"LD",moz:"RD",gno:"VD"},SPOTAT={pom:"ldoor",moz:"rdoor",gno:"vdoor"};
+const CAMS=[["stage","1A",["Show Stage","Palco"],[38,3,24,15]],["dining","1B",["Dining Room","Sala"],[26,23,48,24]],["kitchen","4",["Kitchen","Cucina"],[78,23,20,24]],["back","5",["Parts Room","Ricambi"],[2,23,20,18]],
+ ["storage","6",["Storage","Magazzino"],[2,46,20,18]],["lhall","2",["West Hall","Corridoio ovest"],[30,52,12,28]],["rhall","3",["East Hall","Corridoio est"],[58,52,12,28]],["vent","7",["Air Duct","Condotto"],[4,70,22,12]]];
+// where each animatronic stands on each camera: [x, feet y, height] as fractions of the feed
+const SPOT={stage:{pom:[.34,.68,.44],moz:[.66,.68,.44]},dining:{pom:[.28,.88,.55],moz:[.72,.86,.52]},kitchen:{moz:[.56,.9,.62]},back:{pom:[.66,.92,.64],gno:[.3,.95,.36]},
+ storage:{gno:[.56,.95,.42]},lhall:{pom:[.5,.98,.8]},rhall:{moz:[.5,.98,.8]},vent:{gno:[.5,1,.75]}};
+// office geometry: [x, y, w, h] as fractions of the field
+const GEO={ld:[.035,.14,.14,.72],rd:[.825,.14,.14,.72],win:[.34,.14,.32,.3],vent:[.19,.62,.075,.11]};
+const nsS=()=>{if(!S.ns||typeof S.ns!=="object"||Array.isArray(S.ns))S.ns={};const z=S.ns;
+  for(const k of["un","best","wins","deaths","earned","n6"])z[k]=Math.max(0,Math.floor(+z[k]||0));z.un=cl(z.un||1,1,6);z.best=cl(z.best,0,6);
+  if(!z.by||typeof z.by!=="object"||Array.isArray(z.by))z.by={};for(const k of[...ORDER,"pout"])z.by[k]=Math.max(0,Math.floor(+z.by[k]||0));return z};
+const payFor=n=>Math.round(Math.max(600*n,base()*PAY[n]));
+let open=false,raf=0,lastF=0,lay={W:0,H:0,dpr:1},U=1,bg=null,cv=null,st="menu",R=null,t=0,uiT=0,syncKey="",rooms=null,noise=null,scan=null;
+const ov=()=>$("nsOv");
+// ---------- Dueck's face, cut out and tinted for each animatronic ----------
+const FC={x:112,y:106,r:74},FEYE=[[-.35,-.15],[.43,-.12]],FACES={};
+const fimg=new Image();fimg.onload=()=>{for(const k of ORDER)for(const evil of[0,1]){const c=document.createElement("canvas");c.width=c.height=160;const g=c.getContext("2d");
+    g.beginPath();g.arc(80,80,80,0,TAU);g.clip();g.drawImage(fimg,FC.x-FC.r,FC.y-FC.r,FC.r*2,FC.r*2,0,0,160,160);
+    g.globalCompositeOperation="source-atop";g.fillStyle=WHO[k].tint;g.fillRect(0,0,160,160);
+    if(evil){g.fillStyle="rgba(0,0,0,.25)";g.fillRect(0,0,160,160);for(const[ex,ey]of FEYE){g.fillStyle="#050203";g.beginPath();g.ellipse(80+ex*80,80+ey*80,15,12,0,0,TAU);g.fill()}
+      g.fillStyle="rgba(10,0,0,.7)";g.beginPath();g.ellipse(80,80+.58*80,26,13,0,0,TAU);g.fill()}
+    const v=g.createRadialGradient(80,80,50,80,80,80);v.addColorStop(0,"rgba(0,0,0,0)");v.addColorStop(1,"rgba(0,0,0,.55)");g.fillStyle=v;g.fillRect(0,0,160,160);
+    FACES[k+evil]=c}};
+fimg.src=FACE;
+// heads: where the face goes on each body, in body units (feet at 0, about 1 unit tall)
+const HEAD={pom:[0,-.9,.2],moz:[0,-.88,.19],gno:[0,-.33,.22],ana:[0,-.58,.2]};
+// ---------- drawing helpers ----------
+function el(g,x,y,rx,ry,c,a=0){g.fillStyle=c;g.beginPath();g.ellipse(x,y,Math.abs(rx),Math.abs(ry),a,0,TAU);g.fill()}
+function sph(g,x,y,rx,ry,c1,c2){const q=g.createRadialGradient(x-rx*.35,y-ry*.4,Math.min(rx,ry)*.1,x,y,Math.max(rx,ry));q.addColorStop(0,c1);q.addColorStop(1,c2);el(g,x,y,rx,ry,q)}
+function box(g,x,y,w,h,c,r=0){g.fillStyle=c;g.beginPath();if(r)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);g.fill()}
+function ln(g,p,c,w){g.strokeStyle=c;g.lineWidth=w;g.lineCap="round";g.lineJoin="round";g.beginPath();g.moveTo(p[0],p[1]);for(let i=2;i<p.length;i+=2)g.lineTo(p[i],p[i+1]);g.stroke()}
+function poly(g,p,c){g.fillStyle=c;g.beginPath();g.moveTo(p[0],p[1]);for(let i=2;i<p.length;i+=2)g.lineTo(p[i],p[i+1]);g.closePath();g.fill()}
+function face(g,k,evil){const[hx,hy,hr]=HEAD[k],f=FACES[k+(evil?1:0)];
+  if(f)g.drawImage(f,hx-hr,hy-hr,hr*2,hr*2);else sph(g,hx,hy,hr,hr,"#f2c6a0","#a8735a");
+  g.strokeStyle="rgba(20,20,24,.85)";g.lineWidth=hr*.08;g.beginPath();g.arc(hx,hy,hr*.98,0,TAU);g.stroke();
+  // the animatronic seams: a jaw hinge and two bolts
+  for(const s of[-1,1]){el(g,hx+s*hr*.98,hy+hr*.2,hr*.1,hr*.1,"#55585f");el(g,hx+s*hr*.98,hy+hr*.2,hr*.04,hr*.04,"#22242a")}
+  ln(g,[hx-hr*.62,hy+hr*.66,hx-hr*.3,hy+hr*.8],"rgba(30,20,20,.45)",hr*.04);ln(g,[hx+hr*.62,hy+hr*.66,hx+hr*.3,hy+hr*.8],"rgba(30,20,20,.45)",hr*.04)}
+function glowEyes(g,k,x,y,s,a=1){const[hx,hy,hr]=HEAD[k],c=WHO[k].eye;
+  for(const[ex,ey]of FEYE){const X=x+(hx+ex*hr)*s,Y=y+(hy+ey*hr)*s,r=Math.max(2,hr*s*.16);const q=g.createRadialGradient(X,Y,0,X,Y,r*3);
+    q.addColorStop(0,`rgba(255,255,255,${a})`);q.addColorStop(.22,`rgba(${c},${a})`);q.addColorStop(1,`rgba(${c},0)`);g.fillStyle=q;g.fillRect(X-r*3,Y-r*3,r*6,r*6)}}
+// ---------- the animatronics (feet at 0,0; about one unit tall) ----------
+function pom(g,o){const m=o.m||0;
+  el(g,-.12,-.02,.09,.035,"#1a1010");el(g,.12,-.02,.09,.035,"#1a1010");
+  box(g,-.16,-.27,.08,.26,"#6b1a12",.03);box(g,.08,-.27,.08,.26,"#6b1a12",.03);ln(g,[-.12,-.14,-.12,-.1],"#3a3a40",.05);ln(g,[.12,-.14,.12,-.1],"#3a3a40",.05);
+  ln(g,[.42,-.28,.5,-1.0],"#6e4220",.03);el(g,.515,-1.08,.1,.12,"#a8723c");el(g,.515,-1.08,.07,.09,"#c9341f");
+  ln(g,[-.3,-.6,-.4,-.42,-.37,-.26],"#8e1d14",.08);el(g,-.37,-.24,.055,.055,"#f1ece0");
+  ln(g,[.3,-.6,.4,-.45,.42,-.32],"#8e1d14",.08);el(g,.42,-.3,.055,.055,"#f1ece0");
+  sph(g,0,-.5,.33,.29,"#ff6a48","#9c140c");
+  box(g,-.14,-.74,.28,.34,"#efe8da",.07);for(const y of[-.66,-.58,-.5])for(const x of[-.05,.05])el(g,x,y,.016,.016,"#c33");
+  poly(g,[-.12,-.76,.12,-.76,0,-.66],"#d22b1f");box(g,-.05,-.8,.1,.07,"#3a3a40");
+  face(g,"pom",o.evil);
+  // chef's hat over the forehead, with tomato leaves sticking out
+  for(const s of[-1,1])poly(g,[s*.08,-1.07,s*.24,-1.12,s*.14,-1.04],"#2f7a2a");
+  box(g,-.15,-1.16,.3,.09,"#f5f1e8",.02);el(g,-.1,-1.21,.09,.075,"#fbf8f0");el(g,.1,-1.21,.09,.075,"#fbf8f0");el(g,0,-1.26,.11,.085,"#ffffff");
+  ln(g,[-.15,-1.08,.15,-1.08],"rgba(0,0,0,.15)",.012);
+  // a painted-on moustache, slightly crooked
+  el(g,-.06,-.82,.075,.024,"#1b0d08",.35);el(g,.06,-.82,.075,.024,"#1b0d08",-.35);
+  if(m>0){box(g,-.08,-.8,.16,.1*m,"#120404",.02);for(let i=0;i<5;i++)poly(g,[-.08+i*.032,-.8,-.064+i*.032,-.77,-.048+i*.032,-.8],"#eee")}}
+function moz(g,o){const m=o.m||0;
+  el(g,-.09,-.02,.065,.03,"#111");el(g,.09,-.02,.065,.03,"#111");ln(g,[-.08,-.03,-.07,-.3],"#d8d8dc",.05);ln(g,[.08,-.03,.07,-.3],"#d8d8dc",.05);
+  poly(g,[-.24,-.24,.24,-.24,.14,-.46,-.14,-.46],"#2a4f9a");ln(g,[-.22,-.27,.22,-.27],"#ffffff",.015);
+  box(g,-.15,-.76,.3,.34,"#f2f0ea",.08);box(g,-.1,-.62,.2,.26,"#3a67c4",.03);
+  g.fillStyle="#fff";g.font="900 .14px Georgia,serif";g.textAlign="center";g.textBaseline="middle";g.fillText("D",0,-.5);
+  ln(g,[-.15,-.7,-.3,-.52,-.27,-.36],"#e6e4de",.07);el(g,-.27,-.34,.05,.05,"#fff");
+  ln(g,[.15,-.7,.33,-.68,.36,-.8],"#e6e4de",.07);el(g,.36,-.82,.17,.035,"#9aa0a8");el(g,.36,-.84,.15,.025,"#c4c9cf");
+  poly(g,[.28,-.86,.46,-.88,.38,-.96],"#e8b45a");el(g,.37,-.89,.022,.014,"#b8321f");
+  box(g,-.05,-.8,.1,.06,"#3a3a40");
+  face(g,"moz",o.evil);
+  // a white mozzarella-ball cap with its little knot, and a pink bow
+  g.save();g.beginPath();g.ellipse(0,-1.0,.21,.11,0,Math.PI,TAU);g.closePath();g.fillStyle="#f7f6f1";g.fill();g.restore();
+  el(g,0,-1.1,.04,.03,"#f0efe8");
+  el(g,-.12,-1.04,.06,.035,"#ff6fa8",.5);el(g,-.05,-1.07,.06,.035,"#ff6fa8",-.5);el(g,-.085,-1.055,.025,.025,"#e04a88");
+  if(m>0){box(g,-.09,-.78,.18,.1*m,"#120404",.02);for(let i=0;i<6;i++)poly(g,[-.09+i*.03,-.78,-.075+i*.03,-.75,-.06+i*.03,-.78],"#eee")}}
+function gno(g,o){const m=o.m||0,w=Math.sin((o.t||0)*3)*.02;
+  sph(g,0,-.3,.5,.31,"#f6e6b4","#b8975a");
+  g.strokeStyle="rgba(130,96,50,.55)";g.lineWidth=.025;for(let i=-3;i<=3;i++){g.beginPath();g.ellipse(i*.12,-.3,.05,.27,0,Math.PI*.6,Math.PI*1.4);g.stroke()}
+  for(const s of[-1,1]){el(g,s*(.4+w),-.04,.11,.06,"#e8d39a");for(let f=0;f<4;f++)el(g,s*(.33+w)+s*f*.045,.01,.022,.03,"#e1c98c")}
+  for(let i=0;i<14;i++)el(g,Math.sin(i*7.1)*.4,-.3+Math.cos(i*3.3)*.22,.01,.01,"rgba(255,255,255,.8)");
+  face(g,"gno",o.evil);
+  // little extra eyes poking out of the dough
+  for(const[x,y]of[[-.33,-.42],[.35,-.38],[.24,-.15]]){el(g,x,y,.035,.03,"#fff");el(g,x+.005,y,.014,.016,"#111")}
+  if(m>0){el(g,0,-.12,.16,.06*m+.01,"#160606");for(let i=0;i<7;i++)poly(g,[-.15+i*.045,-.14,-.13+i*.045,-.1,-.11+i*.045,-.14],"#eee")}}
+function ana(g,o){const m=o.m||0;
+  ln(g,[-.08,-.2,-.1,-.02],"#2f5a1e",.04);ln(g,[.08,-.2,.1,-.02],"#2f5a1e",.04);el(g,-.11,-.015,.06,.025,"#1f3a14");el(g,.11,-.015,.06,.025,"#1f3a14");
+  ln(g,[-.24,-.48,-.38,-.34,-.42,-.2],"#3f7a28",.035);ln(g,[.24,-.48,.38,-.34,.42,-.2],"#3f7a28",.035);
+  for(const s of[-1,1])for(let f=0;f<3;f++)ln(g,[s*.42,-.2,s*(.44+f*.02),-.13+f*.01],"#2a4a1a",.02);
+  sph(g,0,-.5,.28,.38,"#ffd54a","#b56f12");
+  g.save();g.beginPath();g.ellipse(0,-.5,.28,.38,0,0,TAU);g.clip();g.strokeStyle="rgba(120,70,10,.6)";g.lineWidth=.014;
+  for(let i=-6;i<=6;i++){g.beginPath();g.moveTo(i*.09-.4,-.9);g.lineTo(i*.09+.4,-.1);g.stroke();g.beginPath();g.moveTo(i*.09+.4,-.9);g.lineTo(i*.09-.4,-.1);g.stroke()}g.restore();
+  for(let i=0;i<9;i++){const a=-Math.PI/2+(i-4)*.26,len=.22+(i%2)*.1+(i===4?.12:0);poly(g,[Math.cos(a-.12)*.08,-.84+Math.sin(a-.12)*.04,Math.cos(a)*len,-.86+Math.sin(a)*len,Math.cos(a+.12)*.08,-.84+Math.sin(a+.12)*.04],i%2?"#2f7a2a":"#4fae3a")}
+  face(g,"ana",o.evil);
+  // angry painted eyebrows over Dueck's face
+  ln(g,[-.15,-.7,-.04,-.66],"#3a1a04",.03);ln(g,[.15,-.7,.04,-.66],"#3a1a04",.03);
+  if(m>0){box(g,-.1,-.5,.2,.09*m,"#160404",.02);for(let i=0;i<6;i++)poly(g,[-.1+i*.034,-.5,-.083+i*.034,-.46,-.066+i*.034,-.5],"#eee")}}
+const DRAW={pom,moz,gno,ana};
+function who(g,k,x,y,s,o={}){g.save();g.translate(x,y);g.scale(s,s);DRAW[k](g,o);g.restore()}
+// ---------- rooms seen on the cameras (painted once at 640x400) ----------
+const RW=640,RH=400;
+function checker(g,y0,y1,vx,vy,cols,rows,c1,c2,wb){for(let i=0;i<rows;i++){const ka=i/rows,kb=(i+1)/rows,ya=y0+(y1-y0)*ka*ka,yb=y0+(y1-y0)*kb*kb,sa=(ya-vy)/(y1-vy),sb=(yb-vy)/(y1-vy),cw=wb/cols;
+  for(let j=-cols;j<cols;j++)poly(g,[vx+j*cw*sa,ya,vx+(j+1)*cw*sa,ya,vx+(j+1)*cw*sb,yb,vx+j*cw*sb,yb],(i+j)&1?c1:c2)}}
+function wallG(g,w,y0,y1,a,b){const q=g.createLinearGradient(0,y0,0,y1);q.addColorStop(0,a);q.addColorStop(1,b);g.fillStyle=q;g.fillRect(0,y0,w,y1-y0)}
+function txt(g,s,x,y,f,c,al="center"){g.font=f;g.fillStyle=c;g.textAlign=al;g.textBaseline="middle";g.fillText(s,x,y)}
+function paintRoom(id){const c=document.createElement("canvas");c.width=RW;c.height=RH;const g=c.getContext("2d"),w=RW,h=RH;
+  if(id==="stage"){wallG(g,w,0,h,"#1a0606","#2a0b08");checker(g,h*.78,h,w/2,h*.2,8,4,"#1d1d22","#5d5a52",w*1.3);
+    for(let i=0;i<16;i++){const x=w*.08+i*w*.053;const q=g.createLinearGradient(x,0,x+w*.053,0);q.addColorStop(0,"#5a0d10");q.addColorStop(.5,"#9a1a1c");q.addColorStop(1,"#4a0a0c");g.fillStyle=q;g.fillRect(x,h*.08,w*.054,h*.6)}
+    for(let i=0;i<9;i++){const x=w*.15+i*w*.09,y=h*(.2+.1*(i%3));g.fillStyle="#e9c25a";g.beginPath();for(let k=0;k<10;k++){const a=k*Math.PI/5-Math.PI/2,r=k%2?5:12;g.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r)}g.fill()}
+    box(g,w*.25,h*.06,w*.5,h*.1,"#3a0a0a",6);txt(g,"DUECK'S",w/2,h*.11,"900 30px 'Abril Fatface',Georgia,serif","#f2c14e");
+    for(const s of[0,1]){g.fillStyle="#6a0e10";g.beginPath();g.moveTo(s?w:0,0);g.lineTo(s?w*.86:w*.14,0);g.quadraticCurveTo(s?w*.9:w*.1,h*.4,s?w*.95:w*.05,h*.72);g.lineTo(s?w:0,h*.72);g.fill()}
+    box(g,w*.04,h*.62,w*.92,h*.16,"#4a2a16");box(g,w*.04,h*.62,w*.92,h*.03,"#7a4a26");for(let i=0;i<14;i++)el(g,w*.08+i*w*.065,h*.7,5,5,i%2?"#ffd86a":"#ffeeb0");
+    for(const x of[.3,.7]){g.fillStyle="rgba(255,240,190,.07)";poly(g,[w*x-20,0,w*x+20,0,w*x+110,h*.74,w*x-110,h*.74],"rgba(255,240,190,.07)")}}
+  else if(id==="dining"){wallG(g,w,0,h*.6,"#2a0e10","#3c1716");checker(g,h*.6,h,w/2,h*.1,9,6,"#1c1c20","#6a665c",w*1.4);
+    for(let i=0;i<26;i++){box(g,i*w/26,h*.4,w/52,h*.04,"#e8e2d0");box(g,i*w/26+w/52,h*.4,w/52,h*.04,"#16161a")}
+    box(g,w*.3,h*.06,w*.4,h*.08,"#2c4a9a",4);txt(g,"HAPPY BIRTHDAY!",w/2,h*.1,"800 18px 'DM Sans',sans-serif","#ffe27a");
+    for(let i=0;i<12;i++)poly(g,[w*.05+i*w*.08,h*.02,w*.09+i*w*.08,h*.02,w*.07+i*w*.08,h*.08],["#d23a28","#f2c14e","#2f8a4a","#3a67c4"][i%4]);
+    box(g,w*.08,h*.15,w*.12,h*.2,"#1a1a24");box(g,w*.09,h*.16,w*.1,h*.18,"#2d3448");box(g,w*.8,h*.15,w*.1,h*.22,"#3a2418");el(g,w*.82,h*.27,3,3,"#c9a24a");
+    for(const[x,y,r]of[[.22,.72,.15],[.5,.66,.12],[.78,.74,.16]]){el(g,w*x,h*y+r*h*.55,r*w*.75,r*h*.22,"rgba(0,0,0,.35)");el(g,w*x,h*y,r*w,r*h*.45,"#e9e4d8");
+      g.save();g.beginPath();g.ellipse(w*x,h*y,r*w,r*h*.45,0,0,TAU);g.clip();for(let i=-8;i<8;i++)for(let j=-4;j<4;j++)if((i+j)&1)box(g,w*x+i*r*w/5,h*y+j*r*h/5,r*w/5,r*h/5,"#b8231c");g.restore();
+      box(g,w*x-3,h*y,6,r*h*.9,"#3a3a3a");poly(g,[w*x-r*w*.3,h*y-4,w*x-r*w*.2,h*y-4,w*x-r*w*.25,h*y-28],"#3a67c4");el(g,w*x-r*w*.25,h*y-29,3,3,"#ffe27a");
+      poly(g,[w*x+r*w*.25,h*y-4,w*x+r*w*.35,h*y-4,w*x+r*w*.3,h*y-26],"#d23a28");box(g,w*x,h*y-12,8,10,"#e8e8e8",2)}}
+  else if(id==="kitchen"){wallG(g,w,0,h*.62,"#1e2624","#2a3330");for(let y=0;y<h*.62;y+=18)for(let x=(y/18%2)*12;x<w;x+=24){g.strokeStyle="rgba(255,255,255,.05)";g.strokeRect(x,y,24,18)}
+    checker(g,h*.62,h,w/2,h*.15,9,5,"#1a1a1c","#4a4a48",w*1.3);
+    el(g,w*.25,h*.4,w*.15,h*.2,"#5a3a2a");el(g,w*.25,h*.44,w*.07,h*.07,"#140808");el(g,w*.25,h*.46,w*.05,h*.04,"#ff6a20");el(g,w*.25,h*.46,w*.025,h*.02,"#ffd27a");
+    box(g,w*.45,h*.42,w*.5,h*.06,"#8a9096");box(g,w*.45,h*.48,w*.5,h*.2,"#5a6066");for(let i=0;i<4;i++)box(g,w*.47+i*w*.12,h*.5,w*.1,h*.15,"#4a5056",3);
+    for(let i=0;i<5;i++){ln(g,[w*.5+i*w*.09,0,w*.5+i*w*.09,h*.12],"#555",2);el(g,w*.5+i*w*.09,h*.16,16,16,"#8a5a3a");el(g,w*.5+i*w*.09,h*.16,11,11,"#6a3a22")}
+    box(g,w*.03,h*.1,w*.1,h*.52,"#c8ccd0",4);box(g,w*.115,h*.25,4,h*.1,"#888")}
+  else if(id==="back"){wallG(g,w,0,h*.64,"#22232a","#2c2d33");checker(g,h*.64,h,w/2,h*.2,8,5,"#202024","#3e3e40",w*1.2);
+    for(const y of[.2,.42]){box(g,w*.08,h*y+44,w*.84,8,"#4a3a2a");for(let i=0;i<6;i++){const x=w*.15+i*w*.135,k=["pom","moz","ana"][(i+(y>.3?1:0))%3];
+      if(k==="pom")sph(g,x,h*y+24,20,18,"#c94a30","#5a140c");else if(k==="moz")sph(g,x,h*y+24,19,19,"#e8e6e0","#8a8884");else sph(g,x,h*y+26,15,20,"#d9a83a","#6a4210");
+      el(g,x-7,h*y+22,5,5,"#111");el(g,x+7,h*y+22,5,5,"#111");el(g,x-7,h*y+22,1.5,1.5,"#fff");el(g,x+7,h*y+22,1.5,1.5,"#fff")}}
+    box(g,w*.1,h*.72,w*.3,h*.06,"#5a4632");ln(g,[w*.15,h*.71,w*.3,h*.66,w*.36,h*.7],"#777",6);el(g,w*.36,h*.7,7,7,"#999");
+    ln(g,[w*.5,0,w*.5,h*.08],"#333",2);el(g,w*.5,h*.1,8,10,"#ffeeaa")}
+  else if(id==="storage"){wallG(g,w,0,h*.62,"#251c16","#30251c");checker(g,h*.62,h,w/2,h*.2,8,5,"#1e1a16","#3a3228",w*1.2);
+    for(const[x,y,s]of[[.62,.52,.2],[.8,.48,.24],[.7,.32,.16]]){box(g,w*x,h*y,w*s*.6,h*s,"#7a5a36");g.strokeStyle="#4a3420";g.lineWidth=3;g.strokeRect(w*x,h*y,w*s*.6,h*s);ln(g,[w*x,h*y,w*x+w*s*.6,h*y+h*s],"#4a3420",3)}
+    for(let i=0;i<3;i++){el(g,w*(.28+i*.09),h*.66,w*.05,h*.1,"#d8ccb0");txt(g,"00",w*(.28+i*.09),h*.66,"700 12px 'DM Sans'","#9a3a2a")}
+    box(g,w*.25,h*.1,w*.3,8,"#4a3a2a");for(let i=0;i<7;i++){box(g,w*.26+i*w*.04,h*.1-30,w*.03,30,["#c9341f","#2f8a4a","#d8a030"][i%3],2)}
+    box(g,w*.04,h*.5,w*.14,h*.13,"#111");for(let i=0;i<5;i++)box(g,w*.045,h*.51+i*h*.025,w*.13,4,"#555")}
+  else if(id==="lhall"||id==="rhall"){const vx=w*.5,vy=h*.42;g.fillStyle="#141414";g.fillRect(0,0,w,h);
+    poly(g,[0,0,vx-50,vy-40,vx-50,vy+40,0,h],"#2c2420");poly(g,[w,0,vx+50,vy-40,vx+50,vy+40,w,h],"#262020");poly(g,[0,0,w,0,vx+50,vy-40,vx-50,vy-40],"#18181a");
+    g.save();g.beginPath();g.moveTo(0,h);g.lineTo(vx-50,vy+40);g.lineTo(vx+50,vy+40);g.lineTo(w,h);g.clip();checker(g,vy+40,h,vx,vy,6,7,"#1a1a1c","#56524a",w*1.3);g.restore();
+    box(g,vx-50,vy-40,100,80,"#050505");
+    for(const s of[-1,1]){const k=id==="lhall"?s<0:s>0;poly(g,[vx+s*(w*.42),h*.18,vx+s*(w*.3),h*.25,vx+s*(w*.3),h*.48,vx+s*(w*.42),h*.55],k?"#e8dfc8":"#2c4a9a");
+      poly(g,[vx+s*(w*.2),h*.3,vx+s*(w*.14),h*.33,vx+s*(w*.14),h*.45,vx+s*(w*.2),h*.48],"#d8c070")}
+    for(let i=0;i<3;i++){const k=i/3,y=vy-40-(vy-40)*(1-k)*.9;box(g,vx-60+k*30-(1-k)*60,y-4,120-k*60+(1-k)*120,6,"rgba(255,240,200,.18)")}
+    ln(g,[w*.06,h*.98,w*.06,h*.4],"rgba(255,255,255,.04)",14)}
+  else if(id==="vent"){g.fillStyle="#0a0a0c";g.fillRect(0,0,w,h);for(let i=0;i<7;i++){const k=i/7,x=w*.5*k*.9,y=h*.5*k*.9,c=Math.round(70-k*60);g.fillStyle=`rgb(${c},${c},${c+4})`;g.fillRect(x,y,w-2*x,h-2*y);
+      g.fillStyle=`rgb(${c-8},${c-8},${c-6})`;g.fillRect(x+6,y+6,w-2*x-12,h-2*y-12);for(const[a,b]of[[x+10,y+10],[w-x-10,y+10],[x+10,h-y-10],[w-x-10,h-y-10]])el(g,a,b,2,2,"#888")}
+    for(let i=0;i<30;i++)el(g,Math.random()*w,h*.8+Math.random()*h*.2,2,1,"rgba(200,200,200,.2)")}
+  const v=g.createRadialGradient(w/2,h/2,h*.3,w/2,h/2,w*.7);v.addColorStop(0,"rgba(0,0,0,0)");v.addColorStop(1,"rgba(0,0,0,.6)");g.fillStyle=v;g.fillRect(0,0,w,h);return c}
+function ensureRooms(){if(rooms)return;rooms={};for(const[c]of CAMS)rooms[c]=paintRoom(c);noise=[];
+  for(let n=0;n<4;n++){const c=document.createElement("canvas");c.width=160;c.height=100;const g=c.getContext("2d"),d=g.createImageData(160,100);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}g.putImageData(d,0,0);noise.push(c)}
+  scan=document.createElement("canvas");scan.width=4;scan.height=4;const sg=scan.getContext("2d");sg.fillStyle="rgba(0,0,0,.28)";sg.fillRect(0,0,4,2)}
+// ---------- the office ----------
+const gr=(k,W,H)=>{const a=GEO[k];return[a[0]*W,a[1]*H,a[2]*W,a[3]*H]};
+function buildBg(W,H,dpr){const c=document.createElement("canvas");c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);const g=c.getContext("2d");g.scale(dpr,dpr);
+  g.fillStyle="#121216";g.fillRect(0,0,W,H);
+  checker(g,H*.7,H,W/2,H*.2,9,6,"#17171a","#5c584e",W*1.5);
+  let q=g.createLinearGradient(0,H*.08,0,H*.7);q.addColorStop(0,"#2e1414");q.addColorStop(1,"#47201c");g.fillStyle=q;g.fillRect(W*.18,H*.08,W*.64,H*.62);
+  g.fillStyle="rgba(255,220,180,.04)";for(let y=H*.1;y<H*.48;y+=H*.05)for(let x=W*.19+((y/(H*.05))%2)*W*.02;x<W*.82;x+=W*.04){g.beginPath();g.moveTo(x,y-5);g.lineTo(x+5,y);g.lineTo(x,y+5);g.lineTo(x-5,y);g.fill()}
+  const cw=W*.64/24;for(let i=0;i<24;i++){box(g,W*.18+i*cw,H*.48,cw/2,H*.03,"#e8e2d0");box(g,W*.18+i*cw+cw/2,H*.48,cw/2,H*.03,"#141416");box(g,W*.18+i*cw+cw/2,H*.51,cw/2,H*.025,"#e8e2d0");box(g,W*.18+i*cw,H*.51,cw/2,H*.025,"#141416")}
+  q=g.createLinearGradient(0,H*.535,0,H*.7);q.addColorStop(0,"#4a2e1c");q.addColorStop(1,"#2e1a10");g.fillStyle=q;g.fillRect(W*.18,H*.535,W*.64,H*.165);for(let i=0;i<16;i++)box(g,W*.18+i*W*.04,H*.535,1.5,H*.165,"rgba(0,0,0,.3)");
+  for(const s of[0,1]){const x0=s?W:0,x1=s?W*.82:W*.18;poly(g,[x0,0,x1,H*.08,x1,H*.7,x0,H*.94],s?"#2a1412":"#2e1614");poly(g,[x0,H*.55,x1,H*.535,x1,H*.7,x0,H*.94],s?"#24140c":"#28160e")}
+  poly(g,[0,0,W,0,W*.82,H*.08,W*.18,H*.08],"#0e0e11");for(let i=1;i<6;i++)ln(g,[W*.18+i*W*.107,H*.08,W*i/6,0],"rgba(255,255,255,.05)",1.5);
+  // posters: celebrate (with Dueck on it), no pineapple, kids' drawings
+  box(g,W*.685,H*.15,W*.105,H*.28,"#f2e2b8",3);box(g,W*.69,H*.16,W*.095,H*.07,"#c9341f");txt(g,"DUECK'S",W*.7375,H*.195,`900 ${Math.round(W*.016)}px 'Abril Fatface',Georgia,serif`,"#ffe27a");
+  who(g,"pom",W*.715,H*.41,H*.15,{});who(g,"moz",W*.762,H*.41,H*.15,{});txt(g,L("CELEBRATE!","FESTEGGIA!"),W*.7375,H*.245,`800 ${Math.round(W*.011)}px 'DM Sans',sans-serif`,"#7a2a1a");
+  box(g,W*.24,H*.15,W*.08,H*.11,"#f5f1e6",3);who(g,"ana",W*.28,H*.245,H*.08,{});g.strokeStyle="#d22b1f";g.lineWidth=W*.006;g.beginPath();g.arc(W*.28,H*.205,H*.045,0,TAU);g.moveTo(W*.28-H*.032,H*.205-H*.032);g.lineTo(W*.28+H*.032,H*.205+H*.032);g.stroke();
+  for(const[x,y,r,cc]of[[.245,.3,-.08,"#fff8e8"],[.285,.31,.06,"#f0f6ff"],[.255,.38,.04,"#fffbe0"]]){g.save();g.translate(W*x+W*.02,H*y+H*.035);g.rotate(r);box(g,-W*.02,-H*.035,W*.04,H*.07,cc);
+    ln(g,[-W*.012,H*.02,-W*.004,-H*.01,W*.006,H*.018],"#e33",2);el(g,W*.002,-H*.016,W*.006,W*.006,"#f2c14e");box(g,-W*.004,-H*.04,W*.008,H*.008,"rgba(200,200,180,.8)");g.restore()}
+  // window frame and blinds
+  const[wx,wy,ww,wh]=gr("win",W,H);box(g,wx-10,wy-10,ww+20,wh+20,"#1d1d22",4);box(g,wx-5,wy-5,ww+10,wh+10,"#3a3a42",2);box(g,wx-14,wy+wh+6,ww+28,8,"#2a2a30",2);
+  for(let i=0;i<5;i++)box(g,wx,wy+i*6,ww,4,"rgba(180,180,170,.55)");ln(g,[wx+ww*.8,wy,wx+ww*.8,wy+40],"#888",1.5);
+  // door frames with hazard stripes
+  for(const k of["ld","rd"]){const[x,y,w,h]=gr(k,W,H);box(g,x-8,y-14,w+16,h+18,"#26262c",3);box(g,x-4,y-10,w+8,h+10,"#3a3a42");
+    g.save();g.beginPath();g.rect(x-8,y-14,w+16,10);g.clip();for(let i=-2;i<w/8+4;i++)poly(g,[x-8+i*14,y-14,x+i*14,y-14,x-6+i*14,y-4,x-14+i*14,y-4],i%2?"#e2b42a":"#151515");g.restore()}
+  // button plates
+  for(const x of[.205,.795]){box(g,W*x-24,H*.33,48,H*.22,"#3a3c44",5);box(g,W*x-20,H*.335,40,H*.21,"#2a2c32",4);for(const y of[.34,.54])el(g,W*x,H*y,2,2,"#777")}
+  // vent grate frame
+  const[vx,vy,vw,vh]=gr("vent",W,H);box(g,vx-6,vy-6,vw+12,vh+12,"#3a3c44",3);
+  // the desk
+  poly(g,[W*.28,H*.69,W*.72,H*.69,W*.79,H*.86,W*.21,H*.86],"#5a3a22");poly(g,[W*.21,H*.86,W*.79,H*.86,W*.79,H,W*.21,H],"#3a2414");ln(g,[W*.21,H*.86,W*.79,H*.86],"#7a5232",3);
+  for(const[x,s]of[[.4,1],[.53,.85]]){const mw=W*.1*s,mh=H*.15*s,mx=W*x-mw/2,my=H*.7-mh-H*.02;box(g,mx,my,mw,mh,"#2a2a2e",6);box(g,mx+mw*.08,my+mh*.1,mw*.84,mh*.7,"#0c1a12",4);box(g,W*x-mw*.15,H*.68,mw*.3,H*.02,"#222")}
+  box(g,W*.3,H*.74,W*.05,H*.03,"#222",3);box(g,W*.305,H*.735,W*.04,H*.012,"#444",3);
+  poly(g,[W*.44,H*.78,W*.52,H*.77,W*.53,H*.82,W*.45,H*.83],"#f5f1e6");poly(g,[W*.46,H*.8,W*.51,H*.795,W*.515,H*.81,W*.465,H*.815],"#ddd");
+  poly(g,[W*.56,H*.755,W*.66,H*.75,W*.68,H*.8,W*.57,H*.81],"#d8b880");txt(g,"DUECK'S",W*.62,H*.78,`900 ${Math.round(W*.011)}px 'Abril Fatface',Georgia,serif`,"#a3301f");
+  box(g,W*.495,H*.72,W*.022,H*.045,"#c9341f",3);ln(g,[W*.51,H*.72,W*.52,H*.68],"#fff",2);
+  // bake the darkness in, leaving a dim pool of light around the desk
+  q=g.createRadialGradient(W*.5,H*.55,H*.12,W*.5,H*.55,W*.72);q.addColorStop(0,"rgba(0,0,0,.1)");q.addColorStop(.55,"rgba(0,0,0,.45)");q.addColorStop(1,"rgba(0,0,0,.82)");g.fillStyle=q;g.fillRect(0,0,W,H);
+  g.globalCompositeOperation="destination-out";for(const k of["ld","rd","win","vent"]){const[x,y,w,h]=gr(k,W,H);g.fillRect(x,y,w,h)}g.globalCompositeOperation="source-over";return c}
+function hallLit(g,x,y,w,h,flip){box(g,x,y,w,h,"#3a3026");g.save();g.beginPath();g.rect(x,y,w,h);g.clip();
+  checker(g,y+h*.62,y+h,x+w*(flip?.3:.7),y+h*.3,4,4,"#26241f","#8a8270",w*2.2);
+  const q=g.createRadialGradient(x+w/2,y+h*.15,4,x+w/2,y+h*.5,h*.8);q.addColorStop(0,"rgba(255,240,190,.45)");q.addColorStop(1,"rgba(0,0,0,.65)");g.fillStyle=q;g.fillRect(x,y,w,h);g.restore()}
+function drawOffice(g,W,H,R,bgc,tt){const u=cl(Math.min(W,H)/560,.6,1.5);g.fillStyle="#000";g.fillRect(0,0,W,H);const A=R.A,po=R.pout;
+  // doorways
+  for(const[k,side,who_]of[["ld",0,"pom"],["rd",1,"moz"]]){const[x,y,w,h]=gr(k,W,H),lit=R.light===(side?"R":"L")&&!po,here=A[who_].at===SPOTAT[who_];
+    if(lit){hallLit(g,x,y,w,h,side);if(here){g.save();g.beginPath();g.rect(x,y,w,h);g.clip();who(g,who_,x+w*(side?.42:.58),y+h*1.02,h*.95,{t:tt});g.restore()}}
+    else if(here&&R.n>=4&&!po){glowEyes(g,who_,x+w*(side?.42:.58),y+h*1.02,h*.95,.35)}}
+  // the window onto the dark dining room, and L'Ananas
+  {const[x,y,w,h]=gr("win",W,H);g.save();g.beginPath();g.rect(x,y,w,h);g.clip();if(rooms)g.drawImage(rooms.dining,x-w*.1,y-h*.25,w*1.2,h*1.5);
+    const sg=A.ana.stg;if(sg>0){const sp=sg===1?[.5,.98,.42]:sg===2?[.46,1.1,.85]:[.5,2.25,2.6];who(g,"ana",x+w*sp[0],y+h*sp[1],h*sp[2],{t:tt,evil:sg>=3})}
+    g.fillStyle=R.torch&&!po?"rgba(0,0,0,.25)":"rgba(0,4,10,.9)";g.fillRect(x,y,w,h);
+    if(R.torch&&!po){const q=g.createRadialGradient(x+w/2,y+h*.55,h*.1,x+w/2,y+h*.55,w*.55);q.addColorStop(0,"rgba(255,250,220,.25)");q.addColorStop(1,"rgba(0,0,0,.6)");g.fillStyle=q;g.fillRect(x,y,w,h)}
+    else if(sg>=2&&!po){const sp=sg===2?[.46,1.1,.85]:[.5,2.25,2.6];glowEyes(g,"ana",x+w*sp[0],y+h*sp[1],h*sp[2],.85)}
+    g.fillStyle="rgba(150,180,200,.06)";poly(g,[x+w*.1,y,x+w*.3,y,x+w*.05,y+h,x-w*.15,y+h],"rgba(150,180,200,.06)");g.restore()}
+  // the vent
+  {const[x,y,w,h]=gr("vent",W,H),lit=R.light==="V"&&!po;g.save();g.beginPath();g.rect(x,y,w,h);g.clip();
+    if(lit){if(rooms)g.drawImage(rooms.vent,x,y,w,h);if(A.gno.at==="vdoor")who(g,"gno",x+w/2,y+h*1.05,h*1.15,{t:tt})}
+    g.restore();g.strokeStyle="rgba(120,124,132,.8)";g.lineWidth=2;for(let i=1;i<6;i++){g.beginPath();g.moveTo(x,y+h*i/6);g.lineTo(x+w,y+h*i/6);g.stroke()}}
+  g.drawImage(bgc,0,0,W,H);
+  // door light spill on the floor
+  if(R.light&&R.light!=="V"&&!po){const s=R.light==="R",cx=s?W*.86:W*.14;g.save();g.globalCompositeOperation="lighter";const q=g.createRadialGradient(cx,H*.86,4,cx,H*.86,W*.2);q.addColorStop(0,"rgba(255,230,160,.22)");q.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=q;g.fillRect(0,0,W,H);g.restore()}
+  // shutters
+  for(const[k,p]of[["ld",R.ld],["rd",R.rd],["vent",R.vd]]){if(p<=0)continue;const[x,y,w,h]=gr(k,W,H),sh=h*p;g.save();g.beginPath();g.rect(x,y,w,h);g.clip();
+    const q=g.createLinearGradient(x,0,x+w,0);q.addColorStop(0,"#3c3f46");q.addColorStop(.5,"#5c606a");q.addColorStop(1,"#34363c");g.fillStyle=q;g.fillRect(x,y,w,sh);
+    for(let yy=y+sh-6;yy>y;yy-=Math.max(8,h*.05))box(g,x,yy,w,2,"rgba(0,0,0,.35)");
+    if(k!=="vent"){g.beginPath();g.rect(x,y+sh-12,w,12);g.clip();for(let i=-2;i<w/10+3;i++)poly(g,[x+i*16,y+sh-12,x+i*16+8,y+sh-12,x+i*16,y+sh,x+i*16-8,y+sh],i%2?"#e2b42a":"#151515")}
+    g.restore()}
+  // the desk fan and a flickering monitor
+  {const fx=W*.665,fy=H*.6,fr=H*.05;box(g,fx-4,fy,8,H*.09,"#2a2a2e");box(g,fx-16,fy+H*.085,32,6,"#2a2a2e",3);g.save();g.translate(fx,fy);g.rotate(tt*(po?0:18));for(let i=0;i<3;i++){g.rotate(TAU/3);el(g,0,-fr*.5,fr*.22,fr*.5,"rgba(60,62,70,.85)")}g.restore();
+    g.strokeStyle="#4a4c54";g.lineWidth=1.5;g.beginPath();g.arc(fx,fy,fr,0,TAU);g.stroke();el(g,fx,fy,4,4,"#666")}
+  if(!po){const mw=W*.084,mh=H*.105,mx=W*.4-mw/2,my=H*.7-H*.15-H*.02+H*.015;g.fillStyle=`rgba(80,220,140,${.07+Math.sin(tt*9)*.02})`;g.fillRect(mx,my,mw,mh);
+    g.fillStyle="rgba(120,255,170,.5)";g.font=`600 ${Math.round(9*u)}px 'DM Mono',monospace`;g.textAlign="left";g.textBaseline="top";g.fillText("SYS OK",mx+4,my+4);g.fillText(Math.round(R.pow)+"%",mx+4,my+4+12*u)}
+  // ceiling lamp flicker
+  if(!po&&Math.sin(tt*13)+Math.sin(tt*7.3)>1.85){g.fillStyle="rgba(0,0,0,.25)";g.fillRect(0,0,W,H)}
+  if(po){g.fillStyle="rgba(0,0,0,.88)";g.fillRect(0,0,W,H);if(R.po&&R.po.ph>=1){const[x,y,w,h]=gr("ld",W,H);if(Math.sin(tt*6)>-.6)glowEyes(g,"pom",x+w*.58,y+h*1.02,h*.95,1)}}}
+// ---------- cameras ----------
+function drawCam(g,W,H,R,tt,oy){const u=cl(Math.min(W,H)/560,.6,1.5),id=R.sel;g.save();g.translate(0,oy);
+  g.fillStyle="#000";g.fillRect(0,0,W,H);if(rooms)g.drawImage(rooms[id],0,0,W,H);const sp=SPOT[id]||{};
+  for(const k of["pom","moz","gno"]){if(R.A[k].at===id&&sp[k]){const[x,y,s]=sp[k];who(g,k,W*x,H*y,H*s,{t:tt})}}
+  if(id==="dining"&&(R.A.ana.stg===1||R.A.ana.stg===2)){const sp2=R.A.ana.stg===1?[.5,.66,.24]:[.52,.8,.44];who(g,"ana",W*sp2[0],H*sp2[1],H*sp2[2],{t:tt})}
+  g.fillStyle="rgba(10,40,25,.28)";g.fillRect(0,0,W,H);if(scan){g.fillStyle=g.createPattern(scan,"repeat");g.fillRect(0,0,W,H)}
+  if(noise){g.globalAlpha=.1+R.glitch*.85;g.imageSmoothingEnabled=false;g.drawImage(noise[(tt*24|0)%4],0,0,W,H);g.imageSmoothingEnabled=true;g.globalAlpha=1}
+  if(Math.random()<.04){g.fillStyle="rgba(255,255,255,.06)";g.fillRect(0,Math.random()*H,W,8+Math.random()*30)}
+  if(R.glitch>.5){g.fillStyle="#000";g.fillRect(0,0,W,H);txt(g,L("— SIGNAL LOST —","— SEGNALE PERSO —"),W/2,H/2,`700 ${Math.round(18*u)}px 'DM Mono',monospace`,"#cfe9da");if(noise){g.globalAlpha=.6;g.drawImage(noise[(tt*30|0)%4],0,0,W,H);g.globalAlpha=1}}
+  const c=CAMS.find(x=>x[0]===id);g.strokeStyle="rgba(200,240,215,.6)";g.lineWidth=2;g.strokeRect(10,10,W-20,H-20);
+  txt(g,`CAM ${c[1]}  ·  ${N(c[2]).toUpperCase()}`,W/2,30*u,`700 ${Math.round(15*u)}px 'DM Mono',monospace`,"#e6fff0");
+  if((tt*2|0)%2)el(g,W/2-26*u,52*u,6*u,6*u,"#ff3a2a");txt(g,"REC",W/2-14*u,52*u,`700 ${Math.round(12*u)}px 'DM Mono',monospace`,"#e6fff0","left");
+  if(id==="kitchen")txt(g,L("audio: pots and pans","audio: pentole e padelle"),W/2,72*u,`500 ${Math.round(11*u)}px 'DM Mono',monospace`,"rgba(230,255,240,.6)");
+  g.restore()}
+function hud(g,W,H,R){const u=cl(Math.min(W,H)/560,.6,1.4),out=(s,x,y,f,c,al="left")=>{g.font=f;g.textAlign=al;g.textBaseline="top";g.lineWidth=4;g.strokeStyle="rgba(0,0,0,.7)";g.strokeText(s,x,y);g.fillStyle=c;g.fillText(s,x,y)};
+  const hr=R.hr;out(hr?hr+" AM":"12 AM",W-18*u,14*u,`900 ${Math.round(30*u)}px 'DM Sans',sans-serif`,"#f3eee2","right");out(L("Night ","Notte ")+R.n,W-18*u,48*u,`700 ${Math.round(13*u)}px 'DM Sans',sans-serif`,"#b9b4aa","right");
+  const pw=Math.max(0,Math.ceil(R.pow)),us=usage(R);out(L("Power left: ","Energia: ")+pw+"%",16*u,14*u,`800 ${Math.round(15*u)}px 'DM Sans',sans-serif`,pw<=15?"#ff6a5a":"#f3eee2");
+  out(L("Usage","Consumo"),16*u,36*u,`700 ${Math.round(12*u)}px 'DM Sans',sans-serif`,"#b9b4aa");
+  for(let i=0;i<5;i++){const on=i<us;box(g,(66+i*14)*u,37*u,10*u,13*u,on?(i<2?"#5ad07a":i<3?"#e8c23a":"#e8483a"):"rgba(255,255,255,.12)",2)}}
+function usage(R){return R.pout?0:Math.min(5,1+(R.LD?1:0)+(R.RD?1:0)+(R.VD?1:0)+(R.light?1:0)+(R.cam?1:0)+(R.torch?1:0))}
+function render(){if(!cv)return;const g=cv.getContext("2d"),{W,H,dpr}=lay;if(!W)return;g.setTransform(dpr,0,0,dpr,0,0);
+  if(!R){g.fillStyle="#000";g.fillRect(0,0,W,H);if(bg){drawOffice(g,W,H,idleR(),bg,t)}return}
+  if(st==="win"){g.fillStyle="#000";g.fillRect(0,0,W,H);const k=cl(R.wt/1.4,0,1),u=U;txt(g,k<1?"5 AM":"6 AM",W/2,H/2-(k<1?0:0),`900 ${Math.round(90*u)}px 'DM Sans',sans-serif`,`rgba(243,238,226,${k<1?1-k*.3:1})`);
+    if(k>=1)txt(g,L("You made it!","Ce l'hai fatta!"),W/2,H/2+70*u,`700 ${Math.round(20*u)}px 'DM Sans',sans-serif`,"#ffe27a");return}
+  drawOffice(g,W,H,R,bg,t);
+  if(R.camT>0)drawCam(g,W,H,R,t,(1-R.camT)*H);
+  if(st==="scare"){const k=R.kill,e=cl(k.t/.22,0,1),j=(1-e*.3)*14*U,s=(k.who==="gno"?H*2.2:H*1.5)*(.35+.65*e),hy=HEAD[k.who][1];
+    g.fillStyle=`rgba(${(k.t*30|0)%2?60:0},0,0,.55)`;g.fillRect(0,0,W,H);who(g,k.who,W/2+rr(-j,j),H*.48-hy*s+rr(-j,j),s,{m:1,evil:1,t});glowEyes(g,k.who,W/2,H*.48-hy*s,s,1);return}
+  hud(g,W,H,R)}
+function idleR(){return{n:1,pow:100,ld:0,rd:0,vd:0,light:null,torch:false,pout:0,A:{pom:{at:"stage"},moz:{at:"stage"},gno:{at:"back"},ana:{stg:0}}}}
+function layout(){const f=$("nsField"),dpr=Math.min(2,devicePixelRatio||1),W=f.clientWidth,H=f.clientHeight;if(!W||!H)return;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);lay={W,H,dpr};U=cl(Math.min(W,H)/560,.6,1.5);ensureRooms();bg=buildBg(W,H,dpr)}
+// ---------- sound ----------
+const snd={step(v=1){SFX.tone(62,.14,"sine",.16*v,0,38);SFX.hiss(.09,260,1.2,.14*v)},
+  near(k){if(k==="gno")this.rattle(1);else{this.step(1);this.step(.8);SFX.hiss(1,480,.6,.05,.35)}},
+  rattle(v=1){for(let i=0;i<8;i++)SFX.hiss(.04,1800+Math.random()*1500,2,.1*v,i*.06)},
+  bang(){for(let i=0;i<3;i++){SFX.tone(70,.18,"square",.09,i*.28,45);SFX.hiss(.12,350,1,.22,i*.28)}},
+  door(){SFX.tone(110,.22,"sawtooth",.05,0,50);SFX.hiss(.2,900,.8,.12)},btn(){SFX.tone(1400,.03,"square",.03)},cam(){SFX.hiss(.07,4200,1,.07)},
+  pots(){SFX.tone(880,.25,"triangle",.04);SFX.tone(1320,.2,"triangle",.03,.08);SFX.tone(990,.2,"triangle",.03,.2)},
+  tap(){SFX.tone(1900,.03,"square",.05);SFX.tone(1900,.03,"square",.05,.18)},shoo(){SFX.hiss(.4,1200,.7,.12);SFX.tone(300,.25,"sawtooth",.04,0,150)},
+  scare(){SFX.hiss(1.2,1600,.35,.55);SFX.hiss(1.2,3600,.5,.3);SFX.tone(180,1.1,"sawtooth",.15,0,90);SFX.tone(290,1.1,"square",.09,0,700)},
+  out(){SFX.tone(220,1.4,"sawtooth",.07,0,35)},chime(){[0,.6,1.2,1.8,2.4].forEach((w,i)=>SFX.tone(i%2?784:659,.55,"triangle",.09,w))},
+  tune(){[523,659,784,659,587,698,880,698,523,659,784,1046,988,784,659,523].forEach((f,i)=>SFX.tone(f,.3,"triangle",.05,i*.36))}};
+// ---------- the night ----------
+function newNight(n){const ai=AI[n];R={n,time:0,hr:0,pow:100,ld:0,rd:0,vd:0,LD:false,RD:false,VD:false,light:null,torch:false,cam:false,camT:0,sel:"stage",glitch:0,pout:0,po:null,kill:null,pay:0,wt:0,
+  A:{pom:{at:"stage",tm:rr(3,6),lv:ai[0],wait:0},moz:{at:"stage",tm:rr(3,6),lv:ai[1],wait:0},gno:{at:"back",tm:rr(3,6),lv:ai[2],wait:0},ana:{stg:0,tm:rr(4,7),lv:ai[3],push:0,tap:0}}};
+  st="play";ov().innerHTML="";syncKey="";SFX.chip();
+  msg(n===1?L("Night 1. Watch the cameras, shut a door if someone is outside it, and save power.","Notte 1. Guarda le telecamere, chiudi una porta se c'è qualcuno fuori, e risparmia energia.")
+   :n===2?L("Night 2. Gnocchi is awake: when the duct rattles, shut the vent. Something is moving behind the window too.","Notte 2. Gnocchi è sveglio: quando il condotto sferraglia, chiudi la grata. E qualcosa si muove dietro la finestra.")
+   :n===6?L("Night 6. Nobody is supposed to work tonight.","Notte 6. Stanotte non dovrebbe lavorare nessuno."):L(`Night ${n}. They're getting faster.`,`Notte ${n}. Stanno diventando più veloci.`),5)}
+function step(dt){t+=dt;if(!R)return;const A=R.A;
+  if(st==="scare"){R.kill.t+=dt;if(R.kill.t>1.4){st="over";card()}return}
+  if(st==="win"){R.wt+=dt;if(R.wt>3.4&&!R.shown){R.shown=1;card()}return}
+  if(st!=="play")return;
+  R.time+=dt;const hr=Math.min(6,Math.floor(R.time/HOUR));if(hr!==R.hr){R.hr=hr;if(hr===2||hr===4)for(const k of ORDER)if(A[k].lv>0)A[k].lv++}
+  if(R.time>=HOUR*6){win();return}
+  const ap=(v,on,sp)=>cl(v+(on?1:-1)*dt*sp,0,1);R.ld=ap(R.ld,R.LD,6);R.rd=ap(R.rd,R.RD,6);R.vd=ap(R.vd,R.VD,7);R.camT=ap(R.camT,R.cam,6);R.glitch=Math.max(0,R.glitch-dt*1.2);
+  if(R.pout){const p=R.po;p.t-=dt;if(p.t<=0){if(p.ph===0){p.ph=1;p.t=rr(5,10);snd.tune()}else{kill("pom",1);return}}return}
+  R.pow-=[0,.1,.105,.112,.122,.135,.15][R.n]*usage(R)*dt;if(R.pow<=0){powerOut();return}
+  for(const k of["pom","moz","gno"]){const a=A[k];if(a.at===SPOTAT[k]){a.wait-=dt;if(a.wait<=0){if(R[GATE[k]]){a.at=RET[k];a.tm=WHO[k].every;snd.bang();if(k==="gno")snd.rattle(.8)}else{kill(k);return}}continue}
+    a.tm-=dt;if(a.tm<=0){a.tm=WHO[k].every*rr(.85,1.15);if(Math.random()*20<a.lv)move(k)}}
+  const a=A.ana;if(a.lv>0){if(R.torch&&a.stg>0){a.push+=dt;a.tm=Math.max(a.tm,WHO.ana.every*.6);if(a.push>=.9){a.stg--;a.push=0;snd.shoo()}}
+    else{a.push=Math.max(0,a.push-dt);a.tm-=dt;if(a.tm<=0){a.tm=WHO.ana.every*rr(.85,1.15);if(Math.random()*20<a.lv&&!(R.cam&&R.sel==="dining")){a.stg++;if(R.cam&&R.sel==="dining")R.glitch=.7;if(a.stg>=4){kill("ana");return}}}
+      if(a.stg===3){a.tap-=dt;if(a.tap<=0){a.tap=2.2;snd.tap()}}}}}
+function move(k){const a=R.A[k],opts=NEXT[k][a.at];if(!opts)return;const to=opts.length>1&&Math.random()<.3?opts[1]:opts[0];
+  if(R.cam&&(R.sel===a.at||R.sel===to))R.glitch=.75;a.at=to;
+  if(to===SPOTAT[k])a.wait=Math.max(1.8,rr(4.2,6.6)-a.lv*.15),snd.near(k);else if(to==="lhall"||to==="rhall")snd.step(.5);else if(to==="vent")snd.rattle(.55);else if(to==="kitchen")snd.pots()}
+function powerOut(){R.pow=0;R.pout=1;R.LD=R.RD=R.VD=false;R.light=null;R.torch=false;R.cam=false;R.po={ph:0,t:rr(5,14)};snd.out();snd.door();syncKey="";msg(L("The power's out...","È saltata la corrente..."),3)}
+function kill(k,po){if(st!=="play")return;const z=nsS();st="scare";R.cam=false;R.camT=0;R.kill={who:k,t:0,po:!!po};snd.scare();z.deaths++;z.by[po?"pout":k]++;
+  R.pay=Math.round(payFor(R.n)*R.hr/6*.15);if(R.pay>0){earn(R.pay);z.earned+=R.pay}syncKey="";$("nsMsg").classList.add("fade")}
+function win(){const z=nsS(),n=R.n,first=n>z.best;st="win";R.wt=0;R.cam=false;R.camT=0;R.light=null;R.torch=false;R.pay=payFor(n)*(first?2:1);R.first=first;earn(R.pay);z.earned+=R.pay;z.wins++;
+  if(n===6)z.n6++;z.best=Math.max(z.best,n);if(n>=z.un&&n<6)z.un=n+1;snd.chime();setTimeout(()=>{if(open)SFX.win()},2600);syncKey="";$("nsMsg").classList.add("fade")}
+function msg(s,sec){const m=$("nsMsg");m.textContent=s;m.classList.remove("fade");clearTimeout(msg.tm);msg.tm=setTimeout(()=>m.classList.add("fade"),sec*1000)}
+// ---------- controls ----------
+function setGate(k){if(!R||st!=="play"||R.pout||R.cam)return;R[k]=!R[k];snd.door();syncKey=""}
+function setLight(k,on){if(!R||st!=="play"||R.pout)return;if(on&&R.cam)return;if(on){if(R.light!==k)snd.btn();R.light=k}else if(R.light===k)R.light=null;syncKey=""}
+function setTorch(on){if(!R||st!=="play"||R.pout)return;if(on&&R.cam)return;if(on&&!R.torch)snd.btn();R.torch=on;syncKey=""}
+function toggleCam(){if(!R||st!=="play"||R.pout)return;R.cam=!R.cam;if(R.cam){R.light=null;R.torch=false}snd.cam();syncKey=""}
+function pickCam(id){if(!R||!R.cam)return;if(R.sel!==id){R.sel=id;R.glitch=Math.max(R.glitch,.25);snd.cam();syncKey=""}}
+function buildControls(){const b=(a,x,y,cls,txt_)=>`<button class="nsb ${cls}" data-a="${a}" style="left:${x}%;top:${y}%">${txt_}</button>`;
+  $("nsOff").innerHTML=b("LD",20.5,39.5,"door",L("DOOR","PORTA"))+b("L",20.5,49.5,"lt",L("LIGHT","LUCE"))+b("RD",79.5,39.5,"door",L("DOOR","PORTA"))+b("R",79.5,49.5,"lt",L("LIGHT","LUCE"))
+   +b("VD",22.75,57.5,"door sm",L("VENT","GRATA"))+b("V",22.75,78.5,"lt sm",L("LIGHT","LUCE"))+`<button class="nswin" data-a="T" aria-label="${L("Hold to shine the torch at the window","Tieni premuto per puntare la torcia alla finestra")}"><span>🔦 ${L("hold","tieni")}</span></button>`;
+  $("nsMap").innerHTML=`<i class="nsyou">${L("YOU","TU")}</i>`+CAMS.map(([id,code,nm,p],i)=>`<button data-cam="${id}" title="${N(nm)} (${i+1})" style="left:${p[0]}%;top:${p[1]}%;width:${p[2]}%;height:${p[3]}%">${code}</button>`).join("")}
+function sync(){const z=R&&st==="play",k=[z?1:0,R&&R.LD,R&&R.RD,R&&R.VD,R&&R.light,R&&R.torch,R&&R.cam,R&&R.sel,R&&R.pout,LANG].join("|");if(k===syncKey)return;syncKey=k;
+  const off=$("nsOff");off.classList.toggle("hide",!z||!!R.cam);off.classList.toggle("pout",!!(R&&R.pout));
+  off.querySelectorAll("[data-a]").forEach(e=>{const a=e.dataset.a;e.classList.toggle("on",!!R&&(a==="T"?R.torch:a.length===2?R[a]:R.light===a));e.disabled=!z||!!R.pout});
+  $("nsMap").classList.toggle("show",!!(z&&R.cam));$("nsMap").querySelectorAll("[data-cam]").forEach(e=>e.classList.toggle("sel",!!R&&e.dataset.cam===R.sel));
+  const c=$("nsCam");c.hidden=!z;c.disabled=!!(R&&R.pout);c.classList.toggle("on",!!(R&&R.cam));c.textContent=R&&R.cam?L("▼ Lower the camera","▼ Abbassa la telecamera"):L("▲ Cameras","▲ Telecamere")}
+function frame(now){raf=0;if(!open)return;const dt=Math.min(.05,(now-(lastF||now))/1000);lastF=now;step(dt);sync();render();uiT-=dt;if(uiT<=0){uiT=.3;ui()}raf=requestAnimationFrame(frame)}
+// ---------- cards and side panel ----------
+function card(){const z=nsS(),o=ov();
+  if(st==="over"&&R){const k=R.kill,tip=k.po?L("You ran out of power. Only shut doors when someone is really there, and don't leave the camera up.","Hai finito l'energia. Chiudi le porte solo quando c'è davvero qualcuno, e non lasciare su la telecamera.")
+     :{pom:L("Check the left light when he leaves the West Hall camera, and shut the left door.","Controlla la luce sinistra quando sparisce dal corridoio ovest, e chiudi la porta sinistra."),moz:L("When she leaves the East Hall, check the right light and shut the right door.","Quando lascia il corridoio est, controlla la luce destra e chiudi la porta destra."),gno:L("When the duct rattles, shut the vent until the banging stops.","Quando il condotto sferraglia, chiudi la grata finché non smette di sbattere."),ana:L("Hold the torch on the window until L'Ananas backs away.","Tieni la torcia sulla finestra finché L'Ananas non indietreggia.")}[k.who];
+    o.innerHTML=`<div class="tdcard nscard"><h2>${L("Caught!","Preso!")}</h2><p>${L(`${N(WHO[k.who].n)} got you at ${R.hr?R.hr:12} AM on night ${R.n}.`,`${N(WHO[k.who].n)} ti ha preso alle ${R.hr||12} di notte ${R.n}.`)}</p><p class="nstip">${tip}</p>
+      <dl class="pzres"><dt>${L("Hours survived","Ore superate")}</dt><dd>${R.hr} / 6</dd><dt>${L("Duecks for your trouble","Dueck per il disturbo")}</dt><dd>+${fmt(R.pay)}</dd></dl>
+      <div class="pzmodes"><button class="tdbtn go" data-night="${R.n}" id="nsGo">${L("Try again","Riprova")}</button><button class="tdbtn alt" data-menu="1">${L("All nights","Tutte le notti")}</button></div></div>`;return}
+  if(st==="win"&&R){const n=R.n,nx=Math.min(6,n+1);o.innerHTML=`<div class="tdcard nscard"><h2>6 AM</h2><p>${L(`You survived night ${n}.`,`Sei sopravvissuto alla notte ${n}.`)}${R.first?" "+L("First time: double pay!","Prima volta: paga doppia!"):""}</p>
+      <div class="pzbig">+${fmt(R.pay)}<small>Duecks</small></div>
+      <div class="pzmodes">${n<6?`<button class="tdbtn go" data-night="${nx}" id="nsGo">${L("Night ","Notte ")+nx}</button>`:`<button class="tdbtn go" data-night="6" id="nsGo">${L("Night 6 again","Ancora la notte 6")}</button>`}<button class="tdbtn alt" data-menu="1">${L("All nights","Tutte le notti")}</button></div></div>`;return}
+  st="menu";o.innerHTML=`<div class="tdcard nscard"><h2>Night Shift <i>at Dueck's</i></h2><p>${L("You took the night guard job at the pizzeria. Easy money, they said. But after closing, the animatronics (every one of them wearing Dueck's face) wander the building, and they don't like visitors. Survive from midnight to 6 AM.","Hai preso il lavoro da guardia notturna in pizzeria. Soldi facili, dicevano. Ma dopo la chiusura gli animatronici (tutti con la faccia di Dueck) girano per il locale, e non amano le visite. Resisti da mezzanotte alle 6.")}</p>
+    <div class="nsnights">${[1,2,3,4,5,6].map(n=>`<button class="nsnight${n<=z.best?" done":""}" data-night="${n}" ${n>z.un?"disabled":""}${n===z.un?' id="nsGo"':""}><b>${L("Night ","Notte ")+n}${n<=z.best?" ✓":n>z.un?" 🔒":""}</b><small>${N(DIFF[n])}</small><em>${fmt(payFor(n))}</em></button>`).join("")}</div>
+    <ul class="nskeys"><li><kbd>A</kbd> <kbd>D</kbd> ${L("doors","porte")}</li><li><kbd>Q</kbd> <kbd>E</kbd> ${L("door lights (hold)","luci porte (tieni)")}</li><li><kbd>S</kbd> ${L("vent","grata")} · <kbd>X</kbd> ${L("vent light","luce grata")}</li><li><kbd>F</kbd> ${L("torch on the window (hold)","torcia sulla finestra (tieni)")}</li><li><kbd>Space</kbd> ${L("cameras","telecamere")} · <kbd>1</kbd>–<kbd>8</kbd> ${L("switch camera","cambia telecamera")}</li></ul></div>`}
+let whoKey="";
+function ui(){const z=nsS();$("nsCash").textContent=fmt(S.d);$("nsBest").textContent=z.best;
+  $("nsNight").innerHTML=R&&st==="play"?`<dt>${L("Night","Notte")}</dt><dd>${R.n}</dd><dt>${L("Time","Ora")}</dt><dd>${R.hr||12} AM</dd><dt>${L("Power","Energia")}</dt><dd>${Math.max(0,Math.ceil(R.pow))}%</dd><dt>${L("Pay at 6 AM","Paga alle 6")}</dt><dd>+${fmt(payFor(R.n)*(R.n>z.best?2:1))}</dd>`
+    :`<dt>${L("Unlocked","Sbloccate")}</dt><dd>${L("Night ","Notte ")+z.un}</dd><dt>${L("Next pay","Prossima paga")}</dt><dd>${fmt(payFor(z.un)*(z.un>z.best?2:1))}</dd>`;
+  const wk=[LANG,R&&st==="play"?R.n:0].join();if(wk!==whoKey){whoKey=wk;const n=R&&st==="play"?R.n:z.un;
+    $("nsWho").innerHTML=ORDER.map((k,i)=>`<div class="nswho${AI[n][i]?"":" off"}"><canvas data-who="${k}" width="88" height="88"></canvas><div><b>${N(WHO[k].n)}</b><span>${N(WHO[k].d)}</span>${AI[n][i]?"":`<em>${L("Asleep tonight","Dorme stanotte")}</em>`}</div></div>`).join("");
+    $("nsWho").querySelectorAll("canvas").forEach(c=>{const g=c.getContext("2d"),k=c.dataset.who,[hx,hy,hr]=HEAD[k],s=88/(hr*3.2);g.fillStyle="#15161b";g.fillRect(0,0,88,88);who(g,k,44-hx*s,44-hy*s+6,s,{t:0})})}
+  const most=[...ORDER,"pout"].sort((a,b)=>z.by[b]-z.by[a])[0];
+  $("nsRec").innerHTML=`<dt>${L("Best night beaten","Notte migliore")}</dt><dd>${z.best||"–"}</dd><dt>${L("Nights survived","Notti superate")}</dt><dd>${nf(z.wins)}</dd><dt>${L("Times caught","Volte preso")}</dt><dd>${nf(z.deaths)}</dd>${z.deaths?`<dt>${L("Caught most by","Preso più spesso da")}</dt><dd>${most==="pout"?L("The dark","Il buio"):N(WHO[most].n)}</dd>`:""}<dt>${L("Night 6 wins","Vittorie notte 6")}</dt><dd>${nf(z.n6)}</dd><dt>${L("Duecks earned","Dueck guadagnati")}</dt><dd>${fmt(z.earned)}</dd>`}
+// ---------- window and input ----------
+function openNS(){closeAllWins();open=true;$("nsw").hidden=false;hideTip();cv=$("nscv");buildControls();syncKey="";whoKey="";if(st!=="play")card();
+  requestAnimationFrame(()=>{layout();lastF=0;if(!raf)raf=requestAnimationFrame(frame)});ui()}
+function closeNS(){if(R&&st==="play"){const z=nsS();R.pay=Math.round(payFor(R.n)*R.hr/6*.15);if(R.pay>0){earn(R.pay);z.earned+=R.pay}}open=false;$("nsw").hidden=true;ov().innerHTML="";st="menu";R=null}
+const off=$("nsOff"),held=new Map();
+off.addEventListener("pointerdown",e=>{const b=e.target.closest("[data-a]");if(!b||b.disabled)return;e.preventDefault();const a=b.dataset.a;
+  if(a.length===2)return setGate(a);try{b.setPointerCapture(e.pointerId)}catch(_){}held.set(e.pointerId,a);if(a==="T")setTorch(true);else setLight(a,true)});
+const rel=e=>{const a=held.get(e.pointerId);if(!a)return;held.delete(e.pointerId);if(a==="T")setTorch(false);else setLight(a,false)};
+for(const ev of["pointerup","pointercancel","lostpointercapture"])off.addEventListener(ev,rel);
+off.addEventListener("keydown",e=>{const b=e.target.closest("[data-a]");if(b&&(e.key==="Enter"||e.key===" ")&&b.dataset.a.length===2){e.preventDefault();setGate(b.dataset.a)}});
+off.addEventListener("contextmenu",e=>e.preventDefault());
+$("nsCam").onclick=toggleCam;$("nsMap").addEventListener("click",e=>{const b=e.target.closest("[data-cam]");if(b)pickCam(b.dataset.cam)});
+ov().addEventListener("click",e=>{const b=e.target.closest("[data-night]");if(b&&!b.disabled){newNight(+b.dataset.night);return}if(e.target.closest("[data-menu]")){R=null;st="menu";card();ui()}});
+const KEYS={q:"L",e:"R",x:"V"};
+addEventListener("keydown",e=>{if(!open||/INPUT|TEXTAREA/.test(e.target.tagName))return;e.stopPropagation();const k=e.key.toLowerCase();if(k==="escape"){closeNS();return}
+  if(st!=="play"){if((k===" "||k==="enter")&&$("nsGo")&&!e.target.closest("button")){e.preventDefault();$("nsGo").click()}return}
+  if(e.repeat&&k!=="f"&&!KEYS[k])return;
+  if(k===" "||k==="tab"){e.preventDefault();toggleCam()}else if(k==="a")setGate("LD");else if(k==="d")setGate("RD");else if(k==="s")setGate("VD");
+  else if(KEYS[k])setLight(KEYS[k],true);else if(k==="f")setTorch(true);else if(/^[1-8]$/.test(k)&&R.cam)pickCam(CAMS[+k-1][0])},true);
+addEventListener("keyup",e=>{if(!open)return;const k=e.key.toLowerCase();if(KEYS[k])setLight(KEYS[k],false);else if(k==="f")setTorch(false)},true);
+addEventListener("blur",()=>{if(open&&R){R.light=null;R.torch=false;held.clear();syncKey=""}});addEventListener("resize",()=>{if(open)layout()});
+$("nsClose").onclick=closeNS;
+// a still for the games room card
+function mini(c){const W=c.width,H=c.height,g=c.getContext("2d");ensureRooms();const r=idleR();r.light="L";r.A.pom.at="ldoor";r.A.ana.stg=2;r.n=3;
+  drawOffice(g,W,H,r,buildBg(W,H,1),1);if(!FACES.pom0)fimg.addEventListener("load",()=>setTimeout(()=>{if(c.isConnected)drawOffice(g,W,H,r,buildBg(W,H,1),1)},0),{once:true})}
+return{open:openNS,close:closeNS,get isOpen(){return open},mini,stats:nsS,_dbg:()=>({get R(){return R},get st(){return st},newNight,step,kill,win,move})}})();
+
 // ---------- games room: pick a game ----------
 const GM={open:false};
 function openGames(){closeAllWins();GM.open=true;$("gmw").hidden=false;hideTip();renderGames()}
 function closeGames(){GM.open=false;$("gmw").hidden=true}
-function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats(),fb=FB.stats(),pz=PZ.stats();
+function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.stats(),mf=MF.stats(),sk=SK.stats(),fb=FB.stats(),pz=PZ.stats(),ns=NS.stats();
   $("gmGrid").innerHTML=`<button class="gmcard" data-game="td"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag">${L("Tower defense","Tower defense")}</span><b>Difesa Dueck</b>
     <p>${L("Mice, pigeons, food critics and the tax man are marching on the trattoria. Build towers, survive 30 waves, and earn Duecks for every wave you clear.","Topi, piccioni, critici e l'esattore marciano sulla trattoria. Costruisci torri, resisti a 30 ondate e guadagna Dueck per ogni ondata superata.")}</p>
     <div class="gmst"><span>${L("Saved games","Partite salvate")} <b>${sl.length}/3</b></span>${sl.length?`<span>${L("Furthest","Più lontano")} <b>${L("wave","ondata")} ${Math.max(...sl.map(x=>x.wave))}</b></span>`:""}<span>${L("Wins","Vittorie")} <b>${td.wins||0}</b></span></div>
@@ -5131,9 +5566,13 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("The oven is roaring and the orders are flying across the kitchen. Swipe to slice pizzas, tomatoes, mushrooms and cheese in mid-air, chain combos, and never, ever slice the pineapple. Every point pays Duecks.","Il forno è al massimo e gli ordini volano per la cucina. Trascina per tagliare al volo pizze, pomodori, funghi e formaggio, concatena combo e mai, mai tagliare l'ananas. Ogni punto paga Dueck.")}</p>
     <div class="gmst"><span>${L("Best","Record")} <b>${Math.max(pz.bc,pz.br).toLocaleString(LANG==="it"?"it-IT":"en-US")}</b></span><span>${L("Sliced","Tagliati")} <b>${fmt(pz.sliced)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(pz.earned)}</b></span></div>
     <span class="gmplay">${L("Start slicing","Inizia a tagliare")}</span></div></button>
+    <button class="gmcard" data-game="ns"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag fear">${L("Horror","Horror")}</span><b>Night Shift at Dueck's</b>
+    <p>${L("Take the night guard job at the pizzeria. After closing, the animatronics, all wearing Dueck's face, roam the halls. Watch the cameras, shut the doors, save your power and survive until 6 AM. Every night survived pays Duecks.","Fai la guardia notturna in pizzeria. Dopo la chiusura gli animatronici, tutti con la faccia di Dueck, girano per i corridoi. Guarda le telecamere, chiudi le porte, risparmia energia e resisti fino alle 6. Ogni notte superata paga Dueck.")}</p>
+    <div class="gmst"><span>${L("Best night","Notte migliore")} <b>${ns.best||"–"}</b></span><span>${L("Survived","Superate")} <b>${fmt(ns.wins)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(ns.earned)}</b></span></div>
+    <span class="gmplay">${L("Clock in","Inizia il turno")}</span></div></button>
     <div class="gmcard soon"><div class="gmq">?</div><div class="gmc"><b>${L("Coming soon","In arrivo")}</b><p>${L("More games are on the way. The kitchen is busy cooking them up.","Altri giochi in arrivo. La cucina li sta preparando.")}</p></div></div>`;
-  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3]);FB.mini(cvs[4]);PZ.mini(cvs[5])}
-$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open();else if(c.dataset.game==="fb")FB.open();else if(c.dataset.game==="pz")PZ.open()};
+  const cvs=$("gmGrid").querySelectorAll("canvas");TD.mini(cvs[0],0);FS.mini(cvs[1]);MF.mini(cvs[2]);SK.mini(cvs[3]);FB.mini(cvs[4]);PZ.mini(cvs[5]);NS.mini(cvs[6])}
+$("gmGrid").onclick=e=>{const c=e.target.closest("[data-game]");if(!c)return;SFX.chip();if(c.dataset.game==="td")TD.open();else if(c.dataset.game==="fs")FS.open();else if(c.dataset.game==="mf")MF.open();else if(c.dataset.game==="sk")SK.open();else if(c.dataset.game==="fb")FB.open();else if(c.dataset.game==="pz")PZ.open();else if(c.dataset.game==="ns")NS.open()};
 $("gmClose").onclick=closeGames;
 
 // ---------- The Phoenix: a newspaper blows across the table now and then ----------
@@ -5166,7 +5605,7 @@ setInterval(()=>{if(document.hidden)return;if(Date.now()>nextPaper){spawnPaper()
 
 
 // ---------- stats / save ----------
-function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Football titles","Titoli di football"),fmt(FB.stats().titles)],[L("Football Duecks earned","Dueck dal football"),fmt(FB.stats().earned)],[L("Pizzeria best score","Record in pizzeria"),fmt(Math.max(PZ.stats().bc,PZ.stats().br))],[L("Pizzeria Duecks earned","Dueck dalla pizzeria"),fmt(PZ.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
+function renderStats(){const rows=[[L("Duecks in the till","Dueck in cassa"),fmt(S.d)],[L("Made this run","Prodotti in questa partita"),fmt(S.total)],[L("Made all time","Prodotti in totale"),fmt(S.all)],[L("Per second","Al secondo"),fmt(G.cps)],[L("Per click","Per clic"),fmt(G.click)],[L("Face clicks","Clic sulla faccia"),fmt(S.clicks)],[L("Made by clicking","Prodotti cliccando"),fmt(S.hand)],[L("Shops","Negozi"),fmt(G.nb)],[L("Upgrades","Ingredienti"),S.up.size+" / "+U.length],[L("Trophies","Trofei"),S.ach.size+" / "+A.length],[L("Golden Duecks","Dueck d'Oro"),S.gold],[L("Rebirths","Rinascite"),S.asc],[L("Market trades","Operazioni in borsa"),fmt(S.trades)],[L("Market profit","Guadagno in borsa"),(S.profit<0?"-":"")+fmt(Math.abs(S.profit))],[L("Trader rank","Grado"),rkName(rankOf())],[L("Dividends earned","Dividendi"),fmt(S.divs)],[L("Best click combo","Miglior combo"),fmt(S.combo)],[L("Crypto profit","Guadagno cripto"),(S.cprof<0?"-":"")+fmt(Math.abs(S.cprof))],[L("Roulette spins","Giri di roulette"),fmt(S.kas.rl||0)],[L("Defense waves cleared","Ondate di difesa superate"),fmt(S.td.waves)],[L("Defense Duecks earned","Dueck dalla difesa"),fmt(S.td.earned)],[L("Defense wins","Vittorie in difesa"),S.td.wins],[L("Fish caught","Pesci pescati"),fmt(FS.stats().n)],[L("Fishing Duecks earned","Dueck dalla pesca"),fmt(FS.stats().earned)],[L("Family jobs done","Lavori per la famiglia"),fmt(MF.stats().jobs)],[L("Family Duecks earned","Dueck dalla famiglia"),fmt(MF.stats().earned)],[L("Best ski score","Record sugli sci"),fmt(SK.stats().best)],[L("Ski Duecks earned","Dueck dagli sci"),fmt(SK.stats().earned)],[L("Football titles","Titoli di football"),fmt(FB.stats().titles)],[L("Football Duecks earned","Dueck dal football"),fmt(FB.stats().earned)],[L("Pizzeria best score","Record in pizzeria"),fmt(Math.max(PZ.stats().bc,PZ.stats().br))],[L("Pizzeria Duecks earned","Dueck dalla pizzeria"),fmt(PZ.stats().earned)],[L("Night shifts survived","Turni di notte superati"),fmt(NS.stats().wins)],[L("Night shift Duecks earned","Dueck dai turni di notte"),fmt(NS.stats().earned)],[L("Casino net","Saldo casinò"),(S.kas.net<0?"-":"")+fmt(Math.abs(S.kas.net))],[L("Biggest casino win","Vincita più grande"),fmt(S.kas.best)],[L("Spins, hands, races","Giri, mani, corse"),`${fmt(S.kas.spins)} · ${fmt(S.kas.hands)} · ${fmt(S.kas.races)}`],[L("Crowns","Corone"),fmt(S.crown)],[L("Ascensions","Ascensioni"),S.ascn],[L("Production multiplier","Moltiplicatore"),"×"+G.mult.toFixed(2)],[L("This run","Questa partita"),time(S.run)],[L("Total play time","Tempo di gioco"),time(S.play)]];
   $("stats").innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}
 $("saveBtn").onclick=()=>save();
 $("expBtn").onclick=()=>{const t=btoa(unescape(encodeURIComponent(ser())));$("saveTxt").value=t;$("saveTxt").select();
