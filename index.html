@@ -6608,8 +6608,10 @@ function box(B,x0,y0,z0,x1,y1,z1,tx,s,b,shm=1,fl=0){B.grow(24);
 function special(B,x,y,z,id,d){const[s,b]=cell(x,y,z),tl=d.tl;
   if(d.shape===3){box(B,x+7/16,y,z+7/16,x+9/16,y+10/16,z+9/16,[TL.torch,TL.torch,TL.torch],s,Math.max(b,200),1.1);return}
   if(d.shape===4){box(B,x,y,z,x+1,y+9/16,z+1,tl,s,b);return}
-  if(d.shape===5){const open=id===40||id===60,ax=SOL[gB(x-1,y,z)]||SOL[gB(x+1,y,z)];let a=ax?!open:open;
-    if(a)box(B,x,y,z+6.5/16,x+1,y+1,z+9.5/16,[TL.dark_planks,TL.dark_planks,tl[2]],s,b);else box(B,x+6.5/16,y,z,x+9.5/16,y+1,z+1,[TL.dark_planks,TL.dark_planks,tl[2]],s,b);return}}
+  if(d.shape===5){const open=id===40||id===60,T=[TL.dark_planks,TL.dark_planks,tl[2]],th=3/16;
+    const wx=OPQ[gB(x-1,y,z)]||OPQ[gB(x+1,y,z)]||SOL[gB(x-1,y,z)]||SOL[gB(x+1,y,z)];
+    if(wx){if(!open)box(B,x,y,z+6.5/16,x+1,y+1,z+9.5/16,T,s,b);else{const hx=SOL[gB(x-1,y,z)]?x:x+1-th;box(B,hx,y,z,hx+th,y+1,z+1,T,s,b)}}
+    else{if(!open)box(B,x+6.5/16,y,z,x+9.5/16,y+1,z+1,T,s,b);else{const hz=SOL[gB(x,y,z-1)]?z:z+1-th;box(B,x,y,hz,x+1,y+1,hz+th,T,s,b)}}return}}
 // ---------- sections ----------
 const SEC=[];let dirtyN=0;
 function secAt(sx,sy,sz){return SEC[(sz*NSY+sy)*NSX+sx]}
