@@ -812,6 +812,10 @@ button.gmcard:hover .gmplay{background:#238a56}
 /* games room: little polish */
 .gmtag.sea{color:#1f6f99;background:#dcefF8}
 .gmtag.mob{color:#8a1f24;background:#f6dcd6}
+.gmcard{position:relative}
+.gmupd{position:absolute;top:10px;right:10px;font:800 11px var(--fb);letter-spacing:.1em;color:#2a1a08;background:linear-gradient(135deg,#ffe27a,#f0b020);border-radius:99px;padding:4px 10px;box-shadow:0 2px 8px rgba(0,0,0,.3);animation:gmupd 1.6s ease-in-out infinite}
+@keyframes gmupd{50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.gmupd{animation:none}}
 /* ===== La Famiglia: top-down crime caper ===== */
 .td.mf{--bg:#2a1a16;--bg2:#1a0f0c}
 .mf .tdside{border-left-color:#4a2c22}
@@ -6014,8 +6018,8 @@ function renderGames(){const sl=TD.slots().filter(Boolean),td=S.td||{},fs=FS.sta
     <p>${L("Drop your line off the harbour wall and follow it down: sardines in the shallows, red coral and lobsters on the reef wall, a sunken galleon, glowing anglerfish in the dark, and the Crystal Dueck at the bottom of the abyss. Better rods go deeper.","Cala la lenza dal molo e seguila giù: sardine in superficie, corallo rosso e aragoste sulla parete, un galeone affondato, pesci pescatori luminosi nel buio e il Dueck di Cristallo in fondo all'abisso. Le canne migliori scendono più giù.")}</p>
     <div class="gmst"><span>${L("Caught","Pescati")} <b>${fmt(fs.n||0)}</b></span><span>${L("Journal","Diario")} <b>${Object.keys(fs.sp||{}).length}/${FS.total}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(fs.earned||0)}</b></span></div>
     <span class="gmplay">${L("Go fishing","Vai a pescare")}</span></div></button>
-    <button class="gmcard" data-game="mf"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag mob">${L("Crime caper","Crimine")}</span><b>La Famiglia</b>
-    <p>${L("Drive a little Italian island town doing favours for the Don: deliveries, collection rounds, bank getaways and street races, with the police on your tail. Every job pays Duecks.","Guida per una piccola città su un'isola italiana facendo favori al Don: consegne, giri delle buste, colpi in banca e corse, con la polizia alle calcagna. Ogni lavoro paga Dueck.")}</p>
+    <button class="gmcard" data-game="mf"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag mob">${L("Crime caper","Crimine")}</span><span class="gmupd">${L("UPDATE!","NOVITÀ!")}</span><b>La Famiglia</b>
+    <p>${L("A whole Italian island to run: walk the streets, steal any car, rise through the family in a 9-mission story ending in a bank heist, buy properties, tune your cars and outrun the police, the helicopter and the army.","Un'intera isola italiana da conquistare: cammina per le strade, ruba qualsiasi auto, scala la famiglia in una storia di 9 missioni che finisce con un colpo in banca, compra proprietà, elabora le tue auto e semina polizia, elicottero ed esercito.")}</p>
     <div class="gmst"><span>${L("Rank","Grado")} <b>${MF.rank()}</b></span><span>${L("Jobs","Lavori")} <b>${fmt(mf.jobs)}</b></span><span>${L("Earned","Guadagnati")} <b>${fmt(mf.earned)}</b></span></div>
     <span class="gmplay">${L("Join the family","Entra in famiglia")}</span></div></button>
     <button class="gmcard" data-game="sk"><canvas width="400" height="240"></canvas><div class="gmc"><span class="gmtag snow">${L("Ski tricks","Trucchi sugli sci")}</span><b>La Discesa</b>
