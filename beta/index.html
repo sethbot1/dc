@@ -8132,7 +8132,7 @@ place();resize();setPerf(PERF);draw();news(true);
 const ONLINE=(()=>{
   // Put your server's address here once it's running, e.g. "https://dueck-mini.tail1234.ts.net".
   // For testing you can also open the beta with ?api=https://your-address and it is remembered.
-  const DEFAULT_API="";
+  const DEFAULT_API="https://seth-macmini51.tail9d6271.ts.net";
   const CH="beta",K="dueck-clicker-beta-online";
   const rid=()=>{const a=new Uint8Array(16);crypto.getRandomValues(a);return[...a].map(b=>b.toString(36).padStart(2,"0")).join("").slice(0,22)};
   let st={};try{st=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
