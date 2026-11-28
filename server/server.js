@@ -6,6 +6,7 @@ const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
 const { DatabaseSync } = require("node:sqlite");
+const { isBadName } = require("./names.js");
 
 // ---------- config (set these in the .env file next to this script) ----------
 loadEnv(process.env.ENV_FILE || path.join(__dirname, ".env"));
@@ -111,12 +112,10 @@ function auth(req) {
 }
 
 // ---------- names ----------
-const BAD = ["fuck", "shit", "bitch", "cunt", "nigg", "fag", "rape", "nazi", "hitler", "whore", "slut", "porn", "dick", "pussy", "cock", "retard"];
 function cleanName(n) {
   n = String(n || "").normalize("NFKC").replace(/\s+/g, " ").trim();
   if (!/^[A-Za-z0-9 _.-]{3,16}$/.test(n)) return { err: "Names are 3 to 16 letters, numbers, spaces, dots, dashes or underscores." };
-  const flat = n.toLowerCase().replace(/[^a-z]/g, "").replace(/0/g, "o");
-  if (BAD.some(w => flat.includes(w))) return { err: "Please pick a different name." };
+  if (isBadName(n)) return { err: "That name isn't allowed. Please pick a different one." };
   return { name: n };
 }
 
@@ -299,7 +298,7 @@ ${opens.map(o => `<tr><td>${esc(o.name || "?")}</td><td class="num">${o.n}</td><
 ${flags.map(f => `<tr><td>${esc(f.name)}${f.hidden ? ' <span class="tag">hidden</span>' : ""}${f.banned ? ' <span class="tag bad">banned</span>' : ""}</td><td class="wrapok"><b>${esc(f.reason)}</b><br><span class="sub">${esc(f.detail)}</span></td><td>${new Date(f.at).toLocaleString()}</td><td>${btn("dismiss", f.id, "Looks fine")} ${f.tag ? btn("untag", f.player_id, "Remove tag") + " " : ""}${f.hidden ? "" : btn("hide", f.player_id, "Hide from board")}</td></tr>`).join("") || `<tr><td colspan="4" class="sub">Nothing to review.</td></tr>`}</table></div>
 <h2>Players (top 100 by Duecks made)</h2><div class="wrap"><table><tr><th>Name</th><th class="num">Duecks made</th><th class="num">Best /sec</th><th class="num">Clicks</th><th class="num">Played</th><th>Last save</th><th></th></tr>
 ${top.map(r => `<tr><td>${esc(r.name)}${r.tag ? ' <span class="tag bad">' + esc(r.tag) + "</span>" : ""}${r.cheat ? ' <span class="tag">beta tools</span>' : ""}${r.hidden ? ' <span class="tag">hidden</span>' : ""}${r.banned ? ' <span class="tag bad">banned</span>' : ""}</td><td class="num">${big(r.ever)}</td><td class="num">${big(r.best)}</td><td class="num">${big(r.clicks)}</td><td class="num">${dur(r.play)}</td><td>${new Date(r.updated).toLocaleString()}</td>
-<td>${r.tag ? btn("untag", r.id, "Remove tag") + " " : ""}${r.hidden ? btn("unhide", r.id, "Show") : btn("hide", r.id, "Hide")} ${r.banned ? btn("unban", r.id, "Unban") : btn("ban", r.id, "Ban")}</td></tr>`).join("") || `<tr><td colspan="7" class="sub">No players yet.</td></tr>`}</table></div>
+<td>${btn("rename", r.id, "Rename")} ${r.tag ? btn("untag", r.id, "Remove tag") + " " : ""}${r.hidden ? btn("unhide", r.id, "Show") : btn("hide", r.id, "Hide")} ${r.banned ? btn("unban", r.id, "Unban") : btn("ban", r.id, "Ban")}</td></tr>`).join("") || `<tr><td colspan="7" class="sub">No players yet.</td></tr>`}</table></div>
 </main></body></html>`;
 }
 async function adminAction(req, res, url, act) {
@@ -307,6 +306,7 @@ async function adminAction(req, res, url, act) {
   const id = +new URLSearchParams(body).get("id");
   if (id > 0) {
     if (act === "dismiss") q("UPDATE flags SET reviewed=1 WHERE id=?").run(id);
+    if (act === "rename") { let n = "Player" + id; while (q("SELECT 1 FROM players WHERE name=? AND id<>?").get(n, id)) n = "Player" + id + "_" + crypto.randomInt(1000); q("UPDATE players SET name=? WHERE id=?").run(n, id); }
     if (act === "untag") { q("UPDATE players SET tag=NULL WHERE id=?").run(id); q("UPDATE flags SET reviewed=1 WHERE player_id=? AND reason='AutoClicker tag'").run(id); }
     if (act === "hide" || act === "unhide") q("UPDATE players SET hidden=? WHERE id=?").run(act === "hide" ? 1 : 0, id);
     if (act === "ban" || act === "unban") q("UPDATE players SET banned=? WHERE id=?").run(act === "ban" ? 1 : 0, id);

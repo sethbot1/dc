@@ -46,6 +46,13 @@ Go to `https://your-address/admin`. Any username works, and the password is the 
 (it's also in `~/dueck-data/server.env`). It shows visits, what people open, the players, and anti-cheat
 notes, with buttons to hide, ban or remove a tag.
 
+## Name filter
+
+Names with slurs or swearing are refused when someone joins, including dodges like `n1gg3r`, `f u c k` or
+stretched letters, while normal words that contain a bad word (Grape, Peacock, Scunthorpe) still work. The
+word lists are in `server/names.js`. If something weird gets through, press **Rename** on the admin page:
+the player becomes `Player42` and keeps their progress.
+
 ## Anti-cheat
 
 - **AutoClicker tag (automatic):** a player who averages **30+ clicks per second** over at least 20 seconds
